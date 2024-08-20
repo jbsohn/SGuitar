@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  SGuitar2
+//  SGuitar
 //
 //  Created by John Sohn on 8/18/24.
 //
