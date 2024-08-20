@@ -49,6 +49,8 @@
 		526136AD2C74364900842FAE /* NoteName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoteName.cpp; sourceTree = "<group>"; };
 		526136AE2C74364900842FAE /* Scale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scale.cpp; sourceTree = "<group>"; };
 		526136AF2C74364900842FAE /* StringAdjustment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringAdjustment.cpp; sourceTree = "<group>"; };
+		52FC68182C7439230019ACE7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		52FC68192C7439230019ACE7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,8 @@
 				526136A72C74364900842FAE /* include */,
 				526136B02C74364900842FAE /* src */,
 				524A35A02C7433F4007234B0 /* main.cpp */,
+				52FC68182C7439230019ACE7 /* LICENSE */,
+				52FC68192C7439230019ACE7 /* README.md */,
 				524A359E2C7433F4007234B0 /* Products */,
 			);
 			sourceTree = "<group>";
