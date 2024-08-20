@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		524A35A12C7433F4007234B0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524A35A02C7433F4007234B0 /* main.cpp */; };
+		526136B12C74364900842FAE /* Chord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136A82C74364900842FAE /* Chord.cpp */; };
+		526136B22C74364900842FAE /* Guitar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136A92C74364900842FAE /* Guitar.cpp */; };
+		526136B32C74364900842FAE /* GuitarAdjustment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136AA2C74364900842FAE /* GuitarAdjustment.cpp */; };
+		526136B42C74364900842FAE /* GuitarString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136AB2C74364900842FAE /* GuitarString.cpp */; };
+		526136B52C74364900842FAE /* Note.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136AC2C74364900842FAE /* Note.cpp */; };
+		526136B62C74364900842FAE /* NoteName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136AD2C74364900842FAE /* NoteName.cpp */; };
+		526136B72C74364900842FAE /* Scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136AE2C74364900842FAE /* Scale.cpp */; };
+		526136B82C74364900842FAE /* StringAdjustment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 526136AF2C74364900842FAE /* StringAdjustment.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		524A359B2C7433F4007234B0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		524A359D2C7433F4007234B0 /* SGuitar */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SGuitar; sourceTree = BUILT_PRODUCTS_DIR; };
+		524A35A02C7433F4007234B0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5261369E2C74364900842FAE /* Chord.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Chord.hpp; sourceTree = "<group>"; };
+		5261369F2C74364900842FAE /* Guitar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Guitar.hpp; sourceTree = "<group>"; };
+		526136A02C74364900842FAE /* GuitarAdjustment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GuitarAdjustment.hpp; sourceTree = "<group>"; };
+		526136A12C74364900842FAE /* GuitarString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GuitarString.hpp; sourceTree = "<group>"; };
+		526136A22C74364900842FAE /* Note.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Note.hpp; sourceTree = "<group>"; };
+		526136A32C74364900842FAE /* NoteName.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NoteName.hpp; sourceTree = "<group>"; };
+		526136A42C74364900842FAE /* Scale.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scale.hpp; sourceTree = "<group>"; };
+		526136A52C74364900842FAE /* StringAdjustment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringAdjustment.hpp; sourceTree = "<group>"; };
+		526136A82C74364900842FAE /* Chord.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chord.cpp; sourceTree = "<group>"; };
+		526136A92C74364900842FAE /* Guitar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Guitar.cpp; sourceTree = "<group>"; };
+		526136AA2C74364900842FAE /* GuitarAdjustment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarAdjustment.cpp; sourceTree = "<group>"; };
+		526136AB2C74364900842FAE /* GuitarString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarString.cpp; sourceTree = "<group>"; };
+		526136AC2C74364900842FAE /* Note.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Note.cpp; sourceTree = "<group>"; };
+		526136AD2C74364900842FAE /* NoteName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoteName.cpp; sourceTree = "<group>"; };
+		526136AE2C74364900842FAE /* Scale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scale.cpp; sourceTree = "<group>"; };
+		526136AF2C74364900842FAE /* StringAdjustment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringAdjustment.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		524A359A2C7433F4007234B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		524A35942C7433F4007234B0 = {
+			isa = PBXGroup;
+			children = (
+				526136A72C74364900842FAE /* include */,
+				526136B02C74364900842FAE /* src */,
+				524A35A02C7433F4007234B0 /* main.cpp */,
+				524A359E2C7433F4007234B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		524A359E2C7433F4007234B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				524A359D2C7433F4007234B0 /* SGuitar */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		526136A62C74364900842FAE /* SG */ = {
+			isa = PBXGroup;
+			children = (
+				5261369E2C74364900842FAE /* Chord.hpp */,
+				5261369F2C74364900842FAE /* Guitar.hpp */,
+				526136A02C74364900842FAE /* GuitarAdjustment.hpp */,
+				526136A12C74364900842FAE /* GuitarString.hpp */,
+				526136A22C74364900842FAE /* Note.hpp */,
+				526136A32C74364900842FAE /* NoteName.hpp */,
+				526136A42C74364900842FAE /* Scale.hpp */,
+				526136A52C74364900842FAE /* StringAdjustment.hpp */,
+			);
+			path = SG;
+			sourceTree = "<group>";
+		};
+		526136A72C74364900842FAE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				526136A62C74364900842FAE /* SG */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		526136B02C74364900842FAE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				526136A82C74364900842FAE /* Chord.cpp */,
+				526136A92C74364900842FAE /* Guitar.cpp */,
+				526136AA2C74364900842FAE /* GuitarAdjustment.cpp */,
+				526136AB2C74364900842FAE /* GuitarString.cpp */,
+				526136AC2C74364900842FAE /* Note.cpp */,
+				526136AD2C74364900842FAE /* NoteName.cpp */,
+				526136AE2C74364900842FAE /* Scale.cpp */,
+				526136AF2C74364900842FAE /* StringAdjustment.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		524A359C2C7433F4007234B0 /* SGuitar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 524A35A42C7433F4007234B0 /* Build configuration list for PBXNativeTarget "SGuitar" */;
+			buildPhases = (
+				524A35992C7433F4007234B0 /* Sources */,
+				524A359A2C7433F4007234B0 /* Frameworks */,
+				524A359B2C7433F4007234B0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SGuitar;
+			productName = SGuitar;
+			productReference = 524A359D2C7433F4007234B0 /* SGuitar */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		524A35952C7433F4007234B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					524A359C2C7433F4007234B0 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 524A35982C7433F4007234B0 /* Build configuration list for PBXProject "SGuitar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 524A35942C7433F4007234B0;
+			productRefGroup = 524A359E2C7433F4007234B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				524A359C2C7433F4007234B0 /* SGuitar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		524A35992C7433F4007234B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				526136B32C74364900842FAE /* GuitarAdjustment.cpp in Sources */,
+				526136B22C74364900842FAE /* Guitar.cpp in Sources */,
+				526136B72C74364900842FAE /* Scale.cpp in Sources */,
+				526136B42C74364900842FAE /* GuitarString.cpp in Sources */,
+				526136B82C74364900842FAE /* StringAdjustment.cpp in Sources */,
+				526136B52C74364900842FAE /* Note.cpp in Sources */,
+				526136B12C74364900842FAE /* Chord.cpp in Sources */,
+				526136B62C74364900842FAE /* NoteName.cpp in Sources */,
+				524A35A12C7433F4007234B0 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		524A35A22C7433F4007234B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		524A35A32C7433F4007234B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		524A35A52C7433F4007234B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/include";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = SGuitar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		524A35A62C7433F4007234B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/include";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = SGuitar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		524A35982C7433F4007234B0 /* Build configuration list for PBXProject "SGuitar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524A35A22C7433F4007234B0 /* Debug */,
+				524A35A32C7433F4007234B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		524A35A42C7433F4007234B0 /* Build configuration list for PBXNativeTarget "SGuitar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524A35A52C7433F4007234B0 /* Debug */,
+				524A35A62C7433F4007234B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 524A35952C7433F4007234B0 /* Project object */;
+}
