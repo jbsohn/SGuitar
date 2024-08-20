@@ -14,6 +14,7 @@
 #include "SG/GuitarAdjustment.hpp"
 #include "SG/Guitar.hpp"
 
+// smoke test...
 int main(int argc, const char * argv[]) {
     auto note = SG::Note(3, 2);
     std::cout << "Note: " << note.getNoteNamePitchUTF8() << "\n";

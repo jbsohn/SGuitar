@@ -87,14 +87,14 @@
 		526136A62C74364900842FAE /* SG */ = {
 			isa = PBXGroup;
 			children = (
-				5261369E2C74364900842FAE /* Chord.hpp */,
-				5261369F2C74364900842FAE /* Guitar.hpp */,
-				526136A02C74364900842FAE /* GuitarAdjustment.hpp */,
-				526136A12C74364900842FAE /* GuitarString.hpp */,
 				526136A22C74364900842FAE /* Note.hpp */,
 				526136A32C74364900842FAE /* NoteName.hpp */,
 				526136A42C74364900842FAE /* Scale.hpp */,
+				5261369E2C74364900842FAE /* Chord.hpp */,
+				526136A12C74364900842FAE /* GuitarString.hpp */,
 				526136A52C74364900842FAE /* StringAdjustment.hpp */,
+				526136A02C74364900842FAE /* GuitarAdjustment.hpp */,
+				5261369F2C74364900842FAE /* Guitar.hpp */,
 			);
 			path = SG;
 			sourceTree = "<group>";
@@ -110,14 +110,14 @@
 		526136B02C74364900842FAE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				526136A82C74364900842FAE /* Chord.cpp */,
-				526136A92C74364900842FAE /* Guitar.cpp */,
-				526136AA2C74364900842FAE /* GuitarAdjustment.cpp */,
-				526136AB2C74364900842FAE /* GuitarString.cpp */,
 				526136AC2C74364900842FAE /* Note.cpp */,
 				526136AD2C74364900842FAE /* NoteName.cpp */,
+				526136A82C74364900842FAE /* Chord.cpp */,
 				526136AE2C74364900842FAE /* Scale.cpp */,
+				526136AB2C74364900842FAE /* GuitarString.cpp */,
 				526136AF2C74364900842FAE /* StringAdjustment.cpp */,
+				526136AA2C74364900842FAE /* GuitarAdjustment.cpp */,
+				526136A92C74364900842FAE /* Guitar.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
