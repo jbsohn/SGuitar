@@ -20,11 +20,11 @@ int main(int argc, const char * argv[]) {
     std::cout << "Note: " << note.getNoteNamePitchUTF8() << "\n";
     std::cout << "Name: " << SG::NoteName::nameForNoteValue(1, AT_SHARP) << "\n";
     
-    std::vector<int> semitones = {2, 2, 1, 2, 2, 2};
+    auto semitones = {2, 2, 1, 2, 2, 2};
     auto scale = SG::Scale(0, semitones);
     std::cout << "Scale: " << scale.getDescription() << "\n";
 
-    std::vector<int> intervals = {0, 4, 7};
+    auto intervals = {0, 4, 7};
     auto chord = SG::Chord(0, intervals);
     std::cout << "Chord: " << chord.getDescription() << "\n";
 
@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "StringAdjustment 1: " << adjustment1.getDescription() << "\n";
     std::cout << "StringAdjustment 2: " << adjustment2.getDescription() << "\n";
     
-    SG::GuitarAdjustment guitarAdjustment = SG::GuitarAdjustment("LKL");
+    auto guitarAdjustment = SG::GuitarAdjustment("LKL");
     guitarAdjustment.addStringAdjustment(adjustment1);
     guitarAdjustment.addStringAdjustment(adjustment2);
     std::cout << "guitarAdjustment: " << guitarAdjustment.getDescription() << "\n";
