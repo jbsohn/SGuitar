@@ -1,0 +1,96 @@
+
+note_value = enum {
+    c;
+    c_sharp;
+    d;
+    d_sharp;
+    e;
+    f;
+    f_sharp;
+    g;
+    g_sharp;
+    a;
+    a_sharp;
+    b;
+}
+
+accidental_type =  enum {
+    natural;
+    sharp;
+    flat;
+}
+
+note = interface +c {
+    static create_with_note_value(note_value: i32, pitch: i32): note;
+    static create_with_midi_value(midiValue: i32): note;
+    static create_with_name(name: string): note;
+    get_midi_value(): i32;
+    get_note_value(): i32;
+    get_pitch_value(): i32;
+    get_note_name_pitch_utf8(): string;
+}
+
+scale = interface +c {
+    static create_with_root_note_value(root_note_value: note_value, semitones: array<i32>): scale;
+    get_note_values(): array<note_value>;
+    get_description(): string;
+}
+
+chord = interface +c {
+    static create_with_root_note_value(root_note_value: note_value, intervals: array<i32>): chord;
+    get_note_values(): array<note_value>;
+    get_description(): string;
+}
+
+guitar_string = interface +c {
+    static create_with_midi_start_value(midi_start_value: i32, number_of_frets: i32): guitar_string;
+    get_start_note_midi_value(): i32;
+    get_midi_notes(): array<i32>;
+    reset();
+    adjust_string_by_steps(steps: i32);
+    get_description(): string;
+}
+
+string_adjustment = interface +c {
+    static create_with_string_number(string_number: i32, step: i32): string_adjustment;
+    get_string_number(): i32;
+    set_step(step: i32);
+    get_step(): i32;
+    get_description(): string;
+}
+
+guitar_adjustment = interface +c {
+    static create_with_adjustment_id(adjustment_id: string): guitar_adjustment;
+    get_adjustment_id(): string;
+    clear_adjustments();
+    add_string_adjustment(adjustment: string_adjustment);
+    get_string_adjustments(): array<string_adjustment>;
+    string_adjustment_for_string_number(string_number: i32): string_adjustment;
+    get_description(): string;
+}
+
+guitar = interface +c {
+    static create(): guitar;
+    reset();
+    set_number_of_frets(numberOfFrets: i32);
+    get_number_of_frets(): i32;
+    # strings
+    get_strings(): array<guitar_string>;
+    set_string(stringNumber: i32, guitarString: guitar_string);
+    get_string(stringNumber: i32): guitar_string;
+    set_number_of_strings(numberOfStrings: i32);
+    get_number_of_strings(): i32;
+    # adjustment
+    is_adjustment_enabled(settingID: string): bool;
+    activate_adjustment(settingID: string, activated: bool);
+    set_adjustment(settingID: string, adjustment: guitar_adjustment);
+    get_adjustment(settingID: string): guitar_adjustment;
+    # helpers
+    resetStrings();
+    is_adjustment_activated(setting_id: string): bool;
+    string_numbers_adjusted(setting_id: string): array<i32>;
+    note_value(stringNumber: i32, fret: i32): i32;
+    midi_value(stringNumber: i32, fret_number: i32): i32;
+    toggle_setting_id(setting_id: string): bool;
+    get_description(): string;
+}
