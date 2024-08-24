@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5211E9C52C7A78D00096D566 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524A35A02C7433F4007234B0 /* main.cpp */; };
 		52300D552C758F46000F974A /* SGChord+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D352C758F46000F974A /* SGChord+Private.mm */; };
 		52300D562C758F46000F974A /* SGGuitar+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D372C758F46000F974A /* SGGuitar+Private.mm */; };
 		52300D572C758F46000F974A /* SGGuitarAdjustment+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D392C758F46000F974A /* SGGuitarAdjustment+Private.mm */; };
@@ -20,7 +21,6 @@
 		52300DB32C7595F0000F974A /* DJIError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D862C7595F0000F974A /* DJIError.mm */; };
 		52300DB42C7595F0000F974A /* DJIProxyCaches.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D892C7595F0000F974A /* DJIProxyCaches.mm */; };
 		52300DB52C7595F0000F974A /* DJOutcome.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D8B2C7595F0000F974A /* DJOutcome.mm */; };
-		5231A37A2C79A60B009151DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52300CDD2C756E49000F974A /* main.m */; };
 		5231A37B2C79A6B1009151DC /* GuitarImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A683B2C76E66700CD81A2 /* GuitarImpl.cpp */; };
 		525A68422C76E66F00CD81A2 /* ChordImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A68392C76E66700CD81A2 /* ChordImpl.cpp */; };
 		525A68432C78497C00CD81A2 /* GuitarAdjustmentImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A683A2C76E66700CD81A2 /* GuitarAdjustmentImpl.cpp */; };
@@ -112,7 +112,6 @@
 		52300DA22C7595F0000F974A /* proxy_cache_interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proxy_cache_interface.hpp; sourceTree = "<group>"; };
 		524A359D2C7433F4007234B0 /* SGuitar */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SGuitar; sourceTree = BUILT_PRODUCTS_DIR; };
 		524A35A02C7433F4007234B0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		525A682D2C76DA4400CD81A2 /* sguitar.idl */ = {isa = PBXFileReference; lastKnownFileType = text; path = sguitar.idl; sourceTree = "<group>"; };
 		525A682E2C76DA4400CD81A2 /* run-djinni.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-djinni.sh"; sourceTree = "<group>"; };
 		525A68392C76E66700CD81A2 /* ChordImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ChordImpl.cpp; sourceTree = "<group>"; };
 		525A683A2C76E66700CD81A2 /* GuitarAdjustmentImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarAdjustmentImpl.cpp; sourceTree = "<group>"; };
@@ -265,7 +264,6 @@
 				525A68412C76E66700CD81A2 /* implemented */,
 				524A35A02C7433F4007234B0 /* main.cpp */,
 				52300CDD2C756E49000F974A /* main.m */,
-				525A682D2C76DA4400CD81A2 /* sguitar.idl */,
 				525A682E2C76DA4400CD81A2 /* run-djinni.sh */,
 				52FC68182C7439230019ACE7 /* LICENSE */,
 				52FC68192C7439230019ACE7 /* README.md */,
@@ -357,6 +355,7 @@
 				52300DB22C7595F0000F974A /* DJFuture.mm in Sources */,
 				52300D562C758F46000F974A /* SGGuitar+Private.mm in Sources */,
 				525A68422C76E66F00CD81A2 /* ChordImpl.cpp in Sources */,
+				5211E9C52C7A78D00096D566 /* main.cpp in Sources */,
 				52300D592C758F46000F974A /* SGNote+Private.mm in Sources */,
 				525A68432C78497C00CD81A2 /* GuitarAdjustmentImpl.cpp in Sources */,
 				525A68452C78497C00CD81A2 /* NoteImpl.cpp in Sources */,
@@ -373,7 +372,6 @@
 				52300DB42C7595F0000F974A /* DJIProxyCaches.mm in Sources */,
 				52300D582C758F46000F974A /* SGGuitarString+Private.mm in Sources */,
 				52300DB12C7595F0000F974A /* DataRef_objc.cpp in Sources */,
-				5231A37A2C79A60B009151DC /* main.m in Sources */,
 				52300D5B2C758F46000F974A /* SGStringAdjustment+Private.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

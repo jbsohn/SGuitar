@@ -15,12 +15,12 @@
 
 class StringAdjustmentImpl;
 
-class GuitarAdjustmentImpl : public GuitarAdjustment {
+class GuitarAdjustmentImpl final : public GuitarAdjustment {
 protected:
     std::string adjustmentID;
     std::vector<std::shared_ptr<StringAdjustment>> adjustments;
 public:
-    GuitarAdjustmentImpl(std::string adjustmentID) {
+    explicit GuitarAdjustmentImpl(const std::string &adjustmentID) {
         this->adjustmentID = adjustmentID;
     }
 
@@ -50,8 +50,8 @@ public:
     }
 
     std::string get_description() override {
-        std::string description = "";
-        if (adjustmentID.size() > 0) {
+        std::string description;
+        if (!adjustmentID.empty()) {
             description += "adjustmentID: ";
             description += adjustmentID;
             description += "\r\n";

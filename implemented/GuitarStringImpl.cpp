@@ -13,13 +13,13 @@
 
 class NoteImpl;
 
-class GuitarStringImpl : public GuitarString {
+class GuitarStringImpl final : public GuitarString {
 protected:
     std::vector<int> midiNoteValues;
     int startNoteMidiValue;
     int numberOfFrets;
 public:
-    GuitarStringImpl(int midiValue, int numberOfFrets) {
+    GuitarStringImpl(const int midiValue, const int numberOfFrets) {
         midiNoteValues.resize(numberOfFrets);
         this->startNoteMidiValue = midiValue;
         this->numberOfFrets = numberOfFrets;
@@ -54,22 +54,21 @@ public:
     }
 
     std::string get_description() override {
-        static std::string s = "";
+        static std::string s;
         bool first = true;
-        for (int midiNoteValue : midiNoteValues) {
+        for (const int midiNoteValue : midiNoteValues) {
             if (!first) {
                 s += " ";
-                first = false;
             }
             s += " ";
-            s += midiNoteValue;
+            s += std::to_string(midiNoteValue);
             s += "";
+            first = false;
         }
         return s;
     }
 };
 
-/*not-null*/
 std::shared_ptr<GuitarString> GuitarString::create_with_midi_start_value(int32_t midi_start_value, int32_t number_of_frets) {
     return std::make_shared<GuitarStringImpl>(midi_start_value, number_of_frets);
 }

@@ -6,51 +6,51 @@
 //
 
 #include <iostream>
-#include "SG/Note.hpp"
-#include "SG/NoteName.hpp"
-#include "SG/Scale.hpp"
-#include "SG/Chord.hpp"
-#include "SG/GuitarString.hpp"
-#include "SG/GuitarAdjustment.hpp"
-#include "SG/Guitar.hpp"
+#include "note_value.hpp"
+#include "string_adjustment.hpp"
+#include "note.hpp"
+#include "scale.hpp"
+#include "chord.hpp"
+#include "guitar_string.hpp"
+#include "guitar_adjustment.hpp"
+#include "guitar.hpp"
 
-// smoke test...
 int main(int argc, const char * argv[]) {
-    auto note = SG::Note(3, 2);
-    std::cout << "Note: " << note.getNoteNamePitchUTF8() << "\n";
-    std::cout << "Name: " << SG::NoteName::nameForNoteValue(1, AT_SHARP) << "\n";
-    
-    auto semitones = {2, 2, 1, 2, 2, 2};
-    auto scale = SG::Scale(0, semitones);
-    std::cout << "Scale: " << scale.getDescription() << "\n";
+    const auto note = Note::create_with_note_value(3, 2);
+    std::cout << "Note: " << note->get_note_name_pitch_utf8() << "\n";
+    std::cout << "Name: " << note->get_note_name_pitch_utf8() << "\n";
 
-    auto intervals = {0, 4, 7};
-    auto chord = SG::Chord(0, intervals);
-    std::cout << "Chord: " << chord.getDescription() << "\n";
+    const auto semitones = {2, 2, 1, 2, 2, 2};
+    const auto scale = Scale::create_with_root_note_value(NoteValue::C, semitones);
+    std::cout << "Scale: " << scale->get_description() << "\n";
 
-    auto guitarString = SG::GuitarString(65, 13);
-    std::cout << "GuitarString: " << guitarString.getDescription() << "\n";
-    
-    auto adjustment1 = SG::StringAdjustment(1, 1);
-    auto adjustment2 = SG::StringAdjustment(2, 1);
-    std::cout << "StringAdjustment 1: " << adjustment1.getDescription() << "\n";
-    std::cout << "StringAdjustment 2: " << adjustment2.getDescription() << "\n";
-    
-    auto guitarAdjustment = SG::GuitarAdjustment("LKL");
-    guitarAdjustment.addStringAdjustment(adjustment1);
-    guitarAdjustment.addStringAdjustment(adjustment2);
-    std::cout << "guitarAdjustment: " << guitarAdjustment.getDescription() << "\n";
+    const auto intervals = {0, 4, 7};
+    const auto chord = Chord::create_with_root_note_value(NoteValue::C, intervals);
+    std::cout << "Chord: " << chord->get_description()  << "\n";
 
-    auto guitar = SG::Guitar();
-    guitar.setNumberOfStrings(2);
-    guitar.setString(1, guitarString);
-    guitar.setString(2, guitarString);
+    const auto guitarString = GuitarString::create_with_midi_start_value(65, 13);
+    std::cout << "GuitarString: " << guitarString->get_description() << "\n";
 
-    guitar.setAdjustment("LKL", guitarAdjustment);
-    guitar.setAdjustment("A", guitarAdjustment);
-    
-    std::cout << "guitar: " << guitar.getDescription() << "\n";
-    guitar.activateAdjustment("LKL", true);
-    std::cout << "guitar: " << guitar.getDescription() << "\n";
+    const auto adjustment1 = StringAdjustment::create_with_string_number(1, 1);
+    const auto adjustment2 = StringAdjustment::create_with_string_number(2, 1);
+    std::cout << "StringAdjustment 1: " << adjustment1->get_description() << "\n";
+    std::cout << "StringAdjustment 2: " << adjustment2->get_description() << "\n";
+
+    const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
+    guitarAdjustment->add_string_adjustment(adjustment1);
+    guitarAdjustment->add_string_adjustment(adjustment2);
+    std::cout << "guitarAdjustment: " << guitarAdjustment->get_description() << "\n";
+
+    auto guitar = Guitar::create();
+    guitar->set_number_of_strings(2);
+    guitar->set_string(1, guitarString);
+    guitar->set_string(2, guitarString);
+
+    guitar->set_adjustment("LKL", guitarAdjustment);
+    guitar->set_adjustment("A", guitarAdjustment);
+
+    std::cout << "guitar: " << guitar->get_description() << "\n";
+    guitar->activate_adjustment("LKL", true);
+    std::cout << "guitar: " << guitar->get_description() << "\n";
     return 0;
 }

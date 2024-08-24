@@ -13,13 +13,13 @@
 #include "note.hpp"
 #include "note_value.hpp"
 
-class ChordImpl : public Chord {
+class ChordImpl final : public Chord {
 protected:
     std::vector<NoteValue> chordNoteValues;
 public:
-    ChordImpl(NoteValue rootNoteValue, std::vector<int> intervals) {
+    ChordImpl(NoteValue rootNoteValue, const std::vector<int>& intervals) {
         chordNoteValues.clear();
-        for (int interval : intervals) {
+        for (const int interval : intervals) {
             NoteValue noteValue = noteValueForInterval(interval, rootNoteValue);
             chordNoteValues.push_back(noteValue);
         }
@@ -30,10 +30,10 @@ public:
      }
 
     std::string get_description() override {
-        static std::string s = "";
+        static std::string s;
         bool first = true;
         
-        for (NoteValue curNoteValue : chordNoteValues) {
+        for (const NoteValue curNoteValue : chordNoteValues) {
             if (!first) { s += " "; }
             s += to_string(curNoteValue);
             first = false;
@@ -42,12 +42,12 @@ public:
     }
 
 protected:
-    NoteValue noteValueForInterval(int interval, NoteValue rootNoteValue) const {
-        int value = (int) rootNoteValue + interval;
-        if (value > (int) NoteValue::B) {
-            value = (value - (int) NoteValue::B) -1;
+    static NoteValue noteValueForInterval(const int interval, NoteValue rootNoteValue) {
+        int value = static_cast<int>(rootNoteValue) + interval;
+        if (value > static_cast<int>(NoteValue::B)) {
+            value = (value - static_cast<int>(NoteValue::B)) -1;
         }
-        return NoteValue(value);
+        return static_cast<NoteValue>(value);
     }
 };
 

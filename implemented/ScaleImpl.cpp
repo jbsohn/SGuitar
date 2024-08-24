@@ -12,20 +12,20 @@
 #include "note.hpp"
 #include "note_value.hpp"
 
-class ScaleImpl : public Scale {
+class ScaleImpl final : public Scale {
 protected:
     std::string name;
     std::vector<NoteValue> scaleNoteValues;
 public:
-    ScaleImpl(NoteValue rootNoteValue, std::vector<int> semitones) {
-        unsigned long numSemitones = semitones.size();
+    ScaleImpl(const NoteValue rootNoteValue, const std::vector<int>& semitones) {
+        const unsigned long numSemitones = semitones.size();
         scaleNoteValues.clear();
         scaleNoteValues.reserve(numSemitones);
 
         NoteValue curNoteValue = rootNoteValue;
         scaleNoteValues.push_back(rootNoteValue);
 
-        for (int semitone : semitones) {
+        for (const int semitone : semitones) {
             curNoteValue = nextNoteValueInScale(curNoteValue, semitone);
             scaleNoteValues.push_back(curNoteValue);
         }        
@@ -37,29 +37,27 @@ public:
 
     std::string get_description() override {
         static std::string s;
-        
-        s = "";
         bool first = true;
         
         for (NoteValue curNoteValue : scaleNoteValues) {
             if (!first) {
                 s += " ";
             }
-            //s += NoteName::nameForNoteValue(curNoteValue, AT_SHARP);
+            s += std::to_string(static_cast<int>(curNoteValue));
             first = false;
         }
         return s;
     }
 
 protected:
-    NoteValue nextNoteValueInScale(NoteValue noteValue, int semitone) const {
-        int curNoteValue = (int) noteValue;
+    static NoteValue nextNoteValueInScale(NoteValue noteValue, const int semitone) {
+        int curNoteValue = static_cast<int>(noteValue);
         curNoteValue += semitone;
 
-        if (curNoteValue > (int) NoteValue::B) {
-            curNoteValue = curNoteValue - ((int) NoteValue::B + 1);
+        if (curNoteValue > static_cast<int>(NoteValue::B)) {
+            curNoteValue = curNoteValue - (static_cast<int>(NoteValue::B) + 1);
         }
-        return (NoteValue) curNoteValue;
+        return static_cast<NoteValue>(curNoteValue);
     }
 };
 

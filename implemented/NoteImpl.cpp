@@ -10,25 +10,25 @@
 #include "note.hpp"
 #include "note_value.hpp"
 
-class NoteImpl : public Note {
+class NoteImpl final : public Note {
 protected:
-    int midiValue;
+    int midiValue{};
 public:
-    NoteImpl(int noteValue, int pitch) {
+    NoteImpl(const int noteValue, const int pitch) {
         init(noteValue, pitch);
     }
 
-    NoteImpl(int midiValue) {
+    explicit NoteImpl(const int midiValue) {
         this->midiValue = midiValue;
     }
 
-    NoteImpl(std::string name) {
+    explicit NoteImpl(const std::string &name) {
         this->midiValue = -1;
-        std::string n = name;
-        std::string delimiter = "-";
+        const std::string& n = name;
+        const std::string delimiter = "-";
 
         size_t dashPos = n.find(delimiter);
-        int noteValue =-1;
+        constexpr int noteValue =-1;
         int pitch = -1;
 
         if (dashPos == std::string::npos) {
@@ -48,7 +48,7 @@ public:
         init(noteValue, pitch);
     }
 
-    void init(int noteValue, int pitch) {
+    void init(const int noteValue, const int pitch) {
         midiValue = ((pitch * 12) + noteValue);
     }
 
@@ -70,8 +70,9 @@ public:
 
     std::string get_note_name_pitch_utf8() override {
         //std::string name = NoteName::getNoteNameSharpUTF8(getNoteValue());
-        int pitch = get_pitch_value();
-        std::string namePitch = "FIXME: name -" + std::to_string(pitch);
+        const int pitch = get_pitch_value();
+
+        std::string namePitch = "note: " + std::to_string(get_note_value()) + ", pitch: " + std::to_string(pitch);
         return namePitch;
     }
 };

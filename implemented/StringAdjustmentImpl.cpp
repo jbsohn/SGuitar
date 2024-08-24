@@ -10,13 +10,13 @@
 #include <memory>
 #include "string_adjustment.hpp"
 
-class StringAdjustmentImpl : public StringAdjustment {
+class StringAdjustmentImpl final : public StringAdjustment {
 protected:
     int stringNumber;
     int step;
     bool valid;
 public:
-    StringAdjustmentImpl(int stringNumber, int step) {
+    StringAdjustmentImpl(const int stringNumber, const int step) {
         this->stringNumber = stringNumber;
         this->step = step;
         this->valid = true;
@@ -35,7 +35,7 @@ public:
     }
 
     std::string get_description() override {
-        std::string description = "";
+        std::string description;
         description += "stringNumber: ";
         description += std::to_string(stringNumber);
         description += ", step: ";
@@ -46,7 +46,6 @@ public:
     }
 };
 
- /*not-null*/
 std::shared_ptr<StringAdjustment> StringAdjustment::create_with_string_number(int32_t string_number, int32_t step) {
     return std::make_shared<StringAdjustmentImpl>(string_number, step);
 }

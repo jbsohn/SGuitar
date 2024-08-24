@@ -10,90 +10,167 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include "guitar_adjustment.hpp"
+#include "guitar_string.hpp"
+#include "note.hpp"
 #include "guitar.hpp"
+#include "string_adjustment.hpp"
 
-class GuitarImpl : public Guitar {
-    std::vector<std::shared_ptr<GuitarString>> guitarStrings;
+class GuitarImpl final : public Guitar {
+    int numberOfFrets = 0;
+    std::vector<std::shared_ptr<GuitarString>> strings;
+    std::map<std::string, std::shared_ptr<GuitarAdjustment>> adjustments;
+    std::map<std::string, bool> settings;
 public:
+    GuitarImpl() {
+        strings.clear();
+        numberOfFrets = 0;
+    }
+
     void reset() override {
-        
+        numberOfFrets = 0;
+        strings.clear();
+        adjustments.clear();
     }
 
     void set_number_of_frets(int32_t numberOfFrets) override {
-        
+        this->numberOfFrets = numberOfFrets;
     }
 
     int32_t get_number_of_frets() override {
-        return 0;
+        return numberOfFrets;
     }
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override {
-        return guitarStrings;
+        return strings;
     }
 
     void set_string(int32_t stringNumber, const /*not-null*/ std::shared_ptr<GuitarString> & guitarString) override {
-        
+        strings[stringNumber] = guitarString;
     }
 
     /*not-null*/ 
     std::shared_ptr<GuitarString> get_string(int32_t stringNumber) override {
-        return nullptr;
+        return strings[stringNumber];
     }
 
     void set_number_of_strings(int32_t numberOfStrings) override {
-        
+        strings.resize(numberOfStrings + 1);
     }
 
     int32_t get_number_of_strings() override {
-        return 0;
+        return static_cast<int32_t>(strings.size()) - 1;
     }
 
     /** adjustment */
     bool is_adjustment_enabled(const std::string & settingID) override {
+        if (adjustments.find(settingID) != adjustments.end()) {
+            if (const auto adjustment = adjustments[settingID]; adjustment != nullptr) {
+                return true;
+            }
+        }
         return false;
     }
 
     void activate_adjustment(const std::string & settingID, bool activated) override {
-        
+        if (const auto adjustment = adjustments[settingID]; adjustment != nullptr) {
+            for (const auto stringAdjustments = adjustment->get_string_adjustments();
+                 const auto& stringAdjustment : stringAdjustments ) {
+                activateStringAdjustment(stringAdjustment, activated);
+            }
+            settings[settingID] = activated;
+        }
     }
 
     void set_adjustment(const std::string & settingID, const /*not-null*/ std::shared_ptr<GuitarAdjustment> & adjustment) override {
-        
+        adjustments[settingID] = adjustment;
     }
 
     /*not-null*/ 
     std::shared_ptr<GuitarAdjustment> get_adjustment(const std::string & settingID) override {
+        if (adjustments.contains(settingID)) {
+            return adjustments[settingID];
+        }
         return nullptr;
     }
 
     /** helpers */
     void resetStrings() override {
-        
+        for (int stringNumber = 1; stringNumber < strings.size(); stringNumber++) {
+            auto string = strings.at(stringNumber);
+            string.reset();
+        }
     }
 
     bool is_adjustment_activated(const std::string & setting_id) override {
-        return false;
+        return settings[setting_id];
     }
 
     std::vector<int32_t> string_numbers_adjusted(const std::string & setting_id) override {
-        return std::vector<int32_t>();
+        auto adjustment = get_adjustment(setting_id);
+        if (adjustment == nullptr) {
+            return {};
+        }
+
+        std::vector<int> stringNumbers;
+        for (const auto adjustments = adjustment->get_string_adjustments();
+             const auto &stringAdjustment: adjustments) {
+            int stringNumber = stringAdjustment->get_string_number();
+            stringNumbers.push_back(stringNumber);
+        }
+        return stringNumbers;
     }
 
     int32_t note_value(int32_t stringNumber, int32_t fret) override {
-        return 0;
+        const auto string = strings[stringNumber];
+        const auto notes = string->get_midi_notes();
+        std::shared_ptr<Note> note = Note::create_with_midi_value(notes[fret]);
+        return note->get_note_value();
     }
 
     int32_t midi_value(int32_t stringNumber, int32_t fret_number) override {
-        return 0;
-    }
+        if (stringNumber > 0 && fret_number >= 0) {
+            const auto string = strings[stringNumber];
+            std::vector<int> notes = string->get_midi_notes();
+            return notes[fret_number];
+        }
+        return -1;    }
 
     bool toggle_setting_id(const std::string & setting_id) override {
-        return false;
+        auto activated = settings[setting_id];
+        activated = !activated;
+        activate_adjustment(setting_id, activated);
+        return activated;
     }
 
     std::string get_description() override { 
-        return "";
+        std::string description;
+
+        for (int stringNumber = 1; stringNumber < strings.size(); stringNumber++) {
+            const auto string = strings[stringNumber];
+            std::vector<int> noteValues = string->get_midi_notes();
+            const auto note = Note::create_with_midi_value(noteValues[0]);
+            description += "string ";
+            description += std::to_string(stringNumber);
+            description += ": ";
+            description += std::to_string(note->get_note_value());
+        }
+        return description;
+    }
+protected:
+    void activateStringAdjustment(const std::shared_ptr<StringAdjustment>& adjustment, const bool enabled) const {
+        const int stringNumber = adjustment->get_string_number();
+        int step = 0;
+
+        if (enabled) {
+            step = adjustment->get_step();
+        } else {
+            step = -(adjustment->get_step());
+        }
+
+        const auto string = strings.at(stringNumber);
+        string->adjust_string_by_steps(step);
     }
 };
 
@@ -101,207 +178,3 @@ public:
 std::shared_ptr<Guitar> Guitar::create() {
     return std::make_shared<GuitarImpl>();
 }
-
-#if 0
-namespace SG {
-    struct Guitar::GuitarImpl {
-        int numberOfFrets;
-        std::vector<GuitarString> strings;
-        std::map<std::string, GuitarAdjustment> adjustments;
-        bool isValid;
-        std::map<std::string, bool> settings;
-
-        void init(const Guitar& guitar) {
-            numberOfFrets = guitar.impl->numberOfFrets;
-            strings = guitar.impl->strings;
-            adjustments = guitar.impl->adjustments;
-            isValid = guitar.impl->isValid;
-            settings = guitar.impl->settings;
-        }
-
-        std::string readFile(std::string filename) {
-            std::ifstream t(filename);
-            std::stringstream buffer;
-            buffer << t.rdbuf();
-            return buffer.str();
-        }
-        
-        void reset() {
-            numberOfFrets { }
-            strings.clear();
-            adjustments.clear();
-            isValid = false;
-        }
-        
-        void activateStringAdjustment(const StringAdjustment& adjustment, bool enabled) {
-            int stringNumber = adjustment.getStringNumber();
-            int step { }
-            
-            if (enabled) {
-                step = adjustment.getStep();
-            } else {
-                step = -(adjustment.getStep());
-            }
-            
-            GuitarString& string = strings.at(stringNumber);
-            string.adjustStringBySteps(step);
-        }
-        
-        void resetString(int stringNumber) {
-            GuitarString& string = strings.at(stringNumber);
-            string.reset();
-        }
-        
-        void printStringsAtFret0() {
-            for (const GuitarString& string : strings) {
-                if (string.isValid()) {
-                    std::vector<int> noteValues = string.getNoteValues();
-                    Note firstNote(noteValues[0]);
-                }
-            }
-        }
-    };
-
-    Guitar::Guitar()
-        : impl(new GuitarImpl) {
-        impl->strings.clear();
-        impl->numberOfFrets { }
-        impl->isValid = false;
-    }
-
-    Guitar::~Guitar() {
-
-    }
-
-
-    bool Guitar::isValid() const {
-        return impl->isValid;
-    }
-
-    void Guitar::reset() {
-        impl->reset();
-    }
-
-    std::vector<GuitarString> Guitar::getStrings() const {
-        return impl->strings;
-    }
-
-    void Guitar::setString(int stringNumber, GuitarString guitarString) {
-        impl->strings[stringNumber] = guitarString;
-    }
-
-    GuitarString Guitar::getString(int stringNumber) const {
-        return impl->strings[stringNumber];
-    }
-    
-    void Guitar::setNumberOfStrings(int numberOfStrings) {
-        impl->strings.resize(numberOfStrings + 1);
-    }
-
-    int Guitar::getNumberOfStrings() const {
-        return (int) impl->strings.size() - 1;
-    }
-
-    void Guitar::setNumberOfFrets(int numberOfFrets) {
-        impl->numberOfFrets = numberOfFrets;
-    }
-
-    int Guitar::getNumberOfFrets() const {
-        return impl->numberOfFrets;
-    }
-
-    bool Guitar::isAdjustmentEnabled(std::string settingID) const {
-        if (impl->adjustments.find(settingID) != impl->adjustments.end()) {
-            GuitarAdjustment adjustment = impl->adjustments[settingID];
-            return adjustment.isValid();
-        }
-        return false;
-    }
-
-    void Guitar::resetStrings() {
-        for (int i = 1; i < impl->strings.size(); i++) {
-            impl->resetString(i);
-        }
-    }
-
-    void Guitar::activateAdjustment(std::string settingID, bool activated) {
-        GuitarAdjustment adjustment = impl->adjustments[settingID];
-        for (int i { } i < adjustment.getNumberOfStringAdjustments(); i++) {
-            StringAdjustment curAdjustment = adjustment.getStringAdjustment(i);
-            impl->activateStringAdjustment(curAdjustment, activated);
-        }
-
-        impl->settings[settingID] = activated;
-    }
-    
-    void Guitar::setAdjustment(std::string settingID, GuitarAdjustment adjustment) {
-        impl->adjustments[settingID] = adjustment;
-    }
-
-    std::optional<GuitarAdjustment> Guitar::getAdjustment(std::string settingID) const {
-        if (impl->adjustments.contains(settingID)) {
-            return impl->adjustments[settingID];
-        }
-        return {};
-    }
-
-    bool Guitar::isAdjustmentActivated(std::string settingID) const {
-        return impl->settings[settingID];
-    }
-
-    std::vector<int> Guitar::stringNumbersAdjusted(std::string settingID) {
-        auto adjustment = getAdjustment(settingID);
-        if (!adjustment.has_value()) {
-            return {};
-        }
-
-        std::vector<int> stringNumbers;
-        for (int i { } i < adjustment.value().getNumberOfStringAdjustments(); i++) {
-            StringAdjustment curStringAdjustment = adjustment.value().getStringAdjustment(i);
-            int stringNumber = curStringAdjustment.getStringNumber();
-            stringNumbers.push_back(stringNumber);
-        }
-        return stringNumbers;
-    }
-	
-    int Guitar::noteValue(int stringNumber, int fret) {
-        const GuitarString& string = impl->strings[stringNumber];
-        std::vector<int> notes = string.getNoteValues();
-        Note note(notes[fret]);
-        return note.getNoteValue();
-    }
-
-    int Guitar::midiValue(int stringNumber, int fretNumber) {
-        if (stringNumber > 0 && fretNumber >= 0) {
-            const GuitarString& string = impl->strings[stringNumber];
-            std::vector<int> notes = string.getNoteValues();
-            return notes[fretNumber];
-        }
-        return -1;
-    }
-
-    bool Guitar::toggleSettingID(std::string settingID) {
-        bool activated = isAdjustmentActivated(settingID);
-        activated = !activated;
-        activateAdjustment(settingID, activated);
-        return activated;
-    }
-
-    std::string Guitar::getDescription() const {
-        std::string description = "\r\n";
-        for (int i { } i < impl->strings.size(); i++) {
-            GuitarString curString = impl->strings[i];
-            if (curString.isValid()) {
-                std::vector<int> noteValues = curString.getNoteValues();
-                Note curNote(noteValues[0]);
-                description += "string ";
-                description += std::to_string(i);
-                description += ": ";
-                description += NoteName::getNoteNameSharp(curNote.getNoteValue());
-                description += "\r\n";
-            }
-        }
-        return description;
-    }
-}
-#endif
