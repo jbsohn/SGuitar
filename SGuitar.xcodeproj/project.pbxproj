@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5211E9C52C7A78D00096D566 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 524A35A02C7433F4007234B0 /* main.cpp */; };
+		52215BAF2C7BB12C0072468E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52215BAD2C7BB1270072468E /* main.m */; };
 		52300D552C758F46000F974A /* SGChord+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D352C758F46000F974A /* SGChord+Private.mm */; };
 		52300D562C758F46000F974A /* SGGuitar+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D372C758F46000F974A /* SGGuitar+Private.mm */; };
 		52300D572C758F46000F974A /* SGGuitarAdjustment+Private.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52300D392C758F46000F974A /* SGGuitarAdjustment+Private.mm */; };
@@ -27,7 +27,6 @@
 		525A68452C78497C00CD81A2 /* NoteImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A683D2C76E66700CD81A2 /* NoteImpl.cpp */; };
 		525A68462C78497C00CD81A2 /* ScaleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A683F2C76E66700CD81A2 /* ScaleImpl.cpp */; };
 		525A68472C78497C00CD81A2 /* GuitarStringImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A683C2C76E66700CD81A2 /* GuitarStringImpl.cpp */; };
-		525A68482C78497C00CD81A2 /* NoteNameImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A683E2C76E66700CD81A2 /* NoteNameImpl.cpp */; };
 		525A68492C78497C00CD81A2 /* StringAdjustmentImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 525A68402C76E66700CD81A2 /* StringAdjustmentImpl.cpp */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		52300CDD2C756E49000F974A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		52215BAD2C7BB1270072468E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52300D042C758F46000F974A /* accidental_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = accidental_type.hpp; sourceTree = "<group>"; };
 		52300D052C758F46000F974A /* chord.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = chord.hpp; sourceTree = "<group>"; };
 		52300D062C758F46000F974A /* guitar_adjustment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = guitar_adjustment.hpp; sourceTree = "<group>"; };
@@ -111,14 +110,12 @@
 		52300DA12C7595F0000F974A /* proxy_cache_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proxy_cache_impl.hpp; sourceTree = "<group>"; };
 		52300DA22C7595F0000F974A /* proxy_cache_interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = proxy_cache_interface.hpp; sourceTree = "<group>"; };
 		524A359D2C7433F4007234B0 /* SGuitar */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SGuitar; sourceTree = BUILT_PRODUCTS_DIR; };
-		524A35A02C7433F4007234B0 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		525A682E2C76DA4400CD81A2 /* run-djinni.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-djinni.sh"; sourceTree = "<group>"; };
 		525A68392C76E66700CD81A2 /* ChordImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ChordImpl.cpp; sourceTree = "<group>"; };
 		525A683A2C76E66700CD81A2 /* GuitarAdjustmentImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarAdjustmentImpl.cpp; sourceTree = "<group>"; };
 		525A683B2C76E66700CD81A2 /* GuitarImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarImpl.cpp; sourceTree = "<group>"; };
 		525A683C2C76E66700CD81A2 /* GuitarStringImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GuitarStringImpl.cpp; sourceTree = "<group>"; };
 		525A683D2C76E66700CD81A2 /* NoteImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NoteImpl.cpp; sourceTree = "<group>"; };
-		525A683E2C76E66700CD81A2 /* NoteNameImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NoteNameImpl.cpp; sourceTree = "<group>"; };
 		525A683F2C76E66700CD81A2 /* ScaleImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScaleImpl.cpp; sourceTree = "<group>"; };
 		525A68402C76E66700CD81A2 /* StringAdjustmentImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringAdjustmentImpl.cpp; sourceTree = "<group>"; };
 		52FC68182C7439230019ACE7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -136,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52215BAE2C7BB1270072468E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				52215BAD2C7BB1270072468E /* main.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		52300D0D2C758F46000F974A /* cpp */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,11 +264,10 @@
 		524A35942C7433F4007234B0 = {
 			isa = PBXGroup;
 			children = (
+				52215BAE2C7BB1270072468E /* src */,
 				52300DA32C7595F0000F974A /* support-lib */,
 				52300D442C758F46000F974A /* generated */,
 				525A68412C76E66700CD81A2 /* implemented */,
-				524A35A02C7433F4007234B0 /* main.cpp */,
-				52300CDD2C756E49000F974A /* main.m */,
 				525A682E2C76DA4400CD81A2 /* run-djinni.sh */,
 				52FC68182C7439230019ACE7 /* LICENSE */,
 				52FC68192C7439230019ACE7 /* README.md */,
@@ -287,7 +291,6 @@
 				525A683B2C76E66700CD81A2 /* GuitarImpl.cpp */,
 				525A683C2C76E66700CD81A2 /* GuitarStringImpl.cpp */,
 				525A683D2C76E66700CD81A2 /* NoteImpl.cpp */,
-				525A683E2C76E66700CD81A2 /* NoteNameImpl.cpp */,
 				525A683F2C76E66700CD81A2 /* ScaleImpl.cpp */,
 				525A68402C76E66700CD81A2 /* StringAdjustmentImpl.cpp */,
 			);
@@ -355,13 +358,11 @@
 				52300DB22C7595F0000F974A /* DJFuture.mm in Sources */,
 				52300D562C758F46000F974A /* SGGuitar+Private.mm in Sources */,
 				525A68422C76E66F00CD81A2 /* ChordImpl.cpp in Sources */,
-				5211E9C52C7A78D00096D566 /* main.cpp in Sources */,
 				52300D592C758F46000F974A /* SGNote+Private.mm in Sources */,
 				525A68432C78497C00CD81A2 /* GuitarAdjustmentImpl.cpp in Sources */,
 				525A68452C78497C00CD81A2 /* NoteImpl.cpp in Sources */,
 				525A68462C78497C00CD81A2 /* ScaleImpl.cpp in Sources */,
 				525A68472C78497C00CD81A2 /* GuitarStringImpl.cpp in Sources */,
-				525A68482C78497C00CD81A2 /* NoteNameImpl.cpp in Sources */,
 				525A68492C78497C00CD81A2 /* StringAdjustmentImpl.cpp in Sources */,
 				5231A37B2C79A6B1009151DC /* GuitarImpl.cpp in Sources */,
 				52300D5A2C758F46000F974A /* SGScale+Private.mm in Sources */,
@@ -372,6 +373,7 @@
 				52300DB42C7595F0000F974A /* DJIProxyCaches.mm in Sources */,
 				52300D582C758F46000F974A /* SGGuitarString+Private.mm in Sources */,
 				52300DB12C7595F0000F974A /* DataRef_objc.cpp in Sources */,
+				52215BAF2C7BB12C0072468E /* main.m in Sources */,
 				52300D5B2C758F46000F974A /* SGStringAdjustment+Private.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
