@@ -86,3 +86,6 @@ iOSInjectionProject/
 
 
 .fake
+.vscode
+.idea
+cmake-build-debug
