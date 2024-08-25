@@ -16,7 +16,7 @@
 #include "guitar.hpp"
 
 int main(int argc, const char * argv[]) {
-    const auto note = Note::create_with_note_value(3, 2);
+    const auto note = Note::create_with_note_value(NoteValue::C, 2);
     std::cout << "Note: " << note->get_description() << "\n";
     std::cout << "Name: " << note->get_description() << "\n";
 
@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
     const auto chord = Chord::create_with_root_note_value(NoteValue::C, intervals);
     std::cout << "Chord: " << chord->get_description()  << "\n";
 
-    const auto guitarString = GuitarString::create_with_midi_start_value(65, 13);
+    const auto guitarString = GuitarString::create_with_midi_start_value(note->get_midi_value(), 13);
     std::cout << "GuitarString: " << guitarString->get_description() << "\n";
 
     const auto adjustment1 = StringAdjustment::create_with_string_number(1, 1);

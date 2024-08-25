@@ -13,7 +13,7 @@ class Note {
 public:
     virtual ~Note() = default;
 
-    static /*not-null*/ std::shared_ptr<Note> create_with_note_value(int32_t note_value, int32_t pitch);
+    static /*not-null*/ std::shared_ptr<Note> create_with_note_value(NoteValue note_value, int32_t pitch);
 
     static /*not-null*/ std::shared_ptr<Note> create_with_midi_value(int32_t midiValue);
 
@@ -28,4 +28,8 @@ public:
     virtual std::string note_name_sharp() = 0;
 
     virtual std::string note_name_flat() = 0;
+
+    static std::string noteNameSharpForNoteValue(NoteValue note_value);
+
+    static std::string noteNameFlatForNoteValue(NoteValue note_value);
 };

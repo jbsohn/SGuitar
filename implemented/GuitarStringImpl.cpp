@@ -25,7 +25,6 @@ public:
         reset();
     }
 
-
     int32_t get_start_note_midi_value() override {
         return startNoteMidiValue;
     }
@@ -54,15 +53,11 @@ public:
 
     std::string get_description() override {
         static std::string s;
-        bool first = true;
         for (const int midiNoteValue : midiNoteValues) {
-            if (!first) {
-                s += " ";
-            }
+            const auto note = Note::create_with_midi_value(midiNoteValue);
             s += " ";
-            s += std::to_string(midiNoteValue);
-            s += "";
-            first = false;
+            s += note->get_description();
+            s += " ";
         }
         return s;
     }

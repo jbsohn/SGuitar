@@ -153,7 +153,8 @@ public:
             description += "string ";
             description += std::to_string(stringNumber);
             description += ": ";
-            description += note->note_name_sharp();
+            description += string->get_description();
+            description += "\n";
         }
         return description;
     }

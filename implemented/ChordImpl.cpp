@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <note.hpp>
 #include "chord.hpp"
 #include "note_value.hpp"
 
@@ -33,13 +34,12 @@ public:
         bool first = true;
         
         for (const NoteValue curNoteValue : chordNoteValues) {
-            if (!first) { s += " "; }
-            s += to_string(curNoteValue);
-            first = false;
+            s += " ";
+            s += Note::noteNameSharpForNoteValue(curNoteValue);
+            s += " ";
         }
         return s;
     }
-
 protected:
     static NoteValue noteValueForInterval(const int interval, NoteValue rootNoteValue) {
         int value = static_cast<int>(rootNoteValue) + interval;

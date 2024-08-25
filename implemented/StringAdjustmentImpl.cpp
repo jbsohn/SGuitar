@@ -14,12 +14,10 @@ class StringAdjustmentImpl final : public StringAdjustment {
 protected:
     int stringNumber;
     int step;
-    bool valid;
 public:
     StringAdjustmentImpl(const int stringNumber, const int step) {
         this->stringNumber = stringNumber;
         this->step = step;
-        this->valid = true;
     }
 
     int32_t get_string_number() override {
@@ -40,8 +38,6 @@ public:
         description += std::to_string(stringNumber);
         description += ", step: ";
         description += std::to_string(step);
-        description += ", isValid: ";
-        description += std::to_string(valid);
         return description;
     }
 };

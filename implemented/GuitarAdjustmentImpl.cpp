@@ -48,16 +48,14 @@ public:
 
     std::string get_description() override {
         std::string description;
-        if (!adjustmentID.empty()) {
-            description += "adjustmentID: ";
-            description += adjustmentID;
-            description += "\r\n";
+        description += "adjustmentID: ";
+        description += adjustmentID;
+        description += "\n";
 
-            description += "adjustments:\r\n";
-            for (const auto& adjustment : adjustments) {
-                description += adjustment->get_description();
-                description += "\r\n";
-            }
+        for (const auto& adjustment : adjustments) {
+            description += "adjustment:";
+            description += adjustment->get_description();
+            description += "\n";
         }
         return description;
     }

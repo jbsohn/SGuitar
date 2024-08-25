@@ -21,7 +21,7 @@ accidental_type =  enum {
 }
 
 note = interface +c {
-    static create_with_note_value(note_value: i32, pitch: i32): note;
+    static create_with_note_value(note_value: note_value, pitch: i32): note;
     static create_with_midi_value(midiValue: i32): note;
     get_midi_value(): i32;
     get_note_value(): note_value;
@@ -29,6 +29,8 @@ note = interface +c {
     get_description(): string;
     note_name_sharp(): string;
     note_name_flat(): string;
+    static noteNameSharpForNoteValue(note_value: note_value): string;
+    static noteNameFlatForNoteValue(note_value: note_value): string;
 }
 
 scale = interface +c {

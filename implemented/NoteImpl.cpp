@@ -13,20 +13,16 @@
 class NoteImpl final : public Note {
 protected:
     int midiValue = -1;
+public:
     const static std::string noteNamesSharp[];
     const static std::string noteNamesFlat[];
 
-public:
-    NoteImpl(const int noteValue, const int pitch) {
-        init(noteValue, pitch);
+    NoteImpl(const NoteValue noteValue, const int pitch) {
+        midiValue = ((pitch * 12) + static_cast<int>(noteValue));
     }
 
     explicit NoteImpl(const int midiValue) {
         this->midiValue = midiValue;
-    }
-
-    void init(const int noteValue, const int pitch) {
-        midiValue = ((pitch * 12) + noteValue);
     }
 
     int32_t get_midi_value() override {
@@ -70,7 +66,7 @@ const std::string NoteImpl::noteNamesFlat[] = {
     "G", "A\u266d", "A", "B\u266d", "B"
 };
 
-std::shared_ptr<Note> Note::create_with_note_value(int32_t note_value, int32_t pitch) {
+std::shared_ptr<Note> Note::create_with_note_value(NoteValue note_value, int32_t pitch) {
     return std::make_shared<NoteImpl>(note_value, pitch);
 }
 
@@ -78,6 +74,10 @@ std::shared_ptr<Note> Note::create_with_midi_value(int32_t midiValue) {
     return std::make_shared<NoteImpl>(midiValue);
 }
 
-// std::shared_ptr<Note> Note::create_with_name(const std::string & name) {
-//     return std::make_shared<NoteImpl>(name);
-// }
+std::string Note::noteNameSharpForNoteValue(NoteValue note_value) {
+    return NoteImpl::noteNamesSharp[static_cast<int>(note_value)];
+}
+
+std::string Note::noteNameFlatForNoteValue(NoteValue note_value) {
+    return NoteImpl::noteNamesFlat[static_cast<int>(note_value)];
+}

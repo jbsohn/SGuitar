@@ -19,11 +19,13 @@ public abstract class Note {
 
     public abstract String noteNameFlat();
 
-    public static native Note createWithNoteValue(int noteValue, int pitch);
+    public static native Note createWithNoteValue(NoteValue noteValue, int pitch);
 
     public static native Note createWithMidiValue(int midiValue);
 
-    public static native Note createWithName(String name);
+    public static native String noteNameSharpForNoteValue(NoteValue noteValue);
+
+    public static native String noteNameFlatForNoteValue(NoteValue noteValue);
 
     public static final class CppProxy extends Note
     {

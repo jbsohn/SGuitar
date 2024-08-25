@@ -37,14 +37,10 @@ public:
 
     std::string get_description() override {
         static std::string s;
-        bool first = true;
-        
-        for (NoteValue curNoteValue : scaleNoteValues) {
-            if (!first) {
-                s += " ";
-            }
-            s += std::to_string(static_cast<int>(curNoteValue));
-            first = false;
+        for (const NoteValue curNoteValue : scaleNoteValues) {
+            s += " ";
+            s += Note::noteNameSharpForNoteValue(curNoteValue);
+            s += " ";
         }
         return s;
     }

@@ -31,10 +31,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGNote *)createWithNoteValue:(int32_t)noteValue
++ (nullable SGNote *)createWithNoteValue:(SGNoteValue)noteValue
                                    pitch:(int32_t)pitch {
     try {
-        auto objcpp_result_ = ::Note::create_with_note_value(::djinni::I32::toCpp(noteValue),
+        auto objcpp_result_ = ::Note::create_with_note_value(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(noteValue),
                                                              ::djinni::I32::toCpp(pitch));
         return ::djinni_generated::Note::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
@@ -43,13 +43,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 + (nullable SGNote *)createWithMidiValue:(int32_t)midiValue {
     try {
         auto objcpp_result_ = ::Note::create_with_midi_value(::djinni::I32::toCpp(midiValue));
-        return ::djinni_generated::Note::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-+ (nullable SGNote *)createWithName:(nonnull NSString *)name {
-    try {
-        auto objcpp_result_ = ::Note::create_with_name(::djinni::String::toCpp(name));
         return ::djinni_generated::Note::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -92,6 +85,20 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (nonnull NSString *)noteNameFlat {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->note_name_flat();
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSString *)noteNameSharpForNoteValue:(SGNoteValue)noteValue {
+    try {
+        auto objcpp_result_ = ::Note::noteNameSharpForNoteValue(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(noteValue));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSString *)noteNameFlatForNoteValue:(SGNoteValue)noteValue {
+    try {
+        auto objcpp_result_ = ::Note::noteNameFlatForNoteValue(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(noteValue));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
