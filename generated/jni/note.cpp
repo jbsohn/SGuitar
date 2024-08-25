@@ -3,6 +3,7 @@
 
 #include "note.hpp"  // my header
 #include "Marshal.hpp"
+#include "note_value.hpp"
 
 namespace djinni_generated {
 
@@ -52,12 +53,12 @@ CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getNoteValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getNoteValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
         auto r = ref->get_note_value();
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeNoteValue::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
@@ -70,11 +71,29 @@ CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getNoteNamePitchUtf8(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getDescription(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
-        auto r = ref->get_note_name_pitch_utf8();
+        auto r = ref->get_description();
+        return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1noteNameSharp(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
+        auto r = ref->note_name_sharp();
+        return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1noteNameFlat(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
+        auto r = ref->note_name_flat();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

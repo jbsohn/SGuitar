@@ -8,6 +8,7 @@
 #import "DJIMarshal+Private.h"
 #import "SGGuitarAdjustment+Private.h"
 #import "SGGuitarString+Private.h"
+#import "SGNoteValue+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -143,12 +144,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)noteValue:(int32_t)stringNumber
-                fret:(int32_t)fret {
+- (SGNoteValue)noteValue:(int32_t)stringNumber
+                    fret:(int32_t)fret {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->note_value(::djinni::I32::toCpp(stringNumber),
                                                               ::djinni::I32::toCpp(fret));
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        return ::djinni::Enum<::NoteValue, SGNoteValue>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

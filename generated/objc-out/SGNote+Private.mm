@@ -6,6 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
+#import "SGNoteValue+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -60,10 +61,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)getNoteValue {
+- (SGNoteValue)getNoteValue {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_note_value();
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        return ::djinni::Enum<::NoteValue, SGNoteValue>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -74,9 +75,23 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSString *)getNoteNamePitchUtf8 {
+- (nonnull NSString *)getDescription {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_note_name_pitch_utf8();
+        auto objcpp_result_ = _cppRefHandle.get()->get_description();
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSString *)noteNameSharp {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->note_name_sharp();
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSString *)noteNameFlat {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->note_name_flat();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

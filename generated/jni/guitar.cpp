@@ -5,6 +5,7 @@
 #include "Marshal.hpp"
 #include "guitar_adjustment.hpp"
 #include "guitar_string.hpp"
+#include "note_value.hpp"
 
 namespace djinni_generated {
 
@@ -159,13 +160,13 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_n
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1noteValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_stringNumber, jint j_fret)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1noteValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_stringNumber, jint j_fret)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
         auto r = ref->note_value(::djinni::I32::toCpp(jniEnv, j_stringNumber),
                                  ::djinni::I32::toCpp(jniEnv, j_fret));
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::NativeNoteValue::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

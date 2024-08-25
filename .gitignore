@@ -84,3 +84,5 @@ fastlane/*.env
 
 iOSInjectionProject/
 
+
+.fake

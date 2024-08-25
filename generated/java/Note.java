@@ -9,11 +9,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class Note {
     public abstract int getMidiValue();
 
-    public abstract int getNoteValue();
+    public abstract NoteValue getNoteValue();
 
     public abstract int getPitchValue();
 
-    public abstract String getNoteNamePitchUtf8();
+    public abstract String getDescription();
+
+    public abstract String noteNameSharp();
+
+    public abstract String noteNameFlat();
 
     public static native Note createWithNoteValue(int noteValue, int pitch);
 
@@ -43,12 +47,12 @@ public abstract class Note {
         private native int native_getMidiValue(long _nativeRef);
 
         @Override
-        public int getNoteValue()
+        public NoteValue getNoteValue()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_getNoteValue(this.nativeRef);
         }
-        private native int native_getNoteValue(long _nativeRef);
+        private native NoteValue native_getNoteValue(long _nativeRef);
 
         @Override
         public int getPitchValue()
@@ -59,11 +63,27 @@ public abstract class Note {
         private native int native_getPitchValue(long _nativeRef);
 
         @Override
-        public String getNoteNamePitchUtf8()
+        public String getDescription()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getNoteNamePitchUtf8(this.nativeRef);
+            return native_getDescription(this.nativeRef);
         }
-        private native String native_getNoteNamePitchUtf8(long _nativeRef);
+        private native String native_getDescription(long _nativeRef);
+
+        @Override
+        public String noteNameSharp()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_noteNameSharp(this.nativeRef);
+        }
+        private native String native_noteNameSharp(long _nativeRef);
+
+        @Override
+        public String noteNameFlat()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_noteNameFlat(this.nativeRef);
+        }
+        private native String native_noteNameFlat(long _nativeRef);
     }
 }

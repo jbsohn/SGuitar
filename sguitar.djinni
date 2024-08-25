@@ -25,9 +25,11 @@ note = interface +c {
     static create_with_midi_value(midiValue: i32): note;
     static create_with_name(name: string): note;
     get_midi_value(): i32;
-    get_note_value(): i32;
+    get_note_value(): note_value;
     get_pitch_value(): i32;
-    get_note_name_pitch_utf8(): string;
+    get_description(): string;
+    note_name_sharp(): string;
+    note_name_flat(): string;
 }
 
 scale = interface +c {
@@ -89,7 +91,7 @@ guitar = interface +c {
     resetStrings();
     is_adjustment_activated(setting_id: string): bool;
     string_numbers_adjusted(setting_id: string): array<i32>;
-    note_value(stringNumber: i32, fret: i32): i32;
+    note_value(stringNumber: i32, fret: i32): note_value;
     midi_value(stringNumber: i32, fret_number: i32): i32;
     toggle_setting_id(setting_id: string): bool;
     get_description(): string;

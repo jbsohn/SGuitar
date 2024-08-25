@@ -40,7 +40,7 @@ public abstract class Guitar {
 
     public abstract int[] stringNumbersAdjusted(String settingId);
 
-    public abstract int noteValue(int stringNumber, int fret);
+    public abstract NoteValue noteValue(int stringNumber, int fret);
 
     public abstract int midiValue(int stringNumber, int fretNumber);
 
@@ -184,12 +184,12 @@ public abstract class Guitar {
         private native int[] native_stringNumbersAdjusted(long _nativeRef, String settingId);
 
         @Override
-        public int noteValue(int stringNumber, int fret)
+        public NoteValue noteValue(int stringNumber, int fret)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_noteValue(this.nativeRef, stringNumber, fret);
         }
-        private native int native_noteValue(long _nativeRef, int stringNumber, int fret);
+        private native NoteValue native_noteValue(long _nativeRef, int stringNumber, int fret);
 
         @Override
         public int midiValue(int stringNumber, int fretNumber)

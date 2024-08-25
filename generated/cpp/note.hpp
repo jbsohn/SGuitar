@@ -7,6 +7,8 @@
 #include <memory>
 #include <string>
 
+enum class NoteValue;
+
 class Note {
 public:
     virtual ~Note() = default;
@@ -19,9 +21,13 @@ public:
 
     virtual int32_t get_midi_value() = 0;
 
-    virtual int32_t get_note_value() = 0;
+    virtual NoteValue get_note_value() = 0;
 
     virtual int32_t get_pitch_value() = 0;
 
-    virtual std::string get_note_name_pitch_utf8() = 0;
+    virtual std::string get_description() = 0;
+
+    virtual std::string note_name_sharp() = 0;
+
+    virtual std::string note_name_flat() = 0;
 };

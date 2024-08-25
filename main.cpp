@@ -17,8 +17,8 @@
 
 int main(int argc, const char * argv[]) {
     const auto note = Note::create_with_note_value(3, 2);
-    std::cout << "Note: " << note->get_note_name_pitch_utf8() << "\n";
-    std::cout << "Name: " << note->get_note_name_pitch_utf8() << "\n";
+    std::cout << "Note: " << note->get_description() << "\n";
+    std::cout << "Name: " << note->get_description() << "\n";
 
     const auto semitones = {2, 2, 1, 2, 2, 2};
     const auto scale = Scale::create_with_root_note_value(NoteValue::C, semitones);

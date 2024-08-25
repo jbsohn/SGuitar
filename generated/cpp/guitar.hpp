@@ -10,6 +10,7 @@
 
 class GuitarAdjustment;
 class GuitarString;
+enum class NoteValue;
 
 class Guitar {
 public:
@@ -50,7 +51,7 @@ public:
 
     virtual std::vector<int32_t> string_numbers_adjusted(const std::string & setting_id) = 0;
 
-    virtual int32_t note_value(int32_t stringNumber, int32_t fret) = 0;
+    virtual NoteValue note_value(int32_t stringNumber, int32_t fret) = 0;
 
     virtual int32_t midi_value(int32_t stringNumber, int32_t fret_number) = 0;
 

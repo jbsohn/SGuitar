@@ -122,10 +122,10 @@ public:
         return stringNumbers;
     }
 
-    int32_t note_value(int32_t stringNumber, int32_t fret) override {
+    NoteValue note_value(int32_t stringNumber, int32_t fret) override {
         const auto string = strings[stringNumber];
         const auto notes = string->get_midi_notes();
-        std::shared_ptr<Note> note = Note::create_with_midi_value(notes[fret]);
+        const std::shared_ptr<Note> note = Note::create_with_midi_value(notes[fret]);
         return note->get_note_value();
     }
 
@@ -154,7 +154,7 @@ public:
             description += "string ";
             description += std::to_string(stringNumber);
             description += ": ";
-            description += std::to_string(note->get_note_value());
+            description += note->note_name_sharp();
         }
         return description;
     }
