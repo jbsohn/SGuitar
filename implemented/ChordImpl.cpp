@@ -18,7 +18,6 @@ protected:
     std::vector<NoteValue> chordNoteValues;
 public:
     ChordImpl(const NoteValue rootNoteValue, const std::vector<int>& intervals) {
-        chordNoteValues.clear();
         for (const int interval : intervals) {
             NoteValue noteValue = noteValueForInterval(interval, rootNoteValue);
             chordNoteValues.push_back(noteValue);
@@ -32,7 +31,6 @@ public:
     std::string get_description() override {
         static std::string s;
         for (const NoteValue curNoteValue : chordNoteValues) {
-            s += " ";
             s += Note::noteNameSharpForNoteValue(curNoteValue);
             s += " ";
         }

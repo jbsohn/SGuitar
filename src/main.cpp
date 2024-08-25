@@ -40,7 +40,6 @@ int main(int argc, const char * argv[]) {
 
     const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
     guitarAdjustment->add_string_adjustment(adjustment1);
-    guitarAdjustment->add_string_adjustment(adjustment2);
     std::cout << "guitarAdjustment: " << guitarAdjustment->get_description() << "\n";
 
     const auto guitar = Guitar::create();
@@ -53,8 +52,8 @@ int main(int argc, const char * argv[]) {
 
     guitar->set_adjustment("LKL", guitarAdjustment);
 
-    std::cout << "guitar: " << guitar->get_description() << "\n";
+    std::cout << "guitar before:\n" << guitar->get_description() << "\n";
     guitar->activate_adjustment("LKL", true);
-    std::cout << "guitar: " << guitar->get_description() << "\n";
+    std::cout << "guitar after:\n" << guitar->get_description() << "\n";
     return 0;
 }

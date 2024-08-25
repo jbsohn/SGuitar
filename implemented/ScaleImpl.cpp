@@ -38,7 +38,6 @@ public:
     std::string get_description() override {
         static std::string s;
         for (const NoteValue curNoteValue : scaleNoteValues) {
-            s += " ";
             s += Note::noteNameSharpForNoteValue(curNoteValue);
             s += " ";
         }

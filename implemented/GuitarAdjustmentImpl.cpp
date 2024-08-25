@@ -53,7 +53,6 @@ public:
         description += "\n";
 
         for (const auto& adjustment : adjustments) {
-            description += "adjustment:";
             description += adjustment->get_description();
             description += "\n";
         }

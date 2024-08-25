@@ -36,7 +36,6 @@ public:
 
     void reset() override {
         int curNoteMIDIValue = startNoteMidiValue;
-
         for (int fret = 0; fret <= numberOfFrets; fret++) {
             midiNoteValues[fret] = curNoteMIDIValue;
             curNoteMIDIValue++;
@@ -55,7 +54,6 @@ public:
         std::string s;
         for (const int midiNoteValue : midiNoteValues) {
             const auto note = Note::create_with_midi_value(midiNoteValue);
-            s += " ";
             s += note->get_description();
             s += " ";
         }

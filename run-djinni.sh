@@ -7,4 +7,4 @@ djinni/src/run \
     --objc-out generated/objc \
     --objc-type-prefix SG \
     --objcpp-out generated/objc-out \
-    --idl sguitar.djinni
+    --idl ./idl/sguitar.djinni
