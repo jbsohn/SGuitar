@@ -9,11 +9,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <type_traits>
 #include "guitar_adjustment.hpp"
 #include "string_adjustment.hpp"
-
-class StringAdjustmentImpl;
 
 class GuitarAdjustmentImpl final : public GuitarAdjustment {
 protected:
@@ -57,7 +54,7 @@ public:
             description += "\r\n";
 
             description += "adjustments:\r\n";
-            for (auto & adjustment : adjustments) {
+            for (const auto& adjustment : adjustments) {
                 description += adjustment->get_description();
                 description += "\r\n";
             }

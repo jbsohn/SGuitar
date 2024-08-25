@@ -25,32 +25,6 @@ public:
         this->midiValue = midiValue;
     }
 
-    explicit NoteImpl(const std::string &name) {
-        this->midiValue = -1;
-        const std::string& n = name;
-        const std::string delimiter = "-";
-
-        size_t dashPos = n.find(delimiter);
-        constexpr int noteValue =-1;
-        int pitch = -1;
-
-        if (dashPos == std::string::npos) {
-            return;
-        }
-
-        std::string noteName = n.substr(0, dashPos);
-        std::string notePitch = n.substr(dashPos + 1, std::string::npos);
-        // FIXME: noteValue = NoteName::noteValueForName(noteName);
-
-        try {
-            pitch = std::stoi(notePitch);
-        } catch (...) {
-            return;
-        }
-
-        init(noteValue, pitch);
-    }
-
     void init(const int noteValue, const int pitch) {
         midiValue = ((pitch * 12) + noteValue);
     }
@@ -104,6 +78,6 @@ std::shared_ptr<Note> Note::create_with_midi_value(int32_t midiValue) {
     return std::make_shared<NoteImpl>(midiValue);
 }
 
-std::shared_ptr<Note> Note::create_with_name(const std::string & name) {
-    return std::make_shared<NoteImpl>(name);
-}
+// std::shared_ptr<Note> Note::create_with_name(const std::string & name) {
+//     return std::make_shared<NoteImpl>(name);
+// }

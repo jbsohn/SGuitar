@@ -9,7 +9,6 @@
 #include <vector>
 #include "guitar_string.hpp"
 #include "note.hpp"
-#include "note_value.hpp"
 
 class NoteImpl;
 

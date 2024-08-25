@@ -7,7 +7,6 @@
 //
 
 #include <fstream>
-#include <sstream>
 #include <vector>
 #include <map>
 #include "guitar_adjustment.hpp"
@@ -65,7 +64,7 @@ public:
 
     /** adjustment */
     bool is_adjustment_enabled(const std::string & settingID) override {
-        if (adjustments.find(settingID) != adjustments.end()) {
+        if (adjustments.contains(settingID)) {
             if (const auto adjustment = adjustments[settingID]; adjustment != nullptr) {
                 return true;
             }
@@ -108,7 +107,7 @@ public:
     }
 
     std::vector<int32_t> string_numbers_adjusted(const std::string & setting_id) override {
-        auto adjustment = get_adjustment(setting_id);
+        const auto adjustment = get_adjustment(setting_id);
         if (adjustment == nullptr) {
             return {};
         }
@@ -132,7 +131,7 @@ public:
     int32_t midi_value(int32_t stringNumber, int32_t fret_number) override {
         if (stringNumber > 0 && fret_number >= 0) {
             const auto string = strings[stringNumber];
-            std::vector<int> notes = string->get_midi_notes();
+            const std::vector<int> notes = string->get_midi_notes();
             return notes[fret_number];
         }
         return -1;    }
@@ -166,7 +165,7 @@ protected:
         if (enabled) {
             step = adjustment->get_step();
         } else {
-            step = -(adjustment->get_step());
+            step = -adjustment->get_step();
         }
 
         const auto string = strings.at(stringNumber);

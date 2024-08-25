@@ -10,14 +10,13 @@
 #include <string>
 #include <memory>
 #include "chord.hpp"
-#include "note.hpp"
 #include "note_value.hpp"
 
 class ChordImpl final : public Chord {
 protected:
     std::vector<NoteValue> chordNoteValues;
 public:
-    ChordImpl(NoteValue rootNoteValue, const std::vector<int>& intervals) {
+    ChordImpl(const NoteValue rootNoteValue, const std::vector<int>& intervals) {
         chordNoteValues.clear();
         for (const int interval : intervals) {
             NoteValue noteValue = noteValueForInterval(interval, rootNoteValue);
@@ -45,7 +44,7 @@ protected:
     static NoteValue noteValueForInterval(const int interval, NoteValue rootNoteValue) {
         int value = static_cast<int>(rootNoteValue) + interval;
         if (value > static_cast<int>(NoteValue::B)) {
-            value = (value - static_cast<int>(NoteValue::B)) -1;
+            value = value - static_cast<int>(NoteValue::B) -1;
         }
         return static_cast<NoteValue>(value);
     }

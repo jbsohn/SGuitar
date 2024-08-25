@@ -17,8 +17,6 @@ public:
 
     static /*not-null*/ std::shared_ptr<Note> create_with_midi_value(int32_t midiValue);
 
-    static /*not-null*/ std::shared_ptr<Note> create_with_name(const std::string & name);
-
     virtual int32_t get_midi_value() = 0;
 
     virtual NoteValue get_note_value() = 0;
