@@ -76,7 +76,10 @@ public:
         if (const auto adjustment = adjustments[settingID]; adjustment != nullptr) {
             for (const auto stringAdjustments = adjustment->get_string_adjustments();
                  const auto& stringAdjustment : stringAdjustments ) {
-                activateStringAdjustment(stringAdjustment, activated);
+                const int stringNumber = stringAdjustment->get_string_number();
+                const int step = activated ? stringAdjustment->get_step() : -stringAdjustment->get_step();
+                const auto string = strings.at(stringNumber);
+                string->adjust_string_by_steps(step);
             }
             settings[settingID] = activated;
         }
@@ -157,20 +160,6 @@ public:
             description += "\n";
         }
         return description;
-    }
-protected:
-    void activateStringAdjustment(const std::shared_ptr<StringAdjustment>& adjustment, const bool enabled) const {
-        const int stringNumber = adjustment->get_string_number();
-        int step = 0;
-
-        if (enabled) {
-            step = adjustment->get_step();
-        } else {
-            step = -adjustment->get_step();
-        }
-
-        const auto string = strings.at(stringNumber);
-        string->adjust_string_by_steps(step);
     }
 };
 

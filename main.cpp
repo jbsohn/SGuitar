@@ -30,6 +30,8 @@ int main(int argc, const char * argv[]) {
 
     const auto guitarString = GuitarString::create_with_midi_start_value(note->get_midi_value(), 13);
     std::cout << "GuitarString: " << guitarString->get_description() << "\n";
+    guitarString->adjust_string_by_steps(2);
+    std::cout << "GuitarString: " << guitarString->get_description() << "\n";
 
     const auto adjustment1 = StringAdjustment::create_with_string_number(1, 1);
     const auto adjustment2 = StringAdjustment::create_with_string_number(2, 1);
@@ -41,13 +43,15 @@ int main(int argc, const char * argv[]) {
     guitarAdjustment->add_string_adjustment(adjustment2);
     std::cout << "guitarAdjustment: " << guitarAdjustment->get_description() << "\n";
 
-    auto guitar = Guitar::create();
+    const auto guitar = Guitar::create();
+    const auto guitarString1 = GuitarString::create_with_midi_start_value(note->get_midi_value(), 13);
+    const auto guitarString2 = GuitarString::create_with_midi_start_value(note->get_midi_value(), 13);
+
     guitar->set_number_of_strings(2);
-    guitar->set_string(1, guitarString);
-    guitar->set_string(2, guitarString);
+    guitar->set_string(1, guitarString1);
+    guitar->set_string(2, guitarString2);
 
     guitar->set_adjustment("LKL", guitarAdjustment);
-    guitar->set_adjustment("A", guitarAdjustment);
 
     std::cout << "guitar: " << guitar->get_description() << "\n";
     guitar->activate_adjustment("LKL", true);

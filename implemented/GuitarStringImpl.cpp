@@ -7,6 +7,7 @@
 //
 
 #include <vector>
+#include <string>
 #include "guitar_string.hpp"
 #include "note.hpp"
 
@@ -34,7 +35,6 @@ public:
     }
 
     void reset() override {
-        midiNoteValues.resize(numberOfFrets + 1);
         int curNoteMIDIValue = startNoteMidiValue;
 
         for (int fret = 0; fret <= numberOfFrets; fret++) {
@@ -52,7 +52,7 @@ public:
     }
 
     std::string get_description() override {
-        static std::string s;
+        std::string s;
         for (const int midiNoteValue : midiNoteValues) {
             const auto note = Note::create_with_midi_value(midiNoteValue);
             s += " ";

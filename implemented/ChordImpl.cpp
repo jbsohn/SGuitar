@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include <note.hpp>
+#include "note.hpp"
 #include "chord.hpp"
 #include "note_value.hpp"
 
@@ -31,8 +31,6 @@ public:
 
     std::string get_description() override {
         static std::string s;
-        bool first = true;
-        
         for (const NoteValue curNoteValue : chordNoteValues) {
             s += " ";
             s += Note::noteNameSharpForNoteValue(curNoteValue);
