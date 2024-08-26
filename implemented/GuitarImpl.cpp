@@ -56,6 +56,7 @@ public:
 
     void set_number_of_strings(int32_t numberOfStrings) override {
         strings.resize(numberOfStrings + 1);
+        strings[0] = GuitarString::create_with_midi_start_value(-1, numberOfFrets);
     }
 
     int32_t get_number_of_strings() override {
