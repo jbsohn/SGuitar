@@ -19,6 +19,11 @@ protected:
     int startNoteMidiValue;
     int numberOfFrets;
 public:
+    GuitarStringImpl() {
+        startNoteMidiValue = -1;
+        numberOfFrets = -1;
+    }
+
     GuitarStringImpl(const int midiValue, const int numberOfFrets) {
         midiNoteValues.resize(numberOfFrets);
         this->startNoteMidiValue = midiValue;
@@ -60,6 +65,10 @@ public:
         return s;
     }
 };
+
+std::shared_ptr<GuitarString> GuitarString::create() {
+    return std::make_shared<GuitarStringImpl>();
+}
 
 std::shared_ptr<GuitarString> GuitarString::create_with_midi_start_value(int32_t midi_start_value, int32_t number_of_frets) {
     return std::make_shared<GuitarStringImpl>(midi_start_value, number_of_frets);

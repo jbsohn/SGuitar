@@ -17,6 +17,8 @@ public abstract class GuitarString {
 
     public abstract String getDescription();
 
+    public static native GuitarString create();
+
     public static native GuitarString createWithMidiStartValue(int midiStartValue, int numberOfFrets);
 
     public static final class CppProxy extends GuitarString

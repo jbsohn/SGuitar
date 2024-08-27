@@ -10,32 +10,23 @@
 
 class GuitarAdjustment;
 class GuitarString;
-enum class NoteValue;
+class Note;
 
 class Guitar {
 public:
     virtual ~Guitar() = default;
 
+    /** setup */
     static /*not-null*/ std::shared_ptr<Guitar> create();
 
-    virtual void reset() = 0;
-
-    virtual void set_number_of_frets(int32_t numberOfFrets) = 0;
-
-    virtual int32_t get_number_of_frets() = 0;
+    virtual void reset_guitar(const std::vector</*not-null*/ std::shared_ptr<Note>> & string_note_values, int32_t number_of_frets) = 0;
 
     /** strings */
     virtual std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() = 0;
 
-    virtual void set_string(int32_t stringNumber, const /*not-null*/ std::shared_ptr<GuitarString> & guitarString) = 0;
+    virtual void reset_strings() = 0;
 
-    virtual /*not-null*/ std::shared_ptr<GuitarString> get_string(int32_t stringNumber) = 0;
-
-    virtual void set_number_of_strings(int32_t numberOfStrings) = 0;
-
-    virtual int32_t get_number_of_strings() = 0;
-
-    /** adjustment */
+    /** adjustments */
     virtual bool is_adjustment_enabled(const std::string & settingID) = 0;
 
     virtual void activate_adjustment(const std::string & settingID, bool activated) = 0;
@@ -43,19 +34,6 @@ public:
     virtual void set_adjustment(const std::string & settingID, const /*not-null*/ std::shared_ptr<GuitarAdjustment> & adjustment) = 0;
 
     virtual /*not-null*/ std::shared_ptr<GuitarAdjustment> get_adjustment(const std::string & settingID) = 0;
-
-    /** helpers */
-    virtual void resetStrings() = 0;
-
-    virtual bool is_adjustment_activated(const std::string & setting_id) = 0;
-
-    virtual std::vector<int32_t> string_numbers_adjusted(const std::string & setting_id) = 0;
-
-    virtual NoteValue note_value(int32_t stringNumber, int32_t fret) = 0;
-
-    virtual int32_t midi_value(int32_t stringNumber, int32_t fret_number) = 0;
-
-    virtual bool toggle_setting_id(const std::string & setting_id) = 0;
 
     virtual std::string get_description() = 0;
 };

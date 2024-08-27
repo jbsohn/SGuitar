@@ -8,7 +8,7 @@
 #import "DJIMarshal+Private.h"
 #import "SGGuitarAdjustment+Private.h"
 #import "SGGuitarString+Private.h"
-#import "SGNoteValue+Private.h"
+#import "SGNote+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -40,22 +40,11 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)reset {
+- (void)resetGuitar:(nonnull NSArray<SGNote *> *)stringNoteValues
+      numberOfFrets:(int32_t)numberOfFrets {
     try {
-        _cppRefHandle.get()->reset();
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setNumberOfFrets:(int32_t)numberOfFrets {
-    try {
-        _cppRefHandle.get()->set_number_of_frets(::djinni::I32::toCpp(numberOfFrets));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (int32_t)getNumberOfFrets {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_number_of_frets();
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        _cppRefHandle.get()->reset_guitar(::djinni::Array<::djinni_generated::Note>::toCpp(stringNoteValues),
+                                          ::djinni::I32::toCpp(numberOfFrets));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -66,31 +55,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)setString:(int32_t)stringNumber
-     guitarString:(nullable SGGuitarString *)guitarString {
+- (void)resetStrings {
     try {
-        _cppRefHandle.get()->set_string(::djinni::I32::toCpp(stringNumber),
-                                        ::djinni_generated::GuitarString::toCpp(guitarString));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nullable SGGuitarString *)getString:(int32_t)stringNumber {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_string(::djinni::I32::toCpp(stringNumber));
-        return ::djinni_generated::GuitarString::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setNumberOfStrings:(int32_t)numberOfStrings {
-    try {
-        _cppRefHandle.get()->set_number_of_strings(::djinni::I32::toCpp(numberOfStrings));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (int32_t)getNumberOfStrings {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_number_of_strings();
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        _cppRefHandle.get()->reset_strings();
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -121,51 +88,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_adjustment(::djinni::String::toCpp(settingID));
         return ::djinni_generated::GuitarAdjustment::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)resetStrings {
-    try {
-        _cppRefHandle.get()->resetStrings();
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (BOOL)isAdjustmentActivated:(nonnull NSString *)settingId {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->is_adjustment_activated(::djinni::String::toCpp(settingId));
-        return ::djinni::Bool::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nonnull NSArray<NSNumber *> *)stringNumbersAdjusted:(nonnull NSString *)settingId {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->string_numbers_adjusted(::djinni::String::toCpp(settingId));
-        return ::djinni::Array<::djinni::I32>::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (SGNoteValue)noteValue:(int32_t)stringNumber
-                    fret:(int32_t)fret {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->note_value(::djinni::I32::toCpp(stringNumber),
-                                                              ::djinni::I32::toCpp(fret));
-        return ::djinni::Enum<::NoteValue, SGNoteValue>::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (int32_t)midiValue:(int32_t)stringNumber
-          fretNumber:(int32_t)fretNumber {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->midi_value(::djinni::I32::toCpp(stringNumber),
-                                                              ::djinni::I32::toCpp(fretNumber));
-        return ::djinni::I32::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (BOOL)toggleSettingId:(nonnull NSString *)settingId {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->toggle_setting_id(::djinni::String::toCpp(settingId));
-        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

@@ -12,6 +12,8 @@ class GuitarString {
 public:
     virtual ~GuitarString() = default;
 
+    static /*not-null*/ std::shared_ptr<GuitarString> create();
+
     static /*not-null*/ std::shared_ptr<GuitarString> create_with_midi_start_value(int32_t midi_start_value, int32_t number_of_frets);
 
     virtual int32_t get_start_note_midi_value() = 0;

@@ -7,6 +7,8 @@
 
 @interface SGGuitarString : NSObject
 
++ (nullable SGGuitarString *)create;
+
 + (nullable SGGuitarString *)createWithMidiStartValue:(int32_t)midiStartValue
                                         numberOfFrets:(int32_t)numberOfFrets;
 

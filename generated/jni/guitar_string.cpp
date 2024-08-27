@@ -18,6 +18,14 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarString_00024CppProx
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_create(JNIEnv* jniEnv, jobject /*this*/)
+{
+    try {
+        auto r = ::GuitarString::create();
+        return ::djinni::release(::djinni_generated::NativeGuitarString::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
 CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_createWithMidiStartValue(JNIEnv* jniEnv, jobject /*this*/, jint j_midiStartValue, jint j_numberOfFrets)
 {
     try {

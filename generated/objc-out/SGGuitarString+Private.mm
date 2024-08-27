@@ -30,6 +30,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
++ (nullable SGGuitarString *)create {
+    try {
+        auto objcpp_result_ = ::GuitarString::create();
+        return ::djinni_generated::GuitarString::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 + (nullable SGGuitarString *)createWithMidiStartValue:(int32_t)midiStartValue
                                         numberOfFrets:(int32_t)numberOfFrets {
     try {

@@ -21,46 +21,28 @@ class GuitarImpl final : public Guitar {
     std::map<std::string, std::shared_ptr<GuitarAdjustment>> adjustments;
     std::map<std::string, bool> settings;
 public:
-    GuitarImpl() {
+    GuitarImpl() = default;
+
+    void reset_guitar(const std::vector<std::shared_ptr<Note>> &string_note_values, const int32_t number_of_frets) override {
         strings.clear();
-        numberOfFrets = 0;
-    }
+        strings.push_back(GuitarString::create());  // "empty" string at element 0
 
-    void reset() override {
-        numberOfFrets = 0;
-        strings.clear();
-        adjustments.clear();
-    }
-
-    void set_number_of_frets(int32_t numberOfFrets) override {
-        this->numberOfFrets = numberOfFrets;
-    }
-
-    int32_t get_number_of_frets() override {
-        return numberOfFrets;
+        for(const auto & string_note_value : string_note_values) {
+            strings.push_back(GuitarString::create_with_midi_start_value(string_note_value->get_midi_value(), number_of_frets));
+        }
     }
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override {
-        return strings;
+        std::vector< std::shared_ptr<GuitarString>> s;
+        s.assign(this->strings.begin() + 1, this->strings.end());
+        return s;
     }
 
-    void set_string(int32_t stringNumber, const /*not-null*/ std::shared_ptr<GuitarString> & guitarString) override {
-        strings[stringNumber] = guitarString;
-    }
-
-    /*not-null*/ 
-    std::shared_ptr<GuitarString> get_string(int32_t stringNumber) override {
-        return strings[stringNumber];
-    }
-
-    void set_number_of_strings(int32_t numberOfStrings) override {
-        strings.resize(numberOfStrings + 1);
-        strings[0] = GuitarString::create_with_midi_start_value(-1, numberOfFrets);
-    }
-
-    int32_t get_number_of_strings() override {
-        return static_cast<int32_t>(strings.size()) - 1;
+    void reset_strings() override {
+        for (const auto & string : strings) {
+            string->reset();
+        }
     }
 
     /** adjustment */
@@ -96,55 +78,6 @@ public:
             return adjustments[settingID];
         }
         return nullptr;
-    }
-
-    /** helpers */
-    void resetStrings() override {
-        for (int stringNumber = 1; stringNumber < strings.size(); stringNumber++) {
-            auto string = strings.at(stringNumber);
-            string.reset();
-        }
-    }
-
-    bool is_adjustment_activated(const std::string & setting_id) override {
-        return settings[setting_id];
-    }
-
-    std::vector<int32_t> string_numbers_adjusted(const std::string & setting_id) override {
-        const auto adjustment = get_adjustment(setting_id);
-        if (adjustment == nullptr) {
-            return {};
-        }
-
-        std::vector<int> stringNumbers;
-        for (const auto adjustments = adjustment->get_string_adjustments();
-             const auto &stringAdjustment: adjustments) {
-            int stringNumber = stringAdjustment->get_string_number();
-            stringNumbers.push_back(stringNumber);
-        }
-        return stringNumbers;
-    }
-
-    NoteValue note_value(int32_t stringNumber, int32_t fret) override {
-        const auto string = strings[stringNumber];
-        const auto notes = string->get_midi_notes();
-        const std::shared_ptr<Note> note = Note::create_with_midi_value(notes[fret]);
-        return note->get_note_value();
-    }
-
-    int32_t midi_value(int32_t stringNumber, int32_t fret_number) override {
-        if (stringNumber > 0 && fret_number >= 0) {
-            const auto string = strings[stringNumber];
-            const std::vector<int> notes = string->get_midi_notes();
-            return notes[fret_number];
-        }
-        return -1;    }
-
-    bool toggle_setting_id(const std::string & setting_id) override {
-        auto activated = settings[setting_id];
-        activated = !activated;
-        activate_adjustment(setting_id, activated);
-        return activated;
     }
 
     std::string get_description() override { 

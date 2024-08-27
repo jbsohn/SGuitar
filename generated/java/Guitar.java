@@ -7,24 +7,14 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Guitar {
-    public abstract void reset();
-
-    public abstract void setNumberOfFrets(int numberOfFrets);
-
-    public abstract int getNumberOfFrets();
+    public abstract void resetGuitar(Note[] stringNoteValues, int numberOfFrets);
 
     /** strings */
     public abstract GuitarString[] getStrings();
 
-    public abstract void setString(int stringNumber, GuitarString guitarString);
+    public abstract void resetStrings();
 
-    public abstract GuitarString getString(int stringNumber);
-
-    public abstract void setNumberOfStrings(int numberOfStrings);
-
-    public abstract int getNumberOfStrings();
-
-    /** adjustment */
+    /** adjustments */
     public abstract boolean isAdjustmentEnabled(String settingID);
 
     public abstract void activateAdjustment(String settingID, boolean activated);
@@ -33,21 +23,9 @@ public abstract class Guitar {
 
     public abstract GuitarAdjustment getAdjustment(String settingID);
 
-    /** helpers */
-    public abstract void resetStrings();
-
-    public abstract boolean isAdjustmentActivated(String settingId);
-
-    public abstract int[] stringNumbersAdjusted(String settingId);
-
-    public abstract NoteValue noteValue(int stringNumber, int fret);
-
-    public abstract int midiValue(int stringNumber, int fretNumber);
-
-    public abstract boolean toggleSettingId(String settingId);
-
     public abstract String getDescription();
 
+    /** setup */
     public static native Guitar create();
 
     public static final class CppProxy extends Guitar
@@ -64,28 +42,12 @@ public abstract class Guitar {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public void reset()
+        public void resetGuitar(Note[] stringNoteValues, int numberOfFrets)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_reset(this.nativeRef);
+            native_resetGuitar(this.nativeRef, stringNoteValues, numberOfFrets);
         }
-        private native void native_reset(long _nativeRef);
-
-        @Override
-        public void setNumberOfFrets(int numberOfFrets)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setNumberOfFrets(this.nativeRef, numberOfFrets);
-        }
-        private native void native_setNumberOfFrets(long _nativeRef, int numberOfFrets);
-
-        @Override
-        public int getNumberOfFrets()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getNumberOfFrets(this.nativeRef);
-        }
-        private native int native_getNumberOfFrets(long _nativeRef);
+        private native void native_resetGuitar(long _nativeRef, Note[] stringNoteValues, int numberOfFrets);
 
         @Override
         public GuitarString[] getStrings()
@@ -96,36 +58,12 @@ public abstract class Guitar {
         private native GuitarString[] native_getStrings(long _nativeRef);
 
         @Override
-        public void setString(int stringNumber, GuitarString guitarString)
+        public void resetStrings()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setString(this.nativeRef, stringNumber, guitarString);
+            native_resetStrings(this.nativeRef);
         }
-        private native void native_setString(long _nativeRef, int stringNumber, GuitarString guitarString);
-
-        @Override
-        public GuitarString getString(int stringNumber)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getString(this.nativeRef, stringNumber);
-        }
-        private native GuitarString native_getString(long _nativeRef, int stringNumber);
-
-        @Override
-        public void setNumberOfStrings(int numberOfStrings)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setNumberOfStrings(this.nativeRef, numberOfStrings);
-        }
-        private native void native_setNumberOfStrings(long _nativeRef, int numberOfStrings);
-
-        @Override
-        public int getNumberOfStrings()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getNumberOfStrings(this.nativeRef);
-        }
-        private native int native_getNumberOfStrings(long _nativeRef);
+        private native void native_resetStrings(long _nativeRef);
 
         @Override
         public boolean isAdjustmentEnabled(String settingID)
@@ -158,54 +96,6 @@ public abstract class Guitar {
             return native_getAdjustment(this.nativeRef, settingID);
         }
         private native GuitarAdjustment native_getAdjustment(long _nativeRef, String settingID);
-
-        @Override
-        public void resetStrings()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_resetStrings(this.nativeRef);
-        }
-        private native void native_resetStrings(long _nativeRef);
-
-        @Override
-        public boolean isAdjustmentActivated(String settingId)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_isAdjustmentActivated(this.nativeRef, settingId);
-        }
-        private native boolean native_isAdjustmentActivated(long _nativeRef, String settingId);
-
-        @Override
-        public int[] stringNumbersAdjusted(String settingId)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_stringNumbersAdjusted(this.nativeRef, settingId);
-        }
-        private native int[] native_stringNumbersAdjusted(long _nativeRef, String settingId);
-
-        @Override
-        public NoteValue noteValue(int stringNumber, int fret)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_noteValue(this.nativeRef, stringNumber, fret);
-        }
-        private native NoteValue native_noteValue(long _nativeRef, int stringNumber, int fret);
-
-        @Override
-        public int midiValue(int stringNumber, int fretNumber)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_midiValue(this.nativeRef, stringNumber, fretNumber);
-        }
-        private native int native_midiValue(long _nativeRef, int stringNumber, int fretNumber);
-
-        @Override
-        public boolean toggleSettingId(String settingId)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_toggleSettingId(this.nativeRef, settingId);
-        }
-        private native boolean native_toggleSettingId(long _nativeRef, String settingId);
 
         @Override
         public String getDescription()

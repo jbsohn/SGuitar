@@ -5,7 +5,7 @@
 #include "Marshal.hpp"
 #include "guitar_adjustment.hpp"
 #include "guitar_string.hpp"
-#include "note_value.hpp"
+#include "note.hpp"
 
 namespace djinni_generated {
 
@@ -29,29 +29,13 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_create(JNIEnv* 
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1reset(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1resetGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_stringNoteValues, jint j_numberOfFrets)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        ref->reset();
+        ref->reset_guitar(::djinni::Array<::djinni_generated::NativeNote, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','N','o','t','e'>>::toCpp(jniEnv, j_stringNoteValues),
+                          ::djinni::I32::toCpp(jniEnv, j_numberOfFrets));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1setNumberOfFrets(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_numberOfFrets)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        ref->set_number_of_frets(::djinni::I32::toCpp(jniEnv, j_numberOfFrets));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getNumberOfFrets(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->get_number_of_frets();
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getStrings(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
@@ -63,39 +47,12 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_n
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1setString(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_stringNumber, jobject j_guitarString)
+CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1resetStrings(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        ref->set_string(::djinni::I32::toCpp(jniEnv, j_stringNumber),
-                        ::djinni_generated::NativeGuitarString::toCpp(jniEnv, j_guitarString));
+        ref->reset_strings();
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getString(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_stringNumber)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->get_string(::djinni::I32::toCpp(jniEnv, j_stringNumber));
-        return ::djinni::release(::djinni_generated::NativeGuitarString::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1setNumberOfStrings(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_numberOfStrings)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        ref->set_number_of_strings(::djinni::I32::toCpp(jniEnv, j_numberOfStrings));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getNumberOfStrings(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->get_number_of_strings();
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1isAdjustmentEnabled(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_settingID)
@@ -131,61 +88,6 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_n
         const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
         auto r = ref->get_adjustment(::djinni::String::toCpp(jniEnv, j_settingID));
         return ::djinni::release(::djinni_generated::NativeGuitarAdjustment::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1resetStrings(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        ref->resetStrings();
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
-}
-
-CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1isAdjustmentActivated(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_settingId)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->is_adjustment_activated(::djinni::String::toCpp(jniEnv, j_settingId));
-        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1stringNumbersAdjusted(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_settingId)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->string_numbers_adjusted(::djinni::String::toCpp(jniEnv, j_settingId));
-        return ::djinni::release(::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1noteValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_stringNumber, jint j_fret)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->note_value(::djinni::I32::toCpp(jniEnv, j_stringNumber),
-                                 ::djinni::I32::toCpp(jniEnv, j_fret));
-        return ::djinni::release(::djinni_generated::NativeNoteValue::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1midiValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_stringNumber, jint j_fretNumber)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->midi_value(::djinni::I32::toCpp(jniEnv, j_stringNumber),
-                                 ::djinni::I32::toCpp(jniEnv, j_fretNumber));
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
-}
-
-CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1toggleSettingId(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jstring j_settingId)
-{
-    try {
-        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->toggle_setting_id(::djinni::String::toCpp(jniEnv, j_settingId));
-        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
