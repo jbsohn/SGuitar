@@ -25,7 +25,7 @@ public:
 
     void reset_guitar(const std::vector<std::shared_ptr<Note>> &string_note_values, const int32_t number_of_frets) override {
         strings.clear();
-        strings.push_back(GuitarString::create());  // "empty" string at element 0
+        strings.push_back(GuitarString::create());  // "empty" string at index 0
 
         for(const auto & string_note_value : string_note_values) {
             strings.push_back(GuitarString::create_with_midi_start_value(string_note_value->get_midi_value(), number_of_frets));
@@ -34,7 +34,7 @@ public:
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override {
-        std::vector< std::shared_ptr<GuitarString>> s;
+        std::vector<std::shared_ptr<GuitarString>> s;
         s.assign(this->strings.begin() + 1, this->strings.end());
         return s;
     }
@@ -55,12 +55,12 @@ public:
         return false;
     }
 
-    void activate_adjustment(const std::string & settingID, bool activated) override {
+    void activate_adjustment(const std::string & settingID, const bool activated) override {
         if (const auto adjustment = adjustments[settingID]; adjustment != nullptr) {
             for (const auto stringAdjustments = adjustment->get_string_adjustments();
                  const auto& stringAdjustment : stringAdjustments ) {
-                const int stringNumber = stringAdjustment->get_string_number();
-                const int step = activated ? stringAdjustment->get_step() : -stringAdjustment->get_step();
+                const auto stringNumber = stringAdjustment->get_string_number();
+                const auto step = activated ? stringAdjustment->get_step() : -stringAdjustment->get_step();
                 const auto string = strings.at(stringNumber);
                 string->adjust_string_by_steps(step);
             }
@@ -85,8 +85,6 @@ public:
 
         for (int stringNumber = 1; stringNumber < strings.size(); stringNumber++) {
             const auto string = strings[stringNumber];
-            std::vector<int> noteValues = string->get_midi_notes();
-            const auto note = Note::create_with_midi_value(noteValues[0]);
             description += "string ";
             description += std::to_string(stringNumber);
             description += ": ";

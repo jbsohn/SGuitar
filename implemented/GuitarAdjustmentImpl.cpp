@@ -37,7 +37,7 @@ public:
         return adjustments;
     } 
 
-    std::shared_ptr<StringAdjustment> string_adjustment_for_string_number(int32_t string_number) override {
+    std::shared_ptr<StringAdjustment> string_adjustment_for_string_number(const int32_t string_number) override {
         for (auto & adjustment : adjustments) {
             if (adjustment->get_string_number() == string_number) {
                 return adjustment;

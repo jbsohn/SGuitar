@@ -24,7 +24,7 @@ public:
         return stringNumber;
     }
 
-    void set_step(int32_t step) override {
+    void set_step(const int32_t step) override {
         this->step = step;
     }
 

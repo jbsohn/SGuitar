@@ -19,7 +19,7 @@ protected:
 public:
     ChordImpl(const NoteValue rootNoteValue, const std::vector<int>& intervals) {
         for (const int interval : intervals) {
-            NoteValue noteValue = noteValueForInterval(interval, rootNoteValue);
+            auto noteValue = noteValueForInterval(interval, rootNoteValue);
             chordNoteValues.push_back(noteValue);
         }
     }
@@ -38,7 +38,7 @@ public:
     }
 protected:
     static NoteValue noteValueForInterval(const int interval, NoteValue rootNoteValue) {
-        int value = static_cast<int>(rootNoteValue) + interval;
+        auto value = static_cast<int>(rootNoteValue) + interval;
         if (value > static_cast<int>(NoteValue::B)) {
             value = value - static_cast<int>(NoteValue::B) -1;
         }

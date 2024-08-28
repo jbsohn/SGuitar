@@ -18,11 +18,11 @@ protected:
     std::vector<NoteValue> scaleNoteValues;
 public:
     ScaleImpl(const NoteValue rootNoteValue, const std::vector<int>& semitones) {
-        const unsigned long numSemitones = semitones.size();
+        const auto numSemitones = semitones.size();
         scaleNoteValues.clear();
         scaleNoteValues.reserve(numSemitones);
 
-        NoteValue curNoteValue = rootNoteValue;
+        auto curNoteValue = rootNoteValue;
         scaleNoteValues.push_back(rootNoteValue);
 
         for (const int semitone : semitones) {
@@ -37,7 +37,7 @@ public:
 
     std::string get_description() override {
         std::string s;
-        for (const NoteValue curNoteValue : scaleNoteValues) {
+        for (const auto curNoteValue : scaleNoteValues) {
             s += Note::noteNameSharpForNoteValue(curNoteValue);
             s += " ";
         }
@@ -46,7 +46,7 @@ public:
 
 protected:
     static NoteValue nextNoteValueInScale(NoteValue noteValue, const int semitone) {
-        int curNoteValue = static_cast<int>(noteValue);
+        auto curNoteValue = static_cast<int>(noteValue);
         curNoteValue += semitone;
 
         if (curNoteValue > static_cast<int>(NoteValue::B)) {

@@ -89,6 +89,7 @@ int main(int argc, const char * argv[]) {
     testNote();
     testScale();
     testChord();
+    testGuitarString();
     testStringAdjustment();
     testGuitarAdjustment();
     testChord();

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <memory>
 #include <vector>
 #include <string>
 #include "guitar_string.hpp"
@@ -15,50 +16,60 @@ class NoteImpl;
 
 class GuitarStringImpl final : public GuitarString {
 protected:
-    std::vector<int> midiNoteValues;
-    int startNoteMidiValue;
+    std::vector<std::shared_ptr<Note>> notes;
+    std::shared_ptr<Note> startNote;
     int numberOfFrets;
 public:
     GuitarStringImpl() {
-        startNoteMidiValue = -1;
-        numberOfFrets = -1;
+        numberOfFrets = 0;
     }
 
-    GuitarStringImpl(const int midiValue, const int numberOfFrets) {
-        midiNoteValues.resize(numberOfFrets);
-        this->startNoteMidiValue = midiValue;
+    GuitarStringImpl(const std::shared_ptr<Note>& startNote, const int numberOfFrets) {
+        notes.resize(numberOfFrets);
+        this->startNote = startNote;
         this->numberOfFrets = numberOfFrets;
         reset();
     }
 
-    int32_t get_start_note_midi_value() override {
-        return startNoteMidiValue;
+    GuitarStringImpl(const int midiValue, const int numberOfFrets) {
+        notes.resize(numberOfFrets);
+        this->startNote = Note::create_with_midi_value(midiValue);
+        this->numberOfFrets = numberOfFrets;
+        reset();
     }
 
-    std::vector<int32_t> get_midi_notes() override {
-        return midiNoteValues;
+    std::shared_ptr<Note> get_start_note() {
+        return startNote;
+    }
+
+    int32_t get_start_note_midi_value() override {
+        return startNote->get_midi_value();
+    }
+
+    std::vector<std::shared_ptr<Note>> get_notes() override {
+        return notes;
     }
 
     void reset() override {
-        int curNoteMIDIValue = startNoteMidiValue;
-        for (int fret = 0; fret <= numberOfFrets; fret++) {
-            midiNoteValues[fret] = curNoteMIDIValue;
+        int curNoteMIDIValue = startNote->get_midi_value();
+        for (int fret = 0; fret < numberOfFrets; fret++) {
+
+            notes[fret] = Note::create_with_midi_value(curNoteMIDIValue);
             curNoteMIDIValue++;
         }
     }
 
-    void adjust_string_by_steps(int32_t steps) override {
-        for (int fret = 0; fret <= numberOfFrets; fret++) {
-            int curNoteMIDIValue = midiNoteValues[fret];
+    void adjust_string_by_steps(const int32_t steps) override {
+        for (int fret = 0; fret < numberOfFrets; fret++) {
+            int curNoteMIDIValue = notes[fret]->get_midi_value();
             curNoteMIDIValue += steps;
-            midiNoteValues[fret] = curNoteMIDIValue;
+            notes[fret] = Note::create_with_midi_value(curNoteMIDIValue);
         }
     }
 
     std::string get_description() override {
         std::string s;
-        for (const int midiNoteValue : midiNoteValues) {
-            const auto note = Note::create_with_midi_value(midiNoteValue);
+        for (const std::shared_ptr<Note>& note : notes) {
             s += note->get_description();
             s += " ";
         }

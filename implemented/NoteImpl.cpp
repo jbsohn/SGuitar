@@ -18,7 +18,7 @@ public:
     const static std::string noteNamesFlat[];
 
     NoteImpl(const NoteValue noteValue, const int pitch) {
-        midiValue = ((pitch * 12) + static_cast<int>(noteValue));
+        midiValue = pitch * 12 + static_cast<int>(noteValue);
     }
 
     explicit NoteImpl(const int midiValue) {
@@ -42,17 +42,17 @@ public:
 
     std::string get_description() override {
         const std::string name = note_name_sharp();
-        const int pitch = get_pitch_value();
+        const auto pitch = get_pitch_value();
         std::string namePitch = name + "-" + std::to_string(pitch);
         return namePitch;
     }
 
     std::string note_name_sharp() override {
-        return NoteImpl::noteNamesSharp[static_cast<int>(get_note_value())];
+        return noteNamesSharp[static_cast<int>(get_note_value())];
     }
 
     std::string note_name_flat() override {
-        return NoteImpl::noteNamesFlat[static_cast<int>(get_note_value())];
+        return noteNamesFlat[static_cast<int>(get_note_value())];
     }
 };
 
