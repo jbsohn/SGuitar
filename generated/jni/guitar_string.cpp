@@ -3,6 +3,7 @@
 
 #include "guitar_string.hpp"  // my header
 #include "Marshal.hpp"
+#include "note.hpp"
 
 namespace djinni_generated {
 
@@ -26,30 +27,30 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_create(JN
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_createWithMidiStartValue(JNIEnv* jniEnv, jobject /*this*/, jint j_midiStartValue, jint j_numberOfFrets)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_createWithStartNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_startNote, jint j_numberOfFrets)
 {
     try {
-        auto r = ::GuitarString::create_with_midi_start_value(::djinni::I32::toCpp(jniEnv, j_midiStartValue),
-                                                              ::djinni::I32::toCpp(jniEnv, j_numberOfFrets));
+        auto r = ::GuitarString::create_with_start_note(::djinni_generated::NativeNote::toCpp(jniEnv, j_startNote),
+                                                        ::djinni::I32::toCpp(jniEnv, j_numberOfFrets));
         return ::djinni::release(::djinni_generated::NativeGuitarString::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarString_00024CppProxy_native_1getStartNoteMidiValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_00024CppProxy_native_1getStartNote(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarString>(nativeRef);
-        auto r = ref->get_start_note_midi_value();
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        auto r = ref->get_start_note();
+        return ::djinni::release(::djinni_generated::NativeNote::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_00024CppProxy_native_1getMidiNotes(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarString_00024CppProxy_native_1getNotes(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarString>(nativeRef);
-        auto r = ref->get_midi_notes();
-        return ::djinni::release(::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::fromCpp(jniEnv, r));
+        auto r = ref->get_notes();
+        return ::djinni::release(::djinni::Array<::djinni_generated::NativeNote, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','N','o','t','e'>>::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

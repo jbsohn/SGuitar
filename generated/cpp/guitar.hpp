@@ -19,7 +19,7 @@ public:
     /** setup */
     static /*not-null*/ std::shared_ptr<Guitar> create();
 
-    virtual void reset_guitar(const std::vector</*not-null*/ std::shared_ptr<Note>> & string_note_values, int32_t number_of_frets) = 0;
+    virtual void reset_guitar(const std::vector</*not-null*/ std::shared_ptr<Note>> & notes, int32_t number_of_frets) = 0;
 
     /** strings */
     virtual std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() = 0;

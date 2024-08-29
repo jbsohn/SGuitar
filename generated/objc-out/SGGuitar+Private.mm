@@ -40,10 +40,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)resetGuitar:(nonnull NSArray<SGNote *> *)stringNoteValues
+- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
       numberOfFrets:(int32_t)numberOfFrets {
     try {
-        _cppRefHandle.get()->reset_guitar(::djinni::Array<::djinni_generated::Note>::toCpp(stringNoteValues),
+        _cppRefHandle.get()->reset_guitar(::djinni::Array<::djinni_generated::Note>::toCpp(notes),
                                           ::djinni::I32::toCpp(numberOfFrets));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

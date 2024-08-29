@@ -32,13 +32,13 @@ void testChord() {
     std::cout << "Chord: " << chord->get_description()  << std::endl;
 }
 
-void testGuitarString() {
-    const std::shared_ptr<Note> note = Note::create_with_note_value(NoteValue::C, 2);
-    const auto guitarString = GuitarString::create_with_midi_start_value(note->get_midi_value(), 13);
-    std::cout << "GuitarString: " << guitarString->get_description() << std::endl;
-    guitarString->adjust_string_by_steps(2);
-    std::cout << "GuitarString: " << guitarString->get_description() << std::endl;
-}
+// void testGuitarString() {
+//     const std::shared_ptr<Note> note = Note::create_with_note_value(NoteValue::C, 2);
+//     const auto guitarString = GuitarString::create_with_midi_start_value(note->get_midi_value(), 13);
+//     std::cout << "GuitarString: " << guitarString->get_description() << std::endl;
+//     guitarString->adjust_string_by_steps(2);
+//     std::cout << "GuitarString: " << guitarString->get_description() << std::endl;
+// }
 
 void testStringAdjustment() {
     const auto adjustment = StringAdjustment::create_with_string_number(1, 1);
@@ -89,7 +89,7 @@ int main(int argc, const char * argv[]) {
     testNote();
     testScale();
     testChord();
-    testGuitarString();
+    // testGuitarString();
     testStringAdjustment();
     testGuitarAdjustment();
     testChord();

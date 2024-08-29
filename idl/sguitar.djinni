@@ -47,9 +47,9 @@ chord = interface +c {
 
 guitar_string = interface +c {
     static create(): guitar_string;
-    static create_with_midi_start_value(midi_start_value: i32, number_of_frets: i32): guitar_string;
-    get_start_note_midi_value(): i32;
-    get_midi_notes(): array<i32>;
+    static create_with_start_note(start_note: note, number_of_frets: i32): guitar_string;
+    get_start_note(): note;
+    get_notes(): array<note>;
     reset();
     adjust_string_by_steps(steps: i32);
     get_description(): string;
@@ -76,7 +76,7 @@ guitar_adjustment = interface +c {
 guitar = interface +c {
     # setup
     static create(): guitar;
-    reset_guitar(string_note_values: array<note>, number_of_frets: i32);
+    reset_guitar(notes: array<note>, number_of_frets: i32);
 
     # strings
     get_strings(): array<guitar_string>;

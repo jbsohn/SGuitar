@@ -7,7 +7,7 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Guitar {
-    public abstract void resetGuitar(Note[] stringNoteValues, int numberOfFrets);
+    public abstract void resetGuitar(Note[] notes, int numberOfFrets);
 
     /** strings */
     public abstract GuitarString[] getStrings();
@@ -42,12 +42,12 @@ public abstract class Guitar {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public void resetGuitar(Note[] stringNoteValues, int numberOfFrets)
+        public void resetGuitar(Note[] notes, int numberOfFrets)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_resetGuitar(this.nativeRef, stringNoteValues, numberOfFrets);
+            native_resetGuitar(this.nativeRef, notes, numberOfFrets);
         }
-        private native void native_resetGuitar(long _nativeRef, Note[] stringNoteValues, int numberOfFrets);
+        private native void native_resetGuitar(long _nativeRef, Note[] notes, int numberOfFrets);
 
         @Override
         public GuitarString[] getStrings()

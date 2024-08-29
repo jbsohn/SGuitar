@@ -7,9 +7,9 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class GuitarString {
-    public abstract int getStartNoteMidiValue();
+    public abstract Note getStartNote();
 
-    public abstract int[] getMidiNotes();
+    public abstract Note[] getNotes();
 
     public abstract void reset();
 
@@ -19,7 +19,7 @@ public abstract class GuitarString {
 
     public static native GuitarString create();
 
-    public static native GuitarString createWithMidiStartValue(int midiStartValue, int numberOfFrets);
+    public static native GuitarString createWithStartNote(Note startNote, int numberOfFrets);
 
     public static final class CppProxy extends GuitarString
     {
@@ -35,20 +35,20 @@ public abstract class GuitarString {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public int getStartNoteMidiValue()
+        public Note getStartNote()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getStartNoteMidiValue(this.nativeRef);
+            return native_getStartNote(this.nativeRef);
         }
-        private native int native_getStartNoteMidiValue(long _nativeRef);
+        private native Note native_getStartNote(long _nativeRef);
 
         @Override
-        public int[] getMidiNotes()
+        public Note[] getNotes()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getMidiNotes(this.nativeRef);
+            return native_getNotes(this.nativeRef);
         }
-        private native int[] native_getMidiNotes(long _nativeRef);
+        private native Note[] native_getNotes(long _nativeRef);
 
         @Override
         public void reset()

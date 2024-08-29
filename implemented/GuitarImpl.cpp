@@ -23,12 +23,12 @@ class GuitarImpl final : public Guitar {
 public:
     GuitarImpl() = default;
 
-    void reset_guitar(const std::vector<std::shared_ptr<Note>> &string_note_values, const int32_t number_of_frets) override {
+    void reset_guitar(const std::vector<std::shared_ptr<Note>> &notes, const int32_t number_of_frets) override {
         strings.clear();
         strings.push_back(GuitarString::create());  // "empty" string at index 0
 
-        for(const auto & string_note_value : string_note_values) {
-            strings.push_back(GuitarString::create_with_midi_start_value(string_note_value->get_midi_value(), number_of_frets));
+        for(const auto & note : notes) {
+            strings.push_back(GuitarString::create_with_start_note(note, number_of_frets));
         }
     }
 

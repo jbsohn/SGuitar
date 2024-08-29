@@ -8,13 +8,11 @@
 
 #include <vector>
 #include <string>
-#include <memory>
 #include "note.hpp"
 #include "chord.hpp"
 #include "note_value.hpp"
 
 class ChordImpl final : public Chord {
-protected:
     std::vector<NoteValue> chordNoteValues;
 public:
     ChordImpl(const NoteValue rootNoteValue, const std::vector<int>& intervals) {

@@ -11,7 +11,6 @@
 #include "note_value.hpp"
 
 class NoteImpl final : public Note {
-protected:
     int midiValue = -1;
 public:
     const static std::string noteNamesSharp[];

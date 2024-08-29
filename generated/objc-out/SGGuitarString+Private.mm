@@ -6,6 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
+#import "SGNote+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -37,26 +38,26 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable SGGuitarString *)createWithMidiStartValue:(int32_t)midiStartValue
-                                        numberOfFrets:(int32_t)numberOfFrets {
++ (nullable SGGuitarString *)createWithStartNote:(nullable SGNote *)startNote
+                                   numberOfFrets:(int32_t)numberOfFrets {
     try {
-        auto objcpp_result_ = ::GuitarString::create_with_midi_start_value(::djinni::I32::toCpp(midiStartValue),
-                                                                           ::djinni::I32::toCpp(numberOfFrets));
+        auto objcpp_result_ = ::GuitarString::create_with_start_note(::djinni_generated::Note::toCpp(startNote),
+                                                                     ::djinni::I32::toCpp(numberOfFrets));
         return ::djinni_generated::GuitarString::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)getStartNoteMidiValue {
+- (nullable SGNote *)getStartNote {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_start_note_midi_value();
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        auto objcpp_result_ = _cppRefHandle.get()->get_start_note();
+        return ::djinni_generated::Note::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSArray<NSNumber *> *)getMidiNotes {
+- (nonnull NSArray<SGNote *> *)getNotes {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_midi_notes();
-        return ::djinni::Array<::djinni::I32>::fromCpp(objcpp_result_);
+        auto objcpp_result_ = _cppRefHandle.get()->get_notes();
+        return ::djinni::Array<::djinni_generated::Note>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

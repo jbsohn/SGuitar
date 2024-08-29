@@ -15,7 +15,6 @@
 class NoteImpl;
 
 class GuitarStringImpl final : public GuitarString {
-protected:
     std::vector<std::shared_ptr<Note>> notes;
     std::shared_ptr<Note> startNote;
     int numberOfFrets;
@@ -31,23 +30,12 @@ public:
         reset();
     }
 
-    GuitarStringImpl(const int midiValue, const int numberOfFrets) {
-        notes.resize(numberOfFrets);
-        this->startNote = Note::create_with_midi_value(midiValue);
-        this->numberOfFrets = numberOfFrets;
-        reset();
-    }
-
-    std::shared_ptr<Note> get_start_note() {
+    std::shared_ptr<Note> get_start_note() override {
         return startNote;
     }
 
-    int32_t get_start_note_midi_value() override {
-        return startNote->get_midi_value();
-    }
-
     std::vector<std::shared_ptr<Note>> get_notes() override {
-        return notes;
+            return notes;
     }
 
     void reset() override {
@@ -81,6 +69,7 @@ std::shared_ptr<GuitarString> GuitarString::create() {
     return std::make_shared<GuitarStringImpl>();
 }
 
-std::shared_ptr<GuitarString> GuitarString::create_with_midi_start_value(int32_t midi_start_value, int32_t number_of_frets) {
-    return std::make_shared<GuitarStringImpl>(midi_start_value, number_of_frets);
+/*not-null*/
+std::shared_ptr<GuitarString> GuitarString::create_with_start_note(const /*not-null*/ std::shared_ptr<Note> & start_note, int32_t number_of_frets) {
+    return std::make_shared<GuitarStringImpl>(start_note, number_of_frets);
 }

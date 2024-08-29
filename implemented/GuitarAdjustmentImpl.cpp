@@ -8,12 +8,10 @@
 
 #include <string>
 #include <vector>
-#include <memory>
 #include "guitar_adjustment.hpp"
 #include "string_adjustment.hpp"
 
 class GuitarAdjustmentImpl final : public GuitarAdjustment {
-protected:
     std::string adjustmentID;
     std::vector<std::shared_ptr<StringAdjustment>> adjustments;
 public:

@@ -3,18 +3,19 @@
 
 #import <Foundation/Foundation.h>
 @class SGGuitarString;
+@class SGNote;
 
 
 @interface SGGuitarString : NSObject
 
 + (nullable SGGuitarString *)create;
 
-+ (nullable SGGuitarString *)createWithMidiStartValue:(int32_t)midiStartValue
-                                        numberOfFrets:(int32_t)numberOfFrets;
++ (nullable SGGuitarString *)createWithStartNote:(nullable SGNote *)startNote
+                                   numberOfFrets:(int32_t)numberOfFrets;
 
-- (int32_t)getStartNoteMidiValue;
+- (nullable SGNote *)getStartNote;
 
-- (nonnull NSArray<NSNumber *> *)getMidiNotes;
+- (nonnull NSArray<SGNote *> *)getNotes;
 
 - (void)reset;
 

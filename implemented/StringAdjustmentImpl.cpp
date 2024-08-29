@@ -11,7 +11,6 @@
 #include "string_adjustment.hpp"
 
 class StringAdjustmentImpl final : public StringAdjustment {
-protected:
     int stringNumber;
     int step;
 public:

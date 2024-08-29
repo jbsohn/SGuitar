@@ -8,17 +8,19 @@
 #include <string>
 #include <vector>
 
+class Note;
+
 class GuitarString {
 public:
     virtual ~GuitarString() = default;
 
     static /*not-null*/ std::shared_ptr<GuitarString> create();
 
-    static /*not-null*/ std::shared_ptr<GuitarString> create_with_midi_start_value(int32_t midi_start_value, int32_t number_of_frets);
+    static /*not-null*/ std::shared_ptr<GuitarString> create_with_start_note(const /*not-null*/ std::shared_ptr<Note> & start_note, int32_t number_of_frets);
 
-    virtual int32_t get_start_note_midi_value() = 0;
+    virtual /*not-null*/ std::shared_ptr<Note> get_start_note() = 0;
 
-    virtual std::vector<int32_t> get_midi_notes() = 0;
+    virtual std::vector</*not-null*/ std::shared_ptr<Note>> get_notes() = 0;
 
     virtual void reset() = 0;
 

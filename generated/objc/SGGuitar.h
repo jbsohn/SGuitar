@@ -13,7 +13,7 @@
 /** setup */
 + (nullable SGGuitar *)create;
 
-- (void)resetGuitar:(nonnull NSArray<SGNote *> *)stringNoteValues
+- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
       numberOfFrets:(int32_t)numberOfFrets;
 
 /** strings */

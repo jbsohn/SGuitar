@@ -13,7 +13,6 @@
 #include "note_value.hpp"
 
 class ScaleImpl final : public Scale {
-protected:
     std::string name;
     std::vector<NoteValue> scaleNoteValues;
 public:
