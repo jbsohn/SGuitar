@@ -1,8 +1,8 @@
-use crate::note::*;
-use crate::note_value::NoteValue;
+use super::note_value::NoteValue;
+use super::note::NOTE_NAMES_SHARP;
 
 #[derive(Debug, Clone)]
-struct Scale {
+pub struct Scale {
     notes: Vec<NoteValue>,
 }
 

@@ -2,6 +2,8 @@ mod note;
 mod note_value;
 mod note_names;
 mod scale;
+mod chord;
+mod guitar_string;
 
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
