@@ -1,7 +1,6 @@
 
-use super::note::Note;
-use super::note_names::NOTE_NAMES_SHARP;
-use super::note_value::NoteValue;
+use crate::note::Note;
+use crate::note_names::NOTE_NAMES_SHARP;
 
 struct GuitarString {
     start_note: Note,
@@ -50,9 +49,9 @@ impl GuitarString {
 
 #[cfg(test)]
 mod tests {
-    use super::GuitarString;
-    use super::Note;
-    use super::NoteValue;
+    use crate::guitar_string::GuitarString;
+    use crate::note::Note;
+    use crate::note_value::NoteValue;
 
     #[test]
     fn test_new_guitar_string() {

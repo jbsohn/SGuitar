@@ -1,5 +1,5 @@
-use super::note_value::NoteValue;
-use super::note_names::NOTE_NAMES_SHARP;
+use crate::note_value::NoteValue;
+use crate::note_names::NOTE_NAMES_SHARP;
 
 struct Chord {
     notes: Vec<NoteValue>,
@@ -37,8 +37,8 @@ impl Chord {
 
 #[cfg(test)]
 mod tests {
-    use super::Chord;
-    use super::NoteValue;
+    use crate::chord::Chord;
+    use crate::note_value::NoteValue;
 
     #[test]
     fn test_new_chord_from_root_note() {

@@ -1,5 +1,5 @@
-use super::note_value::NoteValue;
-use super::note::NOTE_NAMES_SHARP;
+use crate::note_value::NoteValue;
+use crate::note::NOTE_NAMES_SHARP;
 
 pub struct Scale {
     notes: Vec<NoteValue>,
@@ -44,8 +44,8 @@ impl Scale {
 
 #[cfg(test)]
 mod tests {
-    use super::Scale;
-    use super::NoteValue;
+    use crate::scale::Scale;
+    use crate::note_value::NoteValue;
 
     #[test]
     fn test_new_from_note_value() {

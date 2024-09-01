@@ -1,4 +1,4 @@
-use super::note_value::NoteValue;
+use crate::note_value::NoteValue;
 
 #[allow(dead_code)]
 pub(crate) const NOTE_NAMES_SHARP: &'static [&'static str] = &[
@@ -44,8 +44,8 @@ impl Note {
 
 #[cfg(test)]
 mod tests {
-    use super::Note;
-    use super::NoteValue;
+    use crate::note::Note;
+    use crate::note_value::NoteValue;
 
     #[test]
     fn test_new_note_value() {
