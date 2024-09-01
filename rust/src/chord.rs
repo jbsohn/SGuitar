@@ -6,7 +6,7 @@ struct Chord {
 }
 
 impl Chord {
-    pub fn new_chord_from_root_note(root_note_value: NoteValue, intervals: Vec<i32>) -> Self {
+    pub fn new(root_note_value: NoteValue, intervals: Vec<i32>) -> Self {
         let mut notes = Vec::<NoteValue>::new();
         for interval in intervals {
             let note_value = Chord::note_value_for_interval(root_note_value, interval);
@@ -20,10 +20,8 @@ impl Chord {
 
     pub fn description(self) -> String {
         let mut desc = String::new();
-
         for note in self.notes {
-            let test = format!("{} ", NOTE_NAMES_SHARP[note as usize]);
-            desc += &*test;
+            desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note as usize]);
         }
         desc
     }
@@ -33,7 +31,7 @@ impl Chord {
         if note_value > NoteValue::B as i32 {
             note_value = note_value - NoteValue::B as i32 - 1;
         }
-        return NoteValue::from_i32(note_value);
+        NoteValue::from(note_value)
     }
 }
 
@@ -44,9 +42,9 @@ mod tests {
 
     #[test]
     fn test_new_chord_from_root_note() {
-        // 0, 4, 7
         let intervals: Vec<i32> = vec![0, 4, 7];
-        let scale = Chord::new_chord_from_root_note(NoteValue::C, intervals);
-        assert_eq!(scale.description(), "C E G ");
+        let scale = Chord::new(NoteValue::C, intervals);
+        assert_eq!(scale.description(), "CEG");
     }
 }
+ 

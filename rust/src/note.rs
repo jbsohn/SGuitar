@@ -10,13 +10,12 @@ const NOTE_NAMES_FLAT: &'static [&'static str] = &[
     "C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B",
 ];
 
-#[derive(Clone)]
 pub struct Note {
     midi_value: i32,
 }
 
 impl Note {
-    pub fn new_note_with_note_value(note_value: NoteValue, octave: i32) -> Self {
+    pub fn new(note_value: NoteValue, octave: i32) -> Self {
         Self {
             midi_value: ((octave + 1) * 12) + note_value as i32,
         }
@@ -31,7 +30,7 @@ impl Note {
     }
 
     pub fn note_value(&self) -> NoteValue {
-        NoteValue::from_i32((self.midi_value - 12) % 12)
+        NoteValue::from((self.midi_value - 12) % 12)
     }
 
     pub fn octave(&self) -> i32 {
@@ -50,7 +49,7 @@ mod tests {
 
     #[test]
     fn test_new_note_value() {
-        let note = Note::new_note_with_note_value(NoteValue::C, 4);
+        let note = Note::new(NoteValue::C, 4);
         assert_eq!(note.note_value(), NoteValue::C);
         assert_eq!(note.midi_value(), 60);
         assert_eq!(note.octave(), 4);

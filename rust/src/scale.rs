@@ -1,13 +1,12 @@
 use super::note_value::NoteValue;
 use super::note::NOTE_NAMES_SHARP;
 
-#[derive(Debug, Clone)]
 pub struct Scale {
     notes: Vec<NoteValue>,
 }
 
 impl Scale {
-    fn new_from_note_value(root_note_value: NoteValue, semitones: Vec<i32>) -> Self {
+    fn new(root_note_value: NoteValue, semitones: Vec<i32>) -> Self {
         let mut notes = Vec::new();
         let mut cur_note_value = root_note_value;
         notes.push(cur_note_value);
@@ -31,16 +30,13 @@ impl Scale {
         if note_value > NoteValue::B as i32 {
             note_value = (NoteValue::B as i32) - 1;
         }
-        NoteValue::from_i32(note_value)
+        NoteValue::from(note_value)
     }
 
     fn description(self) -> String {
         let mut desc = String::new();
-        //format!("{}-{}", crate::note::NOTE_NAMES_SHARP[self.note_value() as usize], self.octave()).to_owned()
-
         for note in self.notes {
-            let test = format!("{} ", NOTE_NAMES_SHARP[note as usize]);
-            desc += &*test;
+            desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note as usize]);
         }
         desc
     }
@@ -55,15 +51,15 @@ mod tests {
     fn test_new_from_note_value() {
         // 2, 2, 1, 2, 2, 2
         let semitones: Vec<i32> = vec![2, 2, 1, 2, 2, 2];
-        let scale = Scale::new_from_note_value(NoteValue::C, semitones);
-        assert_eq!(scale.description(), "C D E F G A B ");
+        let scale = Scale::new(NoteValue::C, semitones);
+        assert_eq!(scale.description(), "CDEFGAB");
     }
 
     #[test]
     fn test_new_from_note_value_count() {
         // 2, 2, 1, 2, 2, 2
         let semitones: Vec<i32> = vec![2, 2, 1, 2, 2, 2];
-        let scale = Scale::new_from_note_value(NoteValue::C, semitones);
+        let scale = Scale::new(NoteValue::C, semitones);
         assert_eq!(scale.note_values().iter().count(), 7);
     }
 }

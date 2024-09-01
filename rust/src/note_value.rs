@@ -28,7 +28,7 @@ impl NoteValue {
     #[allow(dead_code)]
     pub const BFLAT: NoteValue = NoteValue::ASharp;
 
-    pub fn from_i32(note_value: i32) -> Self {
+    pub fn from(note_value: i32) -> Self {
         match note_value {
             0 => Self::C,
             1 => Self::CSharp,
