@@ -21,8 +21,8 @@ impl Scale {
         }
     }
  
-    pub fn note_values(self) -> Vec<NoteValue> {
-        self.notes
+    pub fn note_values(&self) -> Vec<NoteValue> {
+        self.notes.clone()
     }
 
     fn note_value_for_interval(note_value: NoteValue, semitone: i32) -> NoteValue {
@@ -58,6 +58,6 @@ mod tests {
     fn test_new_from_note_value_count() {
         let semitones: Vec<i32> = vec![2, 2, 1, 2, 2, 2];
         let scale = Scale::new(NoteValue::C, semitones);
-        assert_eq!(scale.note_values().iter().count(), 7);
+        assert_eq!(scale.note_values().len(), 7);
     }
 }

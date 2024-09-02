@@ -1,7 +1,8 @@
+
 use crate::note_value::NoteValue;
 use crate::note_names::NOTE_NAMES_SHARP;
 
-struct Chord {
+pub struct Chord {
     notes: Vec<NoteValue>,
 }
 
@@ -18,9 +19,13 @@ impl Chord {
         }
     }
 
-    pub fn description(self) -> String {
+    pub fn get_notes(&self) -> Vec<NoteValue> {
+        self.notes.clone()
+    }
+
+    pub fn description(&self) -> String {
         let mut desc = String::new();
-        for note in self.notes {
+        for note in self.get_notes() {
             desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note as usize]);
         }
         desc

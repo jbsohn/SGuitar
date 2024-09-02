@@ -1,5 +1,6 @@
 
-#[derive(Clone, Copy)]
+#[derive(Clone)]
+
 pub struct StringAdjustment {
     string_number: i32,
     step: i32
@@ -13,14 +14,14 @@ impl StringAdjustment {
         }
     }
 
-    pub fn string_number(self) -> i32 {
+    pub fn string_number(&self) -> i32 {
         self.string_number
     }
-    pub fn step(self) -> i32 {
+    pub fn step(&self) -> i32 {
         self.step
     }
 
-    pub fn description(self) -> String {
+    pub fn description(&self) -> String {
         format!("string_number: {}, step: {}", self.string_number, self.step)
     }
 }

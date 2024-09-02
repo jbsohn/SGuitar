@@ -13,8 +13,8 @@ impl GuitarAdjustment {
         }
     }
 
-    pub fn get_adjustment_id(self) -> String {
-        self.adjustment_id
+    pub fn get_adjustment_id(&self) -> String {
+        self.adjustment_id.clone()
     }
 
     pub fn clear_adjustments(&mut self) {
@@ -25,14 +25,14 @@ impl GuitarAdjustment {
         self.adjustments.push(string_adjustment);
     }
 
-    pub fn get_string_adjustments(self) -> Vec<StringAdjustment> {
-        self.adjustments
+    pub fn get_string_adjustments(&self) -> Vec<StringAdjustment> {
+        self.adjustments.clone()
     }
 
-    pub fn string_adjustment_for_string_number(self, string_number: i32) -> Option<StringAdjustment> {
-        for adjustment in self.adjustments {
+    pub fn string_adjustment_for_string_number(&self, string_number: i32) -> Option<StringAdjustment> {
+        for adjustment in &self.adjustments.clone() {
             if adjustment.string_number() == string_number {
-                return Some(adjustment);
+                return Some(adjustment.clone());
             }
         }
         None
