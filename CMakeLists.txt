@@ -3,16 +3,16 @@ project(SGuitar)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/generated/cpp")
+include_directories(PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/cpp/generated/cpp")
 add_executable(
         SGuitarTest
-        implemented/ChordImpl.cpp
-        implemented/GuitarAdjustmentImpl.cpp
-        implemented/GuitarImpl.cpp
-        implemented/GuitarStringImpl.cpp
-        implemented/NoteImpl.cpp
-        implemented/ScaleImpl.cpp
-        implemented/StringAdjustmentImpl.cpp
+        cpp/implemented/ChordImpl.cpp
+        cpp/implemented/GuitarAdjustmentImpl.cpp
+        cpp/implemented/GuitarImpl.cpp
+        cpp/implemented/GuitarStringImpl.cpp
+        cpp/implemented/NoteImpl.cpp
+        cpp/implemented/ScaleImpl.cpp
+        cpp/implemented/StringAdjustmentImpl.cpp
         tests/Test.cpp
 )
 enable_testing()
