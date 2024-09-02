@@ -67,4 +67,13 @@ mod tests {
         guitar_string.adjust_string_by_step(2);
         assert_eq!(guitar_string.description(), "DD♯EFF♯GG♯AA♯BCC♯D");
     }
+
+    #[test]
+    fn test_reset() {
+        let start_note = Note::new(NoteValue::C, 4);
+        let mut guitar_string = GuitarString::new(start_note, 13);
+        guitar_string.adjust_string_by_step(2);
+        guitar_string.reset();
+        assert_eq!(guitar_string.description(), "CC♯DD♯EFF♯GG♯AA♯BC");
+    }
 }

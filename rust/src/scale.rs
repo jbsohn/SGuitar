@@ -1,5 +1,5 @@
 use crate::note_value::NoteValue;
-use crate::note::NOTE_NAMES_SHARP;
+use crate::note_names::NOTE_NAMES_SHARP;
 
 pub struct Scale {
     notes: Vec<NoteValue>,
@@ -49,7 +49,6 @@ mod tests {
 
     #[test]
     fn test_new_from_note_value() {
-        // 2, 2, 1, 2, 2, 2
         let semitones: Vec<i32> = vec![2, 2, 1, 2, 2, 2];
         let scale = Scale::new(NoteValue::C, semitones);
         assert_eq!(scale.description(), "CDEFGAB");
@@ -57,7 +56,6 @@ mod tests {
 
     #[test]
     fn test_new_from_note_value_count() {
-        // 2, 2, 1, 2, 2, 2
         let semitones: Vec<i32> = vec![2, 2, 1, 2, 2, 2];
         let scale = Scale::new(NoteValue::C, semitones);
         assert_eq!(scale.note_values().iter().count(), 7);

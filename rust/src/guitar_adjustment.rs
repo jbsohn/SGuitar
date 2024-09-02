@@ -1,0 +1,50 @@
+use crate::string_adjustment::StringAdjustment;
+struct GuitarAdjustment {
+    adjustment_id: String,
+    adjustments: Vec<StringAdjustment>
+}
+
+impl GuitarAdjustment {
+    pub fn new(adjustment_id: String) -> Self {
+        GuitarAdjustment {
+            adjustment_id,
+            adjustments: vec![],
+        }
+    }
+
+    pub fn get_adjustment_id(self) -> String {
+        self.adjustment_id
+    }
+
+    pub fn clear_adjustments(&mut self) {
+        self.adjustments.clear()
+    }
+
+    pub fn add_string_adjustment(&mut self, string_adjustment: StringAdjustment) {
+        self.adjustments.push(string_adjustment);
+    }
+
+    pub fn get_string_adjustments(self) -> Vec<StringAdjustment> {
+        self.adjustments
+    }
+
+    pub fn string_adjustment_for_string_number(self, string_number: i32) -> Option<StringAdjustment> {
+        for adjustment in self.adjustments {
+            if adjustment.string_number() == string_number {
+                return Some(adjustment);
+            }
+        }
+        None
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::guitar_adjustment::GuitarAdjustment;
+
+    #[test]
+    fn test_new_guitar_adjustment() {
+        let guitar_adjustment = GuitarAdjustment::new(String::from("LKL"));
+        assert_eq!(guitar_adjustment.get_adjustment_id(), "LKL")
+    }
+}
