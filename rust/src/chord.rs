@@ -47,4 +47,3 @@ mod tests {
         assert_eq!(scale.description(), "CEG");
     }
 }
- 

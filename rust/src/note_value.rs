@@ -16,16 +16,12 @@ pub enum NoteValue {
     B = 11,
 }
 
+#[allow(dead_code)]
 impl NoteValue {
-    #[allow(dead_code)]
     pub const DFLAT: NoteValue = NoteValue::CSharp;
-    #[allow(dead_code)]
     pub const EFLAT: NoteValue = NoteValue::DSharp;
-    #[allow(dead_code)]
     pub const GFLAT: NoteValue = NoteValue::FSharp;
-    #[allow(dead_code)]
     pub const AFLAT: NoteValue = NoteValue::GSharp;
-    #[allow(dead_code)]
     pub const BFLAT: NoteValue = NoteValue::ASharp;
 
     pub fn from(note_value: i32) -> Self {

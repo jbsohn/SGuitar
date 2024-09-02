@@ -1,5 +1,6 @@
 use crate::string_adjustment::StringAdjustment;
-struct GuitarAdjustment {
+
+pub struct GuitarAdjustment {
     adjustment_id: String,
     adjustments: Vec<StringAdjustment>
 }

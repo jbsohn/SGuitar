@@ -2,7 +2,8 @@
 use crate::note::Note;
 use crate::note_names::NOTE_NAMES_SHARP;
 
-struct GuitarString {
+#[derive(Clone)]
+pub struct GuitarString {
     start_note: Note,
     notes: Vec<Note>,
     number_of_frets: i32,
@@ -38,7 +39,7 @@ impl GuitarString {
         notes
     }
 
-    fn description(self) -> String {
+    pub fn description(self) -> String {
         let mut desc = String::new();
         for note in self.notes {
             desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note.note_value() as usize]);

@@ -1,6 +1,7 @@
 use crate::note_value::NoteValue;
 use crate::note_names::NOTE_NAMES_SHARP;
 
+#[derive(Clone)]
 pub struct Note {
     midi_value: i32,
 }
