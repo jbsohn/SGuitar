@@ -7,25 +7,25 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Note {
-    public abstract int getMidiValue();
+    public abstract int getMidiNote();
 
-    public abstract NoteValue getNoteValue();
+    public abstract NoteValue getNote();
 
-    public abstract int getPitchValue();
+    public abstract int getPitch();
 
-    public abstract String getDescription();
+    public abstract String description();
 
     public abstract String noteNameSharp();
 
     public abstract String noteNameFlat();
 
-    public static native Note createWithNoteValue(NoteValue noteValue, int pitch);
+    public static native Note createWithNote(NoteValue note, int pitch);
 
-    public static native Note createWithMidiValue(int midiValue);
+    public static native Note createWithMidiNote(int midiNote);
 
-    public static native String noteNameSharpForNoteValue(NoteValue noteValue);
+    public static native String noteNameSharpForNote(NoteValue note);
 
-    public static native String noteNameFlatForNoteValue(NoteValue noteValue);
+    public static native String noteNameFlatForNote(NoteValue note);
 
     public static final class CppProxy extends Note
     {
@@ -41,36 +41,36 @@ public abstract class Note {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public int getMidiValue()
+        public int getMidiNote()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getMidiValue(this.nativeRef);
+            return native_getMidiNote(this.nativeRef);
         }
-        private native int native_getMidiValue(long _nativeRef);
+        private native int native_getMidiNote(long _nativeRef);
 
         @Override
-        public NoteValue getNoteValue()
+        public NoteValue getNote()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getNoteValue(this.nativeRef);
+            return native_getNote(this.nativeRef);
         }
-        private native NoteValue native_getNoteValue(long _nativeRef);
+        private native NoteValue native_getNote(long _nativeRef);
 
         @Override
-        public int getPitchValue()
+        public int getPitch()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPitchValue(this.nativeRef);
+            return native_getPitch(this.nativeRef);
         }
-        private native int native_getPitchValue(long _nativeRef);
+        private native int native_getPitch(long _nativeRef);
 
         @Override
-        public String getDescription()
+        public String description()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getDescription(this.nativeRef);
+            return native_description(this.nativeRef);
         }
-        private native String native_getDescription(long _nativeRef);
+        private native String native_description(long _nativeRef);
 
         @Override
         public String noteNameSharp()

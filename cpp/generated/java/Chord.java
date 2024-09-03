@@ -7,11 +7,11 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Chord {
-    public abstract NoteValue[] getNoteValues();
+    public abstract NoteValue[] getNotes();
 
-    public abstract String getDescription();
+    public abstract String description();
 
-    public static native Chord createWithRootNoteValue(NoteValue rootNoteValue, int[] intervals);
+    public static native Chord createWithRootNote(NoteValue rootNote, int[] intervals);
 
     public static final class CppProxy extends Chord
     {
@@ -27,19 +27,19 @@ public abstract class Chord {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public NoteValue[] getNoteValues()
+        public NoteValue[] getNotes()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getNoteValues(this.nativeRef);
+            return native_getNotes(this.nativeRef);
         }
-        private native NoteValue[] native_getNoteValues(long _nativeRef);
+        private native NoteValue[] native_getNotes(long _nativeRef);
 
         @Override
-        public String getDescription()
+        public String description()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getDescription(this.nativeRef);
+            return native_description(this.nativeRef);
         }
-        private native String native_getDescription(long _nativeRef);
+        private native String native_description(long _nativeRef);
     }
 }

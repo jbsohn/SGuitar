@@ -15,21 +15,21 @@
 #include "guitar.hpp"
 
 void testNote() {
-    const std::shared_ptr<Note> note = Note::create_with_note_value(NoteValue::C, 2);
-    std::cout << "Note: " << note->get_description() << std::endl;
-    std::cout << "Name: " << note->get_description() << std::endl;
+    const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);
+    std::cout << "Note: " << note->description() << std::endl;
+    std::cout << "Name: " << note->description() << std::endl;
 }
 
 void testScale() {
     const auto semitones = {2, 2, 1, 2, 2, 2};
-    const auto scale = Scale::create_with_root_note_value(NoteValue::C, semitones);
-    std::cout << "Scale: " << scale->get_description() << std::endl;
+    const auto scale = Scale::create_with_root_note(NoteValue::C, semitones);
+    std::cout << "Scale: " << scale->description() << std::endl;
 }
 
 void testChord() {
     const auto intervals = {0, 4, 7};
-    const auto chord = Chord::create_with_root_note_value(NoteValue::C, intervals);
-    std::cout << "Chord: " << chord->get_description()  << std::endl;
+    const auto chord = Chord::create_with_root_note(NoteValue::C, intervals);
+    std::cout << "Chord: " << chord->description()  << std::endl;
 }
 
 // void testGuitarString() {
@@ -42,7 +42,7 @@ void testChord() {
 
 void testStringAdjustment() {
     const auto adjustment = StringAdjustment::create_with_string_number(1, 1);
-    std::cout << "StringAdjustment: " << adjustment->get_description() << std::endl;
+    std::cout << "StringAdjustment: " << adjustment->description() << std::endl;
 }
 
 void testGuitarAdjustment() {
@@ -50,29 +50,29 @@ void testGuitarAdjustment() {
 
     const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
     guitarAdjustment->add_string_adjustment(adjustment1);
-    std::cout << "guitarAdjustment: " << guitarAdjustment->get_description() << std::endl;
+    std::cout << "guitarAdjustment: " << guitarAdjustment->description() << std::endl;
 }
 
 void testGuitar() {
-    const std::shared_ptr<Note> note = Note::create_with_note_value(NoteValue::C, 2);
+    const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);
     const auto guitar = Guitar::create();
 
     guitar->reset_guitar({
-        Note::create_with_note_value(NoteValue::F_SHARP, 4),
-        Note::create_with_note_value(NoteValue::D_SHARP, 4),
-        Note::create_with_note_value(NoteValue::G_SHARP, 4),
-        Note::create_with_note_value(NoteValue::E, 4),
-        Note::create_with_note_value(NoteValue::B, 3),
-        Note::create_with_note_value(NoteValue::G_SHARP, 3),
-        Note::create_with_note_value(NoteValue::F_SHARP, 3),
-        Note::create_with_note_value(NoteValue::E, 3),
-        Note::create_with_note_value(NoteValue::D, 3),
-        Note::create_with_note_value(NoteValue::B, 2)
+        Note::create_with_note(NoteValue::F_SHARP, 4),
+        Note::create_with_note(NoteValue::D_SHARP, 4),
+        Note::create_with_note(NoteValue::G_SHARP, 4),
+        Note::create_with_note(NoteValue::E, 4),
+        Note::create_with_note(NoteValue::B, 3),
+        Note::create_with_note(NoteValue::G_SHARP, 3),
+        Note::create_with_note(NoteValue::F_SHARP, 3),
+        Note::create_with_note(NoteValue::E, 3),
+        Note::create_with_note(NoteValue::D, 3),
+        Note::create_with_note(NoteValue::B, 2)
     },23);
 
     std::cout << "guitar created:" << std::endl;
     for (const auto strings = guitar->get_strings(); const auto& string : strings) {
-        std::cout << string->get_description() << std::endl;
+        std::cout << string->description() << std::endl;
     }
 
     const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
@@ -80,9 +80,9 @@ void testGuitar() {
     guitarAdjustment->add_string_adjustment(stringAdjustment);
     guitar->set_adjustment("LKL", guitarAdjustment);
 
-    std::cout << "guitar before:" << std::endl << guitar->get_description() << std::endl;
+    std::cout << "guitar before:" << std::endl << guitar->description() << std::endl;
     guitar->activate_adjustment("LKL", true);
-    std::cout << "guitar after:" << std::endl << guitar->get_description() << std::endl;
+    std::cout << "guitar after:" << std::endl << guitar->description() << std::endl;
 }
 
 int main(int argc, const char * argv[]) {

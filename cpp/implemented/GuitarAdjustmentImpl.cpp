@@ -12,15 +12,15 @@
 #include "string_adjustment.hpp"
 
 class GuitarAdjustmentImpl final : public GuitarAdjustment {
-    std::string adjustmentID;
+    std::string adjustment_id;
     std::vector<std::shared_ptr<StringAdjustment>> adjustments;
 public:
-    explicit GuitarAdjustmentImpl(const std::string &adjustmentID) {
-        this->adjustmentID = adjustmentID;
+    explicit GuitarAdjustmentImpl(const std::string &adjustment_id) {
+        this->adjustment_id = adjustment_id;
     }
 
     std::string get_adjustment_id() override {
-        return adjustmentID;
+        return adjustment_id;
     }
 
     void clear_adjustments() override {
@@ -44,14 +44,14 @@ public:
         return nullptr;
     }
 
-    std::string get_description() override {
+    std::string description() override {
         std::string description;
         description += "adjustmentID: ";
-        description += adjustmentID;
+        description += adjustment_id;
         description += "\n";
 
         for (const auto& adjustment : adjustments) {
-            description += adjustment->get_description();
+            description += adjustment->description();
             description += "\n";
         }
         return description;

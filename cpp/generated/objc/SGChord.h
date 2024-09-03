@@ -8,11 +8,11 @@
 
 @interface SGChord : NSObject
 
-+ (nullable SGChord *)createWithRootNoteValue:(SGNoteValue)rootNoteValue
-                                    intervals:(nonnull NSArray<NSNumber *> *)intervals;
++ (nullable SGChord *)createWithRootNote:(SGNoteValue)rootNote
+                               intervals:(nonnull NSArray<NSNumber *> *)intervals;
 
-- (nonnull NSArray<NSNumber *> *)getNoteValues;
+- (nonnull NSArray<NSNumber *> *)getNotes;
 
-- (nonnull NSString *)getDescription;
+- (nonnull NSString *)description;
 
 @end

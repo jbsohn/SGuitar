@@ -15,7 +15,7 @@ public abstract class GuitarString {
 
     public abstract void adjustStringBySteps(int steps);
 
-    public abstract String getDescription();
+    public abstract String description();
 
     public static native GuitarString create();
 
@@ -67,11 +67,11 @@ public abstract class GuitarString {
         private native void native_adjustStringBySteps(long _nativeRef, int steps);
 
         @Override
-        public String getDescription()
+        public String description()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getDescription(this.nativeRef);
+            return native_description(this.nativeRef);
         }
-        private native String native_getDescription(long _nativeRef);
+        private native String native_description(long _nativeRef);
     }
 }

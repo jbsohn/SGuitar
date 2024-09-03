@@ -35,5 +35,5 @@ public:
 
     virtual /*not-null*/ std::shared_ptr<GuitarAdjustment> get_adjustment(const std::string & settingID) = 0;
 
-    virtual std::string get_description() = 0;
+    virtual std::string description() = 0;
 };

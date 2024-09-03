@@ -8,11 +8,11 @@
 
 @interface SGScale : NSObject
 
-+ (nullable SGScale *)createWithRootNoteValue:(SGNoteValue)rootNoteValue
-                                    semitones:(nonnull NSArray<NSNumber *> *)semitones;
++ (nullable SGScale *)createWithRootNote:(SGNoteValue)rootNote
+                               semitones:(nonnull NSArray<NSNumber *> *)semitones;
 
-- (nonnull NSArray<NSNumber *> *)getNoteValues;
+- (nonnull NSArray<NSNumber *> *)getNotes;
 
-- (nonnull NSString *)getDescription;
+- (nonnull NSString *)description;
 
 @end

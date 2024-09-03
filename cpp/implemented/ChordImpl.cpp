@@ -13,30 +13,30 @@
 #include "note_value.hpp"
 
 class ChordImpl final : public Chord {
-    std::vector<NoteValue> chordNoteValues;
+    std::vector<NoteValue> notes;
 public:
-    ChordImpl(const NoteValue rootNoteValue, const std::vector<int>& intervals) {
+    ChordImpl(const NoteValue root_note, const std::vector<int>& intervals) {
         for (const int interval : intervals) {
-            auto noteValue = noteValueForInterval(interval, rootNoteValue);
-            chordNoteValues.push_back(noteValue);
+            auto note = note_for_interval(interval, root_note);
+            notes.push_back(note);
         }
     }
 
-     std::vector<NoteValue> get_note_values() override {
-        return chordNoteValues;
+     std::vector<NoteValue> get_notes() override {
+        return notes;
      }
 
-    std::string get_description() override {
+    std::string description() override {
         std::string s;
-        for (const NoteValue curNoteValue : chordNoteValues) {
-            s += Note::noteNameSharpForNoteValue(curNoteValue);
+        for (const NoteValue note : notes) {
+            s += Note::noteNameSharpForNote(note);
             s += " ";
         }
         return s;
     }
 protected:
-    static NoteValue noteValueForInterval(const int interval, NoteValue rootNoteValue) {
-        auto value = static_cast<int>(rootNoteValue) + interval;
+    static NoteValue note_for_interval(const int interval, NoteValue rootNote) {
+        auto value = static_cast<int>(rootNote) + interval;
         if (value > static_cast<int>(NoteValue::B)) {
             value = value - static_cast<int>(NoteValue::B) -1;
         }
@@ -44,6 +44,6 @@ protected:
     }
 };
 
-std::shared_ptr<Chord> Chord::create_with_root_note_value(NoteValue root_note_value, const std::vector<int32_t> & intervals) {
-    return std::make_shared<ChordImpl>(root_note_value, intervals);
+std::shared_ptr<Chord> Chord::create_with_root_note(NoteValue root_note, const std::vector<int32_t> & intervals) {
+    return std::make_shared<ChordImpl>(root_note, intervals);
 }

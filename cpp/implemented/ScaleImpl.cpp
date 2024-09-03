@@ -14,38 +14,38 @@
 
 class ScaleImpl final : public Scale {
     std::string name;
-    std::vector<NoteValue> scaleNoteValues;
+    std::vector<NoteValue> notes;
 public:
-    ScaleImpl(const NoteValue rootNoteValue, const std::vector<int>& semitones) {
+    ScaleImpl(const NoteValue root_note, const std::vector<int>& semitones) {
         const auto numSemitones = semitones.size();
-        scaleNoteValues.clear();
-        scaleNoteValues.reserve(numSemitones);
+        notes.clear();
+        notes.reserve(numSemitones);
 
-        auto curNoteValue = rootNoteValue;
-        scaleNoteValues.push_back(rootNoteValue);
+        auto curNoteValue = root_note;
+        notes.push_back(root_note);
 
         for (const int semitone : semitones) {
-            curNoteValue = nextNoteValueInScale(curNoteValue, semitone);
-            scaleNoteValues.push_back(curNoteValue);
+            curNoteValue = next_note_in_scale(curNoteValue, semitone);
+            notes.push_back(curNoteValue);
         }        
     }
 
-    std::vector<NoteValue> get_note_values() override {
-        return scaleNoteValues;
+    std::vector<NoteValue> get_notes() override {
+        return notes;
     }
 
-    std::string get_description() override {
+    std::string description() override {
         std::string s;
-        for (const auto curNoteValue : scaleNoteValues) {
-            s += Note::noteNameSharpForNoteValue(curNoteValue);
+        for (const auto curNoteValue : notes) {
+            s += Note::noteNameSharpForNote(curNoteValue);
             s += " ";
         }
         return s;
     }
 
 protected:
-    static NoteValue nextNoteValueInScale(NoteValue noteValue, const int semitone) {
-        auto curNoteValue = static_cast<int>(noteValue);
+    static NoteValue next_note_in_scale(NoteValue note, const int semitone) {
+        auto curNoteValue = static_cast<int>(note);
         curNoteValue += semitone;
 
         if (curNoteValue > static_cast<int>(NoteValue::B)) {
@@ -55,6 +55,6 @@ protected:
     }
 };
 
-std::shared_ptr<Scale> Scale::create_with_root_note_value(NoteValue root_note_value, const std::vector<int32_t> & semitones) {
-    return std::make_shared<ScaleImpl>(root_note_value, semitones);
+std::shared_ptr<Scale> Scale::create_with_root_note(NoteValue root_note, const std::vector<int32_t> & semitones) {
+    return std::make_shared<ScaleImpl>(root_note, semitones);
 }

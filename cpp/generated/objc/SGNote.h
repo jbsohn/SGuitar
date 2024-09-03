@@ -8,25 +8,25 @@
 
 @interface SGNote : NSObject
 
-+ (nullable SGNote *)createWithNoteValue:(SGNoteValue)noteValue
-                                   pitch:(int32_t)pitch;
++ (nullable SGNote *)createWithNote:(SGNoteValue)note
+                              pitch:(int32_t)pitch;
 
-+ (nullable SGNote *)createWithMidiValue:(int32_t)midiValue;
++ (nullable SGNote *)createWithMidiNote:(int32_t)midiNote;
 
-- (int32_t)getMidiValue;
+- (int32_t)getMidiNote;
 
-- (SGNoteValue)getNoteValue;
+- (SGNoteValue)getNote;
 
-- (int32_t)getPitchValue;
+- (int32_t)getPitch;
 
-- (nonnull NSString *)getDescription;
+- (nonnull NSString *)description;
 
 - (nonnull NSString *)noteNameSharp;
 
 - (nonnull NSString *)noteNameFlat;
 
-+ (nonnull NSString *)noteNameSharpForNoteValue:(SGNoteValue)noteValue;
++ (nonnull NSString *)noteNameSharpForNote:(SGNoteValue)note;
 
-+ (nonnull NSString *)noteNameFlatForNoteValue:(SGNoteValue)noteValue;
++ (nonnull NSString *)noteNameFlatForNote:(SGNoteValue)note;
 
 @end

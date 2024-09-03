@@ -31,46 +31,46 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGNote *)createWithNoteValue:(SGNoteValue)noteValue
-                                   pitch:(int32_t)pitch {
++ (nullable SGNote *)createWithNote:(SGNoteValue)note
+                              pitch:(int32_t)pitch {
     try {
-        auto objcpp_result_ = ::Note::create_with_note_value(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(noteValue),
-                                                             ::djinni::I32::toCpp(pitch));
+        auto objcpp_result_ = ::Note::create_with_note(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note),
+                                                       ::djinni::I32::toCpp(pitch));
         return ::djinni_generated::Note::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nullable SGNote *)createWithMidiValue:(int32_t)midiValue {
++ (nullable SGNote *)createWithMidiNote:(int32_t)midiNote {
     try {
-        auto objcpp_result_ = ::Note::create_with_midi_value(::djinni::I32::toCpp(midiValue));
+        auto objcpp_result_ = ::Note::create_with_midi_note(::djinni::I32::toCpp(midiNote));
         return ::djinni_generated::Note::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)getMidiValue {
+- (int32_t)getMidiNote {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_midi_value();
+        auto objcpp_result_ = _cppRefHandle.get()->get_midi_note();
         return ::djinni::I32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (SGNoteValue)getNoteValue {
+- (SGNoteValue)getNote {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_note_value();
+        auto objcpp_result_ = _cppRefHandle.get()->get_note();
         return ::djinni::Enum<::NoteValue, SGNoteValue>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)getPitchValue {
+- (int32_t)getPitch {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_pitch_value();
+        auto objcpp_result_ = _cppRefHandle.get()->get_pitch();
         return ::djinni::I32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSString *)getDescription {
+- (nonnull NSString *)description {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_description();
+        auto objcpp_result_ = _cppRefHandle.get()->description();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -89,16 +89,16 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nonnull NSString *)noteNameSharpForNoteValue:(SGNoteValue)noteValue {
++ (nonnull NSString *)noteNameSharpForNote:(SGNoteValue)note {
     try {
-        auto objcpp_result_ = ::Note::noteNameSharpForNoteValue(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(noteValue));
+        auto objcpp_result_ = ::Note::noteNameSharpForNote(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nonnull NSString *)noteNameFlatForNoteValue:(SGNoteValue)noteValue {
++ (nonnull NSString *)noteNameFlatForNote:(SGNoteValue)note {
     try {
-        auto objcpp_result_ = ::Note::noteNameFlatForNoteValue(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(noteValue));
+        auto objcpp_result_ = ::Note::noteNameFlatForNote(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

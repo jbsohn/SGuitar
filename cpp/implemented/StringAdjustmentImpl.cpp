@@ -11,16 +11,16 @@
 #include "string_adjustment.hpp"
 
 class StringAdjustmentImpl final : public StringAdjustment {
-    int stringNumber;
+    int string_number;
     int step;
 public:
     StringAdjustmentImpl(const int stringNumber, const int step) {
-        this->stringNumber = stringNumber;
+        this->string_number = stringNumber;
         this->step = step;
     }
 
     int32_t get_string_number() override {
-        return stringNumber;
+        return string_number;
     }
 
     void set_step(const int32_t step) override {
@@ -31,10 +31,10 @@ public:
         return step;
     }
 
-    std::string get_description() override {
+    std::string description() override {
         std::string description;
-        description += "stringNumber: ";
-        description += std::to_string(stringNumber);
+        description += "string_number: ";
+        description += std::to_string(string_number);
         description += ", step: ";
         description += std::to_string(step);
         return description;

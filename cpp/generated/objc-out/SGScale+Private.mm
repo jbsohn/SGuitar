@@ -31,25 +31,25 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGScale *)createWithRootNoteValue:(SGNoteValue)rootNoteValue
-                                    semitones:(nonnull NSArray<NSNumber *> *)semitones {
++ (nullable SGScale *)createWithRootNote:(SGNoteValue)rootNote
+                               semitones:(nonnull NSArray<NSNumber *> *)semitones {
     try {
-        auto objcpp_result_ = ::Scale::create_with_root_note_value(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(rootNoteValue),
-                                                                   ::djinni::Array<::djinni::I32>::toCpp(semitones));
+        auto objcpp_result_ = ::Scale::create_with_root_note(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(rootNote),
+                                                             ::djinni::Array<::djinni::I32>::toCpp(semitones));
         return ::djinni_generated::Scale::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSArray<NSNumber *> *)getNoteValues {
+- (nonnull NSArray<NSNumber *> *)getNotes {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_note_values();
+        auto objcpp_result_ = _cppRefHandle.get()->get_notes();
         return ::djinni::Array<::djinni::Enum<::NoteValue, SGNoteValue>>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nonnull NSString *)getDescription {
+- (nonnull NSString *)description {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_description();
+        auto objcpp_result_ = _cppRefHandle.get()->description();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

@@ -19,55 +19,55 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_createWithNoteValue(JNIEnv* jniEnv, jobject /*this*/, jobject j_noteValue, jint j_pitch)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_createWithNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_note, jint j_pitch)
 {
     try {
-        auto r = ::Note::create_with_note_value(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_noteValue),
-                                                ::djinni::I32::toCpp(jniEnv, j_pitch));
+        auto r = ::Note::create_with_note(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_note),
+                                          ::djinni::I32::toCpp(jniEnv, j_pitch));
         return ::djinni::release(::djinni_generated::NativeNote::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_createWithMidiValue(JNIEnv* jniEnv, jobject /*this*/, jint j_midiValue)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_createWithMidiNote(JNIEnv* jniEnv, jobject /*this*/, jint j_midiNote)
 {
     try {
-        auto r = ::Note::create_with_midi_value(::djinni::I32::toCpp(jniEnv, j_midiValue));
+        auto r = ::Note::create_with_midi_note(::djinni::I32::toCpp(jniEnv, j_midiNote));
         return ::djinni::release(::djinni_generated::NativeNote::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getMidiValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getMidiNote(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
-        auto r = ref->get_midi_value();
+        auto r = ref->get_midi_note();
         return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getNoteValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getNote(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
-        auto r = ref->get_note_value();
+        auto r = ref->get_note();
         return ::djinni::release(::djinni_generated::NativeNoteValue::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getPitchValue(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getPitch(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
-        auto r = ref->get_pitch_value();
+        auto r = ref->get_pitch();
         return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getDescription(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1description(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
-        auto r = ref->get_description();
+        auto r = ref->description();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -90,18 +90,18 @@ CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_nat
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_noteNameSharpForNoteValue(JNIEnv* jniEnv, jobject /*this*/, jobject j_noteValue)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_noteNameSharpForNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_note)
 {
     try {
-        auto r = ::Note::noteNameSharpForNoteValue(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_noteValue));
+        auto r = ::Note::noteNameSharpForNote(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_note));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_noteNameFlatForNoteValue(JNIEnv* jniEnv, jobject /*this*/, jobject j_noteValue)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_noteNameFlatForNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_note)
 {
     try {
-        auto r = ::Note::noteNameFlatForNoteValue(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_noteValue));
+        auto r = ::Note::noteNameFlatForNote(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_note));
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

@@ -16,6 +16,6 @@
 
 - (int32_t)getStep;
 
-- (nonnull NSString *)getDescription;
+- (nonnull NSString *)description;
 
 @end

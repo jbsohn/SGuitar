@@ -14,9 +14,9 @@ class Scale {
 public:
     virtual ~Scale() = default;
 
-    static /*not-null*/ std::shared_ptr<Scale> create_with_root_note_value(NoteValue root_note_value, const std::vector<int32_t> & semitones);
+    static /*not-null*/ std::shared_ptr<Scale> create_with_root_note(NoteValue root_note, const std::vector<int32_t> & semitones);
 
-    virtual std::vector<NoteValue> get_note_values() = 0;
+    virtual std::vector<NoteValue> get_notes() = 0;
 
-    virtual std::string get_description() = 0;
+    virtual std::string description() = 0;
 };

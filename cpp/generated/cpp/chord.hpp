@@ -14,9 +14,9 @@ class Chord {
 public:
     virtual ~Chord() = default;
 
-    static /*not-null*/ std::shared_ptr<Chord> create_with_root_note_value(NoteValue root_note_value, const std::vector<int32_t> & intervals);
+    static /*not-null*/ std::shared_ptr<Chord> create_with_root_note(NoteValue root_note, const std::vector<int32_t> & intervals);
 
-    virtual std::vector<NoteValue> get_note_values() = 0;
+    virtual std::vector<NoteValue> get_notes() = 0;
 
-    virtual std::string get_description() = 0;
+    virtual std::string description() = 0;
 };

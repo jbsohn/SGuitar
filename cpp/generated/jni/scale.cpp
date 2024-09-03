@@ -19,29 +19,29 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Scale_00024CppProxy_nativ
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Scale_createWithRootNoteValue(JNIEnv* jniEnv, jobject /*this*/, jobject j_rootNoteValue, jobject j_semitones)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Scale_createWithRootNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_rootNote, jobject j_semitones)
 {
     try {
-        auto r = ::Scale::create_with_root_note_value(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_rootNoteValue),
-                                                      ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, j_semitones));
+        auto r = ::Scale::create_with_root_note(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_rootNote),
+                                                ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, j_semitones));
         return ::djinni::release(::djinni_generated::NativeScale::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Scale_00024CppProxy_native_1getNoteValues(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Scale_00024CppProxy_native_1getNotes(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Scale>(nativeRef);
-        auto r = ref->get_note_values();
+        auto r = ref->get_notes();
         return ::djinni::release(::djinni::Array<::djinni_generated::NativeNoteValue, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','N','o','t','e','V','a','l','u','e'>>::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Scale_00024CppProxy_native_1getDescription(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Scale_00024CppProxy_native_1description(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Scale>(nativeRef);
-        auto r = ref->get_description();
+        auto r = ref->description();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
