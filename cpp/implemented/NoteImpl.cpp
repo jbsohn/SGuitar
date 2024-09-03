@@ -29,7 +29,7 @@ public:
     }
 
     NoteValue get_note() override {
-        return static_cast<NoteValue>((midi_note / 12) - 1);
+        return static_cast<NoteValue>((midi_note - 12) % 12);
     }
 
     int32_t get_octave() override {
@@ -67,10 +67,10 @@ std::shared_ptr<Note> Note::create_with_midi_note(int32_t midiNote) {
     return std::make_shared<NoteImpl>(midiNote);
 }
 
-std::string Note::noteNameSharpForNote(NoteValue note) {
+std::string Note::note_name_sharp_for_note(NoteValue note) {
     return NoteImpl::note_names_sharp[static_cast<int>(note)];
 }
 
-std::string Note::noteNameFlatForNote(NoteValue note) {
+std::string Note::note_name_flat_for_note(NoteValue note) {
     return NoteImpl::note_names_flat[static_cast<int>(note)];
 }

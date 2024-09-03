@@ -37,7 +37,7 @@ public:
     std::string description() override {
         std::string s;
         for (const auto curNoteValue : notes) {
-            s += Note::noteNameSharpForNote(curNoteValue);
+            s += Note::note_name_sharp_for_note(curNoteValue);
         }
         return s;
     }

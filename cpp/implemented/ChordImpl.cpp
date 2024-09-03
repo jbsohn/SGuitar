@@ -29,7 +29,7 @@ public:
     std::string description() override {
         std::string s;
         for (const NoteValue note : notes) {
-            s += Note::noteNameSharpForNote(note);
+            s += Note::note_name_sharp_for_note(note);
         }
         return s;
     }

@@ -29,8 +29,8 @@ note = interface +c {
     description(): string;
     note_name_sharp(): string;
     note_name_flat(): string;
-    static noteNameSharpForNote(note: note_value): string;
-    static noteNameFlatForNote(note: note_value): string;
+    static note_name_sharp_for_note(note: note_value): string;
+    static note_name_flat_for_note(note: note_value): string;
 }
 
 scale = interface +c {

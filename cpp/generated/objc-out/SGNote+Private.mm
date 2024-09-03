@@ -91,14 +91,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 
 + (nonnull NSString *)noteNameSharpForNote:(SGNoteValue)note {
     try {
-        auto objcpp_result_ = ::Note::noteNameSharpForNote(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note));
+        auto objcpp_result_ = ::Note::note_name_sharp_for_note(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
 + (nonnull NSString *)noteNameFlatForNote:(SGNoteValue)note {
     try {
-        auto objcpp_result_ = ::Note::noteNameFlatForNote(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note));
+        auto objcpp_result_ = ::Note::note_name_flat_for_note(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note));
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
