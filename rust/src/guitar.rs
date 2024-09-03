@@ -23,7 +23,7 @@ impl Guitar {
 
     pub fn reset_guitar(&mut self, notes: Vec<Note>, number_of_frets: i32) {
         self.strings.clear();
-        self.strings.push(GuitarString::new(Note::new_note_with_midi_value(0), 0));
+        self.strings.push(GuitarString::new(Note::new_note_with_midi_note(0), 0));
 
         for note in notes {
             self.strings.push(GuitarString::new(note, number_of_frets));

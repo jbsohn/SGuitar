@@ -11,7 +11,7 @@ pub struct GuitarString {
 
 impl GuitarString {
     pub fn new(start_note: Note, number_of_frets: i32) -> Self {
-        let notes = GuitarString::string_with_start_note(start_note.midi_value(), number_of_frets);
+        let notes = GuitarString::string_with_start_note(start_note.get_midi_note(), number_of_frets);
         GuitarString {
             start_note,
             notes,
@@ -24,20 +24,20 @@ impl GuitarString {
     }
 
     pub fn adjust_string_by_step(&mut self, steps: i32) {
-       let start_note_midi = self.notes[0].midi_value() + steps;
+       let start_note_midi = self.notes[0].get_midi_note() + steps;
        let notes = GuitarString::string_with_start_note(start_note_midi, self.number_of_frets);
        self.notes = notes;
     }
 
     pub fn reset(&mut self) {
-        self.notes = GuitarString::string_with_start_note(self.start_note.midi_value(), self.number_of_frets)
+        self.notes = GuitarString::string_with_start_note(self.start_note.get_midi_note(), self.number_of_frets)
     }
 
     fn string_with_start_note(midi_start_node: i32, number_of_frets: i32) -> Vec<Note> {
         let mut notes = Vec::<Note>::new();
         let mut cur_midi_value = midi_start_node; 
         for _ in 0..number_of_frets {
-            notes.push(Note::new_note_with_midi_value(cur_midi_value));
+            notes.push(Note::new_note_with_midi_note(cur_midi_value));
             cur_midi_value += 1;
         }
         notes
@@ -46,7 +46,7 @@ impl GuitarString {
     pub fn description(&self) -> String {
         let mut desc = String::new();
         for note in self.notes.clone() {
-            desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note.note_value() as usize]);
+            desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note.get_note() as usize]);
         }
         desc
     }

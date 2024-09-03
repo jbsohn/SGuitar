@@ -7,10 +7,10 @@ pub struct Chord {
 }
 
 impl Chord {
-    pub fn new(root_note_value: NoteValue, intervals: Vec<i32>) -> Self {
+    pub fn new(root_note: NoteValue, intervals: Vec<i32>) -> Self {
         let mut notes = Vec::<NoteValue>::new();
         for interval in intervals {
-            let note_value = Chord::note_value_for_interval(root_note_value, interval);
+            let note_value = Chord::note_for_interval(root_note, interval);
             notes.push(note_value);
         }
 
@@ -31,7 +31,7 @@ impl Chord {
         desc
     }
 
-    fn note_value_for_interval(root_note_value: NoteValue, interval: i32) -> NoteValue {
+    fn note_for_interval(root_note_value: NoteValue, interval: i32) -> NoteValue {
         let mut note_value = root_note_value as i32 + interval;
         if note_value > NoteValue::B as i32 {
             note_value = note_value - NoteValue::B as i32 - 1;

@@ -6,9 +6,9 @@ pub struct Scale {
 }
 
 impl Scale {
-    fn new(root_note_value: NoteValue, semitones: Vec<i32>) -> Self {
+    fn new(root_note: NoteValue, semitones: Vec<i32>) -> Self {
         let mut notes = Vec::new();
-        let mut cur_note_value = root_note_value;
+        let mut cur_note_value = root_note;
         notes.push(cur_note_value);
 
         for semitone in semitones {
@@ -21,7 +21,7 @@ impl Scale {
         }
     }
  
-    pub fn note_values(&self) -> Vec<NoteValue> {
+    pub fn get_notes(&self) -> Vec<NoteValue> {
         self.notes.clone()
     }
 
@@ -58,6 +58,6 @@ mod tests {
     fn test_new_from_note_value_count() {
         let semitones: Vec<i32> = vec![2, 2, 1, 2, 2, 2];
         let scale = Scale::new(NoteValue::C, semitones);
-        assert_eq!(scale.note_values().len(), 7);
+        assert_eq!(scale.get_notes().len(), 7);
     }
 }

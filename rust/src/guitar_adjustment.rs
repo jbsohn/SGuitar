@@ -31,7 +31,7 @@ impl GuitarAdjustment {
 
     pub fn string_adjustment_for_string_number(&self, string_number: i32) -> Option<StringAdjustment> {
         for adjustment in &self.adjustments.clone() {
-            if adjustment.string_number() == string_number {
+            if adjustment.get_string_number() == string_number {
                 return Some(adjustment.clone());
             }
         }

@@ -14,10 +14,10 @@ impl StringAdjustment {
         }
     }
 
-    pub fn string_number(&self) -> i32 {
+    pub fn get_string_number(&self) -> i32 {
         self.string_number
     }
-    pub fn step(&self) -> i32 {
+    pub fn get_step(&self) -> i32 {
         self.step
     }
 
