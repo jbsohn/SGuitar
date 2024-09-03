@@ -32,10 +32,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 }
 
 + (nullable SGNote *)createWithNote:(SGNoteValue)note
-                              pitch:(int32_t)pitch {
+                             octave:(int32_t)octave {
     try {
         auto objcpp_result_ = ::Note::create_with_note(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(note),
-                                                       ::djinni::I32::toCpp(pitch));
+                                                       ::djinni::I32::toCpp(octave));
         return ::djinni_generated::Note::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -61,9 +61,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)getPitch {
+- (int32_t)getOctave {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_pitch();
+        auto objcpp_result_ = _cppRefHandle.get()->get_octave();
         return ::djinni::I32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

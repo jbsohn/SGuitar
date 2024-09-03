@@ -13,7 +13,7 @@ class Note {
 public:
     virtual ~Note() = default;
 
-    static /*not-null*/ std::shared_ptr<Note> create_with_note(NoteValue note, int32_t pitch);
+    static /*not-null*/ std::shared_ptr<Note> create_with_note(NoteValue note, int32_t octave);
 
     static /*not-null*/ std::shared_ptr<Note> create_with_midi_note(int32_t midi_note);
 
@@ -21,7 +21,7 @@ public:
 
     virtual NoteValue get_note() = 0;
 
-    virtual int32_t get_pitch() = 0;
+    virtual int32_t get_octave() = 0;
 
     virtual std::string description() = 0;
 

@@ -19,11 +19,11 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_createWithNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_note, jint j_pitch)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_createWithNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_note, jint j_octave)
 {
     try {
         auto r = ::Note::create_with_note(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_note),
-                                          ::djinni::I32::toCpp(jniEnv, j_pitch));
+                                          ::djinni::I32::toCpp(jniEnv, j_octave));
         return ::djinni::release(::djinni_generated::NativeNote::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -54,11 +54,11 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_nat
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getPitch(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Note_00024CppProxy_native_1getOctave(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Note>(nativeRef);
-        auto r = ref->get_pitch();
+        auto r = ref->get_octave();
         return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

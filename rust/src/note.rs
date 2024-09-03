@@ -9,7 +9,7 @@ pub struct Note {
 impl Note {
     pub fn new(note: NoteValue, octave: i32) -> Self {
         Self {
-            midi_note: ((octave + 1) * 12) + note as i32,
+            midi_note: (octave + 1) * 12 + note as i32,
         }
     }
 
@@ -26,7 +26,7 @@ impl Note {
     }
 
     pub fn get_octave(&self) -> i32 {
-        (self.midi_note / 12) - 1
+        self.midi_note / 12 - 1
     }
 
     pub fn description(self) -> String {

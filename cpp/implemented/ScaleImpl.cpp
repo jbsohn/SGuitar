@@ -38,7 +38,6 @@ public:
         std::string s;
         for (const auto curNoteValue : notes) {
             s += Note::noteNameSharpForNote(curNoteValue);
-            s += " ";
         }
         return s;
     }

@@ -11,7 +11,7 @@ public abstract class Note {
 
     public abstract NoteValue getNote();
 
-    public abstract int getPitch();
+    public abstract int getOctave();
 
     public abstract String description();
 
@@ -19,7 +19,7 @@ public abstract class Note {
 
     public abstract String noteNameFlat();
 
-    public static native Note createWithNote(NoteValue note, int pitch);
+    public static native Note createWithNote(NoteValue note, int octave);
 
     public static native Note createWithMidiNote(int midiNote);
 
@@ -57,12 +57,12 @@ public abstract class Note {
         private native NoteValue native_getNote(long _nativeRef);
 
         @Override
-        public int getPitch()
+        public int getOctave()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getPitch(this.nativeRef);
+            return native_getOctave(this.nativeRef);
         }
-        private native int native_getPitch(long _nativeRef);
+        private native int native_getOctave(long _nativeRef);
 
         @Override
         public String description()

@@ -59,7 +59,6 @@ public:
         std::string s;
         for (const std::shared_ptr<Note>& note : notes) {
             s += note->description();
-            s += " ";
         }
         return s;
     }

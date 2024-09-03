@@ -30,7 +30,6 @@ public:
         std::string s;
         for (const NoteValue note : notes) {
             s += Note::noteNameSharpForNote(note);
-            s += " ";
         }
         return s;
     }

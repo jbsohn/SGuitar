@@ -21,11 +21,11 @@ accidental_type =  enum {
 }
 
 note = interface +c {
-    static create_with_note(note: note_value, pitch: i32): note;
+    static create_with_note(note: note_value, octave: i32): note;
     static create_with_midi_note(midi_note: i32): note;
     get_midi_note(): i32;
     get_note(): note_value;
-    get_pitch(): i32;
+    get_octave(): i32;
     description(): string;
     note_name_sharp(): string;
     note_name_flat(): string;

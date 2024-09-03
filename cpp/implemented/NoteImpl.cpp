@@ -11,39 +11,33 @@
 #include "note_value.hpp"
 
 class NoteImpl final : public Note {
-    int midiValue = -1;
+    int midi_note = -1;
 public:
     const static std::string note_names_sharp[];
     const static std::string note_names_flat[];
 
-    NoteImpl(const NoteValue note, const int pitch) {
-        midiValue = pitch * 12 + static_cast<int>(note);
+    NoteImpl(const NoteValue note, const int octave) {
+        midi_note = (octave + 1) * 12 + static_cast<int>(note);
     }
 
     explicit NoteImpl(const int midi_note) {
-        this->midiValue = midi_note;
+        this->midi_note = midi_note;
     }
 
     int32_t get_midi_note() override {
-        return midiValue;
+        return midi_note;
     }
 
     NoteValue get_note() override {
-        return static_cast<NoteValue>((midiValue - 12) % 12);
+        return static_cast<NoteValue>((midi_note / 12) - 1);
     }
 
-    int32_t get_pitch() override {
-        if (midiValue >= 0) {
-            return midiValue / 12;
-        }
-        return -1;
+    int32_t get_octave() override {
+        return midi_note / 12 - 1;
     }
 
     std::string description() override {
-        const std::string name = note_name_sharp();
-        const auto pitch = get_pitch();
-        std::string namePitch = name + "-" + std::to_string(pitch);
-        return namePitch;
+        return note_name_sharp();
     }
 
     std::string note_name_sharp() override {
@@ -65,8 +59,8 @@ const std::string NoteImpl::note_names_flat[] = {
     "G", "A\u266d", "A", "B\u266d", "B"
 };
 
-std::shared_ptr<Note> Note::create_with_note(NoteValue note_value, int32_t pitch) {
-    return std::make_shared<NoteImpl>(note_value, pitch);
+std::shared_ptr<Note> Note::create_with_note(NoteValue note_value, int32_t octave) {
+    return std::make_shared<NoteImpl>(note_value, octave);
 }
 
 std::shared_ptr<Note> Note::create_with_midi_note(int32_t midiNote) {

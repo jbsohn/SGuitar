@@ -9,7 +9,7 @@
 @interface SGNote : NSObject
 
 + (nullable SGNote *)createWithNote:(SGNoteValue)note
-                              pitch:(int32_t)pitch;
+                             octave:(int32_t)octave;
 
 + (nullable SGNote *)createWithMidiNote:(int32_t)midiNote;
 
@@ -17,7 +17,7 @@
 
 - (SGNoteValue)getNote;
 
-- (int32_t)getPitch;
+- (int32_t)getOctave;
 
 - (nonnull NSString *)description;
 
