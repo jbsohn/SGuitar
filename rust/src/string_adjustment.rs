@@ -1,22 +1,26 @@
-
 #[derive(Clone)]
 
 pub struct StringAdjustment {
     string_number: i32,
-    step: i32
+    step: i32,
 }
 
 impl StringAdjustment {
     pub fn new(string_number: i32, step: i32) -> Self {
         StringAdjustment {
             string_number,
-            step
+            step,
         }
     }
 
     pub fn get_string_number(&self) -> i32 {
         self.string_number
     }
+
+    pub fn set_step(&mut self, step: i32) {
+        self.step = step
+    }
+
     pub fn get_step(&self) -> i32 {
         self.step
     }

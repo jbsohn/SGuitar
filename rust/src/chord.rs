@@ -1,6 +1,5 @@
-
-use crate::note_value::NoteValue;
 use crate::note_names::NOTE_NAMES_SHARP;
+use crate::note_value::NoteValue;
 
 pub struct Chord {
     notes: Vec<NoteValue>,

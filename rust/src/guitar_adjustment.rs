@@ -2,7 +2,7 @@ use crate::string_adjustment::StringAdjustment;
 
 pub struct GuitarAdjustment {
     adjustment_id: String,
-    adjustments: Vec<StringAdjustment>
+    adjustments: Vec<StringAdjustment>,
 }
 
 impl GuitarAdjustment {
@@ -37,15 +37,25 @@ impl GuitarAdjustment {
         }
         None
     }
+
+    pub fn description(&self) -> String {
+        let mut description = format!("adjustment_id: {}\n", self.adjustment_id);
+        for adjustment in &self.adjustments.clone() {
+            description = format!("{}{}\n", description, adjustment.description());
+        }
+        description
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use crate::guitar_adjustment::GuitarAdjustment;
+    use crate::string_adjustment::StringAdjustment;
 
     #[test]
     fn test_new_guitar_adjustment() {
-        let guitar_adjustment = GuitarAdjustment::new(String::from("LKL"));
+        let mut guitar_adjustment = GuitarAdjustment::new(String::from("LKL"));
+        guitar_adjustment.add_string_adjustment(StringAdjustment::new(1, 1));
         assert_eq!(guitar_adjustment.get_adjustment_id(), "LKL")
     }
 }

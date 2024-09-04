@@ -1,8 +1,8 @@
-use std::collections::HashMap;
-use std::vec;
 use crate::guitar_adjustment::GuitarAdjustment;
 use crate::guitar_string::GuitarString;
 use crate::note::Note;
+use std::collections::HashMap;
+use std::vec;
 
 pub struct Guitar {
     number_of_frets: i32,
@@ -17,7 +17,7 @@ impl Guitar {
             number_of_frets: 0,
             strings: vec![],
             adjustments: vec![],
-            activations: HashMap::new()
+            activations: HashMap::new(),
         }
     }
 
@@ -46,7 +46,7 @@ impl Guitar {
 
     pub fn description(&self) -> String {
         let mut description = String::new();
-        for string in  self.strings.clone() {
+        for string in self.strings.clone() {
             description = format!("{}{}\n", description, string.description())
         }
         description

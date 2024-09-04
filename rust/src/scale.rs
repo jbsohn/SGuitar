@@ -1,5 +1,5 @@
-use crate::note_value::NoteValue;
 use crate::note_names::NOTE_NAMES_SHARP;
+use crate::note_value::NoteValue;
 
 pub struct Scale {
     notes: Vec<NoteValue>,
@@ -20,17 +20,9 @@ impl Scale {
             notes
         }
     }
- 
+
     pub fn get_notes(&self) -> Vec<NoteValue> {
         self.notes.clone()
-    }
-
-    fn note_value_for_interval(note_value: NoteValue, semitone: i32) -> NoteValue {
-        let mut note_value = (note_value as i32) + semitone;
-        if note_value > NoteValue::B as i32 {
-            note_value = (NoteValue::B as i32) - 1;
-        }
-        NoteValue::from(note_value)
     }
 
     fn description(self) -> String {
@@ -40,12 +32,20 @@ impl Scale {
         }
         desc
     }
+
+    fn note_value_for_interval(note_value: NoteValue, semitone: i32) -> NoteValue {
+        let mut note_value = (note_value as i32) + semitone;
+        if note_value > NoteValue::B as i32 {
+            note_value = (NoteValue::B as i32) - 1;
+        }
+        NoteValue::from(note_value)
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::scale::Scale;
     use crate::note_value::NoteValue;
+    use crate::scale::Scale;
 
     #[test]
     fn test_new_from_note_value() {

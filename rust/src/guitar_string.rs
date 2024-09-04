@@ -33,22 +33,22 @@ impl GuitarString {
         self.notes = GuitarString::string_with_start_note(self.start_note.get_midi_note(), self.number_of_frets)
     }
 
-    fn string_with_start_note(midi_start_node: i32, number_of_frets: i32) -> Vec<Note> {
-        let mut notes = Vec::<Note>::new();
-        let mut cur_midi_value = midi_start_node; 
-        for _ in 0..number_of_frets {
-            notes.push(Note::new_note_with_midi_note(cur_midi_value));
-            cur_midi_value += 1;
-        }
-        notes
-    }
-
     pub fn description(&self) -> String {
         let mut desc = String::new();
         for note in self.notes.clone() {
             desc = format!("{}{}", desc, NOTE_NAMES_SHARP[note.get_note() as usize]);
         }
         desc
+    }
+
+    fn string_with_start_note(midi_start_node: i32, number_of_frets: i32) -> Vec<Note> {
+        let mut notes = Vec::<Note>::new();
+        let mut cur_midi_value = midi_start_node;
+        for _ in 0..number_of_frets {
+            notes.push(Note::new_note_with_midi_note(cur_midi_value));
+            cur_midi_value += 1;
+        }
+        notes
     }
 }
 

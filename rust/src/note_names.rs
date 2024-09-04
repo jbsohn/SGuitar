@@ -1,4 +1,3 @@
-
 #[allow(dead_code)]
 pub const NOTE_NAMES_SHARP: [&str; 12] = [
     "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B",
