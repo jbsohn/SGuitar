@@ -13,7 +13,8 @@
 
 class GuitarAdjustmentImpl final : public GuitarAdjustment {
     std::string adjustment_id;
-    std::vector<std::shared_ptr<StringAdjustment>> adjustments;
+    std::vector<std::shared_ptr<StringAdjustment> > adjustments;
+
 public:
     explicit GuitarAdjustmentImpl(const std::string &adjustment_id) {
         this->adjustment_id = adjustment_id;
@@ -27,16 +28,16 @@ public:
         adjustments.clear();
     }
 
-    void add_string_adjustment(const std::shared_ptr<StringAdjustment> & adjustment) override {
+    void add_string_adjustment(const std::shared_ptr<StringAdjustment> &adjustment) override {
         adjustments.push_back(adjustment);
     }
 
-    std::vector<std::shared_ptr<StringAdjustment>> get_string_adjustments() override {
+    std::vector<std::shared_ptr<StringAdjustment> > get_string_adjustments() override {
         return adjustments;
-    } 
+    }
 
     std::shared_ptr<StringAdjustment> string_adjustment_for_string_number(const int32_t string_number) override {
-        for (auto & adjustment : adjustments) {
+        for (auto &adjustment: adjustments) {
             if (adjustment->get_string_number() == string_number) {
                 return adjustment;
             }
@@ -50,7 +51,7 @@ public:
         description += adjustment_id;
         description += "\n";
 
-        for (const auto& adjustment : adjustments) {
+        for (const auto &adjustment: adjustments) {
             description += adjustment->description();
             description += "\n";
         }
@@ -58,6 +59,6 @@ public:
     }
 };
 
-std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_adjustment_id(const std::string & adjustment_id) {
+std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_adjustment_id(const std::string &adjustment_id) {
     return std::make_shared<GuitarAdjustmentImpl>(adjustment_id);
 }

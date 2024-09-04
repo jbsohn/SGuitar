@@ -13,6 +13,7 @@
 class StringAdjustmentImpl final : public StringAdjustment {
     int string_number;
     int step;
+
 public:
     StringAdjustmentImpl(const int stringNumber, const int step) {
         this->string_number = stringNumber;

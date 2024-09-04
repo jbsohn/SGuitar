@@ -17,36 +17,37 @@
 
 class GuitarImpl final : public Guitar {
     int number_of_frets = 0;
-    std::vector<std::shared_ptr<GuitarString>> strings;
-    std::map<std::string, std::shared_ptr<GuitarAdjustment>> adjustments;
+    std::vector<std::shared_ptr<GuitarString> > strings;
+    std::map<std::string, std::shared_ptr<GuitarAdjustment> > adjustments;
     std::map<std::string, bool> settings;
+
 public:
     GuitarImpl() = default;
 
-    void reset_guitar(const std::vector<std::shared_ptr<Note>> &notes, const int32_t number_of_frets) override {
+    void reset_guitar(const std::vector<std::shared_ptr<Note> > &notes, const int32_t number_of_frets) override {
         strings.clear();
-        strings.push_back(GuitarString::create());  // "empty" string at index 0
+        strings.push_back(GuitarString::create()); // "empty" string at index 0
 
-        for(const auto & note : notes) {
+        for (const auto &note: notes) {
             strings.push_back(GuitarString::create_with_start_note(note, number_of_frets));
         }
     }
 
     /** strings */
-    std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override {
-        std::vector<std::shared_ptr<GuitarString>> s;
+    std::vector</*not-null*/ std::shared_ptr<GuitarString> > get_strings() override {
+        std::vector<std::shared_ptr<GuitarString> > s;
         s.assign(this->strings.begin() + 1, this->strings.end());
         return s;
     }
 
     void reset_strings() override {
-        for (const auto & string : strings) {
+        for (const auto &string: strings) {
             string->reset();
         }
     }
 
     /** adjustment */
-    bool is_adjustment_enabled(const std::string & setting_id) override {
+    bool is_adjustment_enabled(const std::string &setting_id) override {
         if (adjustments.contains(setting_id)) {
             if (const auto adjustment = adjustments[setting_id]; adjustment != nullptr) {
                 return true;
@@ -55,10 +56,10 @@ public:
         return false;
     }
 
-    void activate_adjustment(const std::string & setting_id, const bool activated) override {
+    void activate_adjustment(const std::string &setting_id, const bool activated) override {
         if (const auto adjustment = adjustments[setting_id]; adjustment != nullptr) {
             for (const auto string_adjustments = adjustment->get_string_adjustments();
-                 const auto& stringAdjustment : string_adjustments ) {
+                 const auto &stringAdjustment: string_adjustments) {
                 const auto stringNumber = stringAdjustment->get_string_number();
                 const auto step = activated ? stringAdjustment->get_step() : -stringAdjustment->get_step();
                 const auto string = strings.at(stringNumber);
@@ -68,12 +69,13 @@ public:
         }
     }
 
-    void set_adjustment(const std::string & setting_id, const /*not-null*/ std::shared_ptr<GuitarAdjustment> & adjustment) override {
+    void set_adjustment(const std::string &setting_id,
+                        const /*not-null*/ std::shared_ptr<GuitarAdjustment> &adjustment) override {
         adjustments[setting_id] = adjustment;
     }
 
-    /*not-null*/ 
-    std::shared_ptr<GuitarAdjustment> get_adjustment(const std::string & setting_id) override {
+    /*not-null*/
+    std::shared_ptr<GuitarAdjustment> get_adjustment(const std::string &setting_id) override {
         if (adjustments.contains(setting_id)) {
             return adjustments[setting_id];
         }

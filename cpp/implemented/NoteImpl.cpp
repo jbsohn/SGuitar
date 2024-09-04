@@ -12,6 +12,7 @@
 
 class NoteImpl final : public Note {
     int midi_note = -1;
+
 public:
     const static std::string note_names_sharp[];
     const static std::string note_names_flat[];
@@ -50,7 +51,7 @@ public:
 };
 
 const std::string NoteImpl::note_names_sharp[] = {
-    "C", "C\u266f",  "D", "D\u266f", "E", "F", "F\u266f", "G",
+    "C", "C\u266f", "D", "D\u266f", "E", "F", "F\u266f", "G",
     "G\u266f", "A", "A\u266f", "B"
 };
 
