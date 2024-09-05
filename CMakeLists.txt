@@ -13,7 +13,7 @@ add_executable(
         cpp/implemented/NoteImpl.cpp
         cpp/implemented/ScaleImpl.cpp
         cpp/implemented/StringAdjustmentImpl.cpp
-        tests/Test.cpp
+        cpp/tests/test.cpp
 )
 enable_testing()
 add_test(
