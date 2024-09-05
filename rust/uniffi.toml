@@ -1,3 +1,6 @@
 
 [bindings.kotlin.external_packages]
 rust-crate-name = "com.steelsidekick.sguitar"
+
+[bindings.swift]
+cdylib_name = "sguitar"
