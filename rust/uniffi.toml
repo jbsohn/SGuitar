@@ -3,4 +3,4 @@
 rust-crate-name = "com.steelsidekick.sguitar"
 
 [bindings.swift]
-cdylib_name = "sguitar"
+module_name = "SGuitar"
