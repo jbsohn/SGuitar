@@ -21,6 +21,9 @@ TEST_CASE("Testing the Note object") {
     const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);
     std::cout << "Note: " << note->description() << std::endl;
     std::cout << "Name: " << note->description() << std::endl;
+    CHECK(note->get_octave() == 2);
+    CHECK(note->get_note() == NoteValue::C);
+    CHECK(note->get_midi_note() == 36);
 
 }
 
@@ -52,11 +55,12 @@ TEST_CASE("Testing the GuitarString object") {
 TEST_CASE("Testing the StringAdjustment object") {
     const auto adjustment = StringAdjustment::create_with_string_number(1, 1);
     std::cout << "StringAdjustment: " << adjustment->description() << std::endl;
+    CHECK(adjustment->get_string_number() == 1);
+    CHECK(adjustment->get_step() == 1);
 }
 
 TEST_CASE("Testing the GuitarAdjustment object") {
     const auto adjustment1 = StringAdjustment::create_with_string_number(1, 1);
-
     const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
     guitarAdjustment->add_string_adjustment(adjustment1);
     std::cout << "guitarAdjustment: " << guitarAdjustment->description() << std::endl;
