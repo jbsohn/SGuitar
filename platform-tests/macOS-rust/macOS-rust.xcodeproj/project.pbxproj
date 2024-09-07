@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52ACF6C62C8ABE6F00037A14 /* SGuitarFFI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ACF6C52C8ABE6F00037A14 /* SGuitarFFI.xcframework */; };
-		52ACF6C72C8ABE6F00037A14 /* SGuitarFFI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52ACF6C52C8ABE6F00037A14 /* SGuitarFFI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5216B52F2C8CE20A008E6D94 /* SGuitarFFI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5216B52E2C8CE20A008E6D94 /* SGuitarFFI.xcframework */; };
+		5216B5302C8CE20A008E6D94 /* SGuitarFFI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5216B52E2C8CE20A008E6D94 /* SGuitarFFI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52ACF6CA2C8ABF6900037A14 /* SGuitar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ACF6C92C8ABF6900037A14 /* SGuitar.swift */; };
 		52C9FCAC2C8A97250040EE6B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C9FCAB2C8A97250040EE6B /* main.swift */; };
 /* End PBXBuildFile section */
@@ -20,7 +20,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52ACF6C72C8ABE6F00037A14 /* SGuitarFFI.xcframework in Embed Frameworks */,
+				5216B5302C8CE20A008E6D94 /* SGuitarFFI.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -37,11 +37,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		52ACF6C52C8ABE6F00037A14 /* SGuitarFFI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SGuitarFFI.xcframework; path = ../../rust/SGuitarFFI.xcframework; sourceTree = "<group>"; };
+		5216B52E2C8CE20A008E6D94 /* SGuitarFFI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SGuitarFFI.xcframework; path = ../../rust/swift/SGuitarFFI.xcframework; sourceTree = "<group>"; };
 		52ACF6C92C8ABF6900037A14 /* SGuitar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SGuitar.swift; path = ../../../rust/swift/SGuitar.swift; sourceTree = "<group>"; };
 		52C9FCA82C8A97250040EE6B /* macOS-rust */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "macOS-rust"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C9FCAB2C8A97250040EE6B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		52C9FCB52C8A976C0040EE6B /* macOS-rust-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "macOS-rust-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52ACF6C62C8ABE6F00037A14 /* SGuitarFFI.xcframework in Frameworks */,
+				5216B52F2C8CE20A008E6D94 /* SGuitarFFI.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +77,6 @@
 			children = (
 				52ACF6C92C8ABF6900037A14 /* SGuitar.swift */,
 				52C9FCAB2C8A97250040EE6B /* main.swift */,
-				52C9FCB52C8A976C0040EE6B /* macOS-rust-Bridging-Header.h */,
 			);
 			path = "macOS-rust";
 			sourceTree = "<group>";
@@ -86,7 +84,7 @@
 		52C9FCB82C8A97A50040EE6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52ACF6C52C8ABE6F00037A14 /* SGuitarFFI.xcframework */,
+				5216B52E2C8CE20A008E6D94 /* SGuitarFFI.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,7 +283,7 @@
 				DEVELOPMENT_TEAM = N9V659CU72;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "macOS-rust/macOS-rust-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -299,7 +297,7 @@
 				DEVELOPMENT_TEAM = N9V659CU72;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "macOS-rust/macOS-rust-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
