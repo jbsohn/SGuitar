@@ -8,7 +8,8 @@
 import Foundation
 import SGuitarFFI
 
-let chord = Chord(rootNoteValue: NoteValue.c, intervals: [0, 4, 7])
-print("chord: \(chord.description())")
-
-print("Hello, World!")
+while true {
+    let chord = Chord(rootNoteValue: NoteValue.c, intervals: [0, 4, 7])
+    print("chord: \(chord.description())")
+    sleep(1)
+}
