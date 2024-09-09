@@ -41,7 +41,7 @@ public:
 
     void adjust_string_by_steps(const int32_t steps) override {
         const auto start_note_midi = notes[0]->get_midi_note() + steps;
-        auto notes = string_with_start_note(start_note_midi, number_of_fret);
+        const auto notes = string_with_start_note(start_note_midi, number_of_fret);
         this->notes = notes;
     }
 

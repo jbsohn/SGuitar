@@ -60,12 +60,12 @@ const std::string NoteImpl::note_names_flat[] = {
     "G", "A\u266d", "A", "B\u266d", "B"
 };
 
-std::shared_ptr<Note> Note::create_with_note(NoteValue note_value, int32_t octave) {
-    return std::make_shared<NoteImpl>(note_value, octave);
+std::shared_ptr<Note> Note::create_with_note(NoteValue note, int32_t octave) {
+    return std::make_shared<NoteImpl>(note, octave);
 }
 
-std::shared_ptr<Note> Note::create_with_midi_note(int32_t midiNote) {
-    return std::make_shared<NoteImpl>(midiNote);
+std::shared_ptr<Note> Note::create_with_midi_note(int32_t midi_note) {
+    return std::make_shared<NoteImpl>(midi_note);
 }
 
 std::string Note::note_name_sharp_for_note(NoteValue note) {
