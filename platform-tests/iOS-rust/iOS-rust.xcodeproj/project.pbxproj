@@ -31,6 +31,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		520F0C812C8EA4ED00AD8416 /* chord.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chord.rs; sourceTree = "<group>"; };
+		520F0C822C8EA4ED00AD8416 /* guitar_adjustment.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = guitar_adjustment.rs; sourceTree = "<group>"; };
+		520F0C832C8EA4ED00AD8416 /* guitar_string.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = guitar_string.rs; sourceTree = "<group>"; };
+		520F0C842C8EA4ED00AD8416 /* guitar.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = guitar.rs; sourceTree = "<group>"; };
+		520F0C852C8EA4ED00AD8416 /* lib.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lib.rs; sourceTree = "<group>"; };
+		520F0C862C8EA4ED00AD8416 /* note_names.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = note_names.rs; sourceTree = "<group>"; };
+		520F0C872C8EA4ED00AD8416 /* note_value.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = note_value.rs; sourceTree = "<group>"; };
+		520F0C882C8EA4ED00AD8416 /* note.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = note.rs; sourceTree = "<group>"; };
+		520F0C892C8EA4ED00AD8416 /* scale.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scale.rs; sourceTree = "<group>"; };
+		520F0C8A2C8EA4ED00AD8416 /* sguitar.udl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sguitar.udl; sourceTree = "<group>"; };
+		520F0C8B2C8EA4ED00AD8416 /* string_adjustment.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = string_adjustment.rs; sourceTree = "<group>"; };
 		5220AB782C8E923F00E537C1 /* iOS-rust.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-rust.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5220AB7B2C8E923F00E537C1 /* iOS_rustApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_rustApp.swift; sourceTree = "<group>"; };
 		5220AB7D2C8E923F00E537C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,9 +63,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		520F0C8C2C8EA4ED00AD8416 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				520F0C812C8EA4ED00AD8416 /* chord.rs */,
+				520F0C822C8EA4ED00AD8416 /* guitar_adjustment.rs */,
+				520F0C832C8EA4ED00AD8416 /* guitar_string.rs */,
+				520F0C842C8EA4ED00AD8416 /* guitar.rs */,
+				520F0C852C8EA4ED00AD8416 /* lib.rs */,
+				520F0C862C8EA4ED00AD8416 /* note_names.rs */,
+				520F0C872C8EA4ED00AD8416 /* note_value.rs */,
+				520F0C882C8EA4ED00AD8416 /* note.rs */,
+				520F0C892C8EA4ED00AD8416 /* scale.rs */,
+				520F0C8A2C8EA4ED00AD8416 /* sguitar.udl */,
+				520F0C8B2C8EA4ED00AD8416 /* string_adjustment.rs */,
+			);
+			name = src;
+			path = ../../rust/src;
+			sourceTree = "<group>";
+		};
 		5220AB6F2C8E923F00E537C1 = {
 			isa = PBXGroup;
 			children = (
+				520F0C8C2C8EA4ED00AD8416 /* src */,
 				5220AB7A2C8E923F00E537C1 /* iOS-rust */,
 				5220AB792C8E923F00E537C1 /* Products */,
 				5220AB8B2C8E926400E537C1 /* Frameworks */,
