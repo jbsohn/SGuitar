@@ -12,10 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.steelsidekick.android_rust.ui.theme.AndroidRustTheme
+import uniffi.sguitar.Chord
+import uniffi.sguitar.NoteValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         enableEdgeToEdge()
         setContent {
             AndroidRustTheme {
@@ -32,8 +36,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    val chord = Chord(NoteValue.C, listOf(0, 4, 7))
+    chord.description()
     Text(
-        text = "Hello $name!",
+        text = chord.description(),
         modifier = modifier
     )
 }
