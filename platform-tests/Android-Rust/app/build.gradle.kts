@@ -21,6 +21,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            packaging.jniLibs.keepDebugSymbols += "**/*.so"
+            isDebuggable = true
+            isJniDebuggable = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -47,6 +52,8 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+//    sourceSets["main"].jniLibs.srcDirs("../../../rust/src")
 }
 
 dependencies {
