@@ -1,10 +1,10 @@
 djinni/src/run \
-    --java-out cpp/generated/java \
+    --java-out src/generated/java \
+    --cpp-out src/generated/cpp \
+    --jni-out src/generated/jni \
+    --objc-out src/generated/objc \
+    --objcpp-out src/generated/objc-out \
     --java-package com.steelsidekick.sguitar \
-    --cpp-out cpp/generated/cpp \
-    --jni-out cpp/generated/jni \
     --ident-jni-class NativeFooBar \
-    --objc-out cpp/generated/objc \
     --objc-type-prefix SG \
-    --objcpp-out cpp/generated/objc-out \
     --idl ./idl/sguitar.djinni
