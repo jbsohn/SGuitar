@@ -1,8 +1,0 @@
-[app]
-name = "rust"
-stylized-name = "Rust"
-domain = "example.com"
-template-pack = "bevy"
-
-[apple]
-development-team = "N9V659CU72"
