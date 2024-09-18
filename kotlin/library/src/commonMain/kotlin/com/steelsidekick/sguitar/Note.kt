@@ -1,6 +1,8 @@
+package com.steelsidekick.sguitar
 
+@Suppress("unused")
 class Note(midiNote: Int = -1) {
-    var midiNote: Int = -1
+    private var midiNote: Int = -1
 
     init {
         this.midiNote = midiNote

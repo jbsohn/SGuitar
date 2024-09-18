@@ -1,3 +1,4 @@
+package com.steelsidekick.sguitar
 
 enum class NoteValue(val value: Int) {
     C(0),
