@@ -1,0 +1,23 @@
+
+namespace sguitar { };
+
+enum NoteValue {
+    "C",
+    "CSharp",
+    "D",
+    "DSharp",
+    "E",
+    "F",
+    "FSharp",
+    "G",
+    "GSharp",
+    "A",
+    "ASharp",
+    "B",
+};
+
+interface Chord {
+    constructor(NoteValue root_note_value, sequence<i32> intervals);
+    sequence<NoteValue> get_notes();
+    string description();
+};

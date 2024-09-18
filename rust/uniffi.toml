@@ -1,0 +1,6 @@
+
+[bindings.kotlin.external_packages]
+rust-crate-name = "com.steelsidekick.sguitar"
+
+[bindings.swift]
+module_name = "SGuitar"
