@@ -1,0 +1,8 @@
+framework module "SGuitar" {
+    umbrella header "SGuitar.h"
+
+    export *
+    module * { export * }
+
+    use Foundation
+}

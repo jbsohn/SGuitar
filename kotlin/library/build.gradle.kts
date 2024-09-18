@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,6 +9,7 @@ plugins {
 }
 
 kotlin {
+    val xcf = XCFramework("SGuitar")
     val iosTargets = listOf(iosX64(), iosArm64(), iosSimulatorArm64())
 
     androidTarget {
@@ -19,8 +21,9 @@ kotlin {
     }
     iosTargets.forEach {
         it.binaries.framework {
-            baseName = "sguitar"
+            baseName = "SGuitar"
             binaryOption("bundleId", "com.steelsidekick.SGuitar")
+            xcf.add(this)
         }
     }
     sourceSets {

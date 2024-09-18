@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "sguitar"
+rootProject.name = "SGuitar"
 include(":library")
