@@ -1,0 +1,8 @@
+[app]
+name = "mac-os-rust"
+stylized-name = "Mac Os Rust"
+domain = "example.com"
+template-pack = "bevy"
+
+[apple]
+development-team = "N9V659CU72"
