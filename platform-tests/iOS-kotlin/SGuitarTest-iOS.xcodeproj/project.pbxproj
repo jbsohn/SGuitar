@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		525E17AF2C9A7F10008FB1F4 /* SGuitar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 525E17AD2C9A7EFD008FB1F4 /* SGuitar.xcframework */; };
-		525E17B02C9A7F11008FB1F4 /* SGuitar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 525E17AD2C9A7EFD008FB1F4 /* SGuitar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5254F4C22C9BDC4900F637BA /* SGuitar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5254F4C02C9BDC4400F637BA /* SGuitar.xcframework */; };
+		5254F4C32C9BDC4900F637BA /* SGuitar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5254F4C02C9BDC4400F637BA /* SGuitar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +18,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				525E17B02C9A7F11008FB1F4 /* SGuitar.xcframework in Embed Frameworks */,
+				5254F4C32C9BDC4900F637BA /* SGuitar.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -26,7 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		525E17AD2C9A7EFD008FB1F4 /* SGuitar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SGuitar.xcframework; sourceTree = "<group>"; };
+		5254F4C02C9BDC4400F637BA /* SGuitar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SGuitar.xcframework; sourceTree = "<group>"; };
 		52F3F8B22C9A62DC005FF8F7 /* SGuitarTest-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SGuitarTest-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525E17AF2C9A7F10008FB1F4 /* SGuitar.xcframework in Frameworks */,
+				5254F4C22C9BDC4900F637BA /* SGuitar.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 		52F3F8C32C9A6367005FF8F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				525E17AD2C9A7EFD008FB1F4 /* SGuitar.xcframework */,
+				5254F4C02C9BDC4400F637BA /* SGuitar.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

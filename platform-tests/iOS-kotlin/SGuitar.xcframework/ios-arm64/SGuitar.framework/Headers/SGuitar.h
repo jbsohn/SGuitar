@@ -151,7 +151,7 @@ __attribute__((swift_name("Note")))
 - (instancetype)initWithNote:(SGuitarNoteValue *)note octave:(int32_t)octave __attribute__((swift_name("init(note:octave:)"))) __attribute__((objc_designated_initializer));
 - (NSString *)description_ __attribute__((swift_name("description_()")));
 - (int32_t)getMidiNote __attribute__((swift_name("getMidiNote()")));
-- (SGuitarNoteValue * _Nullable)getNote __attribute__((swift_name("getNote()")));
+- (SGuitarNoteValue *)getNote __attribute__((swift_name("getNote()")));
 - (int32_t)getOctave __attribute__((swift_name("getOctave()")));
 @end
 
@@ -199,6 +199,8 @@ __attribute__((swift_name("NoteValue")))
 @property (class, readonly) SGuitarNoteValue *b __attribute__((swift_name("b")));
 + (SGuitarKotlinArray<SGuitarNoteValue *> *)values __attribute__((swift_name("values()")));
 @property (class, readonly) NSArray<SGuitarNoteValue *> *entries __attribute__((swift_name("entries")));
+- (NSString *)nameFlat __attribute__((swift_name("nameFlat()")));
+- (NSString *)nameSharp __attribute__((swift_name("nameSharp()")));
 @property (readonly) int32_t value __attribute__((swift_name("value")));
 @end
 
@@ -210,6 +212,14 @@ __attribute__((swift_name("NoteValue.Companion")))
 + (instancetype)companion __attribute__((swift_name("init()")));
 @property (class, readonly, getter=shared) SGuitarNoteValueCompanion *shared __attribute__((swift_name("shared")));
 - (SGuitarNoteValue * _Nullable)getByValueValue:(int32_t)value __attribute__((swift_name("getByValue(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Scale")))
+@interface SGuitarScale : SGuitarBase
+- (instancetype)initWithRootNote:(SGuitarNoteValue *)rootNote semitones:(SGuitarKotlinArray<SGuitarInt *> *)semitones __attribute__((swift_name("init(rootNote:semitones:)"))) __attribute__((objc_designated_initializer));
+- (NSString *)description_ __attribute__((swift_name("description_()")));
+- (SGuitarKotlinArray<SGuitarNoteValue *> *)getNotes __attribute__((swift_name("getNotes()")));
 @end
 
 __attribute__((objc_subclassing_restricted))

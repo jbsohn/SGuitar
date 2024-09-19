@@ -15,8 +15,7 @@ struct ContentView: View {
         VStack {
             Button("Test") {
                 let n = Note(midiNote: 48)
-                note = "\(n.getNote()?.name ?? "")"
-                
+                note = n.getNote().description()
             }
             Text(note)
         }

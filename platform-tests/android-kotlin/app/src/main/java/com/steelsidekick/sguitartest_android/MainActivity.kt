@@ -36,7 +36,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     val n = Note(48)
 
     Text(
-        text = "Hello ${n.getNote()?.name}!",
+        text = "Hello ${n.getNote().name}!",
         modifier = modifier
     )
 }

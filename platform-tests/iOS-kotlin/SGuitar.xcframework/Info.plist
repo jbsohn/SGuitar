@@ -25,7 +25,7 @@
 		</dict>
 		<dict>
 			<key>BinaryPath</key>
-			<string>sguitar.framework/SGuitar</string>
+			<string>SGuitar.framework/SGuitar</string>
 			<key>DebugSymbolsPath</key>
 			<string>dSYMs</string>
 			<key>LibraryIdentifier</key>
