@@ -1,6 +1,5 @@
 package com.steelsidekick.sguitar
 
-@Suppress("unused")
 class Note(midiNote: Int = -1) {
     private var midiNote: Int = -1
 
@@ -16,8 +15,8 @@ class Note(midiNote: Int = -1) {
         return midiNote
     }
 
-    fun getNote(): NoteValue? {
-        return NoteValue.getByValue((midiNote - 12) % 12)
+    fun getNote(): NoteValue {
+        return NoteValue.getByValue((midiNote - 12) % 12) ?: NoteValue.C
     }
 
     fun getOctave(): Int {
@@ -25,6 +24,6 @@ class Note(midiNote: Int = -1) {
     }
 
     fun description(): String {
-        return "TODO"
+        return "${getNote().nameSharp()}-${getOctave()}"
     }
 }
