@@ -19,7 +19,7 @@ struct ContentView: View {
         }
         .onAppear() {
             let n = Note(midiNote: 48)
-            note = n.getNote().description()
+            note = n.getNote().nameSharp()
             
             let tones: [KotlinInt] = [2, 2, 1, 2, 2, 2]
             let s = Scale(

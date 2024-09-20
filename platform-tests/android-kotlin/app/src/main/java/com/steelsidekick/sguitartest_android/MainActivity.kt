@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -13,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.steelsidekick.sguitartest_android.ui.theme.SGuitarTestAndroidTheme
 import com.steelsidekick.sguitar.Note
+import com.steelsidekick.sguitar.NoteValue
+import com.steelsidekick.sguitar.Scale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +37,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val n = Note(48)
-
-    Text(
-        text = "Hello ${n.getNote().name}!",
-        modifier = modifier
-    )
+    val s = Scale(NoteValue.C, listOf(2, 2, 1, 2, 2, 2))
+    Column {
+        Text(
+            text = "Note: ${n.getNote().nameSharp()}",
+            modifier = modifier
+        )
+        Text(
+            text = "Scale: ${s.testDescription()}",
+            modifier = modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
