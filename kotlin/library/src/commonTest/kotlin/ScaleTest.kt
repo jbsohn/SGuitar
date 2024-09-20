@@ -6,8 +6,8 @@ import kotlin.test.assertEquals
 class ScaleTest {
     @Test
     fun testCScale() {
-        val scale = Scale(NoteValue.C, arrayOf(2, 2, 1, 2, 2, 2))
-        assertEquals(scale.description(), "CDEFGAB")
+        val scale = Scale(NoteValue.C, arrayListOf(2, 2, 1, 2, 2, 2))
+        assertEquals(scale.testDescription(), "CDEFGAB")
         assertEquals(scale.getNotes().count(), 7)
     }
 }

@@ -17,7 +17,7 @@ class NoteTest {
         assertEquals(note.getMidiNote(), 48)
         assertEquals(note.getNote(), NoteValue.C)
         assertEquals(note.getOctave(), 3)
-        assertEquals(note.description(), "C-3")
+        assertEquals(note.testDescription(), "C-3")
     }
 
     @Test
@@ -26,6 +26,6 @@ class NoteTest {
         assertEquals(note.getMidiNote(), 48)
         assertEquals(note.getNote(), NoteValue.C)
         assertEquals(note.getOctave(), 3)
-        assertEquals(note.description(), "C-3")
+        assertEquals(note.testDescription(), "C-3")
     }
 }

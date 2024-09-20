@@ -10,14 +10,22 @@ import SGuitar
 
 struct ContentView: View {
     @State var note = ""
+    @State var scale = ""
     
     var body: some View {
         VStack {
-            Button("Test") {
-                let n = Note(midiNote: 48)
-                note = n.getNote().description()
-            }
-            Text(note)
+            Text("Note: \(note)")
+            Text("Scale: \(scale)")
+        }
+        .onAppear() {
+            let n = Note(midiNote: 48)
+            note = n.getNote().description()
+            
+            let tones: [KotlinInt] = [2, 2, 1, 2, 2, 2]
+            let s = Scale(
+                rootNote: .c,
+                semitones: tones)
+            scale = s.testDescription()
         }
         .padding()
     }

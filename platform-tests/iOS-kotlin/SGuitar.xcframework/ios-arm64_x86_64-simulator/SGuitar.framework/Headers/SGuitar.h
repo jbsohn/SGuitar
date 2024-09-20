@@ -180,6 +180,7 @@ __attribute__((swift_name("NoteValue")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly, getter=companion) SGuitarNoteValueCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SGuitarNoteValue *none __attribute__((swift_name("none")));
 @property (class, readonly) SGuitarNoteValue *c __attribute__((swift_name("c")));
 @property (class, readonly) SGuitarNoteValue *cSharp __attribute__((swift_name("cSharp")));
 @property (class, readonly) SGuitarNoteValue *dFlat __attribute__((swift_name("dFlat")));
@@ -217,9 +218,9 @@ __attribute__((swift_name("NoteValue.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Scale")))
 @interface SGuitarScale : SGuitarBase
-- (instancetype)initWithRootNote:(SGuitarNoteValue *)rootNote semitones:(SGuitarKotlinArray<SGuitarInt *> *)semitones __attribute__((swift_name("init(rootNote:semitones:)"))) __attribute__((objc_designated_initializer));
-- (NSString *)description_ __attribute__((swift_name("description_()")));
-- (SGuitarKotlinArray<SGuitarNoteValue *> *)getNotes __attribute__((swift_name("getNotes()")));
+- (instancetype)initWithRootNote:(SGuitarNoteValue *)rootNote semitones:(NSArray<SGuitarInt *> *)semitones __attribute__((swift_name("init(rootNote:semitones:)"))) __attribute__((objc_designated_initializer));
+- (NSArray<SGuitarNoteValue *> *)getNotes __attribute__((swift_name("getNotes()")));
+- (NSString *)testDescription __attribute__((swift_name("testDescription()")));
 @end
 
 __attribute__((objc_subclassing_restricted))

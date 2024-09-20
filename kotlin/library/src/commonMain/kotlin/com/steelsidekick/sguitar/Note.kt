@@ -16,14 +16,14 @@ class Note(midiNote: Int = -1) {
     }
 
     fun getNote(): NoteValue {
-        return NoteValue.getByValue((midiNote - 12) % 12) ?: NoteValue.C
+        return NoteValue.getByValue((midiNote - 12) % 12) ?: NoteValue.NONE
     }
 
     fun getOctave(): Int {
         return midiNote / 12 - 1
     }
 
-    fun description(): String {
+    fun testDescription(): String {
         return "${getNote().nameSharp()}-${getOctave()}"
     }
 }

@@ -1,10 +1,10 @@
 package com.steelsidekick.sguitar
 
-class Scale(rootNote: NoteValue, semitones: Array<Int>) {
-    private val notes: Array<NoteValue>
+class Scale(rootNote: NoteValue, semitones: List<Int>) {
+    private val notes: List<NoteValue>
 
     init {
-        var notes = emptyArray<NoteValue>()
+        val notes = mutableListOf<NoteValue>()
         var curNoteValue = rootNote
         notes += curNoteValue
 
@@ -12,15 +12,14 @@ class Scale(rootNote: NoteValue, semitones: Array<Int>) {
             curNoteValue = nextNoteInScale(curNoteValue, semitone)
             notes += curNoteValue
         }
-
         this.notes = notes
     }
 
-    fun getNotes(): Array<NoteValue> {
+    fun getNotes(): List<NoteValue> {
         return notes
     }
 
-    fun description(): String {
+    fun testDescription(): String {
         var s = ""
         for (note in notes) {
             s += note.nameSharp()
