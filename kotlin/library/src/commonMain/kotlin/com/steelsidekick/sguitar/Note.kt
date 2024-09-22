@@ -1,14 +1,14 @@
 package com.steelsidekick.sguitar
 
-class Note(midiNote: Int = -1) {
-    private var midiNote: Int = -1
+class Note {
+    private val midiNote: Int
 
-    init {
+    constructor(midiNote: Int = -1) {
         this.midiNote = midiNote
     }
 
-    constructor(note: NoteValue, octave: Int) : this() {
-        midiNote = (octave + 1) * 12 + note.value
+    constructor(note: NoteValue, octave: Int) {
+        this.midiNote = (octave + 1) * 12 + note.value
     }
 
     fun getMidiNote(): Int {
