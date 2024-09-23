@@ -1,6 +1,6 @@
 package com.steelsidekick.sguitar
 
-class Guitar() {
+class Guitar {
     private var numberOfFrets = 0
     private var strings = mutableListOf<GuitarString>()
     private var adjustments = mutableListOf<GuitarAdjustment>()
