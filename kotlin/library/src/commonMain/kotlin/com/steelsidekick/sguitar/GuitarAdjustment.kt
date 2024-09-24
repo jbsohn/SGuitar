@@ -1,8 +1,17 @@
 package com.steelsidekick.sguitar
 
 class GuitarAdjustment {
-    private var adjustments = mutableListOf<StringAdjustment>()
+    var adjustments = mutableListOf<StringAdjustment>()
+        private set
     private var activated = false
+    val testDescription: String
+        get() {
+            var s = ""
+            for (adjustment in adjustments) {
+                s += "${adjustment.testDescription}\n"
+            }
+            return s
+        }
 
     fun clearAdjustments() {
         adjustments.clear()
@@ -18,18 +27,5 @@ class GuitarAdjustment {
 
     fun addStringAdjustment(adjustment: StringAdjustment) {
         adjustments.add(adjustment)
-    }
-
-    fun getStringAdjustments(): List<StringAdjustment> {
-        return adjustments
-    }
-
-    fun testDescription(): String {
-        var s = ""
-        for (adjustment in adjustments) {
-            s += adjustment.testDescription()
-            s += "\n"
-        }
-        return s
     }
 }

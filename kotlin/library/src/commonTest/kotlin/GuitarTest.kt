@@ -30,27 +30,27 @@ class GuitarTest {
         guitar.resetGuitar(notes, 23)
 
         println("Guitar (no activations):")
-        println(guitar.testDescription())
-        val strings = guitar.getStrings()
+        println(guitar.testDescription)
+        val strings = guitar.fretboard
         assertEquals(strings.count(), 10)
-        assertEquals(guitar.getStrings()[0].getNotes().first().getMidiNote(), 66)
-        assertEquals(guitar.getStrings()[1].getNotes().first().getMidiNote(), 63)
+        assertEquals(guitar.fretboard[0].notes.first().midiNote, 66)
+        assertEquals(guitar.fretboard[1].notes.first().midiNote, 63)
         assertEquals(guitar.isAdjustmentActivated("A"), false)
 
         guitar.activate("A", true)
-        assertEquals(guitar.getStrings()[0].getNotes().first().getMidiNote(), 67)
-        assertEquals(guitar.getStrings()[1].getNotes().first().getMidiNote(), 65)
+        assertEquals(guitar.fretboard[0].notes.first().midiNote, 67)
+        assertEquals(guitar.fretboard[1].notes.first().midiNote, 65)
         assertEquals(guitar.isAdjustmentActivated("A"), true)
         println("A pedal activated")
-        println(guitar.testDescription())
+        println(guitar.testDescription)
 
         guitar.resetStrings()
-        assertEquals(guitar.getStrings()[0].getNotes().first().getMidiNote(), 66)
-        assertEquals(guitar.getStrings()[1].getNotes().first().getMidiNote(), 63)
+        assertEquals(guitar.fretboard[0].notes.first().midiNote, 66)
+        assertEquals(guitar.fretboard[1].notes.first().midiNote, 63)
         println("Guitar reset (no activations)")
-        println(guitar.testDescription())
+        println(guitar.testDescription)
 
         guitar.resetStrings()
-        assertEquals(guitar.getStrings().count(), 10)
+        assertEquals(guitar.fretboard.count(), 10)
     }
 }

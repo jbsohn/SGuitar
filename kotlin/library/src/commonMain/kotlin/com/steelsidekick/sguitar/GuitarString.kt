@@ -1,9 +1,19 @@
 package com.steelsidekick.sguitar
 
 class GuitarString {
-    private val startNote: Note
+    val startNote: Note
     private val numberOfFrets: Int
-    private var notes: List<Note>
+    var notes: List<Note>
+        private set
+    val testDescription: String
+        get() {
+            var s = ""
+            for (i in 0..<notes.count() - 1) {
+                s += "${notes[i].testDescription},"
+            }
+            s += notes.last().testDescription
+            return s
+        }
 
     constructor() {
         startNote = Note()
@@ -14,32 +24,16 @@ class GuitarString {
     constructor(startNote: Note, numberOfFrets: Int) {
         this.startNote = startNote
         this.numberOfFrets = numberOfFrets
-        this.notes = stringWithStartNote(startNote.getMidiNote(), numberOfFrets)
-    }
-
-    fun getStartNote(): Note {
-        return startNote
-    }
-
-    fun getNotes(): List<Note> {
-        return notes
+        this.notes = stringWithStartNote(startNote.midiNote, numberOfFrets)
     }
 
     fun adjustStringBySteps(steps: Int) {
-        val startNoteMidiValue = notes[0].getMidiNote() + steps
+        val startNoteMidiValue = notes[0].midiNote + steps
         notes = stringWithStartNote(startNoteMidiValue, numberOfFrets)
     }
 
     fun reset() {
-        notes = stringWithStartNote(startNote.getMidiNote(), numberOfFrets)
-    }
-
-    fun testDescription(): String {
-        var s = ""
-        for (note in notes) {
-            s += note.testDescription()
-        }
-        return s
+        notes = stringWithStartNote(startNote.midiNote, numberOfFrets)
     }
 
     private fun stringWithStartNote(midiStartNote: Int, numberOfFrets: Int): List<Note> {

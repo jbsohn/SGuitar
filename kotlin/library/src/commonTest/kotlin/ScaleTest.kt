@@ -7,7 +7,7 @@ class ScaleTest {
     @Test
     fun testCScale() {
         val scale = Scale(NoteValue.C, arrayListOf(2, 2, 1, 2, 2, 2))
-        assertEquals(scale.testDescription(), "CDEFGAB")
-        assertEquals(scale.getNotes().count(), 7)
+        assertEquals(scale.testDescription, "C,D,E,F,G,A,B")
+        assertEquals(scale.notes.count(), 7)
     }
 }

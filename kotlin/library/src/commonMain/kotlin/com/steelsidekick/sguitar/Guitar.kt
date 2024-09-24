@@ -4,6 +4,18 @@ class Guitar {
     private var numberOfFrets = 0
     private var strings = mutableListOf<GuitarString>()
     private var adjustments = mutableMapOf<String, GuitarAdjustment>()
+    val fretboard: List<GuitarString>
+        get() {
+            return strings.dropWhile { guitarString -> guitarString == strings.first() }
+        }
+    val testDescription: String
+        get() {
+            var s = ""
+            fretboard.forEachIndexed { index, string ->
+                s += "string ${index + 1}: ${string.testDescription}\n"
+            }
+            return s
+        }
 
     init {
         numberOfFrets = 0
@@ -21,10 +33,6 @@ class Guitar {
         }
     }
 
-    fun getStrings(): List<GuitarString> {
-        return strings.dropWhile { guitarString ->  guitarString == strings.first() }
-    }
-
     fun resetStrings() {
         for (string in strings) {
             string.reset()
@@ -37,13 +45,13 @@ class Guitar {
 
     fun activate(adjustmentID: String, activated: Boolean) {
         adjustments[adjustmentID]?.let { guitarAdjustment ->
-            for (stringAdjustment in guitarAdjustment.getStringAdjustments()) {
+            for (stringAdjustment in guitarAdjustment.adjustments) {
                 val step = if (activated) {
-                    stringAdjustment.getStep()
+                    stringAdjustment.step
                 } else {
-                    (-stringAdjustment.getStep())
+                    (-stringAdjustment.step)
                 }
-                strings[stringAdjustment.getStringNumber()].adjustStringBySteps(step)
+                strings[stringAdjustment.stringNumber].adjustStringBySteps(step)
             }
             guitarAdjustment.setActivated(activated)
         }
@@ -51,17 +59,5 @@ class Guitar {
 
     fun setAdjustment(adjustmentID: String, adjustment: GuitarAdjustment) {
         adjustments[adjustmentID] = adjustment
-    }
-
-    fun testDescription(): String {
-        var s = ""
-        getStrings().forEachIndexed { index, string ->
-            s += "string "
-            s += index + 1
-            s += ": "
-            s += string.testDescription()
-            s += "\n"
-        }
-        return s
     }
 }

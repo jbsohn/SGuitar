@@ -7,7 +7,7 @@ class ChordTest {
     @Test
     fun testCChord() {
         val chord = Chord(NoteValue.C, arrayListOf(0, 4, 7))
-        assertEquals(chord.testDescription(), "CEG")
-        assertEquals(chord.getNotes().count(), 3)
+        assertEquals(chord.testDescription, "C,E,G")
+        assertEquals(chord.notes.count(), 3)
     }
 }

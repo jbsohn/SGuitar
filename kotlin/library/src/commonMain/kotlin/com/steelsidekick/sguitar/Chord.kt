@@ -1,7 +1,16 @@
 package com.steelsidekick.sguitar
 
 class Chord(rootNote: NoteValue, intervals: List<Int>) {
-    private val notes: List<NoteValue>
+    val notes: List<NoteValue>
+    val testDescription: String
+        get() {
+            var s = ""
+            for (i in 0..<notes.count() - 1) {
+                s += "${notes[i].nameSharp()},"
+            }
+            s += notes.last().nameSharp()
+            return s
+        }
 
     init {
         val notes = mutableListOf<NoteValue>()
@@ -10,18 +19,6 @@ class Chord(rootNote: NoteValue, intervals: List<Int>) {
             notes += note
         }
         this.notes = notes
-    }
-
-    fun getNotes(): List<NoteValue> {
-        return notes
-    }
-
-    fun testDescription(): String {
-        var s = ""
-        for (note in notes) {
-            s += note.nameSharp()
-        }
-        return s
     }
 
     private fun noteForNoteInterval(interval: Int, rootNote: NoteValue): NoteValue {

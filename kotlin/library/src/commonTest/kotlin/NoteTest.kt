@@ -14,18 +14,18 @@ class NoteTest {
     @Test
     fun testNote() {
         val note = Note(48)
-        assertEquals(note.getMidiNote(), 48)
-        assertEquals(note.getNote(), NoteValue.C)
-        assertEquals(note.getOctave(), 3)
-        assertEquals(note.testDescription(), "C-3")
+        assertEquals(note.midiNote, 48)
+        assertEquals(note.note, NoteValue.C)
+        assertEquals(note.octave, 3)
+        assertEquals(note.testDescription, "C-3")
     }
 
     @Test
     fun testNoteWithOctave() {
         val note = Note(NoteValue.C, 3)
-        assertEquals(note.getMidiNote(), 48)
-        assertEquals(note.getNote(), NoteValue.C)
-        assertEquals(note.getOctave(), 3)
-        assertEquals(note.testDescription(), "C-3")
+        assertEquals(note.midiNote, 48)
+        assertEquals(note.note, NoteValue.C)
+        assertEquals(note.octave, 3)
+        assertEquals(note.testDescription, "C-3")
     }
 }

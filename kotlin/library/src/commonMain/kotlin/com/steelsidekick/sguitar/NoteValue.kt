@@ -3,7 +3,7 @@ package com.steelsidekick.sguitar
 enum class NoteValue(val value: Int) {
     NONE(-1),
     C(0),
-    C_SHARP (1),
+    C_SHARP(1),
     D_FLAT(1),
     D(2),
     D_SHARP(3),
@@ -21,11 +21,33 @@ enum class NoteValue(val value: Int) {
     B(11);
 
     private val noteNameSharp = arrayOf(
-        "C", "C\u266f", "D", "D\u266f", "E", "F", "F\u266f", "G",
-        "G\u266f", "A", "A\u266f", "B")
+        "C",
+        "C\u266f",
+        "D",
+        "D\u266f",
+        "E",
+        "F",
+        "F\u266f",
+        "G",
+        "G\u266f",
+        "A",
+        "A\u266f",
+        "B"
+    )
     private val noteNamesFlat = arrayOf(
-        "C", "D\u266d", "D", "E\u266d", "E", "F", "G\u266d",
-        "G", "A\u266d", "A", "B\u266d", "B")
+        "C",
+        "D\u266d",
+        "D",
+        "E\u266d",
+        "E",
+        "F",
+        "G\u266d",
+        "G",
+        "A\u266d",
+        "A",
+        "B\u266d",
+        "B"
+    )
 
     fun nameSharp(): String {
         return noteNameSharp[value]
