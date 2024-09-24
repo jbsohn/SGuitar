@@ -6,8 +6,7 @@ import kotlin.test.Test
 class GuitarAdjustmentTest {
     @Test
     fun testGuitarAdjustment() {
-        val guitarAdjustment = GuitarAdjustment("TEST")
-        assertEquals(guitarAdjustment.getAdjustmentID(), "TEST")
+        val guitarAdjustment = GuitarAdjustment()
 
         guitarAdjustment.addStringAdjustment(StringAdjustment(1, 1))
         assertEquals(guitarAdjustment.getStringAdjustments().count(), 1)

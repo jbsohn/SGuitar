@@ -1,6 +1,8 @@
 import com.steelsidekick.sguitar.Guitar
+import com.steelsidekick.sguitar.GuitarAdjustment
 import com.steelsidekick.sguitar.Note
 import com.steelsidekick.sguitar.NoteValue
+import com.steelsidekick.sguitar.StringAdjustment
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -8,6 +10,12 @@ class GuitarTest {
     @Test
     fun testGuitar() {
         val guitar = Guitar()
+
+        val guitarAdjustment = GuitarAdjustment()
+        guitarAdjustment.addStringAdjustment(StringAdjustment(1, 1))
+        guitarAdjustment.addStringAdjustment(StringAdjustment(2, 2))
+        guitar.setAdjustment("A", guitarAdjustment)
+
         val notes = listOf(
             Note(NoteValue.F_SHARP, 4),
             Note(NoteValue.D_SHARP, 4),
@@ -21,10 +29,25 @@ class GuitarTest {
             Note(NoteValue.B, 2))
         guitar.resetGuitar(notes, 23)
 
+        println("Guitar (no activations):")
+        println(guitar.testDescription())
         val strings = guitar.getStrings()
         assertEquals(strings.count(), 10)
+        assertEquals(guitar.getStrings()[0].getNotes().first().getMidiNote(), 66)
+        assertEquals(guitar.getStrings()[1].getNotes().first().getMidiNote(), 63)
+        assertEquals(guitar.isAdjustmentActivated("A"), false)
 
-        println("guitar:")
+        guitar.activate("A", true)
+        assertEquals(guitar.getStrings()[0].getNotes().first().getMidiNote(), 67)
+        assertEquals(guitar.getStrings()[1].getNotes().first().getMidiNote(), 65)
+        assertEquals(guitar.isAdjustmentActivated("A"), true)
+        println("A pedal activated")
+        println(guitar.testDescription())
+
+        guitar.resetStrings()
+        assertEquals(guitar.getStrings()[0].getNotes().first().getMidiNote(), 66)
+        assertEquals(guitar.getStrings()[1].getNotes().first().getMidiNote(), 63)
+        println("Guitar reset (no activations)")
         println(guitar.testDescription())
 
         guitar.resetStrings()

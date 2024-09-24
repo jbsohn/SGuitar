@@ -3,8 +3,7 @@ package com.steelsidekick.sguitar
 class Guitar {
     private var numberOfFrets = 0
     private var strings = mutableListOf<GuitarString>()
-    private var adjustments = mutableListOf<GuitarAdjustment>()
-    private var settings = mutableMapOf<String, Boolean>()
+    private var adjustments = mutableMapOf<String, GuitarAdjustment>()
 
     init {
         numberOfFrets = 0
@@ -16,6 +15,10 @@ class Guitar {
         for (note in notes) {
             strings += GuitarString(note, numberOfFrets)
         }
+
+        for ((_, value) in adjustments) {
+            value.setActivated(false)
+        }
     }
 
     fun getStrings(): List<GuitarString> {
@@ -26,6 +29,28 @@ class Guitar {
         for (string in strings) {
             string.reset()
         }
+    }
+
+    fun isAdjustmentActivated(adjustmentID: String): Boolean {
+        return adjustments[adjustmentID]?.isActivated() ?: false
+    }
+
+    fun activate(adjustmentID: String, activated: Boolean) {
+        adjustments[adjustmentID]?.let { guitarAdjustment ->
+            for (stringAdjustment in guitarAdjustment.getStringAdjustments()) {
+                val step = if (activated) {
+                    stringAdjustment.getStep()
+                } else {
+                    (-stringAdjustment.getStep())
+                }
+                strings[stringAdjustment.getStringNumber()].adjustStringBySteps(step)
+            }
+            guitarAdjustment.setActivated(activated)
+        }
+    }
+
+    fun setAdjustment(adjustmentID: String, adjustment: GuitarAdjustment) {
+        adjustments[adjustmentID] = adjustment
     }
 
     fun testDescription(): String {

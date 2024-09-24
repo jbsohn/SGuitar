@@ -1,14 +1,19 @@
 package com.steelsidekick.sguitar
 
-class GuitarAdjustment(private val adjustmentID: String) {
+class GuitarAdjustment {
     private var adjustments = mutableListOf<StringAdjustment>()
-
-    fun getAdjustmentID(): String {
-        return adjustmentID
-    }
+    private var activated = false
 
     fun clearAdjustments() {
         adjustments.clear()
+    }
+
+    fun setActivated(activated: Boolean) {
+        this.activated = activated
+    }
+
+    fun isActivated(): Boolean {
+        return activated
     }
 
     fun addStringAdjustment(adjustment: StringAdjustment) {
@@ -21,10 +26,6 @@ class GuitarAdjustment(private val adjustmentID: String) {
 
     fun testDescription(): String {
         var s = ""
-        s += "adjustmentID: "
-        s += adjustmentID
-        s += "\n"
-
         for (adjustment in adjustments) {
             s += adjustment.testDescription()
             s += "\n"
