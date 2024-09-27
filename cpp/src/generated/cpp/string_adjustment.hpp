@@ -19,5 +19,5 @@ public:
 
     virtual int32_t get_step() = 0;
 
-    virtual std::string description() = 0;
+    virtual std::string testDescription() = 0;
 };

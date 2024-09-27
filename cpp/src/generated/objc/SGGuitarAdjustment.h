@@ -20,6 +20,6 @@
 
 - (nullable SGStringAdjustment *)stringAdjustmentForStringNumber:(int32_t)stringNumber;
 
-- (nonnull NSString *)description;
+- (nonnull NSString *)testDescription;
 
 @end

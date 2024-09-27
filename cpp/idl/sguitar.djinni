@@ -26,7 +26,7 @@ note = interface +c {
     get_midi_note(): i32;
     get_note(): note_value;
     get_octave(): i32;
-    description(): string;
+    testDescription(): string;
     note_name_sharp(): string;
     note_name_flat(): string;
     static note_name_sharp_for_note(note: note_value): string;
@@ -36,13 +36,13 @@ note = interface +c {
 scale = interface +c {
     static create_with_root_note(root_note: note_value, semitones: array<i32>): scale;
     get_notes(): array<note_value>;
-    description(): string;
+    testDescription(): string;
 }
 
 chord = interface +c {
     static create_with_root_note(root_note: note_value, intervals: array<i32>): chord;
     get_notes(): array<note_value>;
-    description(): string;
+    testDescription(): string;
 }
 
 guitar_string = interface +c {
@@ -52,7 +52,7 @@ guitar_string = interface +c {
     get_notes(): array<note>;
     reset();
     adjust_string_by_steps(steps: i32);
-    description(): string;
+    testDescription(): string;
 }
 
 string_adjustment = interface +c {
@@ -60,7 +60,7 @@ string_adjustment = interface +c {
     get_string_number(): i32;
     set_step(step: i32);
     get_step(): i32;
-    description(): string;
+    testDescription(): string;
 }
 
 guitar_adjustment = interface +c {
@@ -70,7 +70,7 @@ guitar_adjustment = interface +c {
     add_string_adjustment(adjustment: string_adjustment);
     get_string_adjustments(): array<string_adjustment>;
     string_adjustment_for_string_number(string_number: i32): string_adjustment;
-    description(): string;
+    testDescription(): string;
 }
 
 guitar = interface +c {
@@ -88,5 +88,5 @@ guitar = interface +c {
     set_adjustment(settingID: string, adjustment: guitar_adjustment);
     get_adjustment(settingID: string): guitar_adjustment;
 
-    description(): string;
+    testDescription(): string;
 }

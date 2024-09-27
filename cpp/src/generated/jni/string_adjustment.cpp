@@ -53,11 +53,11 @@ CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_StringAdjustment_00024Cpp
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_StringAdjustment_00024CppProxy_native_1description(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_StringAdjustment_00024CppProxy_native_1testDescription(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::StringAdjustment>(nativeRef);
-        auto r = ref->description();
+        auto r = ref->testDescription();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

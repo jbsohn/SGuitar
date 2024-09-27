@@ -32,6 +32,6 @@
 
 - (nullable SGGuitarAdjustment *)getAdjustment:(nonnull NSString *)settingID;
 
-- (nonnull NSString *)description;
+- (nonnull NSString *)testDescription;
 
 @end

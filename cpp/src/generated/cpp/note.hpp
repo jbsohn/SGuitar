@@ -23,7 +23,7 @@ public:
 
     virtual int32_t get_octave() = 0;
 
-    virtual std::string description() = 0;
+    virtual std::string testDescription() = 0;
 
     virtual std::string note_name_sharp() = 0;
 

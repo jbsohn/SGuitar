@@ -91,11 +91,11 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_n
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1description(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1testDescription(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
-        auto r = ref->description();
+        auto r = ref->testDescription();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

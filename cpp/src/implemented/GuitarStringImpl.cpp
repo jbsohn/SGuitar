@@ -49,10 +49,10 @@ public:
         notes = string_with_start_note(start_note->get_midi_note(), number_of_fret);
     }
 
-    std::string description() override {
+    std::string testDescription() override {
         std::string s;
         for (const std::shared_ptr<Note> &note: notes) {
-            s += note->description();
+            s += note->testDescription();
         }
         return s;
     }

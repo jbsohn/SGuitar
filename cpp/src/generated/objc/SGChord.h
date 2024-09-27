@@ -13,6 +13,6 @@
 
 - (nonnull NSArray<NSNumber *> *)getNotes;
 
-- (nonnull NSString *)description;
+- (nonnull NSString *)testDescription;
 
 @end

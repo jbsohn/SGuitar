@@ -23,7 +23,7 @@ public abstract class Guitar {
 
     public abstract GuitarAdjustment getAdjustment(String settingID);
 
-    public abstract String description();
+    public abstract String testDescription();
 
     /** setup */
     public static native Guitar create();
@@ -98,11 +98,11 @@ public abstract class Guitar {
         private native GuitarAdjustment native_getAdjustment(long _nativeRef, String settingID);
 
         @Override
-        public String description()
+        public String testDescription()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_description(this.nativeRef);
+            return native_testDescription(this.nativeRef);
         }
-        private native String native_description(long _nativeRef);
+        private native String native_testDescription(long _nativeRef);
     }
 }

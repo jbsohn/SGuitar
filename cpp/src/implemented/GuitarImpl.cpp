@@ -82,7 +82,7 @@ public:
         return nullptr;
     }
 
-    std::string description() override {
+    std::string testDescription() override {
         std::string description;
 
         for (int string_number = 1; string_number < strings.size(); string_number++) {
@@ -90,7 +90,7 @@ public:
             description += "string ";
             description += std::to_string(string_number);
             description += ": ";
-            description += string->description();
+            description += string->testDescription();
             description += "\n";
         }
         return description;

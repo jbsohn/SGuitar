@@ -19,7 +19,7 @@
 
 - (int32_t)getOctave;
 
-- (nonnull NSString *)description;
+- (nonnull NSString *)testDescription;
 
 - (nonnull NSString *)noteNameSharp;
 

@@ -18,5 +18,5 @@ public:
 
     virtual std::vector<NoteValue> get_notes() = 0;
 
-    virtual std::string description() = 0;
+    virtual std::string testDescription() = 0;
 };

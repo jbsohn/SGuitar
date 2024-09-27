@@ -45,14 +45,14 @@ public:
         return nullptr;
     }
 
-    std::string description() override {
+    std::string testDescription() override {
         std::string description;
         description += "adjustmentID: ";
         description += adjustment_id;
         description += "\n";
 
         for (const auto &adjustment: adjustments) {
-            description += adjustment->description();
+            description += adjustment->testDescription();
             description += "\n";
         }
         return description;

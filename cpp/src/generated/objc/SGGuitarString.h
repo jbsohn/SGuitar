@@ -21,6 +21,6 @@
 
 - (void)adjustStringBySteps:(int32_t)steps;
 
-- (nonnull NSString *)description;
+- (nonnull NSString *)testDescription;
 
 @end

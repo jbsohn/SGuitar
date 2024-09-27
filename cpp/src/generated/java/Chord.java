@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class Chord {
     public abstract NoteValue[] getNotes();
 
-    public abstract String description();
+    public abstract String testDescription();
 
     public static native Chord createWithRootNote(NoteValue rootNote, int[] intervals);
 
@@ -35,11 +35,11 @@ public abstract class Chord {
         private native NoteValue[] native_getNotes(long _nativeRef);
 
         @Override
-        public String description()
+        public String testDescription()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_description(this.nativeRef);
+            return native_testDescription(this.nativeRef);
         }
-        private native String native_description(long _nativeRef);
+        private native String native_testDescription(long _nativeRef);
     }
 }

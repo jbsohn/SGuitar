@@ -13,7 +13,7 @@ public abstract class Note {
 
     public abstract int getOctave();
 
-    public abstract String description();
+    public abstract String testDescription();
 
     public abstract String noteNameSharp();
 
@@ -65,12 +65,12 @@ public abstract class Note {
         private native int native_getOctave(long _nativeRef);
 
         @Override
-        public String description()
+        public String testDescription()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_description(this.nativeRef);
+            return native_testDescription(this.nativeRef);
         }
-        private native String native_description(long _nativeRef);
+        private native String native_testDescription(long _nativeRef);
 
         @Override
         public String noteNameSharp()

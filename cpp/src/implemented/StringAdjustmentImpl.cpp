@@ -32,7 +32,7 @@ public:
         return step;
     }
 
-    std::string description() override {
+    std::string testDescription() override {
         std::string description;
         description += "string_number: ";
         description += std::to_string(string_number);
