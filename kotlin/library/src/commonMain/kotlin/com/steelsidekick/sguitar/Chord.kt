@@ -1,6 +1,6 @@
 package com.steelsidekick.sguitar
 
-class Chord(rootNote: NoteValue, intervals: List<Int>) {
+class Chord {
     val notes: List<NoteValue>
     val testDescription: String
         get() {
@@ -12,7 +12,11 @@ class Chord(rootNote: NoteValue, intervals: List<Int>) {
             return s
         }
 
-    init {
+    constructor(notes: List<NoteValue>) {
+        this.notes = notes
+    }
+
+    constructor(rootNote: NoteValue, intervals: List<Int>) {
         val notes = mutableListOf<NoteValue>()
         for (interval in intervals) {
             val note = noteForNoteInterval(interval, rootNote)
