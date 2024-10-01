@@ -6,16 +6,12 @@ package com.steelsidekick.sguitar;
 import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public abstract class Chord {
-    public abstract NoteValue[] getNotes();
-
+public abstract class HarmonizedScale {
     public abstract String testDescription();
 
-    public static native Chord createWithRootNote(NoteValue rootNote, int[] intervals);
+    public static native HarmonizedScale createHarmonizedScaleWithRootNote(NoteValue rootNote, int[] semitones);
 
-    public static native Chord createWithNotes(NoteValue[] notes);
-
-    public static final class CppProxy extends Chord
+    public static final class CppProxy extends HarmonizedScale
     {
         private final long nativeRef;
         private final AtomicBoolean destroyed = new AtomicBoolean(false);
@@ -27,14 +23,6 @@ public abstract class Chord {
             NativeObjectManager.register(this, nativeRef);
         }
         public static native void nativeDestroy(long nativeRef);
-
-        @Override
-        public NoteValue[] getNotes()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getNotes(this.nativeRef);
-        }
-        private native NoteValue[] native_getNotes(long _nativeRef);
 
         @Override
         public String testDescription()

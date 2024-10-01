@@ -13,6 +13,7 @@
 #include "guitar_string.hpp"
 #include "guitar_adjustment.hpp"
 #include "guitar.hpp"
+#include "harmonized_scale.hpp"
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
@@ -96,4 +97,10 @@ TEST_CASE("Testing the Guitar object") {
     std::cout << "guitar before:" << std::endl << guitar->testDescription() << std::endl;
     guitar->activate_adjustment("LKL", true);
     std::cout << "guitar after:" << std::endl << guitar->testDescription() << std::endl;
+}
+
+TEST_CASE("Testing harmonized scales") {
+    auto scale  = HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue::C,
+        {2, 2, 1, 2, 2, 2});
+    std::cout << scale->testDescription() << std::endl;
 }

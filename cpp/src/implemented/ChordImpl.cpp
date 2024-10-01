@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <utility>
 #include <vector>
 #include <string>
 #include "note.hpp"
@@ -21,6 +22,10 @@ public:
             auto note = note_for_interval(interval, root_note);
             notes.push_back(note);
         }
+    }
+
+    explicit ChordImpl(std::vector<NoteValue> notes) {
+        this->notes = std::move(notes);
     }
 
     std::vector<NoteValue> get_notes() override {
@@ -47,4 +52,8 @@ protected:
 
 std::shared_ptr<Chord> Chord::create_with_root_note(NoteValue root_note, const std::vector<int32_t> &intervals) {
     return std::make_shared<ChordImpl>(root_note, intervals);
+}
+
+std::shared_ptr<Chord> Chord::create_with_notes(const std::vector<NoteValue> & notes) {
+    return std::make_shared<ChordImpl>(notes);
 }

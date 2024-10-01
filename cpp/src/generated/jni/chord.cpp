@@ -28,6 +28,14 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Chord_createWithRootNo
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Chord_createWithNotes(JNIEnv* jniEnv, jobject /*this*/, jobject j_notes)
+{
+    try {
+        auto r = ::Chord::create_with_notes(::djinni::Array<::djinni_generated::NativeNoteValue, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','N','o','t','e','V','a','l','u','e'>>::toCpp(jniEnv, j_notes));
+        return ::djinni::release(::djinni_generated::NativeChord::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
 CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Chord_00024CppProxy_native_1getNotes(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {

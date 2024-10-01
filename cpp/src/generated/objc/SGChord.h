@@ -11,6 +11,8 @@
 + (nullable SGChord *)createWithRootNote:(SGNoteValue)rootNote
                                intervals:(nonnull NSArray<NSNumber *> *)intervals;
 
++ (nullable SGChord *)createWithNotes:(nonnull NSArray<NSNumber *> *)notes;
+
 - (nonnull NSArray<NSNumber *> *)getNotes;
 
 - (nonnull NSString *)testDescription;

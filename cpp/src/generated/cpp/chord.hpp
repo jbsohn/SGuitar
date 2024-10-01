@@ -16,6 +16,8 @@ public:
 
     static /*not-null*/ std::shared_ptr<Chord> create_with_root_note(NoteValue root_note, const std::vector<int32_t> & intervals);
 
+    static /*not-null*/ std::shared_ptr<Chord> create_with_notes(const std::vector<NoteValue> & notes);
+
     virtual std::vector<NoteValue> get_notes() = 0;
 
     virtual std::string testDescription() = 0;

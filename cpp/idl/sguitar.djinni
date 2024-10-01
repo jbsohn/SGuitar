@@ -39,8 +39,14 @@ scale = interface +c {
     testDescription(): string;
 }
 
+harmonized_scale = interface +c {
+    static create_harmonized_scale_with_root_note(root_note: note_value, semitones: array<i32>): harmonized_scale;
+    testDescription(): string;
+}
+
 chord = interface +c {
     static create_with_root_note(root_note: note_value, intervals: array<i32>): chord;
+    static create_with_notes(notes: array<note_value>): chord;
     get_notes(): array<note_value>;
     testDescription(): string;
 }
