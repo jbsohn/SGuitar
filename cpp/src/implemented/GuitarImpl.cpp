@@ -19,7 +19,6 @@ class GuitarImpl final : public Guitar {
     int number_of_frets = 0;
     std::vector<std::shared_ptr<GuitarString> > strings;
     std::map<std::string, std::shared_ptr<GuitarAdjustment> > adjustments;
-    std::map<std::string, bool> settings;
 
 public:
     GuitarImpl() = default;
@@ -47,17 +46,15 @@ public:
     }
 
     /** adjustment */
-    bool is_adjustment_enabled(const std::string &setting_id) override {
-        if (adjustments.contains(setting_id)) {
-            if (const auto adjustment = adjustments[setting_id]; adjustment != nullptr) {
-                return true;
-            }
+    bool is_adjustment_activated(const std::string &adjustment_id) override {
+        if (const auto adjustment = adjustments[adjustment_id]; adjustment != nullptr) {
+            return adjustment->is_activated();
         }
         return false;
     }
 
-    void activate_adjustment(const std::string &setting_id, const bool activated) override {
-        if (const auto adjustment = adjustments[setting_id]; adjustment != nullptr) {
+    void activate_adjustment(const std::string& adjustment_id, bool activated) override {
+        if (const auto adjustment = adjustments[adjustment_id]; adjustment != nullptr) {
             for (const auto string_adjustments = adjustment->get_string_adjustments();
                  const auto &stringAdjustment: string_adjustments) {
                 const auto stringNumber = stringAdjustment->get_string_number();
@@ -65,7 +62,6 @@ public:
                 const auto string = strings.at(stringNumber);
                 string->adjust_string_by_steps(step);
             }
-            settings[setting_id] = activated;
         }
     }
 
@@ -97,7 +93,6 @@ public:
     }
 };
 
-/*not-null*/
 std::shared_ptr<Guitar> Guitar::create() {
     return std::make_shared<GuitarImpl>();
 }

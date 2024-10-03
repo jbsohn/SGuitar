@@ -26,5 +26,9 @@ public:
 
     virtual /*not-null*/ std::shared_ptr<StringAdjustment> string_adjustment_for_string_number(int32_t string_number) = 0;
 
+    virtual bool is_activated() = 0;
+
+    virtual void set_activated(bool activated) = 0;
+
     virtual std::string testDescription() = 0;
 };

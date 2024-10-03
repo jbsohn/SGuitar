@@ -27,9 +27,9 @@ public:
     virtual void reset_strings() = 0;
 
     /** adjustments */
-    virtual bool is_adjustment_enabled(const std::string & settingID) = 0;
+    virtual bool is_adjustment_activated(const std::string & adjustment_id) = 0;
 
-    virtual void activate_adjustment(const std::string & settingID, bool activated) = 0;
+    virtual void activate_adjustment(const std::string & adjustment_id, bool activated) = 0;
 
     virtual void set_adjustment(const std::string & settingID, const /*not-null*/ std::shared_ptr<GuitarAdjustment> & adjustment) = 0;
 

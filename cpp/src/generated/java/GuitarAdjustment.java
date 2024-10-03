@@ -17,6 +17,10 @@ public abstract class GuitarAdjustment {
 
     public abstract StringAdjustment stringAdjustmentForStringNumber(int stringNumber);
 
+    public abstract boolean isActivated();
+
+    public abstract void setActivated(boolean activated);
+
     public abstract String testDescription();
 
     public static native GuitarAdjustment createWithAdjustmentId(String adjustmentId);
@@ -73,6 +77,22 @@ public abstract class GuitarAdjustment {
             return native_stringAdjustmentForStringNumber(this.nativeRef, stringNumber);
         }
         private native StringAdjustment native_stringAdjustmentForStringNumber(long _nativeRef, int stringNumber);
+
+        @Override
+        public boolean isActivated()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_isActivated(this.nativeRef);
+        }
+        private native boolean native_isActivated(long _nativeRef);
+
+        @Override
+        public void setActivated(boolean activated)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_setActivated(this.nativeRef, activated);
+        }
+        private native void native_setActivated(long _nativeRef, boolean activated);
 
         @Override
         public String testDescription()

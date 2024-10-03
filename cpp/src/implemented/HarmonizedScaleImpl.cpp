@@ -18,7 +18,6 @@ public:
     HarmonizedScaleImpl(const NoteValue root_note, const std::vector<int> &semitones) {
         // https://www.bluesguitarinstitute.com/how-to-harmonize-a-scale/
         auto scaleNotes = Scale::create_with_root_note(root_note, semitones)->get_notes();
-        auto chords = std::vector<std::shared_ptr<Chord>>();
 
         std::vector<NoteValue> notes(scaleNotes.size());
 
@@ -30,8 +29,6 @@ public:
 
         std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 4, notes.begin());
         chords.push_back(Chord::create_with_notes(notes));
-
-        this->chords = chords;
     }
 
     std::string testDescription() override {

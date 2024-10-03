@@ -15,7 +15,6 @@ add_executable(
         src/implemented/ScaleImpl.cpp
         src/implemented/StringAdjustmentImpl.cpp
         src/tests/test.cpp
-        src/implemented/ChordImpl.h
 )
 enable_testing()
 add_test(

@@ -22,9 +22,9 @@
 - (void)resetStrings;
 
 /** adjustments */
-- (BOOL)isAdjustmentEnabled:(nonnull NSString *)settingID;
+- (BOOL)isAdjustmentActivated:(nonnull NSString *)adjustmentId;
 
-- (void)activateAdjustment:(nonnull NSString *)settingID
+- (void)activateAdjustment:(nonnull NSString *)adjustmentId
                  activated:(BOOL)activated;
 
 - (void)setAdjustment:(nonnull NSString *)settingID

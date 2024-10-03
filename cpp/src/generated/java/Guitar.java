@@ -15,9 +15,9 @@ public abstract class Guitar {
     public abstract void resetStrings();
 
     /** adjustments */
-    public abstract boolean isAdjustmentEnabled(String settingID);
+    public abstract boolean isAdjustmentActivated(String adjustmentId);
 
-    public abstract void activateAdjustment(String settingID, boolean activated);
+    public abstract void activateAdjustment(String adjustmentId, boolean activated);
 
     public abstract void setAdjustment(String settingID, GuitarAdjustment adjustment);
 
@@ -66,20 +66,20 @@ public abstract class Guitar {
         private native void native_resetStrings(long _nativeRef);
 
         @Override
-        public boolean isAdjustmentEnabled(String settingID)
+        public boolean isAdjustmentActivated(String adjustmentId)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_isAdjustmentEnabled(this.nativeRef, settingID);
+            return native_isAdjustmentActivated(this.nativeRef, adjustmentId);
         }
-        private native boolean native_isAdjustmentEnabled(long _nativeRef, String settingID);
+        private native boolean native_isAdjustmentActivated(long _nativeRef, String adjustmentId);
 
         @Override
-        public void activateAdjustment(String settingID, boolean activated)
+        public void activateAdjustment(String adjustmentId, boolean activated)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_activateAdjustment(this.nativeRef, settingID, activated);
+            native_activateAdjustment(this.nativeRef, adjustmentId, activated);
         }
-        private native void native_activateAdjustment(long _nativeRef, String settingID, boolean activated);
+        private native void native_activateAdjustment(long _nativeRef, String adjustmentId, boolean activated);
 
         @Override
         public void setAdjustment(String settingID, GuitarAdjustment adjustment)

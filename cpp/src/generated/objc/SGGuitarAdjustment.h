@@ -20,6 +20,10 @@
 
 - (nullable SGStringAdjustment *)stringAdjustmentForStringNumber:(int32_t)stringNumber;
 
+- (BOOL)isActivated;
+
+- (void)setActivated:(BOOL)activated;
+
 - (nonnull NSString *)testDescription;
 
 @end

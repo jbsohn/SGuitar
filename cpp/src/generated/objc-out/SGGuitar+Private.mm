@@ -62,17 +62,17 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (BOOL)isAdjustmentEnabled:(nonnull NSString *)settingID {
+- (BOOL)isAdjustmentActivated:(nonnull NSString *)adjustmentId {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->is_adjustment_enabled(::djinni::String::toCpp(settingID));
+        auto objcpp_result_ = _cppRefHandle.get()->is_adjustment_activated(::djinni::String::toCpp(adjustmentId));
         return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)activateAdjustment:(nonnull NSString *)settingID
+- (void)activateAdjustment:(nonnull NSString *)adjustmentId
                  activated:(BOOL)activated {
     try {
-        _cppRefHandle.get()->activate_adjustment(::djinni::String::toCpp(settingID),
+        _cppRefHandle.get()->activate_adjustment(::djinni::String::toCpp(adjustmentId),
                                                  ::djinni::Bool::toCpp(activated));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <utility>
 #include <vector>
 #include <string>
 #include "note.hpp"
@@ -23,9 +22,8 @@ public:
             notes.push_back(note);
         }
     }
-
-    explicit ChordImpl(std::vector<NoteValue> notes) {
-        this->notes = std::move(notes);
+    explicit ChordImpl(const std::vector<NoteValue>& notes) {
+        this->notes = notes;
     }
 
     std::vector<NoteValue> get_notes() override {

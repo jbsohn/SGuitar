@@ -76,6 +76,8 @@ guitar_adjustment = interface +c {
     add_string_adjustment(adjustment: string_adjustment);
     get_string_adjustments(): array<string_adjustment>;
     string_adjustment_for_string_number(string_number: i32): string_adjustment;
+    is_activated(): bool;
+    set_activated(activated: bool);
     testDescription(): string;
 }
 
@@ -89,8 +91,8 @@ guitar = interface +c {
     reset_strings();
 
     # adjustments
-    is_adjustment_enabled(settingID: string): bool;
-    activate_adjustment(settingID: string, activated: bool);
+    is_adjustment_activated(adjustment_id: string): bool;
+    activate_adjustment(adjustment_id: string, activated: bool);
     set_adjustment(settingID: string, adjustment: guitar_adjustment);
     get_adjustment(settingID: string): guitar_adjustment;
 

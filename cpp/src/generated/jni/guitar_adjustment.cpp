@@ -70,6 +70,23 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1isActivated(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
+        auto r = ref->is_activated();
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1setActivated(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jboolean j_activated)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
+        ref->set_activated(::djinni::Bool::toCpp(jniEnv, j_activated));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+}
+
 CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1testDescription(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
