@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include <string>
 #include <vector>
 #include "guitar_adjustment.hpp"
@@ -55,14 +56,9 @@ public:
     }
 
     std::string testDescription() override {
-        std::string description;
-        description += "adjustmentID: ";
-        description += adjustment_id;
-        description += "\n";
-
+        std::string description = std::format("adjustmentID: {}\n", adjustment_id);
         for (const auto &adjustment: adjustments) {
-            description += adjustment->testDescription();
-            description += "\n";
+            description += std::format("{}\n", adjustment->testDescription());
         }
         return description;
     }

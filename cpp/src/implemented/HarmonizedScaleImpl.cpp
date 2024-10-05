@@ -6,6 +6,7 @@
 #include <harmonized_scale.hpp>
 #include <chord.hpp>
 #include <algorithm>
+#include <format>
 #include <note_value.hpp>
 #include <ostream>
 
@@ -34,8 +35,7 @@ public:
     std::string testDescription() override {
         std::string s;
         for (const auto &chord : chords) {
-            s += chord->testDescription();
-            s += "\n";
+            s += std::format("{}\n", chord->testDescription());
         }
         return s;
     }

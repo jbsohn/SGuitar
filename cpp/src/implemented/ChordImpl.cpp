@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include <vector>
 #include <string>
 #include "note.hpp"
@@ -33,7 +34,7 @@ public:
     std::string testDescription() override {
         std::string s;
         for (const NoteValue note: notes) {
-            s += Note::note_name_sharp_for_note(note);
+            s += std::format("{}", Note::note_name_flat_for_note(note));
         }
         return s;
     }

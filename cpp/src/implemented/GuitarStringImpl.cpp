@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include <memory>
 #include <vector>
 #include <string>
@@ -52,7 +53,7 @@ public:
     std::string testDescription() override {
         std::string s;
         for (const std::shared_ptr<Note> &note: notes) {
-            s += note->testDescription();
+            s += std::format("{}", note->testDescription());
         }
         return s;
     }

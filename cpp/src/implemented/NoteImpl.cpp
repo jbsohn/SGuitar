@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include <string>
 #include "note.hpp"
 #include "note_value.hpp"
@@ -38,7 +39,7 @@ public:
     }
 
     std::string testDescription() override {
-        return note_name_sharp();
+        return std::format("{}", note_name_sharp());
     }
 
     std::string note_name_sharp() override {

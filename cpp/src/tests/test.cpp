@@ -28,13 +28,6 @@ TEST_CASE("Testing the Note object") {
 
 }
 
-TEST_CASE("Testing the Scale object") {
-    const auto semitones = {2, 2, 1, 2, 2, 2};
-    const auto scale = Scale::create_with_root_note(NoteValue::C, semitones);
-    std::cout << "Scale: " << scale->testDescription() << std::endl;
-    CHECK(scale->testDescription() == "CDEFGAB");
-}
-
 TEST_CASE("Testing the Chord object") {
     const auto intervals = {0, 4, 7};
     const auto chord = Chord::create_with_root_note(NoteValue::C, intervals);

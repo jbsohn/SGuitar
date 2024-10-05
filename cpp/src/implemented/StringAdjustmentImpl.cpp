@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include <string>
 #include <memory>
 #include "string_adjustment.hpp"
@@ -33,12 +34,7 @@ public:
     }
 
     std::string testDescription() override {
-        std::string description;
-        description += "string_number: ";
-        description += std::to_string(string_number);
-        description += ", step: ";
-        description += std::to_string(step);
-        return description;
+        return std::format("string_number: {}, step={}", string_number, step);
     }
 };
 

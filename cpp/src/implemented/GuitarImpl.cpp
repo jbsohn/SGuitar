@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <fstream>
+#include <format>
 #include <vector>
 #include <map>
 #include "guitar_adjustment.hpp"
@@ -80,14 +80,8 @@ public:
 
     std::string testDescription() override {
         std::string description;
-
         for (int string_number = 1; string_number < strings.size(); string_number++) {
-            const auto string = strings[string_number];
-            description += "string ";
-            description += std::to_string(string_number);
-            description += ": ";
-            description += string->testDescription();
-            description += "\n";
+            description += std::format("string {}: {}\n", string_number, strings[string_number]->testDescription());
         }
         return description;
     }

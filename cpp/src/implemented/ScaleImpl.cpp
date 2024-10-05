@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include <vector>
 #include <string>
 #include "scale.hpp"
@@ -38,7 +39,7 @@ public:
     std::string testDescription() override {
         std::string s;
         for (const auto curNoteValue: notes) {
-            s += Note::note_name_sharp_for_note(curNoteValue);
+            s += std::format("{}", Note::note_name_flat_for_note(curNoteValue));
         }
         return s;
     }
