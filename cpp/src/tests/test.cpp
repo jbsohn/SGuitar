@@ -16,7 +16,7 @@
 #include "harmonized_scale.hpp"
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.h"
+#include <doctest/doctest.h>
 
 TEST_CASE("Testing the Note object") {
     const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);

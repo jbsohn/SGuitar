@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.29)
 project(SGuitar)
 
+find_package(doctest CONFIG REQUIRED)
+
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/generated/cpp")
@@ -18,6 +20,8 @@ add_executable(
         src/tests/TestScales.cpp
         src/tests/TestChords.cpp
 )
+target_link_libraries(SGuitarTest PRIVATE doctest::doctest)
+
 enable_testing()
 add_test(
         NAME SGuitarTest

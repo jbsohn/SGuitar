@@ -5,11 +5,7 @@
 #include <iostream>
 #include <chord.hpp>
 #include <note_value.hpp>
-#include "doctest.h"
-
-/*
-♭
- */
+#include <doctest/doctest.h>
 
 TEST_CASE("Testing Chord: Major") {
     const auto chord = Chord::create_with_root_note(NoteValue::C, {0, 4, 7});
