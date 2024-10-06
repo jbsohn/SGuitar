@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.29)
 project(SGuitar)
 
 find_package(doctest CONFIG REQUIRED)
+find_package(SQLiteCpp CONFIG REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -19,8 +20,10 @@ add_executable(
         src/tests/test.cpp
         src/tests/TestScales.cpp
         src/tests/TestChords.cpp
+        src/tests/TestDB.cpp
 )
 target_link_libraries(SGuitarTest PRIVATE doctest::doctest)
+target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
 
 enable_testing()
 add_test(
