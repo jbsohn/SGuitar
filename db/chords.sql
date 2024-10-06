@@ -1,0 +1,12 @@
+INSERT INTO chord ("name", "intervals") VALUES ("Major","0, 4, 7");
+INSERT INTO chord ("name", "intervals") VALUES ("Minor","0, 3, 7");
+INSERT INTO chord ("name", "intervals") VALUES ("Augmented","0, 4, 8");
+INSERT INTO chord ("name", "intervals") VALUES ("Diminished","0, 3, 6");
+INSERT INTO chord ("name", "intervals") VALUES ("Suspended Fourth","0, 5, 7");
+INSERT INTO chord ("name", "intervals") VALUES ("Suspended Second","0, 2, 7");
+INSERT INTO chord ("name", "intervals") VALUES ("Seventh","0, 4, 7, 10");
+INSERT INTO chord ("name", "intervals") VALUES ("Major Sixth","0, 4, 7, 9");
+INSERT INTO chord ("name", "intervals") VALUES ("Minor Sixth","0, 3, 7, 9");
+INSERT INTO chord ("name", "intervals") VALUES ("Major Seventh","0, 4, 7,11");
+INSERT INTO chord ("name", "intervals") VALUES ("Minor Seventh","0, 3, 7, 10");
+INSERT INTO chord ("name", "intervals") VALUES ("Ninth","0, 4, 7, 10, 2");
