@@ -1,4 +1,5 @@
 
+#include <format>
 #include <iostream>
 #include <doctest/doctest.h>
 #include <SQLiteCpp/SQLiteCpp.h>
