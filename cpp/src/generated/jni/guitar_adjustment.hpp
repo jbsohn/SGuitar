@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeGuitarAdjustment final : ::djinni::JniInterface<::GuitarAdjustment, NativeGuitarAdjustment> {
+class GuitarAdjustment final : ::djinni::JniInterface<::GuitarAdjustment, GuitarAdjustment> {
 public:
     using CppType = std::shared_ptr<::GuitarAdjustment>;
     using CppOptType = std::shared_ptr<::GuitarAdjustment>;
     using JniType = jobject;
 
-    using Boxed = NativeGuitarAdjustment;
+    using Boxed = GuitarAdjustment;
 
-    ~NativeGuitarAdjustment();
+    ~GuitarAdjustment();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeGuitarAdjustment>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeGuitarAdjustment>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<GuitarAdjustment>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<GuitarAdjustment>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeGuitarAdjustment();
-    friend ::djinni::JniClass<NativeGuitarAdjustment>;
-    friend ::djinni::JniInterface<::GuitarAdjustment, NativeGuitarAdjustment>;
+    GuitarAdjustment();
+    friend ::djinni::JniClass<GuitarAdjustment>;
+    friend ::djinni::JniInterface<::GuitarAdjustment, GuitarAdjustment>;
 
 };
 

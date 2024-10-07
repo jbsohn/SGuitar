@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeStringAdjustment final : ::djinni::JniInterface<::StringAdjustment, NativeStringAdjustment> {
+class StringAdjustment final : ::djinni::JniInterface<::StringAdjustment, StringAdjustment> {
 public:
     using CppType = std::shared_ptr<::StringAdjustment>;
     using CppOptType = std::shared_ptr<::StringAdjustment>;
     using JniType = jobject;
 
-    using Boxed = NativeStringAdjustment;
+    using Boxed = StringAdjustment;
 
-    ~NativeStringAdjustment();
+    ~StringAdjustment();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeStringAdjustment>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeStringAdjustment>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<StringAdjustment>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<StringAdjustment>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeStringAdjustment();
-    friend ::djinni::JniClass<NativeStringAdjustment>;
-    friend ::djinni::JniInterface<::StringAdjustment, NativeStringAdjustment>;
+    StringAdjustment();
+    friend ::djinni::JniClass<StringAdjustment>;
+    friend ::djinni::JniInterface<::StringAdjustment, StringAdjustment>;
 
 };
 

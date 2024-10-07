@@ -70,8 +70,8 @@ string_adjustment = interface +c {
 }
 
 guitar_adjustment = interface +c {
-    static create_with_adjustment_id(adjustment_id: string): guitar_adjustment;
-    get_adjustment_id(): string;
+    static create_with_adjustment_name(adjustment_name: string): guitar_adjustment;
+    get_adjustment_name(): string;
     clear_adjustments();
     add_string_adjustment(adjustment: string_adjustment);
     get_string_adjustments(): array<string_adjustment>;

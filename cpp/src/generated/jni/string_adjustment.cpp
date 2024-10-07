@@ -6,9 +6,9 @@
 
 namespace djinni_generated {
 
-NativeStringAdjustment::NativeStringAdjustment() : ::djinni::JniInterface<::StringAdjustment, NativeStringAdjustment>("com/steelsidekick/sguitar/StringAdjustment$CppProxy") {}
+StringAdjustment::StringAdjustment() : ::djinni::JniInterface<::StringAdjustment, StringAdjustment>("com/steelsidekick/sguitar/StringAdjustment$CppProxy") {}
 
-NativeStringAdjustment::~NativeStringAdjustment() = default;
+StringAdjustment::~StringAdjustment() = default;
 
 
 CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_StringAdjustment_00024CppProxy_nativeDestroy(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
@@ -23,7 +23,7 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_StringAdjustment_creat
     try {
         auto r = ::StringAdjustment::create_with_string_number(::djinni::I32::toCpp(jniEnv, j_stringNumber),
                                                                ::djinni::I32::toCpp(jniEnv, j_step));
-        return ::djinni::release(::djinni_generated::NativeStringAdjustment::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::StringAdjustment::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

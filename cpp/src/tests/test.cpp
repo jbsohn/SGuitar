@@ -55,7 +55,7 @@ TEST_CASE("Testing the StringAdjustment object") {
 
 TEST_CASE("Testing the GuitarAdjustment object") {
     const auto adjustment1 = StringAdjustment::create_with_string_number(1, 1);
-    const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
+    const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_name("LKL");
     guitarAdjustment->add_string_adjustment(adjustment1);
     std::cout << "guitarAdjustment: " << guitarAdjustment->testDescription() << std::endl;
 }
@@ -82,7 +82,7 @@ TEST_CASE("Testing the Guitar object") {
         std::cout << string->testDescription() << std::endl;
     }
 
-    const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_id("LKL");
+    const auto guitarAdjustment = GuitarAdjustment::create_with_adjustment_name("LKL");
     const auto stringAdjustment =  StringAdjustment::create_with_string_number(1, 1);
     guitarAdjustment->add_string_adjustment(stringAdjustment);
     guitar->set_adjustment("LKL", guitarAdjustment);

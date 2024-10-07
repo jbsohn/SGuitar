@@ -8,19 +8,19 @@
 
 namespace djinni_generated {
 
-class NativeAccidentalType final : ::djinni::JniEnum {
+class AccidentalType final : ::djinni::JniEnum {
 public:
     using CppType = ::AccidentalType;
     using JniType = jobject;
 
-    using Boxed = NativeAccidentalType;
+    using Boxed = AccidentalType;
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return static_cast<CppType>(::djinni::JniClass<NativeAccidentalType>::get().ordinal(jniEnv, j)); }
-    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, CppType c) { return ::djinni::JniClass<NativeAccidentalType>::get().create(jniEnv, static_cast<jint>(c)); }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return static_cast<CppType>(::djinni::JniClass<AccidentalType>::get().ordinal(jniEnv, j)); }
+    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, CppType c) { return ::djinni::JniClass<AccidentalType>::get().create(jniEnv, static_cast<jint>(c)); }
 
 private:
-    NativeAccidentalType() : JniEnum("com/steelsidekick/sguitar/AccidentalType") {}
-    friend ::djinni::JniClass<NativeAccidentalType>;
+    AccidentalType() : JniEnum("com/steelsidekick/sguitar/AccidentalType") {}
+    friend ::djinni::JniClass<AccidentalType>;
 };
 
 } // namespace djinni_generated

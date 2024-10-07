@@ -7,9 +7,9 @@
 
 namespace djinni_generated {
 
-NativeHarmonizedScale::NativeHarmonizedScale() : ::djinni::JniInterface<::HarmonizedScale, NativeHarmonizedScale>("com/steelsidekick/sguitar/HarmonizedScale$CppProxy") {}
+HarmonizedScale::HarmonizedScale() : ::djinni::JniInterface<::HarmonizedScale, HarmonizedScale>("com/steelsidekick/sguitar/HarmonizedScale$CppProxy") {}
 
-NativeHarmonizedScale::~NativeHarmonizedScale() = default;
+HarmonizedScale::~HarmonizedScale() = default;
 
 
 CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_HarmonizedScale_00024CppProxy_nativeDestroy(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
@@ -22,9 +22,9 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_HarmonizedScale_00024CppP
 CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_HarmonizedScale_createHarmonizedScaleWithRootNote(JNIEnv* jniEnv, jobject /*this*/, jobject j_rootNote, jobject j_semitones)
 {
     try {
-        auto r = ::HarmonizedScale::create_harmonized_scale_with_root_note(::djinni_generated::NativeNoteValue::toCpp(jniEnv, j_rootNote),
+        auto r = ::HarmonizedScale::create_harmonized_scale_with_root_note(::djinni_generated::NoteValue::toCpp(jniEnv, j_rootNote),
                                                                            ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, j_semitones));
-        return ::djinni::release(::djinni_generated::NativeHarmonizedScale::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::HarmonizedScale::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

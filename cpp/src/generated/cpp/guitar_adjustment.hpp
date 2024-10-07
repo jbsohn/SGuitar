@@ -14,9 +14,9 @@ class GuitarAdjustment {
 public:
     virtual ~GuitarAdjustment() = default;
 
-    static /*not-null*/ std::shared_ptr<GuitarAdjustment> create_with_adjustment_id(const std::string & adjustment_id);
+    static /*not-null*/ std::shared_ptr<GuitarAdjustment> create_with_adjustment_name(const std::string & adjustment_name);
 
-    virtual std::string get_adjustment_id() = 0;
+    virtual std::string get_adjustment_name() = 0;
 
     virtual void clear_adjustments() = 0;
 

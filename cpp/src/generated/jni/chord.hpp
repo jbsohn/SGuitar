@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeChord final : ::djinni::JniInterface<::Chord, NativeChord> {
+class Chord final : ::djinni::JniInterface<::Chord, Chord> {
 public:
     using CppType = std::shared_ptr<::Chord>;
     using CppOptType = std::shared_ptr<::Chord>;
     using JniType = jobject;
 
-    using Boxed = NativeChord;
+    using Boxed = Chord;
 
-    ~NativeChord();
+    ~Chord();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeChord>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeChord>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<Chord>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<Chord>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeChord();
-    friend ::djinni::JniClass<NativeChord>;
-    friend ::djinni::JniInterface<::Chord, NativeChord>;
+    Chord();
+    friend ::djinni::JniClass<Chord>;
+    friend ::djinni::JniInterface<::Chord, Chord>;
 
 };
 

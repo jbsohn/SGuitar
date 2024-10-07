@@ -5,6 +5,6 @@ djinni/src/run \
     --objc-out src/generated/objc \
     --objcpp-out src/generated/objc-out \
     --java-package com.steelsidekick.sguitar \
-    --ident-jni-class NativeFooBar \
+    --ident-jni-class NativeSGuitar \
     --objc-type-prefix SG \
     --idl ./idl/sguitar.djinni

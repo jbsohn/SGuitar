@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeHarmonizedScale final : ::djinni::JniInterface<::HarmonizedScale, NativeHarmonizedScale> {
+class HarmonizedScale final : ::djinni::JniInterface<::HarmonizedScale, HarmonizedScale> {
 public:
     using CppType = std::shared_ptr<::HarmonizedScale>;
     using CppOptType = std::shared_ptr<::HarmonizedScale>;
     using JniType = jobject;
 
-    using Boxed = NativeHarmonizedScale;
+    using Boxed = HarmonizedScale;
 
-    ~NativeHarmonizedScale();
+    ~HarmonizedScale();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeHarmonizedScale>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeHarmonizedScale>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<HarmonizedScale>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<HarmonizedScale>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeHarmonizedScale();
-    friend ::djinni::JniClass<NativeHarmonizedScale>;
-    friend ::djinni::JniInterface<::HarmonizedScale, NativeHarmonizedScale>;
+    HarmonizedScale();
+    friend ::djinni::JniClass<HarmonizedScale>;
+    friend ::djinni::JniInterface<::HarmonizedScale, HarmonizedScale>;
 
 };
 

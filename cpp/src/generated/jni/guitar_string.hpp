@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeGuitarString final : ::djinni::JniInterface<::GuitarString, NativeGuitarString> {
+class GuitarString final : ::djinni::JniInterface<::GuitarString, GuitarString> {
 public:
     using CppType = std::shared_ptr<::GuitarString>;
     using CppOptType = std::shared_ptr<::GuitarString>;
     using JniType = jobject;
 
-    using Boxed = NativeGuitarString;
+    using Boxed = GuitarString;
 
-    ~NativeGuitarString();
+    ~GuitarString();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeGuitarString>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeGuitarString>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<GuitarString>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<GuitarString>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeGuitarString();
-    friend ::djinni::JniClass<NativeGuitarString>;
-    friend ::djinni::JniInterface<::GuitarString, NativeGuitarString>;
+    GuitarString();
+    friend ::djinni::JniClass<GuitarString>;
+    friend ::djinni::JniInterface<::GuitarString, GuitarString>;
 
 };
 

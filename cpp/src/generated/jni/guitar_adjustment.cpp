@@ -7,9 +7,9 @@
 
 namespace djinni_generated {
 
-NativeGuitarAdjustment::NativeGuitarAdjustment() : ::djinni::JniInterface<::GuitarAdjustment, NativeGuitarAdjustment>("com/steelsidekick/sguitar/GuitarAdjustment$CppProxy") {}
+GuitarAdjustment::GuitarAdjustment() : ::djinni::JniInterface<::GuitarAdjustment, GuitarAdjustment>("com/steelsidekick/sguitar/GuitarAdjustment$CppProxy") {}
 
-NativeGuitarAdjustment::~NativeGuitarAdjustment() = default;
+GuitarAdjustment::~GuitarAdjustment() = default;
 
 
 CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_nativeDestroy(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
@@ -19,19 +19,19 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024Cpp
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_createWithAdjustmentId(JNIEnv* jniEnv, jobject /*this*/, jstring j_adjustmentId)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_createWithAdjustmentName(JNIEnv* jniEnv, jobject /*this*/, jstring j_adjustmentName)
 {
     try {
-        auto r = ::GuitarAdjustment::create_with_adjustment_id(::djinni::String::toCpp(jniEnv, j_adjustmentId));
-        return ::djinni::release(::djinni_generated::NativeGuitarAdjustment::fromCpp(jniEnv, r));
+        auto r = ::GuitarAdjustment::create_with_adjustment_name(::djinni::String::toCpp(jniEnv, j_adjustmentName));
+        return ::djinni::release(::djinni_generated::GuitarAdjustment::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1getAdjustmentId(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1getAdjustmentName(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
-        auto r = ref->get_adjustment_id();
+        auto r = ref->get_adjustment_name();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -48,7 +48,7 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024Cpp
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
-        ref->add_string_adjustment(::djinni_generated::NativeStringAdjustment::toCpp(jniEnv, j_adjustment));
+        ref->add_string_adjustment(::djinni_generated::StringAdjustment::toCpp(jniEnv, j_adjustment));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
@@ -57,7 +57,7 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
         auto r = ref->get_string_adjustments();
-        return ::djinni::release(::djinni::Array<::djinni_generated::NativeStringAdjustment, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t'>>::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::Array<::djinni_generated::StringAdjustment, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t'>>::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
@@ -66,7 +66,7 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
         auto r = ref->string_adjustment_for_string_number(::djinni::I32::toCpp(jniEnv, j_stringNumber));
-        return ::djinni::release(::djinni_generated::NativeStringAdjustment::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni_generated::StringAdjustment::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

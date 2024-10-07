@@ -8,19 +8,19 @@
 
 namespace djinni_generated {
 
-class NativeNoteValue final : ::djinni::JniEnum {
+class NoteValue final : ::djinni::JniEnum {
 public:
     using CppType = ::NoteValue;
     using JniType = jobject;
 
-    using Boxed = NativeNoteValue;
+    using Boxed = NoteValue;
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return static_cast<CppType>(::djinni::JniClass<NativeNoteValue>::get().ordinal(jniEnv, j)); }
-    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, CppType c) { return ::djinni::JniClass<NativeNoteValue>::get().create(jniEnv, static_cast<jint>(c)); }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return static_cast<CppType>(::djinni::JniClass<NoteValue>::get().ordinal(jniEnv, j)); }
+    static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, CppType c) { return ::djinni::JniClass<NoteValue>::get().create(jniEnv, static_cast<jint>(c)); }
 
 private:
-    NativeNoteValue() : JniEnum("com/steelsidekick/sguitar/NoteValue") {}
-    friend ::djinni::JniClass<NativeNoteValue>;
+    NoteValue() : JniEnum("com/steelsidekick/sguitar/NoteValue") {}
+    friend ::djinni::JniClass<NoteValue>;
 };
 
 } // namespace djinni_generated

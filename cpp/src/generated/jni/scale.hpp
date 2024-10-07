@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeScale final : ::djinni::JniInterface<::Scale, NativeScale> {
+class Scale final : ::djinni::JniInterface<::Scale, Scale> {
 public:
     using CppType = std::shared_ptr<::Scale>;
     using CppOptType = std::shared_ptr<::Scale>;
     using JniType = jobject;
 
-    using Boxed = NativeScale;
+    using Boxed = Scale;
 
-    ~NativeScale();
+    ~Scale();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeScale>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeScale>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<Scale>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<Scale>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeScale();
-    friend ::djinni::JniClass<NativeScale>;
-    friend ::djinni::JniInterface<::Scale, NativeScale>;
+    Scale();
+    friend ::djinni::JniClass<Scale>;
+    friend ::djinni::JniInterface<::Scale, Scale>;
 
 };
 

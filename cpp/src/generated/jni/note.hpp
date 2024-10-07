@@ -8,24 +8,24 @@
 
 namespace djinni_generated {
 
-class NativeNote final : ::djinni::JniInterface<::Note, NativeNote> {
+class Note final : ::djinni::JniInterface<::Note, Note> {
 public:
     using CppType = std::shared_ptr<::Note>;
     using CppOptType = std::shared_ptr<::Note>;
     using JniType = jobject;
 
-    using Boxed = NativeNote;
+    using Boxed = Note;
 
-    ~NativeNote();
+    ~Note();
 
-    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<NativeNote>::get()._fromJava(jniEnv, j); }
-    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<NativeNote>::get()._toJava(jniEnv, c)}; }
+    static CppType toCpp(JNIEnv* jniEnv, JniType j) { return ::djinni::JniClass<Note>::get()._fromJava(jniEnv, j); }
+    static ::djinni::LocalRef<JniType> fromCppOpt(JNIEnv* jniEnv, const CppOptType& c) { return {jniEnv, ::djinni::JniClass<Note>::get()._toJava(jniEnv, c)}; }
     static ::djinni::LocalRef<JniType> fromCpp(JNIEnv* jniEnv, const CppType& c) { return fromCppOpt(jniEnv, c); }
 
 private:
-    NativeNote();
-    friend ::djinni::JniClass<NativeNote>;
-    friend ::djinni::JniInterface<::Note, NativeNote>;
+    Note();
+    friend ::djinni::JniClass<Note>;
+    friend ::djinni::JniInterface<::Note, Note>;
 
 };
 
