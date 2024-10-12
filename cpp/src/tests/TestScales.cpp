@@ -3,9 +3,9 @@
 //
 
 #include <iostream>
-#include <note_value.hpp>
-#include <scale.hpp>
 #include <doctest/doctest.h>
+#include "note_value.hpp"
+#include "scale.hpp"
 
 TEST_CASE("Testing Scale: C Major") {
     const auto scale = Scale::create_with_root_note(NoteValue::C,  {2, 2, 1, 2, 2, 2});

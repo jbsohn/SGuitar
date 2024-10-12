@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <format>
 #include <note_value.hpp>
-#include <ostream>
 
 class ChordImpl;
 
@@ -30,6 +29,10 @@ public:
 
         std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 4, notes.begin());
         chords.push_back(Chord::create_with_notes(notes));
+    }
+
+    std::vector<std::shared_ptr<Chord>> get_chords() {
+        return chords;
     }
 
     std::string testDescription() override {

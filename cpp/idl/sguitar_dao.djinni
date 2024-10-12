@@ -1,0 +1,46 @@
+
+scale_record = record {
+    id: i32;
+    name: string;
+    intervals: array<i32>;
+}
+
+chord_record = record {
+    id: i32;
+    name: string;
+    semitones: array<i32>;
+}
+
+guitar_record = record {
+    id: i32;
+    name: string;
+    number_of_frets: i32;
+}
+
+sguitar_DB = interface + c {
+    static create_sguitar_database(path: string): sguitar_DB;
+}
+
+scale_DAO = interface +c {
+    static create_scale_db(database: sguitar_DB): scale_DAO;
+    get_scales(): array<scale_record>;
+    add_scale(scale: scale_record);
+    update_scale(id: i32, scale: scale_record);
+    delete_scale(id: i32);
+}
+
+chord_DAO = interface +c {
+    static create_chord_db(database: sguitar_DB): chord_DAO;
+    get_chords(): array<chord_record>;
+    add_chord(chord: chord_record);
+    update_chord(id: i32, chord: chord_record);
+    delete_chord(id: i32);
+}
+
+guitar_DAO = interface +c {
+    static create_guitar_db(database: sguitar_DB): guitar_DAO;
+    get_guitars(): array<guitar_record>;
+    add_guitar(guitar: guitar_record);
+    update_guitar(id: i32, guitar: guitar_record);
+    delete_guitar(id: i32);
+}

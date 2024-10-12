@@ -3,6 +3,9 @@
 #include <iostream>
 #include <doctest/doctest.h>
 #include <SQLiteCpp/SQLiteCpp.h>
+#include "sguitar_DB.hpp"
+#include "scale_DAO.hpp"
+#include "scale_record.hpp"
 
 TEST_CASE("Testing DB: SELECT") {
     const SQLite::Database db("../../db/main.sqlite3");
@@ -25,3 +28,10 @@ TEST_CASE("Testing DB: SELECT") {
             queryChord.getColumn(2).getString());
     }
 }
+
+TEST_CASE("Testing ScaleDAO") {
+    const auto database = SguitarDB::create_sguitar_database("../../db/main.sqlite3");
+    const auto scale = ScaleDAO::create_scale_db(database);
+    scale->get_scales();
+}
+

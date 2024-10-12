@@ -21,6 +21,8 @@ add_executable(
         src/tests/TestScales.cpp
         src/tests/TestChords.cpp
         src/tests/TestDB.cpp
+        src/implemented/SGuitarDBImpl.cpp
+        src/implemented/ScaleDAO.cpp
 )
 target_link_libraries(SGuitarTest PRIVATE doctest::doctest)
 target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
