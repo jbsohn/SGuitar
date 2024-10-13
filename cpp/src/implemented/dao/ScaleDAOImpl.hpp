@@ -18,9 +18,9 @@ public:
 
     std::vector<ScaleRecord> get_scales() override;
 
-    void add_scale(const ScaleRecord &scale) override;
+    int32_t add_scale(const ScaleRecord &scale) override;
 
-    void update_scale(int32_t id, const ScaleRecord &scale) override;
+    void update_scale(const ScaleRecord &scale) override;
 
     void delete_scale(int32_t id) override;
 };

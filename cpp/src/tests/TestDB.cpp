@@ -3,7 +3,7 @@
 #include <iostream>
 #include <doctest/doctest.h>
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "sguitar_DB.hpp"
+#include "sguitar_DAO.hpp"
 #include "scale_DAO.hpp"
 #include "scale_record.hpp"
 
@@ -29,9 +29,18 @@ TEST_CASE("Testing DB: SELECT") {
     }
 }
 
-TEST_CASE("Testing ScaleDAO") {
-    const auto database = SguitarDB::create_sguitar_database("../../db/main.sqlite3");
-    const auto scale = ScaleDAO::create_scale_db(database);
-    scale->get_scales();
+TEST_CASE("Testing ScaleDAO get") {
+    const auto database = SguitarDAO::create_sguitar_dao("../../db/main.sqlite3");
+    const auto scale = ScaleDAO::create_scale_dao(database);
+    auto scales = scale->get_scales();
+    CHECK(scales.size() > 0);
 }
 
+TEST_CASE("Testing ScaleDAO add/delete") {
+    const auto database = SguitarDAO::create_sguitar_dao("../../db/main.sqlite3");
+    const auto scale = ScaleDAO::create_scale_dao(database);
+    std::vector semitones = { 0, 1, 2};
+    auto id = scale->add_scale(ScaleRecord(0, "test", semitones));
+    CHECK(id > 0);
+    scale->delete_scale(id);
+}

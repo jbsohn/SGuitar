@@ -3,6 +3,7 @@ project(SGuitar)
 
 find_package(doctest CONFIG REQUIRED)
 find_package(SQLiteCpp CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -17,7 +18,7 @@ add_executable(
         src/implemented/objects/NoteImpl.cpp
         src/implemented/objects/ScaleImpl.cpp
         src/implemented/objects/StringAdjustmentImpl.cpp
-        src/implemented/dao/SGuitarDBImpl.cpp
+        src/implemented/dao/SGuitarDAOImpl.cpp
         src/implemented/dao/ScaleDAOImpl.cpp
         src/tests/test.cpp
         src/tests/TestScales.cpp
@@ -25,8 +26,10 @@ add_executable(
         src/tests/TestDB.cpp
 
 )
+
 target_link_libraries(SGuitarTest PRIVATE doctest::doctest)
 target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
+target_link_libraries(SGuitarTest PRIVATE nlohmann_json::nlohmann_json)
 
 enable_testing()
 add_test(

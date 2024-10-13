@@ -6,13 +6,13 @@
 #define SGUITARDBIMPL_H
 
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "sguitar_DB.hpp"
+#include "sguitar_DAO.hpp"
 
-class SGuitarDBImpl final : public SguitarDB {
+class SGuitarDAOImpl final : public SguitarDAO {
     SQLite::Database database;
 
 public:
-    explicit SGuitarDBImpl(const std::string &path): database(path) {
+    explicit SGuitarDAOImpl(const std::string &path): database(path, SQLite::OPEN_READWRITE) {
     }
 
     SQLite::Database &getDatabase() { return database; }
