@@ -3,9 +3,8 @@
 //
 
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "sguitar_DB.hpp"
-#include "SGuitarDBImpl.h"
+#include "SGuitarDBImpl.hpp"
 
-std::shared_ptr<SguitarDB> SguitarDB::create_sguitar_database(const std::string& path) {
+std::shared_ptr<SguitarDB> SguitarDB::create_sguitar_database(const std::string &path) {
     return std::make_shared<SGuitarDBImpl>(path);
 }

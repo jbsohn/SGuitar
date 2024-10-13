@@ -2,48 +2,35 @@
 // Created by John on 9/29/24.
 //
 
-#include <scale.hpp>
-#include <harmonized_scale.hpp>
-#include <chord.hpp>
-#include <algorithm>
 #include <format>
-#include <note_value.hpp>
+#include "HarmonizedScaleImpl.hpp"
+#include "scale.hpp"
 
-class ChordImpl;
+HarmonizedScaleImpl::HarmonizedScaleImpl(const NoteValue root_note, const std::vector<int> &semitones) {
+    // https://www.bluesguitarinstitute.com/how-to-harmonize-a-scale/
+    auto scaleNotes = Scale::create_with_root_note(root_note, semitones)->get_notes();
 
-class HarmonizedScaleImpl final : public HarmonizedScale {
-    std::vector<std::shared_ptr<Chord>> chords = std::vector<std::shared_ptr<Chord>>();
+    std::vector<NoteValue> notes(scaleNotes.size());
 
-public:
-    HarmonizedScaleImpl(const NoteValue root_note, const std::vector<int> &semitones) {
-        // https://www.bluesguitarinstitute.com/how-to-harmonize-a-scale/
-        auto scaleNotes = Scale::create_with_root_note(root_note, semitones)->get_notes();
+    std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 0, notes.begin());
+    chords.push_back(Chord::create_with_notes(notes));
 
-        std::vector<NoteValue> notes(scaleNotes.size());
+    std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 2, notes.begin());
+    chords.push_back(Chord::create_with_notes(notes));
 
-        std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 0, notes.begin());
-        chords.push_back(Chord::create_with_notes(notes));
+    std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 4, notes.begin());
+    chords.push_back(Chord::create_with_notes(notes));
+}
 
-        std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 2, notes.begin());
-        chords.push_back(Chord::create_with_notes(notes));
-
-        std::ranges::rotate_copy(scaleNotes, scaleNotes.begin() + 4, notes.begin());
-        chords.push_back(Chord::create_with_notes(notes));
+std::string HarmonizedScaleImpl::testDescription() {
+    std::string s;
+    for (const auto &chord: chords) {
+        s += std::format("{}\n", chord->testDescription());
     }
+    return s;
+}
 
-    std::vector<std::shared_ptr<Chord>> get_chords() {
-        return chords;
-    }
-
-    std::string testDescription() override {
-        std::string s;
-        for (const auto &chord : chords) {
-            s += std::format("{}\n", chord->testDescription());
-        }
-        return s;
-    }
-};
-
-std::shared_ptr<HarmonizedScale> HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue root_note, const std::vector<int32_t> & semitones) {
+std::shared_ptr<HarmonizedScale> HarmonizedScale::create_harmonized_scale_with_root_note(
+    NoteValue root_note, const std::vector<int32_t> &semitones) {
     return std::make_shared<HarmonizedScaleImpl>(root_note, semitones);
 }

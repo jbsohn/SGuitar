@@ -5,11 +5,16 @@
 #ifndef SGUITARDBIMPL_H
 #define SGUITARDBIMPL_H
 
+#include "sguitar_DB.hpp"
+
 class SGuitarDBImpl final : public SguitarDB {
     SQLite::Database database;
+
 public:
-    explicit SGuitarDBImpl(const std::string& path): database(path) { }
-    SQLite::Database& getDatabase() { return database; }
+    explicit SGuitarDBImpl(const std::string &path): database(path) {
+    }
+
+    SQLite::Database &getDatabase() { return database; }
 };
 
 #endif //SGUITARDBIMPL_H
