@@ -11,10 +11,33 @@ chord_record = record {
     intervals: array<i32>;
 }
 
+guitar_string_record = record {
+    id: i32;
+    guitar_id: i32;
+    string_number: i32;
+    start_note: string;
+}
+
+guitar_string_adjustment_record = record {
+    id: i32;
+    guitar_adjustment_id: i32;
+    string_number: i32;
+    step: i32;
+}
+
+guitar_adjustment_record = record {
+    id: i32;
+    guitar_id: i32;
+    name: string;
+    guitar_string_adjustments: array<guitar_string_adjustment_record>;
+}
+
 guitar_record = record {
     id: i32;
     name: string;
     number_of_frets: i32;
+    guitar_strings: array<guitar_string_record>;
+    guitar_adjustments: array<guitar_adjustment_record>;
 }
 
 sguitar_DAO = interface + c {

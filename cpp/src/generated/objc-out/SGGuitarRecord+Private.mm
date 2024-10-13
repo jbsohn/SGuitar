@@ -4,6 +4,8 @@
 #ifdef __cplusplus
 #import "SGGuitarRecord+Private.h"
 #import "DJIMarshal+Private.h"
+#import "SGGuitarAdjustmentRecord+Private.h"
+#import "SGGuitarStringRecord+Private.h"
 #include <cassert>
 
 namespace djinni_generated {
@@ -13,14 +15,18 @@ auto GuitarRecord::toCpp(ObjcType obj) -> CppType
     assert(obj);
     return {::djinni::I32::toCpp(obj.id),
             ::djinni::String::toCpp(obj.name),
-            ::djinni::I32::toCpp(obj.numberOfFrets)};
+            ::djinni::I32::toCpp(obj.numberOfFrets),
+            ::djinni::Array<::djinni_generated::GuitarStringRecord>::toCpp(obj.guitarStrings),
+            ::djinni::Array<::djinni_generated::GuitarAdjustmentRecord>::toCpp(obj.guitarAdjustments)};
 }
 
 auto GuitarRecord::fromCpp(const CppType& cpp) -> ObjcType
 {
     return [[SGGuitarRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
                                          name:(::djinni::String::fromCpp(cpp.name))
-                                numberOfFrets:(::djinni::I32::fromCpp(cpp.number_of_frets))];
+                                numberOfFrets:(::djinni::I32::fromCpp(cpp.number_of_frets))
+                                guitarStrings:(::djinni::Array<::djinni_generated::GuitarStringRecord>::fromCpp(cpp.guitar_strings))
+                            guitarAdjustments:(::djinni::Array<::djinni_generated::GuitarAdjustmentRecord>::fromCpp(cpp.guitar_adjustments))];
 }
 
 } // namespace djinni_generated

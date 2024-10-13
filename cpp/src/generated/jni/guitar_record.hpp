@@ -25,10 +25,12 @@ private:
     friend ::djinni::JniClass<GuitarRecord>;
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("com/steelsidekick/sguitar/GuitarRecord") };
-    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(ILjava/lang/String;I)V") };
+    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(ILjava/lang/String;I[Lcom/steelsidekick/sguitar/GuitarStringRecord;[Lcom/steelsidekick/sguitar/GuitarAdjustmentRecord;)V") };
     const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "I") };
     const jfieldID field_name { ::djinni::jniGetFieldID(clazz.get(), "name", "Ljava/lang/String;") };
     const jfieldID field_numberOfFrets { ::djinni::jniGetFieldID(clazz.get(), "numberOfFrets", "I") };
+    const jfieldID field_guitarStrings { ::djinni::jniGetFieldID(clazz.get(), "guitarStrings", "[Lcom/steelsidekick/sguitar/GuitarStringRecord;") };
+    const jfieldID field_guitarAdjustments { ::djinni::jniGetFieldID(clazz.get(), "guitarAdjustments", "[Lcom/steelsidekick/sguitar/GuitarAdjustmentRecord;") };
 };
 
 } // namespace djinni_generated

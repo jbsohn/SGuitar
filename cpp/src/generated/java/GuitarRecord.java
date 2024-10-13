@@ -12,13 +12,21 @@ public final class GuitarRecord {
 
     /*package*/ int numberOfFrets;
 
+    /*package*/ GuitarStringRecord[] guitarStrings;
+
+    /*package*/ GuitarAdjustmentRecord[] guitarAdjustments;
+
     public GuitarRecord(
             int id,
             String name,
-            int numberOfFrets) {
+            int numberOfFrets,
+            GuitarStringRecord[] guitarStrings,
+            GuitarAdjustmentRecord[] guitarAdjustments) {
         this.id = id;
         this.name = name;
         this.numberOfFrets = numberOfFrets;
+        this.guitarStrings = guitarStrings;
+        this.guitarAdjustments = guitarAdjustments;
     }
 
     public int getId() {
@@ -45,12 +53,30 @@ public final class GuitarRecord {
         this.numberOfFrets = numberOfFrets;
     }
 
+    public GuitarStringRecord[] getGuitarStrings() {
+        return guitarStrings;
+    }
+
+    public void setGuitarStrings(GuitarStringRecord[] guitarStrings) {
+        this.guitarStrings = guitarStrings;
+    }
+
+    public GuitarAdjustmentRecord[] getGuitarAdjustments() {
+        return guitarAdjustments;
+    }
+
+    public void setGuitarAdjustments(GuitarAdjustmentRecord[] guitarAdjustments) {
+        this.guitarAdjustments = guitarAdjustments;
+    }
+
     @Override
     public String toString() {
         return "GuitarRecord{" +
                 "id=" + id +
                 "," + "name=" + name +
                 "," + "numberOfFrets=" + numberOfFrets +
+                "," + "guitarStrings=" + guitarStrings +
+                "," + "guitarAdjustments=" + guitarAdjustments +
         "}";
     }
 

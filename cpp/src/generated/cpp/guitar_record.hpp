@@ -3,20 +3,29 @@
 
 #pragma once
 
+#include "guitar_adjustment_record.hpp"
+#include "guitar_string_record.hpp"
 #include <cstdint>
 #include <string>
 #include <utility>
+#include <vector>
 
 struct GuitarRecord final {
     int32_t id;
     std::string name;
     int32_t number_of_frets;
+    std::vector<GuitarStringRecord> guitar_strings;
+    std::vector<GuitarAdjustmentRecord> guitar_adjustments;
 
     GuitarRecord(int32_t id_,
                  std::string name_,
-                 int32_t number_of_frets_)
+                 int32_t number_of_frets_,
+                 std::vector<GuitarStringRecord> guitar_strings_,
+                 std::vector<GuitarAdjustmentRecord> guitar_adjustments_)
     : id(std::move(id_))
     , name(std::move(name_))
     , number_of_frets(std::move(number_of_frets_))
+    , guitar_strings(std::move(guitar_strings_))
+    , guitar_adjustments(std::move(guitar_adjustments_))
     {}
 };
