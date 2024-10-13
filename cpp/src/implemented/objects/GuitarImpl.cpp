@@ -13,6 +13,7 @@
 #include "GuitarImpl.hpp"
 
 void GuitarImpl::reset_guitar(const std::vector<std::shared_ptr<Note> > &notes, const int32_t number_of_frets) {
+    adjustments.clear();
     strings.clear();
     strings.push_back(GuitarString::create()); // "empty" string at index 0
 
@@ -42,7 +43,7 @@ bool GuitarImpl::is_adjustment_activated(const std::string &adjustment_id) {
     return false;
 }
 
-void GuitarImpl::activate_adjustment(const std::string &adjustment_id, bool activated) {
+void GuitarImpl::activate_adjustment(const std::string &adjustment_id, const bool activated) {
     if (const auto adjustment = adjustments[adjustment_id]; adjustment != nullptr) {
         for (const auto string_adjustments = adjustment->get_string_adjustments();
              const auto &stringAdjustment: string_adjustments) {

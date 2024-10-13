@@ -11,7 +11,7 @@
 class GuitarAdjustmentImpl final : public GuitarAdjustment {
     std::string adjustment_name;
     std::vector<std::shared_ptr<StringAdjustment> > adjustments;
-    bool activated = false;
+    bool adjustment_activated = false;
 
 public:
     explicit GuitarAdjustmentImpl(const std::string &adjustment_name) {
@@ -34,14 +34,14 @@ public:
         return adjustments;
     }
 
-    std::shared_ptr<StringAdjustment> string_adjustment_for_string_number(const int32_t string_number) override;
+    std::shared_ptr<StringAdjustment> string_adjustment_for_string_number(int32_t string_number) override;
 
     bool is_activated() override {
-        return activated;
+        return adjustment_activated;
     }
 
     void set_activated(const bool activated) override {
-        this->activated = activated;
+        adjustment_activated = activated;
     }
 
     std::string testDescription() override;

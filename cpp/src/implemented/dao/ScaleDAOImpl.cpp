@@ -2,7 +2,6 @@
 // Created by john on 10/12/24.
 //
 
-#include <SQLiteCpp/SQLiteCpp.h>
 #include "ScaleDAOImpl.hpp"
 #include "SGuitarDBImpl.hpp"
 

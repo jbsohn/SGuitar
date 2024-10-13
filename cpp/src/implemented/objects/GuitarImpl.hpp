@@ -17,7 +17,7 @@ class GuitarImpl final : public Guitar {
 public:
     GuitarImpl() = default;
 
-    void reset_guitar(const std::vector<std::shared_ptr<Note> > &notes, const int32_t number_of_frets) override;
+    void reset_guitar(const std::vector<std::shared_ptr<Note> > &notes, int32_t number_of_frets) override;
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString> > get_strings() override;

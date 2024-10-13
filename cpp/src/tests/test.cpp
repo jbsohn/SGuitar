@@ -93,7 +93,7 @@ TEST_CASE("Testing the Guitar object") {
 }
 
 TEST_CASE("Testing harmonized scales") {
-    auto scale  = HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue::C,
+    const auto scale  = HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue::C,
         {2, 2, 1, 2, 2, 2});
     std::cout << scale->testDescription() << std::endl;
 }
