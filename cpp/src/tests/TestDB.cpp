@@ -6,9 +6,11 @@
 #include "sguitar_DAO.hpp"
 #include "scale_DAO.hpp"
 #include "scale_record.hpp"
+#include "chord_DAO.hpp"
+#include "chord_record.hpp"
 
 TEST_CASE("Testing DB: SELECT") {
-    const SQLite::Database db("../../db/main.sqlite3");
+    const SQLite::Database db("../src/tests/test.sqlite3");
 
     std::cout << "SELECT Scales..." << std::endl;
     SQLite::Statement queryScale(db, "SELECT * FROM scale");
@@ -30,17 +32,26 @@ TEST_CASE("Testing DB: SELECT") {
 }
 
 TEST_CASE("Testing ScaleDAO get") {
-    const auto database = SguitarDAO::create_sguitar_dao("../../db/main.sqlite3");
+    const auto database = SguitarDAO::create_sguitar_dao("../src/tests/test.sqlite3");
     const auto scale = ScaleDAO::create_scale_dao(database);
     auto scales = scale->get_scales();
     CHECK(scales.size() > 0);
 }
 
 TEST_CASE("Testing ScaleDAO add/delete") {
-    const auto database = SguitarDAO::create_sguitar_dao("../../db/main.sqlite3");
+    const auto database = SguitarDAO::create_sguitar_dao("../src/tests/test.sqlite3");
     const auto scale = ScaleDAO::create_scale_dao(database);
     std::vector semitones = { 0, 1, 2};
     auto id = scale->add_scale(ScaleRecord(0, "test", semitones));
     CHECK(id > 0);
     scale->delete_scale(id);
+}
+
+TEST_CASE("Testing ChordDAO add/delete") {
+    const auto database = SguitarDAO::create_sguitar_dao("../src/tests/test.sqlite3");
+    const auto chord = ChordDAO::create_chord_dao(database);
+    std::vector intervals = { 0, 1, 2};
+    auto id = chord->add_chord(ChordRecord(0, "test", intervals));
+    CHECK(id > 0);
+    chord->delete_chord(id);
 }

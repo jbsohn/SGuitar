@@ -2,13 +2,13 @@
 scale_record = record {
     id: i32;
     name: string;
-    intervals: array<i32>;
+    semitones: array<i32>;
 }
 
 chord_record = record {
     id: i32;
     name: string;
-    semitones: array<i32>;
+    intervals: array<i32>;
 }
 
 guitar_record = record {

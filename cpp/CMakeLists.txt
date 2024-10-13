@@ -24,7 +24,7 @@ add_executable(
         src/tests/TestScales.cpp
         src/tests/TestChords.cpp
         src/tests/TestDB.cpp
-
+        src/implemented/dao/ChordDAOImpl.cpp
 )
 
 target_link_libraries(SGuitarTest PRIVATE doctest::doctest)
