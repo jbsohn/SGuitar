@@ -6,21 +6,6 @@
 #include "SGuitarDAOImpl.hpp"
 
 std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
-    auto guitars = get_guitar_records();
-    return guitars;
-}
-
-void GuitarDAOImpl::add_guitar(const GuitarRecord &guitar) {
-}
-
-int32_t GuitarDAOImpl::update_guitar(const GuitarRecord &guitar) {
-    return -1;
-}
-
-void GuitarDAOImpl::delete_guitar(int32_t id) {
-}
-
-std::vector<GuitarRecord> GuitarDAOImpl::get_guitar_records() {
     std::vector<GuitarRecord> guitars;
 
     SQLite::Statement query(
@@ -39,7 +24,18 @@ std::vector<GuitarRecord> GuitarDAOImpl::get_guitar_records() {
     return guitars;
 }
 
-std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id) const {
+void GuitarDAOImpl::add_guitar(const GuitarRecord &guitar) {
+}
+
+int32_t GuitarDAOImpl::update_guitar(const GuitarRecord &guitar) {
+    return -1;
+}
+
+void GuitarDAOImpl::delete_guitar(int32_t id) {
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id) {
     std::vector<GuitarStringRecord> strings;
 
     SQLite::Statement query(

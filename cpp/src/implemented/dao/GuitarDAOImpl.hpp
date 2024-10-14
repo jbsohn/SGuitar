@@ -26,9 +26,7 @@ public:
     void delete_guitar(int32_t id) override;
 
 protected:
-    std::vector<GuitarRecord> get_guitar_records();
-
-    std::vector<GuitarStringRecord> get_guitar_strings(int guitar_id) const;
+    std::vector<GuitarStringRecord> get_guitar_strings(int guitar_id);
 
     std::vector<GuitarAdjustmentRecord> get_guitar_adjustments(int guitar_id);
 
