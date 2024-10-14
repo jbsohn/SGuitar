@@ -6,8 +6,8 @@
 #define CHORDDAOIMPL_H
 
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "chord_DAO.hpp"
 #include "chord_record.hpp"
+#include "chord_DAO.hpp"
 
 class ChordDAOImpl final : public ChordDAO {
     const SQLite::Database &db;

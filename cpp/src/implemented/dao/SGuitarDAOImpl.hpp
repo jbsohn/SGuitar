@@ -6,7 +6,6 @@
 #define SGUITARDBIMPL_H
 
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "GuitarDAOImpl.hpp"
 #include "sguitar_DAO.hpp"
 
 class SGuitarDAOImpl final : public SguitarDAO {

@@ -7,8 +7,8 @@
 
 #include <guitar_string.hpp>
 #include <SQLiteCpp/Database.h>
-#include "guitar_DAO.hpp"
 #include "guitar_record.hpp"
+#include "guitar_DAO.hpp"
 
 class GuitarDAOImpl final : public GuitarDAO {
     const SQLite::Database &db;
