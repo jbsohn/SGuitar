@@ -3,6 +3,7 @@
 //
 
 #include <format>
+#include <algorithm>
 #include "HarmonizedScaleImpl.hpp"
 #include "scale.hpp"
 
