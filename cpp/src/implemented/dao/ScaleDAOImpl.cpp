@@ -15,7 +15,7 @@ std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto name = query.getColumn(1).getString();
-        auto semitones_json  = nlohmann::json::parse(query.getColumn(2).getString());
+        auto semitones_json = nlohmann::json::parse(query.getColumn(2).getString());
         std::vector<int32_t> semitones(semitones_json.begin(), semitones_json.end());
         scales.emplace_back(id, name, semitones);
     }

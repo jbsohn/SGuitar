@@ -29,7 +29,6 @@ int32_t ChordDAOImpl::add_chord(const ChordRecord &chord) {
     SQLite::Statement query(
         db,
         "INSERT INTO chord (name, intervals) VALUES (?, ?) RETURNING id");
-
     const nlohmann::json json_intervals = std::vector(chord.intervals);
     query.bind(1, chord.name);
     query.bind(2, json_intervals.dump());

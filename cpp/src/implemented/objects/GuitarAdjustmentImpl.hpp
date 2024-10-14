@@ -30,7 +30,7 @@ public:
         adjustments.push_back(adjustment);
     }
 
-    std::vector<std::shared_ptr<StringAdjustment> > get_string_adjustments() override {
+    std::vector<std::shared_ptr<StringAdjustment>> get_string_adjustments() override {
         return adjustments;
     }
 
