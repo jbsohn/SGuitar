@@ -71,8 +71,8 @@ string_adjustment = interface +c {
 }
 
 guitar_adjustment = interface +c {
-    static create_with_adjustment_name(adjustment_name: string): guitar_adjustment;
-    get_adjustment_name(): string;
+    static create_with_name(name: string): guitar_adjustment;
+    get_name(): string;
     clear_adjustments();
     add_string_adjustment(adjustment: string_adjustment);
     get_string_adjustments(): array<string_adjustment>;
@@ -84,14 +84,15 @@ guitar_adjustment = interface +c {
 
 guitar = interface +c {
     # setup
-    static create(): guitar;
-    reset_guitar(notes: array<note>, number_of_frets: i32);
+    static create(number_of_frets: i32, guitar_strings: array<guitar_string>, guitar_adjustments: map<string, guitar_adjustment>): guitar;
 
     # strings
     get_strings(): array<guitar_string>;
     reset_strings();
 
-    # adjustments
+    # adjustments -- tagged for deletion
+    # static create(): guitar;
+    reset_guitar(notes: array<note>, number_of_frets: i32);
     is_adjustment_activated(adjustment_id: string): bool;
     activate_adjustment(adjustment_id: string, activated: bool);
     set_adjustment(settingID: string, adjustment: guitar_adjustment);

@@ -4,7 +4,7 @@
 
 #include <nlohmann/json.hpp>
 #include "ChordDAOImpl.hpp"
-#include "SGuitarDAOImpl.hpp"
+#include "SGuitarDatabaseImpl.hpp"
 
 std::vector<ChordRecord> ChordDAOImpl::get_chords() {
     std::vector<ChordRecord> chords;
@@ -59,7 +59,7 @@ void ChordDAOImpl::delete_chord(const int32_t id) {
     query.exec();
 }
 
-std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SguitarDAO> &database) {
-    auto *impl = dynamic_cast<SGuitarDAOImpl *>(database.get());
+std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGuitarDatabase> &database) {
+    auto *impl = dynamic_cast<SGuitarDatabaseImpl *>(database.get());
     return std::make_shared<ChordDAOImpl>(impl->getDatabase());
 }

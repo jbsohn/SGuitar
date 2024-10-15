@@ -9,17 +9,17 @@
 #include "string_adjustment.hpp"
 
 class GuitarAdjustmentImpl final : public GuitarAdjustment {
-    std::string adjustment_name;
+    std::string name;
     std::vector<std::shared_ptr<StringAdjustment> > adjustments;
     bool adjustment_activated = false;
 
 public:
-    explicit GuitarAdjustmentImpl(const std::string &adjustment_name) {
-        this->adjustment_name = adjustment_name;
+    explicit GuitarAdjustmentImpl(const std::string &name) {
+        this->name = name;
     }
 
-    std::string get_adjustment_name() override {
-        return adjustment_name;
+    std::string get_name() override {
+        return name;
     }
 
     void clear_adjustments() override {
@@ -30,7 +30,7 @@ public:
         adjustments.push_back(adjustment);
     }
 
-    std::vector<std::shared_ptr<StringAdjustment>> get_string_adjustments() override {
+    std::vector<std::shared_ptr<StringAdjustment> > get_string_adjustments() override {
         return adjustments;
     }
 

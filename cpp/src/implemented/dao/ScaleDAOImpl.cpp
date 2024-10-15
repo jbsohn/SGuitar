@@ -4,7 +4,7 @@
 
 #include <nlohmann/json.hpp>
 #include "ScaleDAOImpl.hpp"
-#include "SGuitarDAOImpl.hpp"
+#include "SGuitarDatabaseImpl.hpp"
 
 std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
     std::vector<ScaleRecord> scales;
@@ -60,7 +60,7 @@ void ScaleDAOImpl::delete_scale(const int32_t id) {
     query.exec();
 }
 
-std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<SguitarDAO> &database) {
-    auto *impl = dynamic_cast<SGuitarDAOImpl *>(database.get());
+std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<SGuitarDatabase> &database) {
+    auto *impl = dynamic_cast<SGuitarDatabaseImpl *>(database.get());
     return std::make_shared<ScaleDAOImpl>(impl->getDatabase());
 }

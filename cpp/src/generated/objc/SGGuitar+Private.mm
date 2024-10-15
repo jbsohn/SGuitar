@@ -34,18 +34,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGGuitar *)create {
++ (nullable SGGuitar *)create:(int32_t)numberOfFrets
+                guitarStrings:(nonnull NSArray<SGGuitarString *> *)guitarStrings
+            guitarAdjustments:(nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)guitarAdjustments {
     try {
-        auto objcpp_result_ = ::Guitar::create();
+        auto objcpp_result_ = ::Guitar::create(::djinni::I32::toCpp(numberOfFrets),
+                                               ::djinni::Array<::djinni_generated::GuitarString>::toCpp(guitarStrings),
+                                               ::djinni::Map<::djinni::String, ::djinni_generated::GuitarAdjustment>::toCpp(guitarAdjustments));
         return ::djinni_generated::Guitar::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
-      numberOfFrets:(int32_t)numberOfFrets {
-    try {
-        _cppRefHandle.get()->reset_guitar(::djinni::Array<::djinni_generated::Note>::toCpp(notes),
-                                          ::djinni::I32::toCpp(numberOfFrets));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -59,6 +55,14 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 - (void)resetStrings {
     try {
         _cppRefHandle.get()->reset_strings();
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
+      numberOfFrets:(int32_t)numberOfFrets {
+    try {
+        _cppRefHandle.get()->reset_guitar(::djinni::Array<::djinni_generated::Note>::toCpp(notes),
+                                          ::djinni::I32::toCpp(numberOfFrets));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

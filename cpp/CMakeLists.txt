@@ -8,6 +8,8 @@ find_package(nlohmann_json CONFIG REQUIRED)
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/generated/cpp")
+include_directories(PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/factory")
+
 add_executable(
         SGuitarTest
         src/implemented/objects/HarmonizedScaleImpl.cpp
@@ -18,15 +20,16 @@ add_executable(
         src/implemented/objects/NoteImpl.cpp
         src/implemented/objects/ScaleImpl.cpp
         src/implemented/objects/StringAdjustmentImpl.cpp
-        src/implemented/dao/SGuitarDAOImpl.cpp
+        src/implemented/dao/SGuitarDatabaseImpl.cpp
         src/implemented/dao/ScaleDAOImpl.cpp
         src/implemented/dao/ChordDAOImpl.cpp
         src/implemented/dao/GuitarDAOImpl.cpp
+        src/factory/SGuitarFactory.cpp
         src/tests/test.cpp
         src/tests/TestScales.cpp
         src/tests/TestChords.cpp
         src/tests/TestDB.cpp
-
+        src/tests/TestFactory.cpp
 )
 
 target_link_libraries(SGuitarTest PRIVATE doctest::doctest)

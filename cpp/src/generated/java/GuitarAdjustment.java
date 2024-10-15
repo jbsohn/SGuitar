@@ -7,7 +7,7 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class GuitarAdjustment {
-    public abstract String getAdjustmentName();
+    public abstract String getName();
 
     public abstract void clearAdjustments();
 
@@ -23,7 +23,7 @@ public abstract class GuitarAdjustment {
 
     public abstract String testDescription();
 
-    public static native GuitarAdjustment createWithAdjustmentName(String adjustmentName);
+    public static native GuitarAdjustment createWithName(String name);
 
     public static final class CppProxy extends GuitarAdjustment
     {
@@ -39,12 +39,12 @@ public abstract class GuitarAdjustment {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public String getAdjustmentName()
+        public String getName()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getAdjustmentName(this.nativeRef);
+            return native_getName(this.nativeRef);
         }
-        private native String native_getAdjustmentName(long _nativeRef);
+        private native String native_getName(long _nativeRef);
 
         @Override
         public void clearAdjustments()

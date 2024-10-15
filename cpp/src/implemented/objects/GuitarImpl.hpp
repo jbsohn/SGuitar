@@ -11,17 +11,20 @@
 
 class GuitarImpl final : public Guitar {
     int number_of_frets = 0;
-    std::vector<std::shared_ptr<GuitarString> > strings;
-    std::map<std::string, std::shared_ptr<GuitarAdjustment> > adjustments;
+    std::vector<std::shared_ptr<GuitarString> > guitar_strings;
+    std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment> > guitar_adjustments;
 
 public:
-    GuitarImpl() = default;
+    GuitarImpl(
+        int32_t number_of_frets,
+        const std::vector<std::shared_ptr<GuitarString> > &guitar_strings,
+        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment> > &
+        guitar_adjustments);
 
     void reset_guitar(const std::vector<std::shared_ptr<Note> > &notes, int32_t number_of_frets) override;
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString> > get_strings() override;
-
 
     void reset_strings() override;
 
@@ -32,7 +35,7 @@ public:
 
     void set_adjustment(const std::string &setting_id,
                         const /*not-null*/ std::shared_ptr<GuitarAdjustment> &adjustment) override {
-        adjustments[setting_id] = adjustment;
+        guitar_adjustments[setting_id] = adjustment;
     }
 
     /*not-null*/

@@ -11,17 +11,22 @@
 @interface SGGuitar : NSObject
 
 /** setup */
-+ (nullable SGGuitar *)create;
-
-- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
-      numberOfFrets:(int32_t)numberOfFrets;
++ (nullable SGGuitar *)create:(int32_t)numberOfFrets
+                guitarStrings:(nonnull NSArray<SGGuitarString *> *)guitarStrings
+            guitarAdjustments:(nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)guitarAdjustments;
 
 /** strings */
 - (nonnull NSArray<SGGuitarString *> *)getStrings;
 
 - (void)resetStrings;
 
-/** adjustments */
+/**
+ * adjustments -- tagged for deletion
+ * static create(): guitar;
+ */
+- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
+      numberOfFrets:(int32_t)numberOfFrets;
+
 - (BOOL)isAdjustmentActivated:(nonnull NSString *)adjustmentId;
 
 - (void)activateAdjustment:(nonnull NSString *)adjustmentId

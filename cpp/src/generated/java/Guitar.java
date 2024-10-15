@@ -4,17 +4,21 @@
 package com.steelsidekick.sguitar;
 
 import com.snapchat.djinni.NativeObjectManager;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Guitar {
-    public abstract void resetGuitar(Note[] notes, int numberOfFrets);
-
     /** strings */
     public abstract GuitarString[] getStrings();
 
     public abstract void resetStrings();
 
-    /** adjustments */
+    /**
+     * adjustments -- tagged for deletion
+     * static create(): guitar;
+     */
+    public abstract void resetGuitar(Note[] notes, int numberOfFrets);
+
     public abstract boolean isAdjustmentActivated(String adjustmentId);
 
     public abstract void activateAdjustment(String adjustmentId, boolean activated);
@@ -26,7 +30,7 @@ public abstract class Guitar {
     public abstract String testDescription();
 
     /** setup */
-    public static native Guitar create();
+    public static native Guitar create(int numberOfFrets, GuitarString[] guitarStrings, HashMap<String, GuitarAdjustment> guitarAdjustments);
 
     public static final class CppProxy extends Guitar
     {
@@ -40,14 +44,6 @@ public abstract class Guitar {
             NativeObjectManager.register(this, nativeRef);
         }
         public static native void nativeDestroy(long nativeRef);
-
-        @Override
-        public void resetGuitar(Note[] notes, int numberOfFrets)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_resetGuitar(this.nativeRef, notes, numberOfFrets);
-        }
-        private native void native_resetGuitar(long _nativeRef, Note[] notes, int numberOfFrets);
 
         @Override
         public GuitarString[] getStrings()
@@ -64,6 +60,14 @@ public abstract class Guitar {
             native_resetStrings(this.nativeRef);
         }
         private native void native_resetStrings(long _nativeRef);
+
+        @Override
+        public void resetGuitar(Note[] notes, int numberOfFrets)
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            native_resetGuitar(this.nativeRef, notes, numberOfFrets);
+        }
+        private native void native_resetGuitar(long _nativeRef, Note[] notes, int numberOfFrets);
 
         @Override
         public boolean isAdjustmentActivated(String adjustmentId)

@@ -19,19 +19,19 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024Cpp
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_createWithAdjustmentName(JNIEnv* jniEnv, jobject /*this*/, jstring j_adjustmentName)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_createWithName(JNIEnv* jniEnv, jobject /*this*/, jstring j_name)
 {
     try {
-        auto r = ::GuitarAdjustment::create_with_adjustment_name(::djinni::String::toCpp(jniEnv, j_adjustmentName));
+        auto r = ::GuitarAdjustment::create_with_name(::djinni::String::toCpp(jniEnv, j_name));
         return ::djinni::release(::djinni_generated::GuitarAdjustment::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1getAdjustmentName(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1getName(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
-        auto r = ref->get_adjustment_name();
+        auto r = ref->get_name();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

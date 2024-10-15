@@ -15,7 +15,7 @@ public abstract class ChordDAO {
 
     public abstract void deleteChord(int id);
 
-    public static native ChordDAO createChordDao(SguitarDAO database);
+    public static native ChordDAO createChordDao(SGuitarDatabase database);
 
     public static final class CppProxy extends ChordDAO
     {

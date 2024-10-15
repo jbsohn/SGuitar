@@ -21,13 +21,13 @@ GuitarAdjustmentImpl::string_adjustment_for_string_number(const int32_t string_n
 }
 
 std::string GuitarAdjustmentImpl::testDescription() {
-    std::string description = std::format("adjustment_name: {}\n", adjustment_name);
+    std::string description = std::format("adjustment_name: {}\n", name);
     for (const auto &adjustment: adjustments) {
         description += std::format("{}\n", adjustment->testDescription());
     }
     return description;
 }
 
-std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_adjustment_name(const std::string &adjustment_name) {
-    return std::make_shared<GuitarAdjustmentImpl>(adjustment_name);
+std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_name(const std::string &name) {
+    return std::make_shared<GuitarAdjustmentImpl>(name);
 }

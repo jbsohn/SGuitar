@@ -7,14 +7,14 @@
 #include <memory>
 #include <vector>
 
-class SguitarDAO;
+class SGuitarDatabase;
 struct ChordRecord;
 
 class ChordDAO {
 public:
     virtual ~ChordDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<ChordDAO> create_chord_dao(const /*not-null*/ std::shared_ptr<SguitarDAO> & database);
+    static /*not-null*/ std::shared_ptr<ChordDAO> create_chord_dao(const /*not-null*/ std::shared_ptr<SGuitarDatabase> & database);
 
     virtual std::vector<ChordRecord> get_chords() = 0;
 

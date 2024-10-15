@@ -8,7 +8,7 @@
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
 #import "SGChordRecord+Private.h"
-#import "SGSguitarDAO+Private.h"
+#import "SGSGuitarDatabase+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -33,9 +33,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGChordDAO *)createChordDao:(nullable SGSguitarDAO *)database {
++ (nullable SGChordDAO *)createChordDao:(nullable SGSGuitarDatabase *)database {
     try {
-        auto objcpp_result_ = ::ChordDAO::create_chord_dao(::djinni_generated::SguitarDAO::toCpp(database));
+        auto objcpp_result_ = ::ChordDAO::create_chord_dao(::djinni_generated::SGuitarDatabase::toCpp(database));
         return ::djinni_generated::ChordDAO::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

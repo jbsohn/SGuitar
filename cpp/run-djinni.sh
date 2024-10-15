@@ -3,7 +3,7 @@ djinni/src/run \
     --cpp-out src/generated/cpp \
     --jni-out src/generated/jni \
     --objc-out src/generated/objc \
-    --objcpp-out src/generated/objc-out \
+    --objcpp-out src/generated/objc \
     --java-package com.steelsidekick.sguitar \
     --ident-jni-class NativeSGuitar \
     --objc-type-prefix SG \

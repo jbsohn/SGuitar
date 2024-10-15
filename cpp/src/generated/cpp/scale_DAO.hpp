@@ -7,14 +7,14 @@
 #include <memory>
 #include <vector>
 
-class SguitarDAO;
+class SGuitarDatabase;
 struct ScaleRecord;
 
 class ScaleDAO {
 public:
     virtual ~ScaleDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<ScaleDAO> create_scale_dao(const /*not-null*/ std::shared_ptr<SguitarDAO> & database);
+    static /*not-null*/ std::shared_ptr<ScaleDAO> create_scale_dao(const /*not-null*/ std::shared_ptr<SGuitarDatabase> & database);
 
     virtual std::vector<ScaleRecord> get_scales() = 0;
 

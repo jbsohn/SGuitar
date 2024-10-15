@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 class GuitarAdjustment;
@@ -17,16 +18,19 @@ public:
     virtual ~Guitar() = default;
 
     /** setup */
-    static /*not-null*/ std::shared_ptr<Guitar> create();
-
-    virtual void reset_guitar(const std::vector</*not-null*/ std::shared_ptr<Note>> & notes, int32_t number_of_frets) = 0;
+    static /*not-null*/ std::shared_ptr<Guitar> create(int32_t number_of_frets, const std::vector</*not-null*/ std::shared_ptr<GuitarString>> & guitar_strings, const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>> & guitar_adjustments);
 
     /** strings */
     virtual std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() = 0;
 
     virtual void reset_strings() = 0;
 
-    /** adjustments */
+    /**
+     * adjustments -- tagged for deletion
+     * static create(): guitar;
+     */
+    virtual void reset_guitar(const std::vector</*not-null*/ std::shared_ptr<Note>> & notes, int32_t number_of_frets) = 0;
+
     virtual bool is_adjustment_activated(const std::string & adjustment_id) = 0;
 
     virtual void activate_adjustment(const std::string & adjustment_id, bool activated) = 0;

@@ -8,9 +8,9 @@
 
 @interface SGGuitarAdjustment : NSObject
 
-+ (nullable SGGuitarAdjustment *)createWithAdjustmentName:(nonnull NSString *)adjustmentName;
++ (nullable SGGuitarAdjustment *)createWithName:(nonnull NSString *)name;
 
-- (nonnull NSString *)getAdjustmentName;
+- (nonnull NSString *)getName;
 
 - (void)clearAdjustments;
 
