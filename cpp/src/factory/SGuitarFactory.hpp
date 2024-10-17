@@ -2,8 +2,8 @@
 // Created by John on 10/14/24.
 //
 
-#ifndef GUITARFACTORY_H
-#define GUITARFACTORY_H
+#ifndef GUITAR_FACTORY_H
+#define GUITAR_FACTORY_H
 
 #include "guitar.hpp"
 #include "scale.hpp"
@@ -15,8 +15,8 @@
 class SGuitarFactory {
 public:
     static std::shared_ptr<Guitar> createGuitar(const GuitarRecord& guitar_record);
-    static std::shared_ptr<Scale> createScale(const ScaleRecord& scale_record);
-    static std::shared_ptr<Chord> createChord(const ChordRecord& chord_record);
+    static std::shared_ptr<Scale> createScale(NoteValue root_note, const ScaleRecord& scale_record);
+    static std::shared_ptr<Chord> createChord(NoteValue root_note, const ChordRecord& chord_record);
 };
 
-#endif //GUITARFACTORY_H
+#endif //GUITAR_FACTORY_H

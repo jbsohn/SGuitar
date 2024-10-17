@@ -30,10 +30,10 @@ std::shared_ptr<Guitar> SGuitarFactory::createGuitar(const GuitarRecord& guitar_
   return Guitar::create(guitar_record.number_of_frets, guitar_strings, guitar_adjustments);
 }
 
-std::shared_ptr<Scale> SGuitarFactory::createScale(const ScaleRecord& scale_record) {
-  return nullptr;
+std::shared_ptr<Scale> SGuitarFactory::createScale(const NoteValue root_note, const ScaleRecord& scale_record) {
+  return Scale::create_with_root_note(root_note, scale_record.semitones);
 }
 
-std::shared_ptr<Chord> SGuitarFactory::createChord(const ChordRecord& chord_record) {
-  return nullptr;
+std::shared_ptr<Chord> SGuitarFactory::createChord(const NoteValue root_note, const ChordRecord& chord_record) {
+  return Chord::create_with_root_note(root_note, chord_record.intervals);
 }
