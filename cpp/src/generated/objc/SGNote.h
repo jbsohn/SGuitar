@@ -29,4 +29,6 @@
 
 + (nonnull NSString *)noteNameFlatForNote:(SGNoteValue)note;
 
++ (SGNoteValue)noteValueForNoteString:(nonnull NSString *)noteString;
+
 @end

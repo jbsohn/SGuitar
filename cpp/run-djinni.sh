@@ -1,3 +1,4 @@
+rm -rf src/generated
 djinni/src/run \
     --java-out src/generated/java \
     --cpp-out src/generated/cpp \

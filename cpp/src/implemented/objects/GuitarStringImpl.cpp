@@ -16,7 +16,7 @@ GuitarStringImpl::GuitarStringImpl() {
     notes = {};
 }
 
-GuitarStringImpl::GuitarStringImpl(const std::shared_ptr<Note> &start_note, const int number_of_frets) {
+GuitarStringImpl::GuitarStringImpl(const std::shared_ptr<Note>& start_note, const int number_of_frets) {
     this->start_note = start_note;
     this->number_of_fret = number_of_frets;
     this->notes = string_with_start_note(start_note->get_midi_note(), number_of_frets);
@@ -30,15 +30,15 @@ void GuitarStringImpl::adjust_string_by_steps(const int32_t steps) {
 
 std::string GuitarStringImpl::testDescription() {
     std::string s;
-    for (const std::shared_ptr<Note> &note: notes) {
+    for (const std::shared_ptr<Note>& note : notes) {
         s += std::format("{}", note->testDescription());
     }
     return s;
 }
 
-std::vector<std::shared_ptr<Note> > GuitarStringImpl::string_with_start_note(const int midi_start_node,
-                                                                             const int number_of_frets) {
-    auto notes = std::vector<std::shared_ptr<Note> >();
+std::vector<std::shared_ptr<Note>> GuitarStringImpl::string_with_start_note(const int midi_start_node,
+                                                                            const int number_of_frets) {
+    auto notes = std::vector<std::shared_ptr<Note>>();
     auto cur_midi_value = midi_start_node;
     for (int i = 0; i < number_of_frets; i++) {
         notes.push_back(Note::create_with_midi_note(cur_midi_value));
@@ -52,7 +52,7 @@ std::shared_ptr<GuitarString> GuitarString::create() {
 }
 
 /*not-null*/
-std::shared_ptr<GuitarString> GuitarString::create_with_start_note(const /*not-null*/ std::shared_ptr<Note> &start_note,
+std::shared_ptr<GuitarString> GuitarString::create_with_start_note(const std::shared_ptr<Note>& start_note,
                                                                    int32_t number_of_frets) {
     return std::make_shared<GuitarStringImpl>(start_note, number_of_frets);
 }

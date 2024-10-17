@@ -104,6 +104,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
++ (SGNoteValue)noteValueForNoteString:(nonnull NSString *)noteString {
+    try {
+        auto objcpp_result_ = ::Note::note_value_for_note_string(::djinni::String::toCpp(noteString));
+        return ::djinni::Enum<::NoteValue, SGNoteValue>::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 namespace djinni_generated {
 
 auto Note::toCpp(ObjcType objc) -> CppType

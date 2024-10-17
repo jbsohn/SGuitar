@@ -8,7 +8,6 @@
 
 std::vector<ChordRecord> ChordDAOImpl::get_chords() {
     std::vector<ChordRecord> chords;
-
     SQLite::Statement query(
         db,
         "SELECT id, name, intervals FROM chord");
@@ -19,13 +18,11 @@ std::vector<ChordRecord> ChordDAOImpl::get_chords() {
         std::vector<int32_t> intervals(intervals_json.begin(), intervals_json.end());
         chords.emplace_back(id, name, intervals);
     }
-
     return chords;
 }
 
-int32_t ChordDAOImpl::add_chord(const ChordRecord &chord) {
+int32_t ChordDAOImpl::add_chord(const ChordRecord& chord) {
     int32_t id = -1;
-
     SQLite::Statement query(
         db,
         "INSERT INTO chord (name, intervals) VALUES (?, ?) RETURNING id");
@@ -35,13 +32,11 @@ int32_t ChordDAOImpl::add_chord(const ChordRecord &chord) {
     if (query.executeStep()) {
         id = query.getColumn(0).getInt();
     }
-
     return id;
 }
 
-void ChordDAOImpl::update_chord(const ChordRecord &chord) {
+void ChordDAOImpl::update_chord(const ChordRecord& chord) {
     const nlohmann::json json_intervals = std::vector(chord.intervals);
-
     SQLite::Statement query(
         db,
         "UPDATE chord SET name = ?, intervals = ? WHERE id=?");
@@ -59,7 +54,7 @@ void ChordDAOImpl::delete_chord(const int32_t id) {
     query.exec();
 }
 
-std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGuitarDatabase> &database) {
-    auto *impl = dynamic_cast<SGuitarDatabaseImpl *>(database.get());
+std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGuitarDatabase>& database) {
+    auto* impl = dynamic_cast<SGuitarDatabaseImpl*>(database.get());
     return std::make_shared<ChordDAOImpl>(impl->getDatabase());
 }

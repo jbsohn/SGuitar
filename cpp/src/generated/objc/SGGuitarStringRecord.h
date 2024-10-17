@@ -9,11 +9,13 @@
 - (nonnull instancetype)initWithId:(int32_t)id
                           guitarId:(int32_t)guitarId
                       stringNumber:(int32_t)stringNumber
-                         startNote:(nonnull NSString *)startNote NS_DESIGNATED_INITIALIZER;
+                         startNote:(nonnull NSString *)startNote
+                            octave:(int32_t)octave NS_DESIGNATED_INITIALIZER;
 + (nonnull instancetype)guitarStringRecordWithId:(int32_t)id
                                         guitarId:(int32_t)guitarId
                                     stringNumber:(int32_t)stringNumber
-                                       startNote:(nonnull NSString *)startNote;
+                                       startNote:(nonnull NSString *)startNote
+                                          octave:(int32_t)octave;
 
 @property (nonatomic) int32_t id;
 
@@ -22,5 +24,7 @@
 @property (nonatomic) int32_t stringNumber;
 
 @property (nonatomic, copy, nonnull) NSString * startNote;
+
+@property (nonatomic) int32_t octave;
 
 @end

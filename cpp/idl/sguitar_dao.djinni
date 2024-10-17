@@ -16,6 +16,7 @@ guitar_string_record = record {
     guitar_id: i32;
     string_number: i32;
     start_note: string;
+    octave: i32;
 }
 
 guitar_string_adjustment_record = record {

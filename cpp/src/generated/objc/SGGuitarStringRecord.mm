@@ -10,12 +10,14 @@
                           guitarId:(int32_t)guitarId
                       stringNumber:(int32_t)stringNumber
                          startNote:(nonnull NSString *)startNote
+                            octave:(int32_t)octave
 {
     if (self = [super init]) {
         _id = id;
         _guitarId = guitarId;
         _stringNumber = stringNumber;
         _startNote = [startNote copy];
+        _octave = octave;
     }
     return self;
 }
@@ -24,17 +26,19 @@
                                         guitarId:(int32_t)guitarId
                                     stringNumber:(int32_t)stringNumber
                                        startNote:(nonnull NSString *)startNote
+                                          octave:(int32_t)octave
 {
     return [[self alloc] initWithId:id
                            guitarId:guitarId
                        stringNumber:stringNumber
-                          startNote:startNote];
+                          startNote:startNote
+                             octave:octave];
 }
 
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarId:%@ stringNumber:%@ startNote:%@>", self.class, (void *)self, @(self.id), @(self.guitarId), @(self.stringNumber), self.startNote];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarId:%@ stringNumber:%@ startNote:%@ octave:%@>", self.class, (void *)self, @(self.id), @(self.guitarId), @(self.stringNumber), self.startNote, @(self.octave)];
 }
 
 #endif

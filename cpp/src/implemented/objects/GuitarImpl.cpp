@@ -12,51 +12,50 @@
 #include "string_adjustment.hpp"
 #include "GuitarImpl.hpp"
 
-GuitarImpl::GuitarImpl(
-    int32_t number_of_frets,
-    const std::vector</*not-null*/ std::shared_ptr<GuitarString> > &guitar_strings,
-    const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment> > &
-    guitar_adjustments) {
+GuitarImpl::GuitarImpl(const int32_t number_of_frets,
+                       const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
+                       const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>&
+                       guitar_adjustments) {
     this->number_of_frets = number_of_frets;
     this->guitar_strings = guitar_strings;
     this->guitar_adjustments = guitar_adjustments;
 }
 
-void GuitarImpl::reset_guitar(const std::vector<std::shared_ptr<Note> > &notes, const int32_t number_of_frets) {
+void GuitarImpl::reset_guitar(const std::vector<std::shared_ptr<Note>>& notes,
+                              const int32_t number_of_frets) {
     guitar_adjustments.clear();
     guitar_strings.clear();
     guitar_strings.push_back(GuitarString::create()); // "empty" string at index 0
-
-    for (const auto &note: notes) {
+    for (const auto& note : notes) {
         guitar_strings.push_back(GuitarString::create_with_start_note(note, number_of_frets));
     }
 }
 
 /** strings */
-std::vector</*not-null*/ std::shared_ptr<GuitarString> > GuitarImpl::get_strings() {
-    std::vector<std::shared_ptr<GuitarString> > s;
+std::vector<std::shared_ptr<GuitarString>> GuitarImpl::get_strings() {
+    std::vector<std::shared_ptr<GuitarString>> s;
     s.assign(this->guitar_strings.begin() + 1, this->guitar_strings.end());
     return s;
 }
 
 void GuitarImpl::reset_strings() {
-    for (const auto &string: guitar_strings) {
+    for (const auto& string : guitar_strings) {
         string->reset();
     }
 }
 
 /** adjustment */
-bool GuitarImpl::is_adjustment_activated(const std::string &adjustment_id) {
+bool GuitarImpl::is_adjustment_activated(const std::string& adjustment_id) {
     if (const auto adjustment = guitar_adjustments[adjustment_id]; adjustment != nullptr) {
         return adjustment->is_activated();
     }
     return false;
 }
 
-void GuitarImpl::activate_adjustment(const std::string &adjustment_id, const bool activated) {
+void GuitarImpl::activate_adjustment(const std::string& adjustment_id, const bool activated) {
     if (const auto adjustment = guitar_adjustments[adjustment_id]; adjustment != nullptr) {
         for (const auto string_adjustments = adjustment->get_string_adjustments();
-             const auto &stringAdjustment: string_adjustments) {
+             const auto& stringAdjustment : string_adjustments) {
             const auto stringNumber = stringAdjustment->get_string_number();
             const auto step = activated ? stringAdjustment->get_step() : -stringAdjustment->get_step();
             const auto string = guitar_strings.at(stringNumber);
@@ -65,7 +64,7 @@ void GuitarImpl::activate_adjustment(const std::string &adjustment_id, const boo
     }
 }
 
-std::shared_ptr<GuitarAdjustment> GuitarImpl::get_adjustment(const std::string &setting_id) {
+std::shared_ptr<GuitarAdjustment> GuitarImpl::get_adjustment(const std::string& setting_id) {
     if (guitar_adjustments.contains(setting_id)) {
         return guitar_adjustments[setting_id];
     }
@@ -82,8 +81,8 @@ std::string GuitarImpl::testDescription() {
 
 std::shared_ptr<Guitar> Guitar::create(
     int32_t number_of_frets,
-    const std::vector</*not-null*/ std::shared_ptr<GuitarString> > &guitar_strings,
-    const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment> > &
+    const std::vector</*not-null*/ std::shared_ptr<GuitarString>>& guitar_strings,
+    const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>>&
     guitar_adjustments) {
     return std::make_shared<GuitarImpl>(number_of_frets, guitar_strings, guitar_adjustments);
 }

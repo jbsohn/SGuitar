@@ -14,15 +14,19 @@ public final class GuitarStringRecord {
 
     /*package*/ String startNote;
 
+    /*package*/ int octave;
+
     public GuitarStringRecord(
             int id,
             int guitarId,
             int stringNumber,
-            String startNote) {
+            String startNote,
+            int octave) {
         this.id = id;
         this.guitarId = guitarId;
         this.stringNumber = stringNumber;
         this.startNote = startNote;
+        this.octave = octave;
     }
 
     public int getId() {
@@ -57,6 +61,14 @@ public final class GuitarStringRecord {
         this.startNote = startNote;
     }
 
+    public int getOctave() {
+        return octave;
+    }
+
+    public void setOctave(int octave) {
+        this.octave = octave;
+    }
+
     @Override
     public String toString() {
         return "GuitarStringRecord{" +
@@ -64,6 +76,7 @@ public final class GuitarStringRecord {
                 "," + "guitarId=" + guitarId +
                 "," + "stringNumber=" + stringNumber +
                 "," + "startNote=" + startNote +
+                "," + "octave=" + octave +
         "}";
     }
 

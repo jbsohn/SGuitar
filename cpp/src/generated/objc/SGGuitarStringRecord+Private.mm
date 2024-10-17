@@ -14,7 +14,8 @@ auto GuitarStringRecord::toCpp(ObjcType obj) -> CppType
     return {::djinni::I32::toCpp(obj.id),
             ::djinni::I32::toCpp(obj.guitarId),
             ::djinni::I32::toCpp(obj.stringNumber),
-            ::djinni::String::toCpp(obj.startNote)};
+            ::djinni::String::toCpp(obj.startNote),
+            ::djinni::I32::toCpp(obj.octave)};
 }
 
 auto GuitarStringRecord::fromCpp(const CppType& cpp) -> ObjcType
@@ -22,7 +23,8 @@ auto GuitarStringRecord::fromCpp(const CppType& cpp) -> ObjcType
     return [[SGGuitarStringRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
                                            guitarId:(::djinni::I32::fromCpp(cpp.guitar_id))
                                        stringNumber:(::djinni::I32::fromCpp(cpp.string_number))
-                                          startNote:(::djinni::String::fromCpp(cpp.start_note))];
+                                          startNote:(::djinni::String::fromCpp(cpp.start_note))
+                                             octave:(::djinni::I32::fromCpp(cpp.octave))];
 }
 
 } // namespace djinni_generated

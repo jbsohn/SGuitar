@@ -12,14 +12,17 @@ struct GuitarStringRecord final {
     int32_t guitar_id;
     int32_t string_number;
     std::string start_note;
+    int32_t octave;
 
     GuitarStringRecord(int32_t id_,
                        int32_t guitar_id_,
                        int32_t string_number_,
-                       std::string start_note_)
+                       std::string start_note_,
+                       int32_t octave_)
     : id(std::move(id_))
     , guitar_id(std::move(guitar_id_))
     , string_number(std::move(string_number_))
     , start_note(std::move(start_note_))
+    , octave(std::move(octave_))
     {}
 };

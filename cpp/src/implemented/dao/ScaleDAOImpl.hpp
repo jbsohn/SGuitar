@@ -2,27 +2,24 @@
 // Created by John on 10/13/24.
 //
 
-#ifndef SCALEDAOIMPL_H
-#define SCALEDAOIMPL_H
+#ifndef SCALE_DAO_IMPL_H
+#define SCALE_DAO_IMPL_H
 
 #include <SQLiteCpp/SQLiteCpp.h>
 #include "scale_record.hpp"
 #include "scale_DAO.hpp"
 
 class ScaleDAOImpl final : public ScaleDAO {
-    const SQLite::Database &db;
+    const SQLite::Database& db;
 
 public:
-    explicit ScaleDAOImpl(const SQLite::Database &database) : db(database) {
+    explicit ScaleDAOImpl(const SQLite::Database& database)
+        : db(database) {
     }
-
     std::vector<ScaleRecord> get_scales() override;
-
-    int32_t add_scale(const ScaleRecord &scale) override;
-
-    void update_scale(const ScaleRecord &scale) override;
-
+    int32_t add_scale(const ScaleRecord& scale) override;
+    void update_scale(const ScaleRecord& scale) override;
     void delete_scale(int32_t id) override;
 };
 
-#endif //SCALEDAOIMPL_H
+#endif //SCALE_DAO_IMPL_H

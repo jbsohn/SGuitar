@@ -106,4 +106,12 @@ CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Note_noteNameFlatForNo
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Note_noteValueForNoteString(JNIEnv* jniEnv, jobject /*this*/, jstring j_noteString)
+{
+    try {
+        auto r = ::Note::note_value_for_note_string(::djinni::String::toCpp(jniEnv, j_noteString));
+        return ::djinni::release(::djinni_generated::NoteValue::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
 } // namespace djinni_generated

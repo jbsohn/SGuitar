@@ -10,13 +10,33 @@
 #include "NoteImpl.hpp"
 
 const std::string NoteImpl::note_names_sharp[] = {
-    "C", "C\u266f", "D", "D\u266f", "E", "F", "F\u266f", "G",
-    "G\u266f", "A", "A\u266f", "B"
+    "C",
+    "C♯",
+    "D",
+    "D♯",
+    "E",
+    "F",
+    "F♯",
+    "G",
+    "G♯",
+    "A",
+    "A♯",
+    "B"
 };
 
 const std::string NoteImpl::note_names_flat[] = {
-    "C", "D\u266d", "D", "E\u266d", "E", "F", "G\u266d",
-    "G", "A\u266d", "A", "B\u266d", "B"
+    "C",
+    "D♭",
+    "D",
+    "E♭",
+    "E",
+    "F",
+    "G♭",
+    "G",
+    "A♭",
+    "A",
+    "B♭",
+    "B"
 };
 
 std::shared_ptr<Note> Note::create_with_note(NoteValue note, int32_t octave) {
@@ -33,4 +53,20 @@ std::string Note::note_name_sharp_for_note(NoteValue note) {
 
 std::string Note::note_name_flat_for_note(NoteValue note) {
     return NoteImpl::note_names_flat[static_cast<int>(note)];
+}
+
+NoteValue Note::note_value_for_note_string(const std::string& note_string) {
+    for (int i = 0; const auto& name : NoteImpl::note_names_sharp) {
+        if (name == note_string) {
+            return static_cast<NoteValue>(i);
+        }
+        i++;
+    }
+    for (int i = 0; const auto& name : NoteImpl::note_names_flat) {
+        if (name == note_string) {
+            return static_cast<NoteValue>(i);
+        }
+        i++;
+    }
+    return static_cast<NoteValue>(0);
 }

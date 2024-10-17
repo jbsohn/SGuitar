@@ -2,8 +2,8 @@
 // Created by John on 10/13/24.
 //
 
-#ifndef NOTEIMPL_H
-#define NOTEIMPL_H
+#ifndef NOTE_IMPL_H
+#define NOTE_IMPL_H
 
 #include <format>
 #include "note.hpp"
@@ -48,4 +48,4 @@ public:
     }
 };
 
-#endif //NOTEIMPL_H
+#endif //NOTE_IMPL_H

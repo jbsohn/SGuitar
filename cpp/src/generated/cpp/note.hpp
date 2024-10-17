@@ -32,4 +32,6 @@ public:
     static std::string note_name_sharp_for_note(NoteValue note);
 
     static std::string note_name_flat_for_note(NoteValue note);
+
+    static NoteValue note_value_for_note_string(const std::string & note_string);
 };

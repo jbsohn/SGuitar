@@ -27,6 +27,8 @@ public abstract class Note {
 
     public static native String noteNameFlatForNote(NoteValue note);
 
+    public static native NoteValue noteValueForNoteString(String noteString);
+
     public static final class CppProxy extends Note
     {
         private final long nativeRef;

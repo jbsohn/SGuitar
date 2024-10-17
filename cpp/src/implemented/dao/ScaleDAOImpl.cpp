@@ -8,7 +8,6 @@
 
 std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
     std::vector<ScaleRecord> scales;
-
     SQLite::Statement query(
         db,
         "SELECT id, name, semitones FROM scale");
@@ -19,30 +18,25 @@ std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
         std::vector<int32_t> semitones(semitones_json.begin(), semitones_json.end());
         scales.emplace_back(id, name, semitones);
     }
-
     return scales;
 }
 
-int32_t ScaleDAOImpl::add_scale(const ScaleRecord &scale) {
+int32_t ScaleDAOImpl::add_scale(const ScaleRecord& scale) {
     int32_t id = -1;
-
     SQLite::Statement query(
         db,
         "INSERT INTO scale (name, semitones) VALUES (?, ?) RETURNING id");
-
     const nlohmann::json json_semitones = std::vector(scale.semitones);
     query.bind(1, scale.name);
     query.bind(2, json_semitones.dump());
     if (query.executeStep()) {
         id = query.getColumn(0).getInt();
     }
-
     return id;
 }
 
-void ScaleDAOImpl::update_scale(const ScaleRecord &scale) {
+void ScaleDAOImpl::update_scale(const ScaleRecord& scale) {
     const nlohmann::json json_semitones = std::vector(scale.semitones);
-
     SQLite::Statement query(
         db,
         "UPDATE scale SET name = ?, semitones = ? WHERE id=?");
@@ -60,7 +54,7 @@ void ScaleDAOImpl::delete_scale(const int32_t id) {
     query.exec();
 }
 
-std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<SGuitarDatabase> &database) {
-    auto *impl = dynamic_cast<SGuitarDatabaseImpl *>(database.get());
+std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<SGuitarDatabase>& database) {
+    auto* impl = dynamic_cast<SGuitarDatabaseImpl*>(database.get());
     return std::make_shared<ScaleDAOImpl>(impl->getDatabase());
 }
