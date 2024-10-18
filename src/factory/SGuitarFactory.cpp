@@ -20,7 +20,7 @@ std::shared_ptr<Guitar> SGuitarFactory::createGuitar(const GuitarRecord& guitar_
   }
   for (const auto& guitar_adjustment : guitar_record.guitar_adjustments) {
     const auto guitarAdjustment = GuitarAdjustment::create_with_name(guitar_adjustment.name);
-    for (const auto guitar_string_adjustment : guitar_adjustment.guitar_string_adjustments) {
+    for (const auto& guitar_string_adjustment : guitar_adjustment.guitar_string_adjustments) {
       auto adjustment = StringAdjustment::create_with_string_number(
         guitar_string_adjustment.string_number,
         guitar_string_adjustment.step);
