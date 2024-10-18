@@ -15,6 +15,7 @@ public:
     explicit SGuitarDatabaseImpl(const std::string& path)
         : database(path, SQLite::OPEN_READWRITE) {
     }
+
     SQLite::Database& getDatabase() {
         return database;
     }

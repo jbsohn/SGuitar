@@ -8,13 +8,13 @@
 #include "scale.hpp"
 
 TEST_CASE("Testing Scale: C Major") {
-    const auto scale = Scale::create_with_root_note(NoteValue::C,  {2, 2, 1, 2, 2, 2});
+    const auto scale = Scale::create_with_root_note(NoteValue::C, {2, 2, 1, 2, 2, 2});
     std::cout << "C Major: " << scale->testDescription() << std::endl;
     CHECK(scale->testDescription() == "CDEFGAB");
 }
 
 TEST_CASE("Testing Scale: C Natural Minor") {
-    const auto scale = Scale::create_with_root_note(NoteValue::C,  {2, 1, 2, 2, 1, 2});
+    const auto scale = Scale::create_with_root_note(NoteValue::C, {2, 1, 2, 2, 1, 2});
     std::cout << "C Natural Minor: " << scale->testDescription() << std::endl;
     CHECK(scale->testDescription() == "CDE♭FGA♭B♭");
 }

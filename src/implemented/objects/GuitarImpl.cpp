@@ -26,6 +26,7 @@ void GuitarImpl::reset_guitar(const std::vector<std::shared_ptr<Note>>& notes,
     guitar_adjustments.clear();
     guitar_strings.clear();
     guitar_strings.push_back(GuitarString::create()); // "empty" string at index 0
+
     for (const auto& note : notes) {
         guitar_strings.push_back(GuitarString::create_with_start_note(note, number_of_frets));
     }
@@ -82,7 +83,8 @@ std::string GuitarImpl::testDescription() {
 std::shared_ptr<Guitar> Guitar::create(
     int32_t number_of_frets,
     const std::vector</*not-null*/ std::shared_ptr<GuitarString>>& guitar_strings,
-    const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>>&
+    const std::unordered_map<
+        std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>>&
     guitar_adjustments) {
     return std::make_shared<GuitarImpl>(number_of_frets, guitar_strings, guitar_adjustments);
 }

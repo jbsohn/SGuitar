@@ -14,12 +14,15 @@ class ChordImpl final : public Chord {
 
 public:
     ChordImpl(NoteValue root_note, const std::vector<int>& intervals);
+
     explicit ChordImpl(const std::vector<NoteValue>& notes) {
         this->notes = notes;
     }
+
     std::vector<NoteValue> get_notes() override {
         return notes;
     }
+
     std::string testDescription() override;
 
 protected:

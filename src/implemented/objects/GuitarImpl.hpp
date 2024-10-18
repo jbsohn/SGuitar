@@ -29,6 +29,7 @@ public:
     /** adjustment */
     bool is_adjustment_activated(const std::string& adjustment_id) override;
     void activate_adjustment(const std::string& adjustment_id, bool activated) override;
+
     void set_adjustment(const std::string& setting_id,
                         const /*not-null*/ std::shared_ptr<GuitarAdjustment>& adjustment) override {
         guitar_adjustments[setting_id] = adjustment;

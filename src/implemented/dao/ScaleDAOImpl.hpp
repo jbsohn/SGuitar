@@ -16,6 +16,7 @@ public:
     explicit ScaleDAOImpl(const SQLite::Database& database)
         : db(database) {
     }
+
     std::vector<ScaleRecord> get_scales() override;
     int32_t add_scale(const ScaleRecord& scale) override;
     void update_scale(const ScaleRecord& scale) override;
