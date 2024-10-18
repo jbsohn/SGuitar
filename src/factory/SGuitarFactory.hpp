@@ -17,6 +17,10 @@ public:
     static std::shared_ptr<Guitar> createGuitar(const GuitarRecord& guitar_record);
     static std::shared_ptr<Scale> createScale(NoteValue root_note, const ScaleRecord& scale_record);
     static std::shared_ptr<Chord> createChord(NoteValue root_note, const ChordRecord& chord_record);
+
+protected:
+    static int max_string_number(const GuitarRecord& guitar_record);
+    static void create_missing_guitar_strings(std::vector<std::shared_ptr<GuitarString>>& guitar_strings);
 };
 
 #endif //GUITAR_FACTORY_H
