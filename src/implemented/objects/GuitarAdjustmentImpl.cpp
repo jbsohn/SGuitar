@@ -12,7 +12,7 @@
 
 std::shared_ptr<StringAdjustment>
 GuitarAdjustmentImpl::string_adjustment_for_string_number(const int32_t string_number) {
-    for (auto& adjustment : adjustments) {
+    for (const auto& adjustment : adjustments) {
         if (adjustment->get_string_number() == string_number) {
             return adjustment;
         }
