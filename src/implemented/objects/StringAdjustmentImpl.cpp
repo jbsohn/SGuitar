@@ -8,8 +8,8 @@
 
 #include "StringAdjustmentImpl.hpp"
 
-StringAdjustmentImpl::StringAdjustmentImpl(const int stringNumber, const int step) {
-    this->string_number = stringNumber;
+StringAdjustmentImpl::StringAdjustmentImpl(const int string_number, const int step) {
+    this->string_number = string_number;
     this->step = step;
 }
 

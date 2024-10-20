@@ -26,8 +26,8 @@ std::string ChordImpl::test_description() {
     return s;
 }
 
-NoteValue ChordImpl::note_for_interval(const int interval, NoteValue rootNote) {
-    auto value = static_cast<int>(rootNote) + interval;
+NoteValue ChordImpl::note_for_interval(const int interval, NoteValue root_note) {
+    auto value = static_cast<int>(root_note) + interval;
     if (value > static_cast<int>(NoteValue::B)) {
         value = value - static_cast<int>(NoteValue::B) - 1;
     }

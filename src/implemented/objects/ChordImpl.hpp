@@ -26,7 +26,7 @@ public:
     std::string test_description() override;
 
 protected:
-    static NoteValue note_for_interval(int interval, NoteValue rootNote);
+    static NoteValue note_for_interval(int interval, NoteValue root_note);
 };
 
 #endif //CHORD_IMPL_H

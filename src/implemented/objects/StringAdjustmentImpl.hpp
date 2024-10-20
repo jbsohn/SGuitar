@@ -13,7 +13,7 @@ class StringAdjustmentImpl final : public StringAdjustment {
     int step;
 
 public:
-    StringAdjustmentImpl(int stringNumber, int step);
+    StringAdjustmentImpl(int string_number, int step);
 
     int32_t get_string_number() override {
         return string_number;

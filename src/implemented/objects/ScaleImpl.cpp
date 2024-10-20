@@ -12,14 +12,14 @@
 #include "ScaleImpl.hpp"
 
 ScaleImpl::ScaleImpl(const NoteValue root_note, const std::vector<int>& semitones) {
-    const auto numSemitones = semitones.size();
+    const auto num_semitones = semitones.size();
     notes.clear();
-    notes.reserve(numSemitones);
-    auto curNoteValue = root_note;
+    notes.reserve(num_semitones);
+    auto cur_note_value = root_note;
     notes.push_back(root_note);
     for (const int semitone : semitones) {
-        curNoteValue = next_note_in_scale(curNoteValue, semitone);
-        notes.push_back(curNoteValue);
+        cur_note_value = next_note_in_scale(cur_note_value, semitone);
+        notes.push_back(cur_note_value);
     }
 }
 
@@ -32,12 +32,12 @@ std::string ScaleImpl::test_description() {
 }
 
 NoteValue ScaleImpl::next_note_in_scale(NoteValue note, const int semitone) {
-    auto curNoteValue = static_cast<int>(note);
-    curNoteValue += semitone;
-    if (curNoteValue > static_cast<int>(NoteValue::B)) {
-        curNoteValue = curNoteValue - (static_cast<int>(NoteValue::B) + 1);
+    auto cur_note_value = static_cast<int>(note);
+    cur_note_value += semitone;
+    if (cur_note_value > static_cast<int>(NoteValue::B)) {
+        cur_note_value = cur_note_value - (static_cast<int>(NoteValue::B) + 1);
     }
-    return static_cast<NoteValue>(curNoteValue);
+    return static_cast<NoteValue>(cur_note_value);
 }
 
 std::shared_ptr<Scale> Scale::create_with_root_note(NoteValue root_note, const std::vector<int32_t>& semitones) {

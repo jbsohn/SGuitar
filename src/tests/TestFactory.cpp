@@ -25,7 +25,7 @@ TEST_CASE("Testing GuitarFactory") {
     const auto guitars = guitarDAO->get_guitars();
     const auto guitar = SGuitarFactory::create_guitar(guitars[0]);
     CHECK(guitar->get_strings().size() > 0);
-    std::cout << "guitar factory object: " << guitar->test_description() << std::endl;
+    std::cout << "guitar factory object: " << std::endl << guitar->test_description() << std::endl;
 }
 
 TEST_CASE("Testing ScaleFactory") {

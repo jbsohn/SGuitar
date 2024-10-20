@@ -15,6 +15,7 @@ public:
     explicit GuitarDAOImpl(const SQLite::Database& database)
         : db(database) {
     }
+
     std::vector<GuitarRecord> get_guitars() override;
     void add_guitar(const GuitarRecord& guitar) override;
     int32_t update_guitar(const GuitarRecord& guitar) override;

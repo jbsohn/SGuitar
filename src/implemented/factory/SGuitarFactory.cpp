@@ -26,8 +26,9 @@ int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_reco
     return max_string_number;
 }
 
-std::vector<std::shared_ptr<GuitarString>>
-create_guitar_strings(const int number_of_frets, const std::vector<GuitarStringRecord>& guitar_strings_records) {
+std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(const int number_of_frets,
+                                                                 const std::vector<GuitarStringRecord>&
+                                                                 guitar_strings_records) {
     std::vector<std::shared_ptr<GuitarString>> guitar_strings;
     guitar_strings.resize(max_string_number(guitar_strings_records) + 1);
 
@@ -76,10 +77,10 @@ std::shared_ptr<Guitar> SGuitarFactory::create_guitar(const GuitarRecord& guitar
     return Guitar::create(guitar_record.number_of_frets, strings, adjustments);
 }
 
-std::shared_ptr<Scale> SGuitarFactory::create_scale(NoteValue root_note, const ScaleRecord& scale_record) {
+std::shared_ptr<Scale> SGuitarFactory::create_scale(const NoteValue root_note, const ScaleRecord& scale_record) {
     return Scale::create_with_root_note(root_note, scale_record.semitones);
 }
 
-std::shared_ptr<Chord> SGuitarFactory::create_chord(NoteValue root_note, const ChordRecord& chord_record) {
+std::shared_ptr<Chord> SGuitarFactory::create_chord(const NoteValue root_note, const ChordRecord& chord_record) {
     return Chord::create_with_root_note(root_note, chord_record.intervals);
 }

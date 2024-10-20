@@ -61,14 +61,18 @@ std::string GuitarImpl::test_description() {
     for (int string_number = 1; string_number < guitar_strings.size(); string_number++) {
         description += std::format("string {}: {}\n", string_number, guitar_strings[string_number]->test_description());
     }
+
+    for (const auto& [fst, snd] : guitar_adjustments) {
+        description += std::format("{}:\n{}\n", fst, snd->test_description());
+    }
     return description;
 }
 
 std::shared_ptr<Guitar> Guitar::create(
     int32_t number_of_frets,
-    const std::vector</*not-null*/ std::shared_ptr<GuitarString>>& guitar_strings,
+    const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
     const std::unordered_map<
-        std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>>&
+        std::string, std::shared_ptr<GuitarAdjustment>>&
     guitar_adjustments) {
     return std::make_shared<GuitarImpl>(number_of_frets, guitar_strings, guitar_adjustments);
 }

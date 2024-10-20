@@ -18,8 +18,7 @@ public:
     GuitarImpl(
         int32_t number_of_frets,
         const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
-        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>&
-        guitar_adjustments);
+        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>& guitar_adjustments);
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override;
