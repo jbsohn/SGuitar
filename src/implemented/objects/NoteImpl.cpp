@@ -7,6 +7,7 @@
 //
 
 #include <string>
+#include <format>
 #include "NoteImpl.hpp"
 
 const std::string NoteImpl::note_names_sharp[] = {

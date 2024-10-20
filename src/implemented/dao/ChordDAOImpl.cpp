@@ -2,6 +2,7 @@
 // Created by John on 10/13/24.
 //
 
+#include <SQLiteCpp/SQLiteCpp.h>
 #include <nlohmann/json.hpp>
 #include "ChordDAOImpl.hpp"
 #include "SGuitarDatabaseImpl.hpp"

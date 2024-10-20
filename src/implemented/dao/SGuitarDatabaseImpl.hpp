@@ -5,7 +5,6 @@
 #ifndef SGUITAR_DATABASE_IMPL_H
 #define SGUITAR_DATABASE_IMPL_H
 
-#include <SQLiteCpp/SQLiteCpp.h>
 #include "SGuitar_database.hpp"
 
 class SGuitarDatabaseImpl final : public SGuitarDatabase {

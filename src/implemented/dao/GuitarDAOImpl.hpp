@@ -4,7 +4,6 @@
 #ifndef GUITAR_DAO_IMPL_H
 #define GUITAR_DAO_IMPL_H
 
-#include <SQLiteCpp/Database.h>
 #include "guitar_record.hpp"
 #include "guitar_DAO.hpp"
 

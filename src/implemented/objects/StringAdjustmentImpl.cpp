@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <format>
 #include "StringAdjustmentImpl.hpp"
 
 StringAdjustmentImpl::StringAdjustmentImpl(const int string_number, const int step) {

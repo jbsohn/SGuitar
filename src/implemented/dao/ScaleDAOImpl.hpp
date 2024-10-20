@@ -5,7 +5,6 @@
 #ifndef SCALE_DAO_IMPL_H
 #define SCALE_DAO_IMPL_H
 
-#include <SQLiteCpp/SQLiteCpp.h>
 #include "scale_record.hpp"
 #include "scale_DAO.hpp"
 

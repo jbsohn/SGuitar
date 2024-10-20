@@ -5,7 +5,6 @@
 #ifndef CHORD_DAO_IMPL_H
 #define CHORD_DAO_IMPL_H
 
-#include <SQLiteCpp/SQLiteCpp.h>
 #include "chord_record.hpp"
 #include "chord_DAO.hpp"
 

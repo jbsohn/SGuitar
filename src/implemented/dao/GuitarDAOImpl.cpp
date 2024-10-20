@@ -2,6 +2,7 @@
 // Created by John on 10/13/24.
 //
 
+#include <SQLiteCpp/Database.h>
 #include "GuitarDAOImpl.hpp"
 #include "SGuitarDatabaseImpl.hpp"
 

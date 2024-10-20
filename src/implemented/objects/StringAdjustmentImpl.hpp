@@ -5,7 +5,6 @@
 #ifndef STRING_ADJUSTMENT_IMPL_H
 #define STRING_ADJUSTMENT_IMPL_H
 
-#include <format>
 #include "string_adjustment.hpp"
 
 class StringAdjustmentImpl final : public StringAdjustment {
