@@ -27,7 +27,7 @@ public:
 
     void adjust_string_by_steps(int32_t steps) override;
     void reset() override { notes = string_with_start_note(start_note->get_midi_note(), number_of_fret); }
-    std::string testDescription() override;
+    std::string test_description() override;
 
 protected:
     static std::vector<std::shared_ptr<Note>> string_with_start_note(int midi_start_node, int number_of_frets);

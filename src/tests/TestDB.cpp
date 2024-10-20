@@ -4,13 +4,12 @@
 #include <doctest/doctest.h>
 #include <SQLiteCpp/SQLiteCpp.h>
 #include "SGuitar_database.hpp"
-#include "SGuitarFactory.hpp"
-#include "scale_DAO.hpp"
 #include "scale_record.hpp"
-#include "chord_DAO.hpp"
+#include "scale_DAO.hpp"
 #include "chord_record.hpp"
-#include "guitar_DAO.hpp"
+#include "chord_DAO.hpp"
 #include "guitar_record.hpp"
+#include "guitar_DAO.hpp"
 
 TEST_CASE("Testing DB: SELECT") {
     const SQLite::Database db("../src/tests/test.sqlite3");
@@ -62,6 +61,6 @@ TEST_CASE("Testing ChordDAO add/delete") {
 TEST_CASE("Testing GuitarDAO get/add/delete") {
     const auto database = SGuitarDatabase::create_sguitar_database("../src/tests/test.sqlite3");
     const auto guitarDAO = GuitarDAO::create_guitar_dao(database);
-    const auto guitars = guitarDAO->get_guitars();
+    auto guitars = guitarDAO->get_guitars();
     CHECK(guitars.size() > 0);
 }

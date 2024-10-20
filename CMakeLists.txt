@@ -24,7 +24,7 @@ add_executable(
         src/implemented/dao/ScaleDAOImpl.cpp
         src/implemented/dao/ChordDAOImpl.cpp
         src/implemented/dao/GuitarDAOImpl.cpp
-        src/factory/SGuitarFactory.cpp
+        src/implemented/factory/SGuitarFactory.cpp
         src/tests/test.cpp
         src/tests/TestScales.cpp
         src/tests/TestChords.cpp

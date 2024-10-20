@@ -47,12 +47,6 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)setStep:(int32_t)step {
-    try {
-        _cppRefHandle.get()->set_step(::djinni::I32::toCpp(step));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
 - (int32_t)getStep {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_step();
@@ -62,7 +56,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 
 - (nonnull NSString *)testDescription {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->testDescription();
+        auto objcpp_result_ = _cppRefHandle.get()->test_description();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

@@ -5,6 +5,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "note_value.hpp"
 #include "string_adjustment.hpp"
 #include "note.hpp"
@@ -20,8 +21,8 @@
 
 TEST_CASE("Testing the Note object") {
     const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);
-    std::cout << "Note: " << note->testDescription() << std::endl;
-    std::cout << "Name: " << note->testDescription() << std::endl;
+    std::cout << "Note: " << note->test_description() << std::endl;
+    std::cout << "Name: " << note->test_description() << std::endl;
     CHECK(note->get_octave() == 2);
     CHECK(note->get_note() == NoteValue::C);
     CHECK(note->get_midi_note() == 36);
@@ -30,33 +31,33 @@ TEST_CASE("Testing the Note object") {
 TEST_CASE("Testing the Chord object") {
     const auto intervals = {0, 4, 7};
     const auto chord = Chord::create_with_root_note(NoteValue::C, intervals);
-    std::cout << "Chord: " << chord->testDescription() << std::endl;
-    CHECK(chord->testDescription() == "CEG");
+    std::cout << "Chord: " << chord->test_description() << std::endl;
+    CHECK(chord->test_description() == "CEG");
 }
 
 TEST_CASE("Testing the GuitarString object") {
     const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);
     const auto guitarString = GuitarString::create_with_start_note(note, 13);
-    std::cout << "GuitarString: " << guitarString->testDescription() << std::endl;
-    CHECK(guitarString->testDescription() == "CC♯DD♯EFF♯GG♯AA♯BC");
+    std::cout << "GuitarString: " << guitarString->test_description() << std::endl;
+    CHECK(guitarString->test_description() == "CC♯DD♯EFF♯GG♯AA♯BC");
 
     guitarString->adjust_string_by_steps(2);
-    std::cout << "GuitarString: " << guitarString->testDescription() << std::endl;
-    CHECK(guitarString->testDescription() == "DD♯EFF♯GG♯AA♯BCC♯D");
+    std::cout << "GuitarString: " << guitarString->test_description() << std::endl;
+    CHECK(guitarString->test_description() == "DD♯EFF♯GG♯AA♯BCC♯D");
 }
 
 TEST_CASE("Testing the StringAdjustment object") {
     const auto adjustment = StringAdjustment::create_with_string_number(1, 1);
-    std::cout << "StringAdjustment: " << adjustment->testDescription() << std::endl;
+    std::cout << "StringAdjustment: " << adjustment->test_description() << std::endl;
     CHECK(adjustment->get_string_number() == 1);
     CHECK(adjustment->get_step() == 1);
 }
 
 TEST_CASE("Testing the GuitarAdjustment object") {
-    const auto adjustment1 = StringAdjustment::create_with_string_number(1, 1);
-    const auto guitarAdjustment = GuitarAdjustment::create_with_name("LKL");
-    guitarAdjustment->add_string_adjustment(adjustment1);
-    std::cout << "guitarAdjustment: " << guitarAdjustment->testDescription() << std::endl;
+    const auto stringAdjustment = StringAdjustment::create_with_string_number(1, 1);
+    const auto adjustments = std::vector<std::shared_ptr<StringAdjustment>>() = {stringAdjustment};
+    const auto guitarAdjustment = GuitarAdjustment::create_with_string_adjustments(adjustments);
+    std::cout << "guitarAdjustment: " << guitarAdjustment->test_description() << std::endl;
 }
 
 TEST_CASE("Testing the Guitar object") {
@@ -94,5 +95,5 @@ TEST_CASE("Testing the Guitar object") {
 TEST_CASE("Testing harmonized scales") {
     const auto scale = HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue::C,
                                                                                {2, 2, 1, 2, 2, 2});
-    std::cout << scale->testDescription() << std::endl;
+    std::cout << scale->test_description() << std::endl;
 }

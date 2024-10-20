@@ -16,7 +16,7 @@ public:
     std::vector<std::shared_ptr<Chord>> get_chords() override {
         return chords;
     }
-    std::string testDescription() override;
+    std::string test_description() override;
 };
 
 #endif //HARMONIZED_SCALE_IMPL_HPP

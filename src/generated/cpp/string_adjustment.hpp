@@ -15,9 +15,7 @@ public:
 
     virtual int32_t get_string_number() = 0;
 
-    virtual void set_step(int32_t step) = 0;
-
     virtual int32_t get_step() = 0;
 
-    virtual std::string testDescription() = 0;
+    virtual std::string test_description() = 0;
 };

@@ -8,21 +8,13 @@
 
 @interface SGGuitarAdjustment : NSObject
 
-+ (nullable SGGuitarAdjustment *)createWithName:(nonnull NSString *)name;
-
-- (nonnull NSString *)getName;
-
-- (void)clearAdjustments;
-
-- (void)addStringAdjustment:(nullable SGStringAdjustment *)adjustment;
++ (nullable SGGuitarAdjustment *)createWithStringAdjustments:(nonnull NSArray<SGStringAdjustment *> *)stringAdjustments;
 
 - (nonnull NSArray<SGStringAdjustment *> *)getStringAdjustments;
 
-- (nullable SGStringAdjustment *)stringAdjustmentForStringNumber:(int32_t)stringNumber;
+- (void)setActivated:(BOOL)activated;
 
 - (BOOL)isActivated;
-
-- (void)setActivated:(BOOL)activated;
 
 - (nonnull NSString *)testDescription;
 

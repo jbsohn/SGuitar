@@ -9,8 +9,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class StringAdjustment {
     public abstract int getStringNumber();
 
-    public abstract void setStep(int step);
-
     public abstract int getStep();
 
     public abstract String testDescription();
@@ -37,14 +35,6 @@ public abstract class StringAdjustment {
             return native_getStringNumber(this.nativeRef);
         }
         private native int native_getStringNumber(long _nativeRef);
-
-        @Override
-        public void setStep(int step)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setStep(this.nativeRef, step);
-        }
-        private native void native_setStep(long _nativeRef, int step);
 
         @Override
         public int getStep()

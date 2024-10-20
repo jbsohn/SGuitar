@@ -23,7 +23,7 @@ ScaleImpl::ScaleImpl(const NoteValue root_note, const std::vector<int>& semitone
     }
 }
 
-std::string ScaleImpl::testDescription() {
+std::string ScaleImpl::test_description() {
     std::string s;
     for (const auto curNoteValue : notes) {
         s += std::format("{}", Note::note_name_flat_for_note(curNoteValue));

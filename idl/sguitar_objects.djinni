@@ -26,7 +26,7 @@ note = interface +c {
     get_midi_note(): i32;
     get_note(): note_value;
     get_octave(): i32;
-    testDescription(): string;
+    test_description(): string;
     note_name_sharp(): string;
     note_name_flat(): string;
     static note_name_sharp_for_note(note: note_value): string;
@@ -37,20 +37,20 @@ note = interface +c {
 scale = interface +c {
     static create_with_root_note(root_note: note_value, semitones: array<i32>): scale;
     get_notes(): array<note_value>;
-    testDescription(): string;
+    test_description(): string;
 }
 
 chord = interface +c {
     static create_with_root_note(root_note: note_value, intervals: array<i32>): chord;
     static create_with_notes(notes: array<note_value>): chord;
     get_notes(): array<note_value>;
-    testDescription(): string;
+    test_description(): string;
 }
 
 harmonized_scale = interface +c {
     static create_harmonized_scale_with_root_note(root_note: note_value, semitones: array<i32>): harmonized_scale;
     get_chords(): array<chord>;
-    testDescription(): string;
+    test_description(): string;
 }
 
 guitar_string = interface +c {
@@ -60,44 +60,29 @@ guitar_string = interface +c {
     get_notes(): array<note>;
     reset();
     adjust_string_by_steps(steps: i32);
-    testDescription(): string;
+    test_description(): string;
 }
 
 string_adjustment = interface +c {
     static create_with_string_number(string_number: i32, step: i32): string_adjustment;
     get_string_number(): i32;
-    set_step(step: i32);
     get_step(): i32;
-    testDescription(): string;
+    test_description(): string;
 }
 
 guitar_adjustment = interface +c {
-    static create_with_name(name: string): guitar_adjustment;
-    get_name(): string;
-    clear_adjustments();
-    add_string_adjustment(adjustment: string_adjustment);
+    static create_with_string_adjustments(string_adjustments: array<string_adjustment>): guitar_adjustment;
     get_string_adjustments(): array<string_adjustment>;
-    string_adjustment_for_string_number(string_number: i32): string_adjustment;
-    is_activated(): bool;
     set_activated(activated: bool);
-    testDescription(): string;
+    is_activated(): bool;
+    test_description(): string;
 }
 
 guitar = interface +c {
-    # setup
     static create(number_of_frets: i32, guitar_strings: array<guitar_string>, guitar_adjustments: map<string, guitar_adjustment>): guitar;
-
-    # strings
     get_strings(): array<guitar_string>;
     reset_strings();
-
-    # adjustments -- tagged for deletion
-    # static create(): guitar;
-    reset_guitar(notes: array<note>, number_of_frets: i32);
+    set_adjustment_activated(adjustment_id: string, activated: bool);
     is_adjustment_activated(adjustment_id: string): bool;
-    activate_adjustment(adjustment_id: string, activated: bool);
-    set_adjustment(settingID: string, adjustment: guitar_adjustment);
-    get_adjustment(settingID: string): guitar_adjustment;
-
-    testDescription(): string;
+    test_description(): string;
 }

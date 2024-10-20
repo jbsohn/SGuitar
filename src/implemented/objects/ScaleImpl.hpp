@@ -16,7 +16,7 @@ public:
     std::vector<NoteValue> get_notes() override {
         return notes;
     }
-    std::string testDescription() override;
+    std::string test_description() override;
 
 protected:
     static NoteValue next_note_in_scale(NoteValue note, int semitone);

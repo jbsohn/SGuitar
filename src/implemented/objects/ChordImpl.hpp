@@ -23,7 +23,7 @@ public:
         return notes;
     }
 
-    std::string testDescription() override;
+    std::string test_description() override;
 
 protected:
     static NoteValue note_for_interval(int interval, NoteValue rootNote);

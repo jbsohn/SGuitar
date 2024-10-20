@@ -35,7 +35,7 @@ public:
         return midi_note / 12 - 1;
     }
 
-    std::string testDescription() override {
+    std::string test_description() override {
         return std::format("{}", note_name_sharp());
     }
 

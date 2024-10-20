@@ -10,24 +10,15 @@
 #include <string>
 #include "GuitarAdjustmentImpl.hpp"
 
-std::shared_ptr<StringAdjustment>
-GuitarAdjustmentImpl::string_adjustment_for_string_number(const int32_t string_number) {
-    for (const auto& adjustment : adjustments) {
-        if (adjustment->get_string_number() == string_number) {
-            return adjustment;
-        }
-    }
-    return nullptr;
-}
-
-std::string GuitarAdjustmentImpl::testDescription() {
-    std::string description = std::format("adjustment_name: {}\n", name);
-    for (const auto& adjustment : adjustments) {
-        description += std::format("{}\n", adjustment->testDescription());
+std::string GuitarAdjustmentImpl::test_description() {
+    std::string description;
+    for (const auto& adjustment : string_adjustments) {
+        description += std::format("{}\n", adjustment->test_description());
     }
     return description;
 }
 
-std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_name(const std::string& name) {
-    return std::make_shared<GuitarAdjustmentImpl>(name);
+std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_string_adjustments(
+    const std::vector<std::shared_ptr<StringAdjustment>>& string_adjustments) {
+    return std::make_shared<GuitarAdjustmentImpl>(string_adjustments);
 }

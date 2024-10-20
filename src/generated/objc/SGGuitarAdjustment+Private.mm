@@ -32,29 +32,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGGuitarAdjustment *)createWithName:(nonnull NSString *)name {
++ (nullable SGGuitarAdjustment *)createWithStringAdjustments:(nonnull NSArray<SGStringAdjustment *> *)stringAdjustments {
     try {
-        auto objcpp_result_ = ::GuitarAdjustment::create_with_name(::djinni::String::toCpp(name));
+        auto objcpp_result_ = ::GuitarAdjustment::create_with_string_adjustments(::djinni::Array<::djinni_generated::StringAdjustment>::toCpp(stringAdjustments));
         return ::djinni_generated::GuitarAdjustment::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nonnull NSString *)getName {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_name();
-        return ::djinni::String::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)clearAdjustments {
-    try {
-        _cppRefHandle.get()->clear_adjustments();
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)addStringAdjustment:(nullable SGStringAdjustment *)adjustment {
-    try {
-        _cppRefHandle.get()->add_string_adjustment(::djinni_generated::StringAdjustment::toCpp(adjustment));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -65,10 +46,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (nullable SGStringAdjustment *)stringAdjustmentForStringNumber:(int32_t)stringNumber {
+- (void)setActivated:(BOOL)activated {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->string_adjustment_for_string_number(::djinni::I32::toCpp(stringNumber));
-        return ::djinni_generated::StringAdjustment::fromCpp(objcpp_result_);
+        _cppRefHandle.get()->set_activated(::djinni::Bool::toCpp(activated));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -79,15 +59,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)setActivated:(BOOL)activated {
-    try {
-        _cppRefHandle.get()->set_activated(::djinni::Bool::toCpp(activated));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
 - (nonnull NSString *)testDescription {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->testDescription();
+        auto objcpp_result_ = _cppRefHandle.get()->test_description();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

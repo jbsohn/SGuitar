@@ -7,23 +7,15 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class GuitarAdjustment {
-    public abstract String getName();
-
-    public abstract void clearAdjustments();
-
-    public abstract void addStringAdjustment(StringAdjustment adjustment);
-
     public abstract StringAdjustment[] getStringAdjustments();
-
-    public abstract StringAdjustment stringAdjustmentForStringNumber(int stringNumber);
-
-    public abstract boolean isActivated();
 
     public abstract void setActivated(boolean activated);
 
+    public abstract boolean isActivated();
+
     public abstract String testDescription();
 
-    public static native GuitarAdjustment createWithName(String name);
+    public static native GuitarAdjustment createWithStringAdjustments(StringAdjustment[] stringAdjustments);
 
     public static final class CppProxy extends GuitarAdjustment
     {
@@ -39,30 +31,6 @@ public abstract class GuitarAdjustment {
         public static native void nativeDestroy(long nativeRef);
 
         @Override
-        public String getName()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getName(this.nativeRef);
-        }
-        private native String native_getName(long _nativeRef);
-
-        @Override
-        public void clearAdjustments()
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_clearAdjustments(this.nativeRef);
-        }
-        private native void native_clearAdjustments(long _nativeRef);
-
-        @Override
-        public void addStringAdjustment(StringAdjustment adjustment)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_addStringAdjustment(this.nativeRef, adjustment);
-        }
-        private native void native_addStringAdjustment(long _nativeRef, StringAdjustment adjustment);
-
-        @Override
         public StringAdjustment[] getStringAdjustments()
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
@@ -71,12 +39,12 @@ public abstract class GuitarAdjustment {
         private native StringAdjustment[] native_getStringAdjustments(long _nativeRef);
 
         @Override
-        public StringAdjustment stringAdjustmentForStringNumber(int stringNumber)
+        public void setActivated(boolean activated)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_stringAdjustmentForStringNumber(this.nativeRef, stringNumber);
+            native_setActivated(this.nativeRef, activated);
         }
-        private native StringAdjustment native_stringAdjustmentForStringNumber(long _nativeRef, int stringNumber);
+        private native void native_setActivated(long _nativeRef, boolean activated);
 
         @Override
         public boolean isActivated()
@@ -85,14 +53,6 @@ public abstract class GuitarAdjustment {
             return native_isActivated(this.nativeRef);
         }
         private native boolean native_isActivated(long _nativeRef);
-
-        @Override
-        public void setActivated(boolean activated)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setActivated(this.nativeRef, activated);
-        }
-        private native void native_setActivated(long _nativeRef, boolean activated);
 
         @Override
         public String testDescription()

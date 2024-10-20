@@ -20,7 +20,6 @@ public:
         const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
         const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>&
         guitar_adjustments);
-    void reset_guitar(const std::vector<std::shared_ptr<Note>>& notes, int32_t number_of_frets) override;
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override;
@@ -28,16 +27,9 @@ public:
 
     /** adjustment */
     bool is_adjustment_activated(const std::string& adjustment_id) override;
-    void activate_adjustment(const std::string& adjustment_id, bool activated) override;
+    void set_adjustment_activated(const std::string& adjustment_id, bool activated) override;
 
-    void set_adjustment(const std::string& setting_id,
-                        const /*not-null*/ std::shared_ptr<GuitarAdjustment>& adjustment) override {
-        guitar_adjustments[setting_id] = adjustment;
-    }
-
-    /*not-null*/
-    std::shared_ptr<GuitarAdjustment> get_adjustment(const std::string& setting_id) override;
-    std::string testDescription() override;
+    std::string test_description() override;
 };
 
 #endif //GUITAR_IMPL_H

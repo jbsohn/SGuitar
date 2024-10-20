@@ -23,11 +23,11 @@ HarmonizedScaleImpl::HarmonizedScaleImpl(const NoteValue root_note, const std::v
     chords.push_back(Chord::create_with_notes(notes));
 }
 
-std::string HarmonizedScaleImpl::testDescription() {
+std::string HarmonizedScaleImpl::test_description() {
     std::string s;
 
     for (const auto& chord : chords) {
-        s += std::format("{}\n", chord->testDescription());
+        s += std::format("{}\n", chord->test_description());
     }
 
     return s;

@@ -49,7 +49,7 @@ CJNIEXPORT jstring JNICALL Java_com_steelsidekick_sguitar_Chord_00024CppProxy_na
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::Chord>(nativeRef);
-        auto r = ref->testDescription();
+        auto r = ref->test_description();
         return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

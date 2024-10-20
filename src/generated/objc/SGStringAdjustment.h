@@ -12,8 +12,6 @@
 
 - (int32_t)getStringNumber;
 
-- (void)setStep:(int32_t)step;
-
 - (int32_t)getStep;
 
 - (nonnull NSString *)testDescription;

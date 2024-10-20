@@ -19,5 +19,5 @@ public:
 
     virtual std::vector</*not-null*/ std::shared_ptr<Chord>> get_chords() = 0;
 
-    virtual std::string testDescription() = 0;
+    virtual std::string test_description() = 0;
 };

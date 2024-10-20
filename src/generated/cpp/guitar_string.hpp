@@ -26,5 +26,5 @@ public:
 
     virtual void adjust_string_by_steps(int32_t steps) = 0;
 
-    virtual std::string testDescription() = 0;
+    virtual std::string test_description() = 0;
 };

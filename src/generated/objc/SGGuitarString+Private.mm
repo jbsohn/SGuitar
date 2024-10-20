@@ -76,7 +76,7 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 
 - (nonnull NSString *)testDescription {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->testDescription();
+        auto objcpp_result_ = _cppRefHandle.get()->test_description();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

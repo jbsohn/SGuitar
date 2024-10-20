@@ -5,37 +5,22 @@
 @class SGGuitar;
 @class SGGuitarAdjustment;
 @class SGGuitarString;
-@class SGNote;
 
 
 @interface SGGuitar : NSObject
 
-/** setup */
 + (nullable SGGuitar *)create:(int32_t)numberOfFrets
                 guitarStrings:(nonnull NSArray<SGGuitarString *> *)guitarStrings
             guitarAdjustments:(nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)guitarAdjustments;
 
-/** strings */
 - (nonnull NSArray<SGGuitarString *> *)getStrings;
 
 - (void)resetStrings;
 
-/**
- * adjustments -- tagged for deletion
- * static create(): guitar;
- */
-- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
-      numberOfFrets:(int32_t)numberOfFrets;
+- (void)setAdjustmentActivated:(nonnull NSString *)adjustmentId
+                     activated:(BOOL)activated;
 
 - (BOOL)isAdjustmentActivated:(nonnull NSString *)adjustmentId;
-
-- (void)activateAdjustment:(nonnull NSString *)adjustmentId
-                 activated:(BOOL)activated;
-
-- (void)setAdjustment:(nonnull NSString *)settingID
-           adjustment:(nullable SGGuitarAdjustment *)adjustment;
-
-- (nullable SGGuitarAdjustment *)getAdjustment:(nonnull NSString *)settingID;
 
 - (nonnull NSString *)testDescription;
 

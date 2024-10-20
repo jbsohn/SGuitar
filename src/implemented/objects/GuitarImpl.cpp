@@ -8,9 +8,11 @@
 
 #include <format>
 #include <vector>
-#include <map>
 #include "string_adjustment.hpp"
+#include "guitar_adjustment.hpp"
 #include "GuitarImpl.hpp"
+
+#include <iostream>
 
 GuitarImpl::GuitarImpl(const int32_t number_of_frets,
                        const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
@@ -19,17 +21,6 @@ GuitarImpl::GuitarImpl(const int32_t number_of_frets,
     this->number_of_frets = number_of_frets;
     this->guitar_strings = guitar_strings;
     this->guitar_adjustments = guitar_adjustments;
-}
-
-void GuitarImpl::reset_guitar(const std::vector<std::shared_ptr<Note>>& notes,
-                              const int32_t number_of_frets) {
-    guitar_adjustments.clear();
-    guitar_strings.clear();
-    guitar_strings.push_back(GuitarString::create()); // "empty" string at index 0
-
-    for (const auto& note : notes) {
-        guitar_strings.push_back(GuitarString::create_with_start_note(note, number_of_frets));
-    }
 }
 
 /** strings */
@@ -53,7 +44,7 @@ bool GuitarImpl::is_adjustment_activated(const std::string& adjustment_id) {
     return false;
 }
 
-void GuitarImpl::activate_adjustment(const std::string& adjustment_id, const bool activated) {
+void GuitarImpl::set_adjustment_activated(const std::string& adjustment_id, const bool activated) {
     if (const auto adjustment = guitar_adjustments[adjustment_id]; adjustment != nullptr) {
         for (const auto string_adjustments = adjustment->get_string_adjustments();
              const auto& stringAdjustment : string_adjustments) {
@@ -65,17 +56,10 @@ void GuitarImpl::activate_adjustment(const std::string& adjustment_id, const boo
     }
 }
 
-std::shared_ptr<GuitarAdjustment> GuitarImpl::get_adjustment(const std::string& setting_id) {
-    if (guitar_adjustments.contains(setting_id)) {
-        return guitar_adjustments[setting_id];
-    }
-    return nullptr;
-}
-
-std::string GuitarImpl::testDescription() {
+std::string GuitarImpl::test_description() {
     std::string description;
     for (int string_number = 1; string_number < guitar_strings.size(); string_number++) {
-        description += std::format("string {}: {}\n", string_number, guitar_strings[string_number]->testDescription());
+        description += std::format("string {}: {}\n", string_number, guitar_strings[string_number]->test_description());
     }
     return description;
 }

@@ -9,7 +9,6 @@
 #import "DJIMarshal+Private.h"
 #import "SGGuitarAdjustment+Private.h"
 #import "SGGuitarString+Private.h"
-#import "SGNote+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -58,11 +57,11 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)resetGuitar:(nonnull NSArray<SGNote *> *)notes
-      numberOfFrets:(int32_t)numberOfFrets {
+- (void)setAdjustmentActivated:(nonnull NSString *)adjustmentId
+                     activated:(BOOL)activated {
     try {
-        _cppRefHandle.get()->reset_guitar(::djinni::Array<::djinni_generated::Note>::toCpp(notes),
-                                          ::djinni::I32::toCpp(numberOfFrets));
+        _cppRefHandle.get()->set_adjustment_activated(::djinni::String::toCpp(adjustmentId),
+                                                      ::djinni::Bool::toCpp(activated));
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -73,32 +72,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)activateAdjustment:(nonnull NSString *)adjustmentId
-                 activated:(BOOL)activated {
-    try {
-        _cppRefHandle.get()->activate_adjustment(::djinni::String::toCpp(adjustmentId),
-                                                 ::djinni::Bool::toCpp(activated));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (void)setAdjustment:(nonnull NSString *)settingID
-           adjustment:(nullable SGGuitarAdjustment *)adjustment {
-    try {
-        _cppRefHandle.get()->set_adjustment(::djinni::String::toCpp(settingID),
-                                            ::djinni_generated::GuitarAdjustment::toCpp(adjustment));
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
-- (nullable SGGuitarAdjustment *)getAdjustment:(nonnull NSString *)settingID {
-    try {
-        auto objcpp_result_ = _cppRefHandle.get()->get_adjustment(::djinni::String::toCpp(settingID));
-        return ::djinni_generated::GuitarAdjustment::fromCpp(objcpp_result_);
-    } DJINNI_TRANSLATE_EXCEPTIONS()
-}
-
 - (nonnull NSString *)testDescription {
     try {
-        auto objcpp_result_ = _cppRefHandle.get()->testDescription();
+        auto objcpp_result_ = _cppRefHandle.get()->test_description();
         return ::djinni::String::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

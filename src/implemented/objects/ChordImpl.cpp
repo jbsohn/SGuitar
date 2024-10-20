@@ -18,7 +18,7 @@ ChordImpl::ChordImpl(const NoteValue root_note, const std::vector<int>& interval
     }
 }
 
-std::string ChordImpl::testDescription() {
+std::string ChordImpl::test_description() {
     std::string s;
     for (const NoteValue note : notes) {
         s += std::format("{}", Note::note_name_flat_for_note(note));

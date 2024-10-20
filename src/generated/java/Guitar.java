@@ -8,28 +8,16 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Guitar {
-    /** strings */
     public abstract GuitarString[] getStrings();
 
     public abstract void resetStrings();
 
-    /**
-     * adjustments -- tagged for deletion
-     * static create(): guitar;
-     */
-    public abstract void resetGuitar(Note[] notes, int numberOfFrets);
+    public abstract void setAdjustmentActivated(String adjustmentId, boolean activated);
 
     public abstract boolean isAdjustmentActivated(String adjustmentId);
 
-    public abstract void activateAdjustment(String adjustmentId, boolean activated);
-
-    public abstract void setAdjustment(String settingID, GuitarAdjustment adjustment);
-
-    public abstract GuitarAdjustment getAdjustment(String settingID);
-
     public abstract String testDescription();
 
-    /** setup */
     public static native Guitar create(int numberOfFrets, GuitarString[] guitarStrings, HashMap<String, GuitarAdjustment> guitarAdjustments);
 
     public static final class CppProxy extends Guitar
@@ -62,12 +50,12 @@ public abstract class Guitar {
         private native void native_resetStrings(long _nativeRef);
 
         @Override
-        public void resetGuitar(Note[] notes, int numberOfFrets)
+        public void setAdjustmentActivated(String adjustmentId, boolean activated)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_resetGuitar(this.nativeRef, notes, numberOfFrets);
+            native_setAdjustmentActivated(this.nativeRef, adjustmentId, activated);
         }
-        private native void native_resetGuitar(long _nativeRef, Note[] notes, int numberOfFrets);
+        private native void native_setAdjustmentActivated(long _nativeRef, String adjustmentId, boolean activated);
 
         @Override
         public boolean isAdjustmentActivated(String adjustmentId)
@@ -76,30 +64,6 @@ public abstract class Guitar {
             return native_isAdjustmentActivated(this.nativeRef, adjustmentId);
         }
         private native boolean native_isAdjustmentActivated(long _nativeRef, String adjustmentId);
-
-        @Override
-        public void activateAdjustment(String adjustmentId, boolean activated)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_activateAdjustment(this.nativeRef, adjustmentId, activated);
-        }
-        private native void native_activateAdjustment(long _nativeRef, String adjustmentId, boolean activated);
-
-        @Override
-        public void setAdjustment(String settingID, GuitarAdjustment adjustment)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_setAdjustment(this.nativeRef, settingID, adjustment);
-        }
-        private native void native_setAdjustment(long _nativeRef, String settingID, GuitarAdjustment adjustment);
-
-        @Override
-        public GuitarAdjustment getAdjustment(String settingID)
-        {
-            assert !this.destroyed.get() : "trying to use a destroyed object";
-            return native_getAdjustment(this.nativeRef, settingID);
-        }
-        private native GuitarAdjustment native_getAdjustment(long _nativeRef, String settingID);
 
         @Override
         public String testDescription()

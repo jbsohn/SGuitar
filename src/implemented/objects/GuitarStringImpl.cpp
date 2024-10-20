@@ -28,10 +28,10 @@ void GuitarStringImpl::adjust_string_by_steps(const int32_t steps) {
     this->notes = notes;
 }
 
-std::string GuitarStringImpl::testDescription() {
+std::string GuitarStringImpl::test_description() {
     std::string s;
     for (const std::shared_ptr<Note>& note : notes) {
-        s += std::format("{}", note->testDescription());
+        s += std::format("{}", note->test_description());
     }
     return s;
 }
