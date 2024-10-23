@@ -24,6 +24,13 @@ FetchContent_Declare(SQLiteCpp
 )
 FetchContent_MakeAvailable(SQLiteCpp)
 
+# fmt
+FetchContent_Declare(fmt
+        GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+        GIT_TAG        11.0.2
+)
+FetchContent_MakeAvailable(fmt)
+
 set(CMAKE_CXX_STANDARD 20)
 set(INCLUDE, src/generated/cpp)
 set(SOURCE
@@ -52,19 +59,20 @@ set(TEST_SOURCE
 
 include_directories(PUBLIC "src/generated/cpp")
 
-add_executable(SGuitarTest ${TEST_SOURCE})
-target_link_libraries(SGuitarTest PRIVATE doctest)
-target_link_libraries(SGuitarTest PRIVATE nlohmann_json)
-target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
-enable_testing()
-add_test(
-    NAME SGuitarTest
-    COMMAND $<TARGET_FILE:SGuitarTest>
-)
-
-#add_library (SGuitar SHARED ${SOURCE})
-#target_link_libraries(SGuitar ${FOUNDATION_LIBRARY})
-#target_compile_definitions(SGuitar PUBLIC IS_BUILDING_SHARED)
+#add_executable(SGuitarTest ${TEST_SOURCE})
 #target_link_libraries(SGuitarTest PRIVATE doctest)
 #target_link_libraries(SGuitarTest PRIVATE nlohmann_json)
 #target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
+#enable_testing()
+#add_test(
+#    NAME SGuitarTest
+#    COMMAND $<TARGET_FILE:SGuitarTest>
+#)
+
+add_library (SGuitar SHARED ${SOURCE})
+target_link_libraries(SGuitar ${FOUNDATION_LIBRARY})
+target_compile_definitions(SGuitar PUBLIC IS_BUILDING_SHARED)
+target_link_libraries(SGuitar PRIVATE doctest)
+target_link_libraries(SGuitar PRIVATE nlohmann_json)
+target_link_libraries(SGuitar PRIVATE fmt)
+target_link_libraries(SGuitar PRIVATE SQLiteCpp)

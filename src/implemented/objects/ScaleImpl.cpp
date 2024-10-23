@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <format>
+#include <fmt/format.h>
 #include "note.hpp"
 #include "note_value.hpp"
 #include "ScaleImpl.hpp"
@@ -26,7 +26,7 @@ ScaleImpl::ScaleImpl(const NoteValue root_note, const std::vector<int>& semitone
 std::string ScaleImpl::test_description() {
     std::string s;
     for (const auto curNoteValue : notes) {
-        s += std::format("{}", Note::note_name_flat_for_note(curNoteValue));
+        s += fmt::format("{}", Note::note_name_flat_for_note(curNoteValue));
     }
     return s;
 }

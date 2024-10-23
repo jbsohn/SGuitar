@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <format>
+#include <fmt/format.h>
 #include <vector>
 #include "string_adjustment.hpp"
 #include "guitar_adjustment.hpp"
@@ -59,11 +59,11 @@ void GuitarImpl::set_adjustment_activated(const std::string& adjustment_id, cons
 std::string GuitarImpl::test_description() {
     std::string description;
     for (int string_number = 1; string_number < guitar_strings.size(); string_number++) {
-        description += std::format("string {}: {}\n", string_number, guitar_strings[string_number]->test_description());
+        description += fmt::format("string {}: {}\n", string_number, guitar_strings[string_number]->test_description());
     }
 
     for (const auto& [fst, snd] : guitar_adjustments) {
-        description += std::format("{}:\n{}\n", fst, snd->test_description());
+        description += fmt::format("{}:\n{}\n", fst, snd->test_description());
     }
     return description;
 }

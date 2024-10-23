@@ -5,6 +5,7 @@
 #ifndef STRING_ADJUSTMENT_IMPL_H
 #define STRING_ADJUSTMENT_IMPL_H
 
+#include <fmt/format.h>
 #include "string_adjustment.hpp"
 
 class StringAdjustmentImpl final : public StringAdjustment {
@@ -23,7 +24,7 @@ public:
     }
 
     std::string test_description() override {
-        return std::format("string_number: {}, step={}", string_number, step);
+        return fmt::format("string_number: {}, step={}", string_number, step);
     }
 };
 

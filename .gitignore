@@ -89,3 +89,15 @@ iOSInjectionProject/
 .vscode
 .idea
 cmake-build-debug
+CMakeFiles
+_deps
+.cmake
+CMakeCache.txt
+cmake_install.cmake
+Testing
+Release-iphoneos
+SGuitar.xcodeproj
+CMakeScripts
+install_manifest.txt
+CTestTestfile.cmake
+.cache

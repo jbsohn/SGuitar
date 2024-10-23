@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <format>
+#include <fmt/format.h>
 #include <vector>
 #include <string>
 #include "ChordImpl.hpp"
@@ -21,7 +21,7 @@ ChordImpl::ChordImpl(const NoteValue root_note, const std::vector<int>& interval
 std::string ChordImpl::test_description() {
     std::string s;
     for (const NoteValue note : notes) {
-        s += std::format("{}", Note::note_name_flat_for_note(note));
+        s += fmt::format("{}", Note::note_name_flat_for_note(note));
     }
     return s;
 }
