@@ -1,7 +1,0 @@
-{
-  "dependencies": [
-    "doctest",
-    "nlohmann-json",
-    "sqlitecpp"
-  ]
-}

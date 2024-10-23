@@ -1,9 +1,28 @@
 cmake_minimum_required(VERSION 3.29)
 project(SGuitar)
 
-find_package(doctest CONFIG REQUIRED)
-find_package(SQLiteCpp CONFIG REQUIRED)
-find_package(nlohmann_json CONFIG REQUIRED)
+include(FetchContent)
+
+# doctest
+FetchContent_Declare(doctest
+        GIT_REPOSITORY https://github.com/doctest/doctest.git
+        GIT_TAG        v2.4.11
+)
+FetchContent_MakeAvailable(doctest)
+
+# nlohmann_json
+FetchContent_Declare(nlohmann_json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG        v3.11.3
+)
+FetchContent_MakeAvailable(nlohmann_json)
+
+# nlohmann_json
+FetchContent_Declare(SQLiteCpp
+        GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp.git
+        GIT_TAG        3.3.2
+)
+FetchContent_MakeAvailable(SQLiteCpp)
 
 set(CMAKE_CXX_STANDARD 20)
 set(INCLUDE, src/generated/cpp)
@@ -34,20 +53,18 @@ set(TEST_SOURCE
 include_directories(PUBLIC "src/generated/cpp")
 
 add_executable(SGuitarTest ${TEST_SOURCE})
-
-target_link_libraries(SGuitarTest PRIVATE doctest::doctest)
+target_link_libraries(SGuitarTest PRIVATE doctest)
+target_link_libraries(SGuitarTest PRIVATE nlohmann_json)
 target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
-target_link_libraries(SGuitarTest PRIVATE nlohmann_json::nlohmann_json)
-
 enable_testing()
 add_test(
     NAME SGuitarTest
     COMMAND $<TARGET_FILE:SGuitarTest>
 )
 
-add_library (SGuitar SHARED ${SOURCE})
-target_link_libraries(SGuitar ${FOUNDATION_LIBRARY})
-target_compile_definitions(SGuitar PUBLIC IS_BUILDING_SHARED)
-target_link_libraries(SGuitar PRIVATE doctest::doctest)
-target_link_libraries(SGuitar PRIVATE SQLiteCpp)
-target_link_libraries(SGuitar PRIVATE nlohmann_json::nlohmann_json)
+#add_library (SGuitar SHARED ${SOURCE})
+#target_link_libraries(SGuitar ${FOUNDATION_LIBRARY})
+#target_compile_definitions(SGuitar PUBLIC IS_BUILDING_SHARED)
+#target_link_libraries(SGuitarTest PRIVATE doctest)
+#target_link_libraries(SGuitarTest PRIVATE nlohmann_json)
+#target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
