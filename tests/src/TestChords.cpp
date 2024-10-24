@@ -2,10 +2,10 @@
 // Created by john on 10/5/24.
 //
 
-#include <iostream>
 #include <chord.hpp>
-#include <note_value.hpp>
+#include <iostream>
 #include <doctest/doctest.h>
+#include "note_value.hpp"
 
 TEST_CASE("Testing Chord: Major") {
     const auto chord = Chord::create_with_root_note(NoteValue::C, {0, 4, 7});

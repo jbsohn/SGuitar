@@ -4,30 +4,33 @@ project(SGuitar)
 include(FetchContent)
 
 # doctest
-FetchContent_Declare(doctest
+FetchContent_Declare(
+        doctest
         GIT_REPOSITORY https://github.com/doctest/doctest.git
-        GIT_TAG        v2.4.11
+        GIT_TAG v2.4.11
 )
 FetchContent_MakeAvailable(doctest)
 
 # nlohmann_json
-FetchContent_Declare(nlohmann_json
+FetchContent_Declare(
+        nlohmann_json
         GIT_REPOSITORY https://github.com/nlohmann/json.git
-        GIT_TAG        v3.11.3
+        GIT_TAG v3.11.3
 )
 FetchContent_MakeAvailable(nlohmann_json)
 
 # nlohmann_json
-FetchContent_Declare(SQLiteCpp
+FetchContent_Declare(
+        SQLiteCpp
         GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp.git
-        GIT_TAG        3.3.2
+        GIT_TAG 3.3.2
 )
 FetchContent_MakeAvailable(SQLiteCpp)
 
 # fmt
 FetchContent_Declare(fmt
         GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-        GIT_TAG        11.0.2
+        GIT_TAG 11.0.2
 )
 FetchContent_MakeAvailable(fmt)
 
@@ -49,30 +52,27 @@ set(SOURCE
         src/implemented/factory/SGuitarFactory.cpp
 )
 set(TEST_SOURCE
-        ${SOURCE}
-        src/tests/test.cpp
-        src/tests/TestScales.cpp
-        src/tests/TestChords.cpp
-        src/tests/TestDB.cpp
-        src/tests/TestFactory.cpp
+        tests/src/test.cpp
+        tests/src/TestScales.cpp
+        tests/src/TestChords.cpp
+        tests/src/TestDB.cpp
+        tests/src/TestFactory.cpp
 )
 
 include_directories(PUBLIC "src/generated/cpp")
 
-#add_executable(SGuitarTest ${TEST_SOURCE})
-#target_link_libraries(SGuitarTest PRIVATE doctest)
-#target_link_libraries(SGuitarTest PRIVATE nlohmann_json)
-#target_link_libraries(SGuitarTest PRIVATE SQLiteCpp)
-#enable_testing()
-#add_test(
-#    NAME SGuitarTest
-#    COMMAND $<TARGET_FILE:SGuitarTest>
-#)
-
-add_library (SGuitar SHARED ${SOURCE})
-target_link_libraries(SGuitar ${FOUNDATION_LIBRARY})
-target_compile_definitions(SGuitar PUBLIC IS_BUILDING_SHARED)
-target_link_libraries(SGuitar PRIVATE doctest)
+add_library(SGuitar STATIC ${SOURCE})
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
 target_link_libraries(SGuitar PRIVATE fmt)
 target_link_libraries(SGuitar PRIVATE SQLiteCpp)
+
+add_executable(tests ${SOURCE} ${TEST_SOURCE})
+target_link_libraries(tests PRIVATE fmt)
+target_link_libraries(tests PRIVATE doctest)
+target_link_libraries(tests PRIVATE nlohmann_json)
+target_link_libraries(tests PRIVATE SQLiteCpp)
+enable_testing()
+add_test(
+        NAME tests
+        COMMAND $<TARGET_FILE:tests>
+)
