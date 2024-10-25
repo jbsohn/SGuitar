@@ -1,5 +1,23 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.30)
 project(SGuitar)
+
+# djinni
+set(idl_files
+        idl/sguitar.djinni
+        idl/sguitar_objects.djinni
+        idl/sguitar_factory.djinni
+        idl/sguitar_dao.djinni
+)
+add_custom_command(
+        OUTPUT "${CMAKE_SOURCE_DIR}/src/generated/cpp/note.hpp"
+        COMMAND "scripts/run-djinni.sh"
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        DEPENDS ${idl_files}
+)
+add_custom_target(
+        djinni ALL
+        DEPENDS "src/generated/cpp/note.hpp"
+)
 
 include(FetchContent)
 
@@ -59,18 +77,19 @@ set(TEST_SOURCE
         tests/src/TestFactory.cpp
 )
 
-include_directories(PUBLIC "src/generated/cpp")
+include_directories(PUBLIC " src/generated/cpp")
 
 add_library(SGuitar STATIC ${SOURCE})
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
 target_link_libraries(SGuitar PRIVATE fmt)
 target_link_libraries(SGuitar PRIVATE SQLiteCpp)
 
-add_executable(tests ${SOURCE} ${TEST_SOURCE})
+add_executable(tests ${TEST_SOURCE})
 target_link_libraries(tests PRIVATE fmt)
 target_link_libraries(tests PRIVATE doctest)
 target_link_libraries(tests PRIVATE nlohmann_json)
 target_link_libraries(tests PRIVATE SQLiteCpp)
+target_link_libraries(tests PRIVATE SGuitar)
 enable_testing()
 add_test(
         NAME tests
