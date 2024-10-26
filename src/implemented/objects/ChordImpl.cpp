@@ -7,8 +7,8 @@
 //
 
 #include <fmt/format.h>
-#include <vector>
 #include <string>
+#include <vector>
 #include "ChordImpl.hpp"
 
 ChordImpl::ChordImpl(const NoteValue root_note, const std::vector<int>& intervals) {

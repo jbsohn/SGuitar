@@ -6,8 +6,8 @@
 #define GUITAR_IMPL_H
 
 #include "guitar.hpp"
-#include "guitar_string.hpp"
 #include "guitar_adjustment.hpp"
+#include "guitar_string.hpp"
 
 class GuitarImpl final : public Guitar {
     int number_of_frets = 0;
@@ -15,10 +15,9 @@ class GuitarImpl final : public Guitar {
     std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> guitar_adjustments;
 
 public:
-    GuitarImpl(
-        int32_t number_of_frets,
-        const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
-        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>& guitar_adjustments);
+    GuitarImpl(int32_t number_of_frets,
+               const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
+               const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>& guitar_adjustments);
 
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override;
@@ -31,4 +30,4 @@ public:
     std::string test_description() override;
 };
 
-#endif //GUITAR_IMPL_H
+#endif  // GUITAR_IMPL_H

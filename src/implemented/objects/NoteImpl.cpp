@@ -6,38 +6,13 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <fmt/format.h>
 #include <string>
 #include "NoteImpl.hpp"
 
-const std::string NoteImpl::note_names_sharp[] = {
-    "C",
-    "C♯",
-    "D",
-    "D♯",
-    "E",
-    "F",
-    "F♯",
-    "G",
-    "G♯",
-    "A",
-    "A♯",
-    "B"
-};
+const std::string NoteImpl::note_names_sharp[] = {"C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"};
 
-const std::string NoteImpl::note_names_flat[] = {
-    "C",
-    "D♭",
-    "D",
-    "E♭",
-    "E",
-    "F",
-    "G♭",
-    "G",
-    "A♭",
-    "A",
-    "B♭",
-    "B"
-};
+const std::string NoteImpl::note_names_flat[] = {"C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"};
 
 std::shared_ptr<Note> Note::create_with_note(NoteValue note, int32_t octave) {
     return std::make_shared<NoteImpl>(note, octave);

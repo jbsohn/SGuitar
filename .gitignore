@@ -102,3 +102,4 @@ install_manifest.txt
 CTestTestfile.cmake
 .cache
 ios-build
+ios-build-sim

@@ -1,33 +1,29 @@
 
-#include <iostream>
-#include <doctest/doctest.h>
 #include <SQLiteCpp/SQLiteCpp.h>
+#include <doctest/doctest.h>
 #include <fmt/format.h>
+#include <iostream>
 #include "SGuitar_database.hpp"
-#include "scale_record.hpp"
-#include "scale_DAO.hpp"
-#include "chord_record.hpp"
 #include "chord_DAO.hpp"
-#include "guitar_record.hpp"
+#include "chord_record.hpp"
 #include "guitar_DAO.hpp"
+#include "guitar_record.hpp"
+#include "scale_DAO.hpp"
+#include "scale_record.hpp"
 
 TEST_CASE("Testing DB: SELECT") {
     const SQLite::Database db("./db/test.sqlite3");
     std::cout << "SELECT Scales..." << std::endl;
     SQLite::Statement queryScale(db, "SELECT * FROM scale");
     while (queryScale.executeStep()) {
-        std::cout << fmt::format("{}: {}, {}\n",
-                                 queryScale.getColumn(0).getInt(),
-                                 queryScale.getColumn(1).getString(),
+        std::cout << fmt::format("{}: {}, {}\n", queryScale.getColumn(0).getInt(), queryScale.getColumn(1).getString(),
                                  queryScale.getColumn(2).getString());
     }
 
     std::cout << "SELECT Chords...";
     SQLite::Statement queryChord(db, "SELECT * FROM chord");
     while (queryChord.executeStep()) {
-        std::cout << fmt::format("{}: {}, {}\n",
-                                 queryChord.getColumn(0).getInt(),
-                                 queryChord.getColumn(1).getString(),
+        std::cout << fmt::format("{}: {}, {}\n", queryChord.getColumn(0).getInt(), queryChord.getColumn(1).getString(),
                                  queryChord.getColumn(2).getString());
     }
 }

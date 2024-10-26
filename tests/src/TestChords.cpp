@@ -2,9 +2,9 @@
 // Created by john on 10/5/24.
 //
 
+#include <doctest/doctest.h>
 #include <chord.hpp>
 #include <iostream>
-#include <doctest/doctest.h>
 #include "note_value.hpp"
 
 TEST_CASE("Testing Chord: Major") {

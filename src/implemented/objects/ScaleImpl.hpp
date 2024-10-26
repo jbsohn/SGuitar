@@ -13,13 +13,11 @@ class ScaleImpl final : public Scale {
 
 public:
     ScaleImpl(NoteValue root_note, const std::vector<int>& semitones);
-    std::vector<NoteValue> get_notes() override {
-        return notes;
-    }
+    std::vector<NoteValue> get_notes() override { return notes; }
     std::string test_description() override;
 
 protected:
     static NoteValue next_note_in_scale(NoteValue note, int semitone);
 };
 
-#endif //SCALE_IMPL_HPP
+#endif  // SCALE_IMPL_HPP

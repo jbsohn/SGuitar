@@ -2,17 +2,14 @@
 // Created by John on 10/13/24.
 //
 
-#include <SQLiteCpp/Database.h>
-#include "GuitarDAOImpl.hpp"
+#include <SQLiteCpp/SQLiteCpp.h>
 #include "SGuitarDatabaseImpl.hpp"
+#include "GuitarDAOImpl.hpp"
 
 std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
     std::vector<GuitarRecord> guitars;
 
-    SQLite::Statement query(
-        db,
-        "SELECT id, name, number_of_frets FROM guitar");
-
+    SQLite::Statement query(db, "SELECT id, name, number_of_frets FROM guitar");
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto name = query.getColumn(1).getString();
@@ -25,25 +22,20 @@ std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
     return guitars;
 }
 
-void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
-}
+void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {}
 
 int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
     return -1;
 }
 
-void GuitarDAOImpl::delete_guitar(int32_t id) {
-}
+void GuitarDAOImpl::delete_guitar(int32_t id) {}
 
 // ReSharper disable once CppMemberFunctionMayBeConst
 std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id) {
     std::vector<GuitarStringRecord> strings;
 
-    SQLite::Statement query(
-        db,
-        "SELECT id, string_number, start_note, octave FROM guitar_string WHERE guitar_id=?");
+    SQLite::Statement query(db, "SELECT id, string_number, start_note, octave FROM guitar_string WHERE guitar_id=?");
     query.bind(1, guitar_id);
-
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto string_number = query.getColumn(1).getInt();
@@ -58,11 +50,8 @@ std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id)
 std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int guitar_id) {
     std::vector<GuitarAdjustmentRecord> adjustments;
 
-    SQLite::Statement query(
-        db,
-        "SELECT id, name FROM guitar_adjustment WHERE guitar_id=?");
+    SQLite::Statement query(db, "SELECT id, name FROM guitar_adjustment WHERE guitar_id=?");
     query.bind(1, guitar_id);
-
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto name = query.getColumn(1).getString();
@@ -78,10 +67,8 @@ std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjus
     std::vector<GuitarStringAdjustmentRecord> string_adjustments;
 
     SQLite::Statement query(
-        db,
-        "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?");
+        db, "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?");
     query.bind(1, guitar_adjustment_id);
-
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto string_number = query.getColumn(1).getInt();

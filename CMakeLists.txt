@@ -1,23 +1,5 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.29)
 project(SGuitar)
-
-# djinni
-set(idl_files
-        idl/sguitar.djinni
-        idl/sguitar_objects.djinni
-        idl/sguitar_factory.djinni
-        idl/sguitar_dao.djinni
-)
-add_custom_command(
-        OUTPUT "${CMAKE_SOURCE_DIR}/src/generated/cpp/note.hpp"
-        COMMAND "scripts/run-djinni.sh"
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        DEPENDS ${idl_files}
-)
-add_custom_target(
-        djinni ALL
-        DEPENDS "src/generated/cpp/note.hpp"
-)
 
 include(FetchContent)
 

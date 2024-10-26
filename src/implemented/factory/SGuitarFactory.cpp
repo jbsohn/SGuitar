@@ -2,19 +2,18 @@
 // Created by John on 10/14/24.
 //
 
-
 #include <iostream>
-#include "note.hpp"
-#include "string_adjustment.hpp"
-#include "guitar_adjustment.hpp"
-#include "guitar_string.hpp"
-#include "guitar.hpp"
-#include "scale.hpp"
-#include "chord.hpp"
-#include "scale_record.hpp"
-#include "chord_record.hpp"
-#include "guitar_record.hpp"
 #include "SGuitar_factory.hpp"
+#include "chord.hpp"
+#include "chord_record.hpp"
+#include "guitar.hpp"
+#include "guitar_adjustment.hpp"
+#include "guitar_record.hpp"
+#include "guitar_string.hpp"
+#include "note.hpp"
+#include "scale.hpp"
+#include "scale_record.hpp"
+#include "string_adjustment.hpp"
 
 int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_records) {
     int max_string_number = 0;
@@ -26,9 +25,9 @@ int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_reco
     return max_string_number;
 }
 
-std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(const int number_of_frets,
-                                                                 const std::vector<GuitarStringRecord>&
-                                                                 guitar_strings_records) {
+std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(
+    const int number_of_frets,
+    const std::vector<GuitarStringRecord>& guitar_strings_records) {
     std::vector<std::shared_ptr<GuitarString>> guitar_strings;
     guitar_strings.resize(max_string_number(guitar_strings_records) + 1);
 
@@ -57,14 +56,13 @@ std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> create_guitar
         std::vector<std::shared_ptr<StringAdjustment>> string_adjustments;
 
         for (const auto& guitar_string_adjustment : guitar_adjustment_record.guitar_string_adjustments) {
-            const auto adjustment = StringAdjustment::create_with_string_number(
-                guitar_string_adjustment.string_number,
-                guitar_string_adjustment.step);
+            const auto adjustment = StringAdjustment::create_with_string_number(guitar_string_adjustment.string_number,
+                                                                                guitar_string_adjustment.step);
             string_adjustments.push_back(adjustment);
         }
 
-        guitar_adjustments[guitar_adjustment_record.name] = GuitarAdjustment::create_with_string_adjustments(
-            string_adjustments);
+        guitar_adjustments[guitar_adjustment_record.name] =
+            GuitarAdjustment::create_with_string_adjustments(string_adjustments);
     }
 
     std::cout << guitar_adjustments["P1"]->test_description() << std::endl;

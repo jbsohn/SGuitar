@@ -1,14 +1,12 @@
 //
 // Created by John on 10/14/24.
 //
-#include <iostream>
-#include <vector>
 #include <doctest/doctest.h>
-
 #include <chord.hpp>
 #include <guitar.hpp>
+#include <iostream>
 #include <scale.hpp>
-
+#include <vector>
 #include "SGuitar_database.hpp"
 #include "SGuitar_factory.hpp"
 #include "chord_DAO.hpp"

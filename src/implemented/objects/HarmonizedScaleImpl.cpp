@@ -4,9 +4,8 @@
 
 #include <fmt/format.h>
 #include <algorithm>
-#include "HarmonizedScaleImpl.hpp"
 #include "scale.hpp"
-
+#include "HarmonizedScaleImpl.hpp"
 
 HarmonizedScaleImpl::HarmonizedScaleImpl(const NoteValue root_note, const std::vector<int>& semitones) {
     // https://www.bluesguitarinstitute.com/how-to-harmonize-a-scale/
@@ -34,6 +33,7 @@ std::string HarmonizedScaleImpl::test_description() {
 }
 
 std::shared_ptr<HarmonizedScale> HarmonizedScale::create_harmonized_scale_with_root_note(
-    NoteValue root_note, const std::vector<int32_t>& semitones) {
+    NoteValue root_note,
+    const std::vector<int32_t>& semitones) {
     return std::make_shared<HarmonizedScaleImpl>(root_note, semitones);
 }

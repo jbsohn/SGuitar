@@ -51,17 +51,13 @@ TEST_CASE("Testing the StringAdjustment object") {
 }
 
 TEST_CASE("Testing the GuitarAdjustment object") {
-    const auto stringAdjustment =
-            StringAdjustment::create_with_string_number(1, 1);
-    const auto adjustments =
-            std::vector<std::shared_ptr<StringAdjustment>>() = {stringAdjustment};
-    const auto guitarAdjustment =
-            GuitarAdjustment::create_with_string_adjustments(adjustments);
+    const auto stringAdjustment = StringAdjustment::create_with_string_number(1, 1);
+    const auto adjustments = std::vector<std::shared_ptr<StringAdjustment>>() = {stringAdjustment};
+    const auto guitarAdjustment = GuitarAdjustment::create_with_string_adjustments(adjustments);
     std::cout << "guitarAdjustment: " << guitarAdjustment->test_description() << std::endl;
 }
 
 TEST_CASE("Testing harmonized scales") {
-    const auto scale =
-            HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue::C, {2, 2, 1, 2, 2, 2});
+    const auto scale = HarmonizedScale::create_harmonized_scale_with_root_note(NoteValue::C, {2, 2, 1, 2, 2, 2});
     std::cout << scale->test_description() << std::endl;
 }

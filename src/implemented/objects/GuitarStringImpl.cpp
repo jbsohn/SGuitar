@@ -7,8 +7,8 @@
 //
 
 #include <fmt/format.h>
-#include <vector>
 #include <string>
+#include <vector>
 #include "GuitarStringImpl.hpp"
 
 GuitarStringImpl::GuitarStringImpl() {

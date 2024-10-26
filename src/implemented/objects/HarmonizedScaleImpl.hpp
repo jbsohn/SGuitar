@@ -13,10 +13,8 @@ class HarmonizedScaleImpl final : public HarmonizedScale {
 
 public:
     HarmonizedScaleImpl(NoteValue root_note, const std::vector<int>& semitones);
-    std::vector<std::shared_ptr<Chord>> get_chords() override {
-        return chords;
-    }
+    std::vector<std::shared_ptr<Chord>> get_chords() override { return chords; }
     std::string test_description() override;
 };
 
-#endif //HARMONIZED_SCALE_IMPL_HPP
+#endif  // HARMONIZED_SCALE_IMPL_HPP
