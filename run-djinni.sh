@@ -1,11 +1,11 @@
 #!/bin/sh
-rm -rf ./src/generated
+rm -rf generated-src
 ./djinni/src/run \
-    --java-out src/generated/java \
-    --cpp-out src/generated/cpp \
-    --jni-out src/generated/jni \
-    --objc-out src/generated/objc \
-    --objcpp-out src/generated/objc \
+    --java-out generated-src/java \
+    --cpp-out generated-src/cpp \
+    --jni-out generated-src/jni \
+    --objc-out generated-src/objc \
+    --objcpp-out generated-src/objc-cpp \
     --java-package com.steelsidekick.sguitar \
     --ident-jni-class NativeSGuitar \
     --objc-type-prefix SG \
