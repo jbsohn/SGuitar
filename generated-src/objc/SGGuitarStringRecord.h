@@ -17,14 +17,14 @@
                                        startNote:(nonnull NSString *)startNote
                                           octave:(int32_t)octave;
 
-@property (nonatomic) int32_t id;
+@property (nonatomic, readonly) int32_t id;
 
-@property (nonatomic) int32_t guitarId;
+@property (nonatomic, readonly) int32_t guitarId;
 
-@property (nonatomic) int32_t stringNumber;
+@property (nonatomic, readonly) int32_t stringNumber;
 
-@property (nonatomic, copy, nonnull) NSString * startNote;
+@property (nonatomic, readonly, nonnull) NSString * startNote;
 
-@property (nonatomic) int32_t octave;
+@property (nonatomic, readonly) int32_t octave;
 
 @end

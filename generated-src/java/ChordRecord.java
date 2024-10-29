@@ -6,11 +6,11 @@ package com.steelsidekick.sguitar;
 public final class ChordRecord {
 
 
-    /*package*/ int id;
+    /*package*/ final int id;
 
-    /*package*/ String name;
+    /*package*/ final String name;
 
-    /*package*/ int[] intervals;
+    /*package*/ final int[] intervals;
 
     public ChordRecord(
             int id,
@@ -25,24 +25,12 @@ public final class ChordRecord {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int[] getIntervals() {
         return intervals;
-    }
-
-    public void setIntervals(int[] intervals) {
-        this.intervals = intervals;
     }
 
     @Override

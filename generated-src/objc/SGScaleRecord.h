@@ -13,10 +13,10 @@
                                      name:(nonnull NSString *)name
                                 semitones:(nonnull NSArray<NSNumber *> *)semitones;
 
-@property (nonatomic) int32_t id;
+@property (nonatomic, readonly) int32_t id;
 
-@property (nonatomic, copy, nonnull) NSString * name;
+@property (nonatomic, readonly, nonnull) NSString * name;
 
-@property (nonatomic, copy, nonnull) NSArray<NSNumber *> * semitones;
+@property (nonatomic, readonly, nonnull) NSArray<NSNumber *> * semitones;
 
 @end

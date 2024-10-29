@@ -6,15 +6,15 @@ package com.steelsidekick.sguitar;
 public final class GuitarRecord {
 
 
-    /*package*/ int id;
+    /*package*/ final int id;
 
-    /*package*/ String name;
+    /*package*/ final String name;
 
-    /*package*/ int numberOfFrets;
+    /*package*/ final int numberOfFrets;
 
-    /*package*/ GuitarStringRecord[] guitarStrings;
+    /*package*/ final GuitarStringRecord[] guitarStrings;
 
-    /*package*/ GuitarAdjustmentRecord[] guitarAdjustments;
+    /*package*/ final GuitarAdjustmentRecord[] guitarAdjustments;
 
     public GuitarRecord(
             int id,
@@ -33,40 +33,20 @@ public final class GuitarRecord {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getNumberOfFrets() {
         return numberOfFrets;
     }
 
-    public void setNumberOfFrets(int numberOfFrets) {
-        this.numberOfFrets = numberOfFrets;
-    }
-
     public GuitarStringRecord[] getGuitarStrings() {
         return guitarStrings;
     }
 
-    public void setGuitarStrings(GuitarStringRecord[] guitarStrings) {
-        this.guitarStrings = guitarStrings;
-    }
-
     public GuitarAdjustmentRecord[] getGuitarAdjustments() {
         return guitarAdjustments;
-    }
-
-    public void setGuitarAdjustments(GuitarAdjustmentRecord[] guitarAdjustments) {
-        this.guitarAdjustments = guitarAdjustments;
     }
 
     @Override

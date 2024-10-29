@@ -13,10 +13,10 @@
                                      name:(nonnull NSString *)name
                                 intervals:(nonnull NSArray<NSNumber *> *)intervals;
 
-@property (nonatomic) int32_t id;
+@property (nonatomic, readonly) int32_t id;
 
-@property (nonatomic, copy, nonnull) NSString * name;
+@property (nonatomic, readonly, nonnull) NSString * name;
 
-@property (nonatomic, copy, nonnull) NSArray<NSNumber *> * intervals;
+@property (nonatomic, readonly, nonnull) NSArray<NSNumber *> * intervals;
 
 @end

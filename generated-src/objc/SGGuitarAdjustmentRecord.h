@@ -16,12 +16,12 @@
                                                 name:(nonnull NSString *)name
                              guitarStringAdjustments:(nonnull NSArray<SGGuitarStringAdjustmentRecord *> *)guitarStringAdjustments;
 
-@property (nonatomic) int32_t id;
+@property (nonatomic, readonly) int32_t id;
 
-@property (nonatomic) int32_t guitarId;
+@property (nonatomic, readonly) int32_t guitarId;
 
-@property (nonatomic, copy, nonnull) NSString * name;
+@property (nonatomic, readonly, nonnull) NSString * name;
 
-@property (nonatomic, copy, nonnull) NSArray<SGGuitarStringAdjustmentRecord *> * guitarStringAdjustments;
+@property (nonatomic, readonly, nonnull) NSArray<SGGuitarStringAdjustmentRecord *> * guitarStringAdjustments;
 
 @end

@@ -15,12 +15,12 @@
                                               stringNumber:(int32_t)stringNumber
                                                       step:(int32_t)step;
 
-@property (nonatomic) int32_t id;
+@property (nonatomic, readonly) int32_t id;
 
-@property (nonatomic) int32_t guitarAdjustmentId;
+@property (nonatomic, readonly) int32_t guitarAdjustmentId;
 
-@property (nonatomic) int32_t stringNumber;
+@property (nonatomic, readonly) int32_t stringNumber;
 
-@property (nonatomic) int32_t step;
+@property (nonatomic, readonly) int32_t step;
 
 @end

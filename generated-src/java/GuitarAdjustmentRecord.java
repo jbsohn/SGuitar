@@ -6,13 +6,13 @@ package com.steelsidekick.sguitar;
 public final class GuitarAdjustmentRecord {
 
 
-    /*package*/ int id;
+    /*package*/ final int id;
 
-    /*package*/ int guitarId;
+    /*package*/ final int guitarId;
 
-    /*package*/ String name;
+    /*package*/ final String name;
 
-    /*package*/ GuitarStringAdjustmentRecord[] guitarStringAdjustments;
+    /*package*/ final GuitarStringAdjustmentRecord[] guitarStringAdjustments;
 
     public GuitarAdjustmentRecord(
             int id,
@@ -29,32 +29,16 @@ public final class GuitarAdjustmentRecord {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getGuitarId() {
         return guitarId;
-    }
-
-    public void setGuitarId(int guitarId) {
-        this.guitarId = guitarId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public GuitarStringAdjustmentRecord[] getGuitarStringAdjustments() {
         return guitarStringAdjustments;
-    }
-
-    public void setGuitarStringAdjustments(GuitarStringAdjustmentRecord[] guitarStringAdjustments) {
-        this.guitarStringAdjustments = guitarStringAdjustments;
     }
 
     @Override
