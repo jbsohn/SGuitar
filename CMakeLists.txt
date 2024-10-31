@@ -56,6 +56,7 @@ file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*")
 file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*")
 file(GLOB FRAMEWORK_INCLUDE "framework-include/*")
 file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
+file(GLOB DJINNI_IDL "idl/*")
 set(FRAMEWORK_PUBLIC_HEADER
         ${FRAMEWORK_INCLUDE}
         ${DJINNI_OBJC_HEADER}
@@ -70,6 +71,21 @@ include_directories(PUBLIC
         "include"
         "framework-include"
 )
+
+# auto generate DJINNI generated-src by examining note.hpp
+add_custom_command(
+        OUTPUT "${PROJECT_SOURCE_DIR}/generated-src/cpp/note.hpp"
+        COMMAND "${PROJECT_SOURCE_DIR}/scripts/run-djinni.sh" "${PROJECT_SOURCE_DIR}/djinni/src/run" "${PROJECT_SOURCE_DIR}/generated-src" "${PROJECT_SOURCE_DIR}/idl/sguitar.djinni"
+        COMMENT "regenerating DJINNI sources..."
+        DEPENDS "${DJINNI_IDL}"
+        VERBATIM
+)
+add_custom_target(
+        djinni ALL
+        DEPENDS "${PROJECT_SOURCE_DIR}/generated-src/cpp/note.hpp"
+        VERBATIM
+)
+set_source_files_properties("${PROJECT_SOURCE_DIR}/generated-src/cpp/note.hpp" PROPERTIES GENERATED TRUE)
 
 if (${TARGET} MATCHES "iOS")
     message(STATUS "Building framework for iOS...")
