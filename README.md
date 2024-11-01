@@ -5,5 +5,5 @@
 To setup Xcode project for iOS framework:
 
 ```
-cmake -S . -B build -G Xcode
+cmake -S . -B build -G Xcode -DTARGET=iOS
 ```
