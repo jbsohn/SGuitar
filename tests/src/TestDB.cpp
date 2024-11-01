@@ -12,7 +12,7 @@
 #include "scale_record.hpp"
 
 TEST_CASE("Testing DB: SELECT") {
-    const SQLite::Database db("./db/test.sqlite3");
+    const SQLite::Database db("../tests/db/test.sqlite3");
     std::cout << "SELECT Scales..." << std::endl;
     SQLite::Statement queryScale(db, "SELECT * FROM scale");
     while (queryScale.executeStep()) {
