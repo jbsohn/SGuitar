@@ -30,4 +30,4 @@ FOUNDATION_EXPORT const unsigned char SGuitarVersionString[];
 #include <SGuitar/SGScaleRecord.h>
 #include <SGuitar/SGStringAdjustment.h>
 
-#endif SGUITAR_H
+#endif //SGUITAR_H
