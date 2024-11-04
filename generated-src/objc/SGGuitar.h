@@ -14,6 +14,10 @@
                 guitarStrings:(nonnull NSArray<SGGuitarString *> *)guitarStrings
             guitarAdjustments:(nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)guitarAdjustments;
 
+- (int32_t)getNumberOfFrets;
+
+- (nonnull NSArray<NSNumber *> *)getFretMarkers;
+
 - (nonnull NSArray<SGGuitarString *> *)getStrings;
 
 - (void)resetStrings;

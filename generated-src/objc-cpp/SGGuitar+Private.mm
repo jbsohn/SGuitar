@@ -45,6 +45,20 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (int32_t)getNumberOfFrets {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->get_number_of_frets();
+        return ::djinni::I32::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (nonnull NSArray<NSNumber *> *)getFretMarkers {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->get_fret_markers();
+        return ::djinni::Array<::djinni::I32>::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (nonnull NSArray<SGGuitarString *> *)getStrings {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_strings();

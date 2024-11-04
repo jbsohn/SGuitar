@@ -31,6 +31,24 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_create(JNIEnv* 
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getNumberOfFrets(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
+        auto r = ref->get_number_of_frets();
+        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getFretMarkers(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::Guitar>(nativeRef);
+        auto r = ref->get_fret_markers();
+        return ::djinni::release(::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
 CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_native_1getStrings(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
 {
     try {

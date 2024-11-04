@@ -25,6 +25,14 @@ public:
         & guitar_adjustments
     );
 
+    int32_t get_number_of_frets() override {
+        return number_of_frets;
+    }
+
+    std::vector<int32_t> get_fret_markers() override {
+        return fret_markers;
+    }
+
     /** strings */
     std::vector</*not-null*/ std::shared_ptr<GuitarString>>
     get_strings() override;

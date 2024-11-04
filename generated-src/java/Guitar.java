@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Guitar {
+    public abstract int getNumberOfFrets();
+
+    public abstract int[] getFretMarkers();
+
     public abstract GuitarString[] getStrings();
 
     public abstract void resetStrings();
@@ -32,6 +36,22 @@ public abstract class Guitar {
             NativeObjectManager.register(this, nativeRef);
         }
         public static native void nativeDestroy(long nativeRef);
+
+        @Override
+        public int getNumberOfFrets()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getNumberOfFrets(this.nativeRef);
+        }
+        private native int native_getNumberOfFrets(long _nativeRef);
+
+        @Override
+        public int[] getFretMarkers()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getFretMarkers(this.nativeRef);
+        }
+        private native int[] native_getFretMarkers(long _nativeRef);
 
         @Override
         public GuitarString[] getStrings()
