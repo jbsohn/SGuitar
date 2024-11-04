@@ -5,6 +5,7 @@
 //
 #include <iostream>
 #include <vector>
+#include <doctest/doctest.h>
 #include "chord.hpp"
 #include "guitar.hpp"
 #include "guitar_adjustment.hpp"
@@ -13,9 +14,6 @@
 #include "note.hpp"
 #include "note_value.hpp"
 #include "string_adjustment.hpp"
-
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include <doctest/doctest.h>
 
 TEST_CASE("Testing the Note object") {
     const std::shared_ptr<Note> note = Note::create_with_note(NoteValue::C, 2);
