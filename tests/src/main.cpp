@@ -18,12 +18,12 @@ void teardown_test_db() {
     std::filesystem::remove_all("./db");
 }
 
-int main(int argc, char** argv) {
+int main(const int argc, char** argv) {
     doctest::Context context;
     setup_test_db();
 
     context.applyCommandLine(argc, argv);
-    int res = context.run();
+    const auto res = context.run();
     if (context.shouldExit()) {
         return res;
     }
