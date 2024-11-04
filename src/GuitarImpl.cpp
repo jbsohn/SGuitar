@@ -15,10 +15,12 @@
 #include <iostream>
 
 GuitarImpl::GuitarImpl(const int32_t number_of_frets,
+                       const std::vector<int>& fret_markers,
                        const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
                        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>& guitar_adjustments
     ) {
     this->number_of_frets = number_of_frets;
+    this->fret_markers = fret_markers;
     this->guitar_strings = guitar_strings;
     this->guitar_adjustments = guitar_adjustments;
 }
@@ -67,9 +69,10 @@ std::string GuitarImpl::test_description() {
 }
 
 std::shared_ptr<Guitar> Guitar::create(int32_t number_of_frets,
+                                       const std::vector<int32_t>& fret_markers,
                                        const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
                                        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>&
                                        guitar_adjustments
     ) {
-    return std::make_shared<GuitarImpl>(number_of_frets, guitar_strings, guitar_adjustments);
+    return std::make_shared<GuitarImpl>(number_of_frets, fret_markers, guitar_strings, guitar_adjustments);
 }

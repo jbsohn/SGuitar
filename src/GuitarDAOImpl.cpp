@@ -3,32 +3,37 @@
 //
 
 #include <SQLiteCpp/SQLiteCpp.h>
+#include <nlohmann/json.hpp>
 #include "SGuitarDatabaseImpl.hpp"
 #include "GuitarDAOImpl.hpp"
 
 std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
     std::vector<GuitarRecord> guitars;
 
-    SQLite::Statement query(db, "SELECT id, name, number_of_frets FROM guitar");
+    SQLite::Statement query(db, "SELECT id, name, number_of_frets, fret_markers FROM guitar");
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto name = query.getColumn(1).getString();
         const auto number_of_frets = query.getColumn(2).getInt();
+        auto fret_markers_json = nlohmann::json::parse(query.getColumn(3).getString());
+        std::vector<int32_t> fret_markers(fret_markers_json.begin(), fret_markers_json.end());
         const auto guitar_strings = get_guitar_strings(id);
         const auto guitar_adjustments = get_guitar_adjustments(id);
-        guitars.emplace_back(id, name, number_of_frets, guitar_strings, guitar_adjustments);
+        guitars.emplace_back(id, name, number_of_frets, fret_markers, guitar_strings, guitar_adjustments);
     }
 
     return guitars;
 }
 
-void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {}
+void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
+}
 
 int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
     return -1;
 }
 
-void GuitarDAOImpl::delete_guitar(int32_t id) {}
+void GuitarDAOImpl::delete_guitar(int32_t id) {
+}
 
 // ReSharper disable once CppMemberFunctionMayBeConst
 std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id) {
@@ -67,7 +72,8 @@ std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjus
     std::vector<GuitarStringAdjustmentRecord> string_adjustments;
 
     SQLite::Statement query(
-        db, "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?");
+        db, "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?"
+        );
     query.bind(1, guitar_adjustment_id);
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();

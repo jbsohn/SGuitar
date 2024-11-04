@@ -12,6 +12,8 @@ public final class GuitarRecord {
 
     /*package*/ final int numberOfFrets;
 
+    /*package*/ final int[] fretMarkers;
+
     /*package*/ final GuitarStringRecord[] guitarStrings;
 
     /*package*/ final GuitarAdjustmentRecord[] guitarAdjustments;
@@ -20,11 +22,13 @@ public final class GuitarRecord {
             int id,
             String name,
             int numberOfFrets,
+            int[] fretMarkers,
             GuitarStringRecord[] guitarStrings,
             GuitarAdjustmentRecord[] guitarAdjustments) {
         this.id = id;
         this.name = name;
         this.numberOfFrets = numberOfFrets;
+        this.fretMarkers = fretMarkers;
         this.guitarStrings = guitarStrings;
         this.guitarAdjustments = guitarAdjustments;
     }
@@ -41,6 +45,10 @@ public final class GuitarRecord {
         return numberOfFrets;
     }
 
+    public int[] getFretMarkers() {
+        return fretMarkers;
+    }
+
     public GuitarStringRecord[] getGuitarStrings() {
         return guitarStrings;
     }
@@ -55,6 +63,7 @@ public final class GuitarRecord {
                 "id=" + id +
                 "," + "name=" + name +
                 "," + "numberOfFrets=" + numberOfFrets +
+                "," + "fretMarkers=" + fretMarkers +
                 "," + "guitarStrings=" + guitarStrings +
                 "," + "guitarAdjustments=" + guitarAdjustments +
         "}";

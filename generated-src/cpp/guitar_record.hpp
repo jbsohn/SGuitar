@@ -14,17 +14,20 @@ struct GuitarRecord final {
     int32_t id;
     std::string name;
     int32_t number_of_frets;
+    std::vector<int32_t> fret_markers;
     std::vector<GuitarStringRecord> guitar_strings;
     std::vector<GuitarAdjustmentRecord> guitar_adjustments;
 
     GuitarRecord(int32_t id_,
                  std::string name_,
                  int32_t number_of_frets_,
+                 std::vector<int32_t> fret_markers_,
                  std::vector<GuitarStringRecord> guitar_strings_,
                  std::vector<GuitarAdjustmentRecord> guitar_adjustments_)
     : id(std::move(id_))
     , name(std::move(name_))
     , number_of_frets(std::move(number_of_frets_))
+    , fret_markers(std::move(fret_markers_))
     , guitar_strings(std::move(guitar_strings_))
     , guitar_adjustments(std::move(guitar_adjustments_))
     {}

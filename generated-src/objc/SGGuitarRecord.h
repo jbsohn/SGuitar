@@ -11,11 +11,13 @@
 - (nonnull instancetype)initWithId:(int32_t)id
                               name:(nonnull NSString *)name
                      numberOfFrets:(int32_t)numberOfFrets
+                       fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
                      guitarStrings:(nonnull NSArray<SGGuitarStringRecord *> *)guitarStrings
                  guitarAdjustments:(nonnull NSArray<SGGuitarAdjustmentRecord *> *)guitarAdjustments NS_DESIGNATED_INITIALIZER;
 + (nonnull instancetype)guitarRecordWithId:(int32_t)id
                                       name:(nonnull NSString *)name
                              numberOfFrets:(int32_t)numberOfFrets
+                               fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
                              guitarStrings:(nonnull NSArray<SGGuitarStringRecord *> *)guitarStrings
                          guitarAdjustments:(nonnull NSArray<SGGuitarAdjustmentRecord *> *)guitarAdjustments;
 
@@ -24,6 +26,8 @@
 @property (nonatomic, readonly, nonnull) NSString * name;
 
 @property (nonatomic, readonly) int32_t numberOfFrets;
+
+@property (nonatomic, readonly, nonnull) NSArray<NSNumber *> * fretMarkers;
 
 @property (nonatomic, readonly, nonnull) NSArray<SGGuitarStringRecord *> * guitarStrings;
 

@@ -33,10 +33,12 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
 }
 
 + (nullable SGGuitar *)create:(int32_t)numberOfFrets
+                  fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
                 guitarStrings:(nonnull NSArray<SGGuitarString *> *)guitarStrings
             guitarAdjustments:(nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)guitarAdjustments {
     try {
         auto objcpp_result_ = ::Guitar::create(::djinni::I32::toCpp(numberOfFrets),
+                                               ::djinni::Array<::djinni::I32>::toCpp(fretMarkers),
                                                ::djinni::Array<::djinni_generated::GuitarString>::toCpp(guitarStrings),
                                                ::djinni::Map<::djinni::String, ::djinni_generated::GuitarAdjustment>::toCpp(guitarAdjustments));
         return ::djinni_generated::Guitar::fromCpp(objcpp_result_);

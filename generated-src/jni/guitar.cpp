@@ -20,10 +20,11 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_Guitar_00024CppProxy_nati
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_create(JNIEnv* jniEnv, jobject /*this*/, jint j_numberOfFrets, jobject j_guitarStrings, jobject j_guitarAdjustments)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_Guitar_create(JNIEnv* jniEnv, jobject /*this*/, jint j_numberOfFrets, jobject j_fretMarkers, jobject j_guitarStrings, jobject j_guitarAdjustments)
 {
     try {
         auto r = ::Guitar::create(::djinni::I32::toCpp(jniEnv, j_numberOfFrets),
+                                  ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, j_fretMarkers),
                                   ::djinni::Array<::djinni_generated::GuitarString, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','S','t','r','i','n','g'>>::toCpp(jniEnv, j_guitarStrings),
                                   ::djinni::Map<::djinni::String, ::djinni_generated::GuitarAdjustment>::toCpp(jniEnv, j_guitarAdjustments));
         return ::djinni::release(::djinni_generated::Guitar::fromCpp(jniEnv, r));

@@ -16,7 +16,7 @@ class Guitar {
 public:
     virtual ~Guitar() = default;
 
-    static /*not-null*/ std::shared_ptr<Guitar> create(int32_t number_of_frets, const std::vector</*not-null*/ std::shared_ptr<GuitarString>> & guitar_strings, const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>> & guitar_adjustments);
+    static /*not-null*/ std::shared_ptr<Guitar> create(int32_t number_of_frets, const std::vector<int32_t> & fret_markers, const std::vector</*not-null*/ std::shared_ptr<GuitarString>> & guitar_strings, const std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>> & guitar_adjustments);
 
     virtual std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() = 0;
 

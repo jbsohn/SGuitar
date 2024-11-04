@@ -10,6 +10,7 @@
 @interface SGGuitar : NSObject
 
 + (nullable SGGuitar *)create:(int32_t)numberOfFrets
+                  fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
                 guitarStrings:(nonnull NSArray<SGGuitarString *> *)guitarStrings
             guitarAdjustments:(nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)guitarAdjustments;
 

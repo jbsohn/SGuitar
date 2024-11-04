@@ -79,7 +79,7 @@ guitar_adjustment = interface +c {
 }
 
 guitar = interface +c {
-    static create(number_of_frets: i32, guitar_strings: array<guitar_string>, guitar_adjustments: map<string, guitar_adjustment>): guitar;
+    static create(number_of_frets: i32, fret_markers: array<i32>, guitar_strings: array<guitar_string>, guitar_adjustments: map<string, guitar_adjustment>): guitar;
     get_strings(): array<guitar_string>;
     reset_strings();
     set_adjustment_activated(adjustment_id: string, activated: bool);

@@ -18,7 +18,7 @@ public abstract class Guitar {
 
     public abstract String testDescription();
 
-    public static native Guitar create(int numberOfFrets, GuitarString[] guitarStrings, HashMap<String, GuitarAdjustment> guitarAdjustments);
+    public static native Guitar create(int numberOfFrets, int[] fretMarkers, GuitarString[] guitarStrings, HashMap<String, GuitarAdjustment> guitarAdjustments);
 
     public static final class CppProxy extends Guitar
     {

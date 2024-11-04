@@ -9,6 +9,7 @@
 - (nonnull instancetype)initWithId:(int32_t)id
                               name:(nonnull NSString *)name
                      numberOfFrets:(int32_t)numberOfFrets
+                       fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
                      guitarStrings:(nonnull NSArray<SGGuitarStringRecord *> *)guitarStrings
                  guitarAdjustments:(nonnull NSArray<SGGuitarAdjustmentRecord *> *)guitarAdjustments
 {
@@ -16,6 +17,7 @@
         _id = id;
         _name = [name copy];
         _numberOfFrets = numberOfFrets;
+        _fretMarkers = [fretMarkers copy];
         _guitarStrings = [guitarStrings copy];
         _guitarAdjustments = [guitarAdjustments copy];
     }
@@ -25,12 +27,14 @@
 + (nonnull instancetype)guitarRecordWithId:(int32_t)id
                                       name:(nonnull NSString *)name
                              numberOfFrets:(int32_t)numberOfFrets
+                               fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
                              guitarStrings:(nonnull NSArray<SGGuitarStringRecord *> *)guitarStrings
                          guitarAdjustments:(nonnull NSArray<SGGuitarAdjustmentRecord *> *)guitarAdjustments
 {
     return [[self alloc] initWithId:id
                                name:name
                       numberOfFrets:numberOfFrets
+                        fretMarkers:fretMarkers
                       guitarStrings:guitarStrings
                   guitarAdjustments:guitarAdjustments];
 }
@@ -38,7 +42,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ numberOfFrets:%@ guitarStrings:%@ guitarAdjustments:%@>", self.class, (void *)self, @(self.id), self.name, @(self.numberOfFrets), self.guitarStrings, self.guitarAdjustments];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ numberOfFrets:%@ fretMarkers:%@ guitarStrings:%@ guitarAdjustments:%@>", self.class, (void *)self, @(self.id), self.name, @(self.numberOfFrets), self.fretMarkers, self.guitarStrings, self.guitarAdjustments];
 }
 
 #endif
