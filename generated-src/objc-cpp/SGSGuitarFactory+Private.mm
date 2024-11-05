@@ -5,6 +5,7 @@
 #import "SGSGuitarFactory.h"
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
+#import "DJIMarshal+Private.h"
 #import "SGChord+Private.h"
 #import "SGChordRecord+Private.h"
 #import "SGGuitar+Private.h"
@@ -58,6 +59,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
         auto objcpp_result_ = ::SGuitarFactory::create_chord(::djinni::Enum<::NoteValue, SGNoteValue>::toCpp(rootNote),
                                                              ::djinni_generated::ChordRecord::toCpp(chordRecord));
         return ::djinni_generated::Chord::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull SGGuitarRecord *)convertJsonToGuitarRecord:(nonnull NSString *)json {
+    try {
+        auto objcpp_result_ = ::SGuitarFactory::convertJsonToGuitarRecord(::djinni::String::toCpp(json));
+        return ::djinni_generated::GuitarRecord::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

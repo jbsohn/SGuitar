@@ -4,6 +4,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 class Chord;
 class Guitar;
@@ -22,4 +23,6 @@ public:
     static /*not-null*/ std::shared_ptr<Scale> create_scale(NoteValue root_note, const ScaleRecord & scale_record);
 
     static /*not-null*/ std::shared_ptr<Chord> create_chord(NoteValue root_note, const ChordRecord & chord_record);
+
+    static GuitarRecord convertJsonToGuitarRecord(const std::string & json);
 };

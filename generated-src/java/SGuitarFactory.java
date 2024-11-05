@@ -13,6 +13,8 @@ public abstract class SGuitarFactory {
 
     public static native Chord createChord(NoteValue rootNote, ChordRecord chordRecord);
 
+    public static native GuitarRecord convertJsonToGuitarRecord(String json);
+
     public static final class CppProxy extends SGuitarFactory
     {
         private final long nativeRef;

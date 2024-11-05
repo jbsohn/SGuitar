@@ -2,18 +2,23 @@
 // Created by John on 10/14/24.
 //
 
+#include <GuitarAdjustmentImpl.hpp>
 #include <iostream>
-#include "SGuitar_factory.hpp"
+#include <nlohmann/json.hpp>
 #include "chord.hpp"
 #include "chord_record.hpp"
 #include "guitar.hpp"
 #include "guitar_adjustment.hpp"
+#include "guitar_adjustment_record.hpp"
 #include "guitar_record.hpp"
 #include "guitar_string.hpp"
 #include "note.hpp"
+#include "note_value.hpp"
 #include "scale.hpp"
 #include "scale_record.hpp"
+#include "SGuitar_factory.hpp"
 #include "string_adjustment.hpp"
+#include "guitar_string_adjustment_record.hpp"
 
 int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_records) {
     int max_string_number = 0;
@@ -85,4 +90,52 @@ std::shared_ptr<Scale> SGuitarFactory::create_scale(const NoteValue root_note, c
 
 std::shared_ptr<Chord> SGuitarFactory::create_chord(const NoteValue root_note, const ChordRecord& chord_record) {
     return Chord::create_with_root_note(root_note, chord_record.intervals);
+}
+
+GuitarRecord SGuitarFactory::convertJsonToGuitarRecord(const std::string& json) {
+    nlohmann::json j = nlohmann::json::parse(json);
+    const auto numberOfFrets = j["NumberOfFrets"].get<int>();
+    const auto guitarType = j["GuitarType"].get<std::string>();
+    const auto guitarStrings = j["GuitarStrings"].get<std::vector<nlohmann::json>>();
+    const auto guitarAdjustments = j["GuitarAdjustments"].get<std::vector<nlohmann::json>>();
+
+    std::cout << "NumberOfFrets: " << numberOfFrets << std::endl;
+    std::cout << "GuitarType: " << guitarType << std::endl;
+
+    std::cout << "GuitarStrings" << std::endl;
+    std::vector<GuitarStringRecord> guitar_strings_records;
+
+    for (const auto& guitarString : guitarStrings) {
+        const auto stringNumber = guitarString["StringNumber"].get<int>();
+        const auto startNote = guitarString["StartNote"].get<std::string>();
+        std::string startNoteString; // TODO: get start note from StartNote string
+        int octave = 0; // TODO: get octave from StartNote string
+        std::cout << "StringNumber: " << stringNumber << std::endl;
+        std::cout << "StartNote: " << startNote << std::endl;
+        guitar_strings_records.emplace_back(0, 0, stringNumber, startNoteString, octave);
+    }
+
+    std::cout << "GuitarAdjustments" << std::endl;
+    std::vector<GuitarAdjustmentRecord> guitarAdjustmentRecords;
+
+    for (const auto& guitarAdjustment : guitarAdjustments) {
+        const auto id = guitarAdjustment["ID"].get<std::string>();
+        const auto stringAdjustments = guitarAdjustment["StringAdjustments"].get<std::vector<nlohmann::json>>();
+
+        std::cout << "ID: " << id << std::endl;
+        std::cout << "StringAdjustments" << std::endl;
+        std::vector<GuitarStringAdjustmentRecord> guitar_string_adjustment_records;
+
+        for (const auto& stringAdjustment : stringAdjustments) {
+            const auto stringNumber = stringAdjustment["StringNumber"].get<int>();
+            const auto step = stringAdjustment["Step"].get<int>();
+
+            std::cout << "StringNumber: " << stringNumber << std::endl;
+            std::cout << "Step: " << step << std::endl;
+            guitar_string_adjustment_records.emplace_back(-1, -1, stringNumber, step);
+        }
+        guitarAdjustmentRecords.emplace_back(-1, -1, id, guitar_string_adjustment_records);
+    }
+
+    return {-1, "", numberOfFrets, {}, guitar_strings_records, guitarAdjustmentRecords};
 }
