@@ -2,8 +2,9 @@
 // Created by John on 10/14/24.
 //
 
-#include <GuitarAdjustmentImpl.hpp>
 #include <iostream>
+#include <regex>
+#include <sstream>
 #include <nlohmann/json.hpp>
 #include "chord.hpp"
 #include "chord_record.hpp"
@@ -12,13 +13,14 @@
 #include "guitar_adjustment_record.hpp"
 #include "guitar_record.hpp"
 #include "guitar_string.hpp"
+#include "guitar_string_adjustment_record.hpp"
 #include "note.hpp"
 #include "note_value.hpp"
 #include "scale.hpp"
 #include "scale_record.hpp"
+#include "SGuitar_database.hpp"
 #include "SGuitar_factory.hpp"
 #include "string_adjustment.hpp"
-#include "guitar_string_adjustment_record.hpp"
 
 int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_records) {
     int max_string_number = 0;
@@ -28,6 +30,27 @@ int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_reco
         }
     }
     return max_string_number;
+}
+
+std::tuple<std::string, int> getNoteAndOctave(const std::string& noteOctave) {
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(noteOctave);
+
+    while (std::getline(tokenStream, token, '-')) {
+        tokens.push_back(token);
+    }
+
+    try {
+        auto note = tokens.at(0);
+        note = std::regex_replace(note, std::regex("#"), "♯");
+
+        auto octave = std::stoi(tokens.at(1));
+        return std::make_tuple(note, octave);
+    } catch (const std::out_of_range& e) {
+        std::cerr << e.what() << std::endl;
+    }
+    return std::make_tuple("", SGuitarDatabase::SGUITAR_DB_UNSET);
 }
 
 std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(const int number_of_frets,
@@ -73,8 +96,6 @@ std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> create_guitar
             string_adjustments
             );
     }
-
-    std::cout << guitar_adjustments["P1"]->test_description() << std::endl;
     return guitar_adjustments;
 }
 
@@ -99,31 +120,19 @@ GuitarRecord SGuitarFactory::convertJsonToGuitarRecord(const std::string& json) 
     const auto guitarStrings = j["GuitarStrings"].get<std::vector<nlohmann::json>>();
     const auto guitarAdjustments = j["GuitarAdjustments"].get<std::vector<nlohmann::json>>();
 
-    std::cout << "NumberOfFrets: " << numberOfFrets << std::endl;
-    std::cout << "GuitarType: " << guitarType << std::endl;
-
-    std::cout << "GuitarStrings" << std::endl;
-    std::vector<GuitarStringRecord> guitar_strings_records;
-
+    std::vector<GuitarStringRecord> guitarStringRecords;
     for (const auto& guitarString : guitarStrings) {
         const auto stringNumber = guitarString["StringNumber"].get<int>();
         const auto startNote = guitarString["StartNote"].get<std::string>();
-        std::string startNoteString; // TODO: get start note from StartNote string
-        int octave = 0; // TODO: get octave from StartNote string
-        std::cout << "StringNumber: " << stringNumber << std::endl;
-        std::cout << "StartNote: " << startNote << std::endl;
-        guitar_strings_records.emplace_back(0, 0, stringNumber, startNoteString, octave);
+
+        auto noteOctave = getNoteAndOctave(startNote);
+        guitarStringRecords.emplace_back(0, 0, stringNumber, std::get<0>(noteOctave), std::get<1>(noteOctave));
     }
 
-    std::cout << "GuitarAdjustments" << std::endl;
     std::vector<GuitarAdjustmentRecord> guitarAdjustmentRecords;
-
     for (const auto& guitarAdjustment : guitarAdjustments) {
         const auto id = guitarAdjustment["ID"].get<std::string>();
         const auto stringAdjustments = guitarAdjustment["StringAdjustments"].get<std::vector<nlohmann::json>>();
-
-        std::cout << "ID: " << id << std::endl;
-        std::cout << "StringAdjustments" << std::endl;
         std::vector<GuitarStringAdjustmentRecord> guitar_string_adjustment_records;
 
         for (const auto& stringAdjustment : stringAdjustments) {
@@ -132,10 +141,14 @@ GuitarRecord SGuitarFactory::convertJsonToGuitarRecord(const std::string& json) 
 
             std::cout << "StringNumber: " << stringNumber << std::endl;
             std::cout << "Step: " << step << std::endl;
-            guitar_string_adjustment_records.emplace_back(-1, -1, stringNumber, step);
+            guitar_string_adjustment_records.emplace_back(SGuitarDatabase::SGUITAR_DB_UNSET,
+                                                          SGuitarDatabase::SGUITAR_DB_UNSET, stringNumber, step
+                );
         }
-        guitarAdjustmentRecords.emplace_back(-1, -1, id, guitar_string_adjustment_records);
+        guitarAdjustmentRecords.emplace_back(SGuitarDatabase::SGUITAR_DB_UNSET, SGuitarDatabase::SGUITAR_DB_UNSET, id,
+                                             guitar_string_adjustment_records
+            );
     }
 
-    return {-1, "", numberOfFrets, {}, guitar_strings_records, guitarAdjustmentRecords};
+    return {SGuitarDatabase::SGUITAR_DB_UNSET, "", numberOfFrets, {}, guitarStringRecords, guitarAdjustmentRecords};
 }

@@ -29,7 +29,7 @@ void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
 }
 
 int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
-    return -1;
+    return SGuitarDatabase::SGUITAR_DB_UNSET;
 }
 
 void GuitarDAOImpl::delete_guitar(int32_t id) {

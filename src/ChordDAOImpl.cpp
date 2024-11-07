@@ -24,7 +24,7 @@ std::vector<ChordRecord> ChordDAOImpl::get_chords() {
 
 int32_t ChordDAOImpl::add_chord(const ChordRecord& chord) {
     const nlohmann::json json_intervals = std::vector(chord.intervals);
-    int32_t id = -1;
+    int32_t id = SGuitarDatabase::SGUITAR_DB_UNSET;
 
     SQLite::Statement query(db, "INSERT INTO chord (name, intervals) VALUES (?, ?) RETURNING id");
     query.bind(1, chord.name);

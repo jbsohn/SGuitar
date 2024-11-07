@@ -43,6 +43,8 @@ guitar_record = record {
 }
 
 SGuitar_database = interface + c {
+    const SGUITAR_DB_UNSET: i32 = -1;
+
     static create_sguitar_database(path: string): SGuitar_database;
 }
 

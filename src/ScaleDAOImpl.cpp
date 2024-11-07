@@ -24,7 +24,7 @@ std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
 
 int32_t ScaleDAOImpl::add_scale(const ScaleRecord& scale) {
     const nlohmann::json json_semitones = std::vector(scale.semitones);
-    int32_t id = -1;
+    int32_t id = SGuitarDatabase::SGUITAR_DB_UNSET;
 
     SQLite::Statement query(db, "INSERT INTO scale (name, semitones) VALUES (?, ?) RETURNING id");
     query.bind(1, scale.name);

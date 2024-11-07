@@ -19,8 +19,8 @@ std::string read_file(const std::string& file_name) {
     return "";
 }
 
-TEST_CASE("Testing import") {
+TEST_CASE("Testing import guitar string size") {
     const auto jsonString = read_file("../import/Pedal Steel/Buddy E9");
     const auto guitar = SGuitarFactory::convertJsonToGuitarRecord(jsonString);
-    std::cout << "TEST" << std::endl;
+    CHECK(guitar.guitar_strings.size() == 10);
 }
