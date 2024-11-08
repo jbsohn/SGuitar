@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 
 #include <SQLiteCpp/SQLiteCpp.h>

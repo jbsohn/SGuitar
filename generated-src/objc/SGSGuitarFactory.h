@@ -21,6 +21,4 @@
 + (nullable SGChord *)createChord:(SGNoteValue)rootNote
                       chordRecord:(nonnull SGChordRecord *)chordRecord;
 
-+ (nonnull SGGuitarRecord *)convertJsonToGuitarRecord:(nonnull NSString *)json;
-
 @end

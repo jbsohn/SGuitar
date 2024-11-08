@@ -1,3 +1,4 @@
 @import "sguitar_dao.djinni"
 @import "sguitar_objects.djinni"
 @import "sguitar_factory.djinni"
+@import "sguitar_import.djinni"

@@ -3,24 +3,15 @@
 //
 
 #include <filesystem>
-#include <fstream>
-#include <iostream>
 #include <doctest/doctest.h>
+#include "guitar_DAO.hpp"
 #include "guitar_record.hpp"
-#include "SGuitar_factory.hpp"
+#include "SGuitar_database.hpp"
+#include "SGuitar_import.hpp"
 
-std::string read_file(const std::string& file_name) {
-    if (std::filesystem::exists(file_name)) {
-        std::ifstream file(file_name);
-        std::string content((std::istreambuf_iterator(file)), std::istreambuf_iterator<char>());
-        return content;
-    }
-    std::cerr << "File not found: " << file_name << std::endl;
-    return "";
-}
-
-TEST_CASE("Testing import guitar string size") {
-    const auto jsonString = read_file("../import/Pedal Steel/Buddy E9");
-    const auto guitar = SGuitarFactory::convertJsonToGuitarRecord(jsonString);
-    CHECK(guitar.guitar_strings.size() == 10);
+TEST_CASE("Testing full guitar import") {
+    const auto database = SGuitarDatabase::create_sguitar_database("../tests/db/test.sqlite3");
+    const auto guitarDAO = GuitarDAO::create_guitar_dao(database);
+    SGuitarImport::importJsonGuitarFromPath("../import/Lap Steel", guitarDAO);
+    SGuitarImport::importJsonGuitarFromPath("../import/Pedal Steel", guitarDAO);
 }

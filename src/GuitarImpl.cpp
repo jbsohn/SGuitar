@@ -6,13 +6,12 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
+#include <iostream>
 #include <fmt/format.h>
 #include <vector>
 #include "guitar_adjustment.hpp"
 #include "string_adjustment.hpp"
 #include "GuitarImpl.hpp"
-
-#include <iostream>
 
 GuitarImpl::GuitarImpl(const int32_t number_of_frets,
                        const std::vector<int>& fret_markers,

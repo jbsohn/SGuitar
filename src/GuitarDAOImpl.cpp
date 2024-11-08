@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 
 #include <SQLiteCpp/SQLiteCpp.h>
@@ -26,6 +26,36 @@ std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
 }
 
 void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
+    const auto name = guitar.name;
+    const auto number_of_frets = guitar.number_of_frets;
+    const nlohmann::json json_fret_markers = std::vector(guitar.fret_markers);
+
+    SQLite::Statement query(db, "INSERT INTO guitar(name, number_of_frets, fret_markers) VALUES (?,?,?) RETURNING id");
+    query.bind(1, name);
+    query.bind(2, number_of_frets);
+    query.bind(3, json_fret_markers.dump());
+    if (query.executeStep()) {
+        const auto guitar_id = query.getColumn(0).getInt();
+        for (const auto& guitar_string : guitar.guitar_strings) {
+            auto guitar_string_update = guitar_string;
+            guitar_string_update.guitar_id = guitar_id;
+            if (auto guitar_string_id = add_guitar_string(guitar_string_update);
+                guitar_string_id == SGuitarDatabase::SGUITAR_DB_UNSET) {
+                return;
+            }
+        }
+
+        for (const auto& guitar_adjustment : guitar.guitar_adjustments) {
+            auto guitar_adjustment_update = guitar_adjustment;
+            guitar_adjustment_update.guitar_id = guitar_id;
+            auto guitar_adjustment_id = add_guitar_adjustment(guitar_adjustment);
+            for (const auto& guitar_string_adjustment : guitar_adjustment.guitar_string_adjustments) {
+                auto guitar_string_adjustment_update = guitar_string_adjustment;
+                guitar_string_adjustment_update.guitar_adjustment_id = guitar_adjustment_id;
+                add_guitar_string_adjustment(guitar_string_adjustment_update);
+            }
+        }
+    }
 }
 
 int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
@@ -35,7 +65,6 @@ int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
 void GuitarDAOImpl::delete_guitar(int32_t id) {
 }
 
-// ReSharper disable once CppMemberFunctionMayBeConst
 std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id) {
     std::vector<GuitarStringRecord> strings;
 
@@ -50,6 +79,20 @@ std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id)
     }
 
     return strings;
+}
+
+int32_t GuitarDAOImpl::add_guitar_string(const GuitarStringRecord& guitar_string_record) {
+    SQLite::Statement query(
+        db, "INSERT INTO guitar_string(guitar_id, string_number, start_note, octave) VALUES (?,?,?,?) RETURNING id"
+        );
+    query.bind(1, guitar_string_record.guitar_id);
+    query.bind(2, guitar_string_record.string_number);
+    query.bind(3, guitar_string_record.start_note);
+    query.bind(4, guitar_string_record.octave);
+    if (query.executeStep()) {
+        return query.getColumn(0).getInt();
+    }
+    return SGuitarDatabase::SGUITAR_DB_UNSET;
 }
 
 std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int guitar_id) {
@@ -67,7 +110,16 @@ std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int gu
     return adjustments;
 }
 
-// ReSharper disable once CppMemberFunctionMayBeConst
+int32_t GuitarDAOImpl::add_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record) {
+    SQLite::Statement query(db, "INSERT INTO guitar_adjustment(guitar_id, name) VALUES (?,?) RETURNING id");
+    query.bind(1, guitar_adjustment_record.guitar_id);
+    query.bind(2, guitar_adjustment_record.name);
+    if (query.executeStep()) {
+        return query.getColumn(0).getInt();
+    }
+    return SGuitarDatabase::SGUITAR_DB_UNSET;
+}
+
 std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjustments(const int guitar_adjustment_id) {
     std::vector<GuitarStringAdjustmentRecord> string_adjustments;
 
@@ -83,6 +135,22 @@ std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjus
     }
 
     return string_adjustments;
+}
+
+int32_t GuitarDAOImpl::add_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
+    ) {
+    SQLite::Statement query(
+        db,
+        "INSERT INTO guitar_string_adjustment(guitar_adjustment_id, string_number, step) VALUES (?,?,?) RETURNING id"
+        );
+    query.bind(1, guitar_string_adjustment_record.guitar_adjustment_id);
+    query.bind(2, guitar_string_adjustment_record.string_number);
+    query.bind(3, guitar_string_adjustment_record.step);
+
+    if (query.executeStep()) {
+        return query.getColumn(0).getInt();
+    }
+    return SGuitarDatabase::SGUITAR_DB_UNSET;
 }
 
 std::shared_ptr<GuitarDAO> GuitarDAO::create_guitar_dao(const std::shared_ptr<SGuitarDatabase>& database) {

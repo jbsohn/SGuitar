@@ -3,5 +3,4 @@ SGuitar_factory = interface +c {
     static create_guitar(guitar_record: guitar_record): guitar;
     static create_scale(root_note: note_value, scale_record: scale_record): scale;
     static create_chord(root_note: note_value, chord_record: chord_record): chord;
-    static convertJsonToGuitarRecord(json: string): guitar_record;
 }
