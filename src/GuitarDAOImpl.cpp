@@ -26,14 +26,18 @@ std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
 }
 
 void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
-    const auto name = guitar.name;
-    const auto number_of_frets = guitar.number_of_frets;
-    const nlohmann::json json_fret_markers = std::vector(guitar.fret_markers);
-
+    std::string fret_markers;
+    if (guitar.fret_markers.empty()) {
+        fret_markers = "[3, 5, 7, 9, 12, 15, 17, 19, 21]";
+    } else {
+        const nlohmann::json json_fret_markers = std::vector(guitar.fret_markers);
+        fret_markers = json_fret_markers.dump();
+    }
     SQLite::Statement query(db, "INSERT INTO guitar(name, number_of_frets, fret_markers) VALUES (?,?,?) RETURNING id");
-    query.bind(1, name);
-    query.bind(2, number_of_frets);
-    query.bind(3, json_fret_markers.dump());
+    query.bind(1, guitar.name);
+    query.bind(2, guitar.number_of_frets);
+    query.bind(3, fret_markers);
+
     if (query.executeStep()) {
         const auto guitar_id = query.getColumn(0).getInt();
         for (const auto& guitar_string : guitar.guitar_strings) {

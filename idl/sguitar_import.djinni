@@ -1,5 +1,5 @@
 
 SGuitar_import = interface +c {
     static importJsonGuitarFromPath(fromPath: string, toGuitarDAO: guitar_DAO): bool;
-    static convertJsonToGuitarRecord(json: string): guitar_record;
+    static convertJsonToGuitarRecord(filename: string, json: string): guitar_record;
 }

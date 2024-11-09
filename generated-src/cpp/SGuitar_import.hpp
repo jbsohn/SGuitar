@@ -15,5 +15,5 @@ public:
 
     static bool importJsonGuitarFromPath(const std::string & fromPath, const /*not-null*/ std::shared_ptr<GuitarDAO> & toGuitarDAO);
 
-    static GuitarRecord convertJsonToGuitarRecord(const std::string & json);
+    static GuitarRecord convertJsonToGuitarRecord(const std::string & filename, const std::string & json);
 };

@@ -11,6 +11,7 @@
 + (BOOL)importJsonGuitarFromPath:(nonnull NSString *)fromPath
                      toGuitarDAO:(nullable SGGuitarDAO *)toGuitarDAO;
 
-+ (nonnull SGGuitarRecord *)convertJsonToGuitarRecord:(nonnull NSString *)json;
++ (nonnull SGGuitarRecord *)convertJsonToGuitarRecord:(nonnull NSString *)filename
+                                                 json:(nonnull NSString *)json;
 
 @end

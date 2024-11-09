@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class SGuitarImport {
     public static native boolean importJsonGuitarFromPath(String fromPath, GuitarDAO toGuitarDAO);
 
-    public static native GuitarRecord convertJsonToGuitarRecord(String json);
+    public static native GuitarRecord convertJsonToGuitarRecord(String filename, String json);
 
     public static final class CppProxy extends SGuitarImport
     {

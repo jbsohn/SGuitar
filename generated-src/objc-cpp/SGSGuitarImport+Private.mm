@@ -41,9 +41,11 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-+ (nonnull SGGuitarRecord *)convertJsonToGuitarRecord:(nonnull NSString *)json {
++ (nonnull SGGuitarRecord *)convertJsonToGuitarRecord:(nonnull NSString *)filename
+                                                 json:(nonnull NSString *)json {
     try {
-        auto objcpp_result_ = ::SGuitarImport::convertJsonToGuitarRecord(::djinni::String::toCpp(json));
+        auto objcpp_result_ = ::SGuitarImport::convertJsonToGuitarRecord(::djinni::String::toCpp(filename),
+                                                                         ::djinni::String::toCpp(json));
         return ::djinni_generated::GuitarRecord::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

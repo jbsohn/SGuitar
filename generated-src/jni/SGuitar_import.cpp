@@ -29,10 +29,11 @@ CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_SGuitarImport_importJ
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_SGuitarImport_convertJsonToGuitarRecord(JNIEnv* jniEnv, jobject /*this*/, jstring j_json)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_SGuitarImport_convertJsonToGuitarRecord(JNIEnv* jniEnv, jobject /*this*/, jstring j_filename, jstring j_json)
 {
     try {
-        auto r = ::SGuitarImport::convertJsonToGuitarRecord(::djinni::String::toCpp(jniEnv, j_json));
+        auto r = ::SGuitarImport::convertJsonToGuitarRecord(::djinni::String::toCpp(jniEnv, j_filename),
+                                                            ::djinni::String::toCpp(jniEnv, j_json));
         return ::djinni::release(::djinni_generated::GuitarRecord::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

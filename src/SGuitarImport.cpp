@@ -12,6 +12,7 @@
 #include "guitar_record.hpp"
 #include "SGuitar_import.hpp"
 #include "SGuitar_database.hpp"
+#include "fmt/os.h"
 
 std::string read_file(const std::string& file_name) {
     if (std::filesystem::exists(file_name)) {
@@ -49,13 +50,13 @@ bool SGuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
     ) {
     for (const auto& entry : std::filesystem::directory_iterator(fromPath)) {
         std::string json = read_file(entry.path());
-        auto guitarRecord = convertJsonToGuitarRecord(json);
+        auto guitarRecord = convertJsonToGuitarRecord(entry.path(), json);
         toGuitarDAO->add_guitar(guitarRecord);
     }
     return true;
 }
 
-GuitarRecord SGuitarImport::convertJsonToGuitarRecord(const std::string& json) {
+GuitarRecord SGuitarImport::convertJsonToGuitarRecord(const std::string& filename, const std::string& json) {
     nlohmann::json j = nlohmann::json::parse(json);
     const auto numberOfFrets = j["NumberOfFrets"].get<int>();
     const auto guitarType = j["GuitarType"].get<std::string>();
@@ -94,5 +95,10 @@ GuitarRecord SGuitarImport::convertJsonToGuitarRecord(const std::string& json) {
             );
     }
 
-    return {SGuitarDatabase::SGUITAR_DB_UNSET, "", numberOfFrets, {}, guitarStringRecords, guitarAdjustmentRecords};
+    return {SGuitarDatabase::SGUITAR_DB_UNSET,
+            filename,
+            numberOfFrets,
+            {},
+            guitarStringRecords,
+            guitarAdjustmentRecords};
 }
