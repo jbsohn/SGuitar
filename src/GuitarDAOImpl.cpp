@@ -55,7 +55,7 @@ void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
         for (const auto& guitar_adjustment : guitar.guitar_adjustments) {
             auto guitar_adjustment_update = guitar_adjustment;
             guitar_adjustment_update.guitar_id = guitar_id;
-            auto guitar_adjustment_id = add_guitar_adjustment(guitar_adjustment);
+            auto guitar_adjustment_id = add_guitar_adjustment(guitar_adjustment_update);
             for (const auto& guitar_string_adjustment : guitar_adjustment.guitar_string_adjustments) {
                 auto guitar_string_adjustment_update = guitar_string_adjustment;
                 guitar_string_adjustment_update.guitar_adjustment_id = guitar_adjustment_id;
