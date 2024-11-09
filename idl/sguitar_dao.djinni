@@ -38,6 +38,7 @@ guitar_record = record {
     name: string;
     number_of_frets: i32;
     fret_markers: array<i32>;
+    type: i32;
     guitar_strings: array<guitar_string_record>;
     guitar_adjustments: array<guitar_adjustment_record>;
 }

@@ -10,6 +10,7 @@
                               name:(nonnull NSString *)name
                      numberOfFrets:(int32_t)numberOfFrets
                        fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
+                              type:(int32_t)type
                      guitarStrings:(nonnull NSArray<SGGuitarStringRecord *> *)guitarStrings
                  guitarAdjustments:(nonnull NSArray<SGGuitarAdjustmentRecord *> *)guitarAdjustments
 {
@@ -18,6 +19,7 @@
         _name = [name copy];
         _numberOfFrets = numberOfFrets;
         _fretMarkers = [fretMarkers copy];
+        _type = type;
         _guitarStrings = [guitarStrings copy];
         _guitarAdjustments = [guitarAdjustments copy];
     }
@@ -28,6 +30,7 @@
                                       name:(nonnull NSString *)name
                              numberOfFrets:(int32_t)numberOfFrets
                                fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
+                                      type:(int32_t)type
                              guitarStrings:(nonnull NSArray<SGGuitarStringRecord *> *)guitarStrings
                          guitarAdjustments:(nonnull NSArray<SGGuitarAdjustmentRecord *> *)guitarAdjustments
 {
@@ -35,6 +38,7 @@
                                name:name
                       numberOfFrets:numberOfFrets
                         fretMarkers:fretMarkers
+                               type:type
                       guitarStrings:guitarStrings
                   guitarAdjustments:guitarAdjustments];
 }
@@ -42,7 +46,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ numberOfFrets:%@ fretMarkers:%@ guitarStrings:%@ guitarAdjustments:%@>", self.class, (void *)self, @(self.id), self.name, @(self.numberOfFrets), self.fretMarkers, self.guitarStrings, self.guitarAdjustments];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ numberOfFrets:%@ fretMarkers:%@ type:%@ guitarStrings:%@ guitarAdjustments:%@>", self.class, (void *)self, @(self.id), self.name, @(self.numberOfFrets), self.fretMarkers, @(self.type), self.guitarStrings, self.guitarAdjustments];
 }
 
 #endif

@@ -10,16 +10,17 @@
 std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
     std::vector<GuitarRecord> guitars;
 
-    SQLite::Statement query(db, "SELECT id, name, number_of_frets, fret_markers FROM guitar");
+    SQLite::Statement query(db, "SELECT id, name, number_of_frets, fret_markers, type FROM guitar");
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
         const auto name = query.getColumn(1).getString();
         const auto number_of_frets = query.getColumn(2).getInt();
         auto fret_markers_json = nlohmann::json::parse(query.getColumn(3).getString());
         std::vector<int32_t> fret_markers(fret_markers_json.begin(), fret_markers_json.end());
+        const auto type = query.getColumn(4).getInt();
         const auto guitar_strings = get_guitar_strings(id);
         const auto guitar_adjustments = get_guitar_adjustments(id);
-        guitars.emplace_back(id, name, number_of_frets, fret_markers, guitar_strings, guitar_adjustments);
+        guitars.emplace_back(id, name, number_of_frets, fret_markers, type, guitar_strings, guitar_adjustments);
     }
 
     return guitars;
@@ -33,10 +34,12 @@ void GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
         const nlohmann::json json_fret_markers = std::vector(guitar.fret_markers);
         fret_markers = json_fret_markers.dump();
     }
-    SQLite::Statement query(db, "INSERT INTO guitar(name, number_of_frets, fret_markers) VALUES (?,?,?) RETURNING id");
+    SQLite::Statement query(
+        db, "INSERT INTO guitar(name, number_of_frets, fret_markers, type) VALUES (?,?,?,?) RETURNING id");
     query.bind(1, guitar.name);
     query.bind(2, guitar.number_of_frets);
     query.bind(3, fret_markers);
+    query.bind(4, guitar.type);
 
     if (query.executeStep()) {
         const auto guitar_id = query.getColumn(0).getInt();
@@ -66,8 +69,7 @@ int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
     return SGuitarDatabase::SGUITAR_DB_UNSET;
 }
 
-void GuitarDAOImpl::delete_guitar(int32_t id) {
-}
+void GuitarDAOImpl::delete_guitar(int32_t id) {}
 
 std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id) {
     std::vector<GuitarStringRecord> strings;
@@ -87,8 +89,7 @@ std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id)
 
 int32_t GuitarDAOImpl::add_guitar_string(const GuitarStringRecord& guitar_string_record) {
     SQLite::Statement query(
-        db, "INSERT INTO guitar_string(guitar_id, string_number, start_note, octave) VALUES (?,?,?,?) RETURNING id"
-        );
+        db, "INSERT INTO guitar_string(guitar_id, string_number, start_note, octave) VALUES (?,?,?,?) RETURNING id");
     query.bind(1, guitar_string_record.guitar_id);
     query.bind(2, guitar_string_record.string_number);
     query.bind(3, guitar_string_record.start_note);
@@ -128,8 +129,7 @@ std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjus
     std::vector<GuitarStringAdjustmentRecord> string_adjustments;
 
     SQLite::Statement query(
-        db, "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?"
-        );
+        db, "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?");
     query.bind(1, guitar_adjustment_id);
     while (query.executeStep()) {
         const auto id = query.getColumn(0).getInt();
@@ -141,12 +141,11 @@ std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjus
     return string_adjustments;
 }
 
-int32_t GuitarDAOImpl::add_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
-    ) {
+int32_t GuitarDAOImpl::add_guitar_string_adjustment(
+    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record) {
     SQLite::Statement query(
         db,
-        "INSERT INTO guitar_string_adjustment(guitar_adjustment_id, string_number, step) VALUES (?,?,?) RETURNING id"
-        );
+        "INSERT INTO guitar_string_adjustment(guitar_adjustment_id, string_number, step) VALUES (?,?,?) RETURNING id");
     query.bind(1, guitar_string_adjustment_record.guitar_adjustment_id);
     query.bind(2, guitar_string_adjustment_record.string_number);
     query.bind(3, guitar_string_adjustment_record.step);

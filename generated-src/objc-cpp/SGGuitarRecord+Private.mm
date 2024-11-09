@@ -16,6 +16,7 @@ auto GuitarRecord::toCpp(ObjcType obj) -> CppType
             ::djinni::String::toCpp(obj.name),
             ::djinni::I32::toCpp(obj.numberOfFrets),
             ::djinni::Array<::djinni::I32>::toCpp(obj.fretMarkers),
+            ::djinni::I32::toCpp(obj.type),
             ::djinni::Array<::djinni_generated::GuitarStringRecord>::toCpp(obj.guitarStrings),
             ::djinni::Array<::djinni_generated::GuitarAdjustmentRecord>::toCpp(obj.guitarAdjustments)};
 }
@@ -26,6 +27,7 @@ auto GuitarRecord::fromCpp(const CppType& cpp) -> ObjcType
                                          name:(::djinni::String::fromCpp(cpp.name))
                                 numberOfFrets:(::djinni::I32::fromCpp(cpp.number_of_frets))
                                   fretMarkers:(::djinni::Array<::djinni::I32>::fromCpp(cpp.fret_markers))
+                                         type:(::djinni::I32::fromCpp(cpp.type))
                                 guitarStrings:(::djinni::Array<::djinni_generated::GuitarStringRecord>::fromCpp(cpp.guitar_strings))
                             guitarAdjustments:(::djinni::Array<::djinni_generated::GuitarAdjustmentRecord>::fromCpp(cpp.guitar_adjustments))];
 }

@@ -7,15 +7,15 @@
 #include <doctest/doctest.h>
 
 void setup_test_db() {
-    // auto test = std::filesystem::current_path();
-    //
-    // std::filesystem::remove_all("./db");
-    // std::filesystem::create_directory("./db");
-    // std::filesystem::copy_file("../db/main.sqlite3", "./db/test.sqlite3");
+    auto test = std::filesystem::current_path();
+
+    std::filesystem::remove_all("./db");
+    std::filesystem::create_directory("./db");
+    std::filesystem::copy_file("../db/main.sqlite3", "./db/test.sqlite3");
 }
 
 void teardown_test_db() {
-    // std::filesystem::remove_all("./db");
+    std::filesystem::remove_all("./db");
 }
 
 int main(const int argc, char** argv) {
@@ -31,4 +31,3 @@ int main(const int argc, char** argv) {
     teardown_test_db();
     return res;
 }
-
