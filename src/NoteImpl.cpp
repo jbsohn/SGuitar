@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <fmt/format.h>
 #include <string>
 #include "NoteImpl.hpp"
 

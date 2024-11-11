@@ -12,7 +12,6 @@
 #include "guitar_record.hpp"
 #include "SGuitar_import.hpp"
 #include "SGuitar_database.hpp"
-#include "fmt/os.h"
 
 std::string read_file(const std::string& file_name) {
     if (std::filesystem::exists(file_name)) {

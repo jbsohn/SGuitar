@@ -13,37 +13,25 @@ class GuitarImpl final : public Guitar {
     int number_of_frets = 0;
     std::vector<int> fret_markers;
     std::vector<std::shared_ptr<GuitarString>> guitar_strings;
-    std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>
-    guitar_adjustments;
+    std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> guitar_adjustments;
 
 public:
-    GuitarImpl(
-        int32_t number_of_frets,
-        const std::vector<int>& fret_markers,
-        const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
-        const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>
-        & guitar_adjustments
-    );
+    GuitarImpl(int32_t number_of_frets,
+               const std::vector<int>& fret_markers,
+               const std::vector<std::shared_ptr<GuitarString>>& guitar_strings,
+               const std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>& guitar_adjustments);
 
-    int32_t get_number_of_frets() override {
-        return number_of_frets;
-    }
+    int32_t get_number_of_frets() override { return number_of_frets; }
 
-    std::vector<int32_t> get_fret_markers() override {
-        return fret_markers;
-    }
+    std::vector<int32_t> get_fret_markers() override { return fret_markers; }
 
     /** strings */
-    std::vector</*not-null*/ std::shared_ptr<GuitarString>>
-    get_strings() override;
+    std::vector</*not-null*/ std::shared_ptr<GuitarString>> get_strings() override;
     void reset_strings() override;
 
     /** adjustment */
     bool is_adjustment_activated(const std::string& adjustment_id) override;
-    void set_adjustment_activated(
-        const std::string& adjustment_id,
-        bool activated
-    ) override;
+    void set_adjustment_activated(const std::string& adjustment_id, bool activated) override;
 
     std::string test_description() override;
 };

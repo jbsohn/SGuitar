@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include "ChordImpl.hpp"
+#include "note.hpp"
 
 ChordImpl::ChordImpl(const NoteValue root_note, const std::vector<int>& intervals) {
     for (const int interval : intervals) {

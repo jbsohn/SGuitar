@@ -5,6 +5,7 @@
 #ifndef NOTE_IMPL_H
 #define NOTE_IMPL_H
 
+#include <fmt/format.h>
 #include "note.hpp"
 
 class NoteImpl final : public Note {

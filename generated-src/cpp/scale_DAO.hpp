@@ -6,21 +6,21 @@
 #include <cstdint>
 #include <memory>
 #include <vector>
-
-class SGuitarDatabase;
-struct ScaleRecord;
+#include "SGuitar_database.hpp"
+#include "scale_record.hpp"
 
 class ScaleDAO {
 public:
     virtual ~ScaleDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<ScaleDAO> create_scale_dao(const /*not-null*/ std::shared_ptr<SGuitarDatabase> & database);
+    static /*not-null*/ std::shared_ptr<ScaleDAO> create_scale_dao(
+        const /*not-null*/ std::shared_ptr<SGuitarDatabase>& database);
 
     virtual std::vector<ScaleRecord> get_scales() = 0;
 
-    virtual int32_t add_scale(const ScaleRecord & scale) = 0;
+    virtual int32_t add_scale(const ScaleRecord& scale) = 0;
 
-    virtual void update_scale(const ScaleRecord & scale) = 0;
+    virtual void update_scale(const ScaleRecord& scale) = 0;
 
     virtual void delete_scale(int32_t id) = 0;
 };

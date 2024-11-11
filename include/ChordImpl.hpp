@@ -6,7 +6,6 @@
 #define CHORD_IMPL_H
 
 #include "chord.hpp"
-#include "note.hpp"
 #include "note_value.hpp"
 
 class ChordImpl final : public Chord {
