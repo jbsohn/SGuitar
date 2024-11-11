@@ -30,6 +30,8 @@ guitar_adjustment_record = record {
     id: i32;
     guitar_id: i32;
     name: string;
+    position: i32;
+    order: i32;
     guitar_string_adjustments: array<guitar_string_adjustment_record>;
 }
 

@@ -4,22 +4,23 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 #include <vector>
-#include "SGuitar_database.hpp"
-#include "guitar_record.hpp"
+
+class SGuitarDatabase;
+struct GuitarRecord;
 
 class GuitarDAO {
 public:
     virtual ~GuitarDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<GuitarDAO> create_guitar_dao(
-        const /*not-null*/ std::shared_ptr<SGuitarDatabase>& database);
+    static /*not-null*/ std::shared_ptr<GuitarDAO> create_guitar_dao(const /*not-null*/ std::shared_ptr<SGuitarDatabase> & database);
 
     virtual std::vector<GuitarRecord> get_guitars() = 0;
 
-    virtual void add_guitar(const GuitarRecord& guitar) = 0;
+    virtual void add_guitar(const GuitarRecord & guitar) = 0;
 
-    virtual int32_t update_guitar(const GuitarRecord& guitar) = 0;
+    virtual int32_t update_guitar(const GuitarRecord & guitar) = 0;
 
     virtual void delete_guitar(int32_t id) = 0;
 };

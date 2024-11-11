@@ -10,10 +10,14 @@
 - (nonnull instancetype)initWithId:(int32_t)id
                           guitarId:(int32_t)guitarId
                               name:(nonnull NSString *)name
+                          position:(int32_t)position
+                             order:(int32_t)order
            guitarStringAdjustments:(nonnull NSArray<SGGuitarStringAdjustmentRecord *> *)guitarStringAdjustments NS_DESIGNATED_INITIALIZER;
 + (nonnull instancetype)guitarAdjustmentRecordWithId:(int32_t)id
                                             guitarId:(int32_t)guitarId
                                                 name:(nonnull NSString *)name
+                                            position:(int32_t)position
+                                               order:(int32_t)order
                              guitarStringAdjustments:(nonnull NSArray<SGGuitarStringAdjustmentRecord *> *)guitarStringAdjustments;
 
 @property (nonatomic, readonly) int32_t id;
@@ -21,6 +25,10 @@
 @property (nonatomic, readonly) int32_t guitarId;
 
 @property (nonatomic, readonly, nonnull) NSString * name;
+
+@property (nonatomic, readonly) int32_t position;
+
+@property (nonatomic, readonly) int32_t order;
 
 @property (nonatomic, readonly, nonnull) NSArray<SGGuitarStringAdjustmentRecord *> * guitarStringAdjustments;
 

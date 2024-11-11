@@ -3,12 +3,13 @@
 #include <doctest/doctest.h>
 #include <fmt/format.h>
 #include <iostream>
-#include <vector>
 #include "SGuitar_database.hpp"
 #include "chord_DAO.hpp"
 #include "chord_record.hpp"
 #include "guitar_DAO.hpp"
+#include "guitar_record.hpp"
 #include "scale_DAO.hpp"
+#include "scale_record.hpp"
 
 TEST_CASE("Testing DB: SELECT") {
     const SQLite::Database db("../tests/db/test.sqlite3");

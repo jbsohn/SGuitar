@@ -9,12 +9,16 @@
 - (nonnull instancetype)initWithId:(int32_t)id
                           guitarId:(int32_t)guitarId
                               name:(nonnull NSString *)name
+                          position:(int32_t)position
+                             order:(int32_t)order
            guitarStringAdjustments:(nonnull NSArray<SGGuitarStringAdjustmentRecord *> *)guitarStringAdjustments
 {
     if (self = [super init]) {
         _id = id;
         _guitarId = guitarId;
         _name = [name copy];
+        _position = position;
+        _order = order;
         _guitarStringAdjustments = [guitarStringAdjustments copy];
     }
     return self;
@@ -23,18 +27,22 @@
 + (nonnull instancetype)guitarAdjustmentRecordWithId:(int32_t)id
                                             guitarId:(int32_t)guitarId
                                                 name:(nonnull NSString *)name
+                                            position:(int32_t)position
+                                               order:(int32_t)order
                              guitarStringAdjustments:(nonnull NSArray<SGGuitarStringAdjustmentRecord *> *)guitarStringAdjustments
 {
     return [[self alloc] initWithId:id
                            guitarId:guitarId
                                name:name
+                           position:position
+                              order:order
             guitarStringAdjustments:guitarStringAdjustments];
 }
 
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarId:%@ name:%@ guitarStringAdjustments:%@>", self.class, (void *)self, @(self.id), @(self.guitarId), self.name, self.guitarStringAdjustments];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarId:%@ name:%@ position:%@ order:%@ guitarStringAdjustments:%@>", self.class, (void *)self, @(self.id), @(self.guitarId), self.name, @(self.position), @(self.order), self.guitarStringAdjustments];
 }
 
 #endif

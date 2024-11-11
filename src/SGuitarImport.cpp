@@ -107,14 +107,11 @@ GuitarRecord SGuitarImport::convertJsonToGuitarRecord(const std::string& filenam
         for (const auto& stringAdjustment : stringAdjustments) {
             const auto stringNumber = stringAdjustment["StringNumber"].get<int>();
             const auto step = stringAdjustment["Step"].get<int>();
-
-            std::cout << "StringNumber: " << stringNumber << std::endl;
-            std::cout << "Step: " << step << std::endl;
             guitar_string_adjustment_records.emplace_back(SGuitarDatabase::SGUITAR_DB_UNSET,
                                                           SGuitarDatabase::SGUITAR_DB_UNSET, stringNumber, step);
         }
         guitarAdjustmentRecords.emplace_back(SGuitarDatabase::SGUITAR_DB_UNSET, SGuitarDatabase::SGUITAR_DB_UNSET, id,
-                                             guitar_string_adjustment_records);
+                                             0, 0, guitar_string_adjustment_records);
     }
     return {
         SGuitarDatabase::SGUITAR_DB_UNSET, name, numberOfFrets, {}, type, guitarStringRecords, guitarAdjustmentRecords};

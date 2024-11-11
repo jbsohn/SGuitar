@@ -14,6 +14,8 @@ auto GuitarAdjustmentRecord::toCpp(ObjcType obj) -> CppType
     return {::djinni::I32::toCpp(obj.id),
             ::djinni::I32::toCpp(obj.guitarId),
             ::djinni::String::toCpp(obj.name),
+            ::djinni::I32::toCpp(obj.position),
+            ::djinni::I32::toCpp(obj.order),
             ::djinni::Array<::djinni_generated::GuitarStringAdjustmentRecord>::toCpp(obj.guitarStringAdjustments)};
 }
 
@@ -22,6 +24,8 @@ auto GuitarAdjustmentRecord::fromCpp(const CppType& cpp) -> ObjcType
     return [[SGGuitarAdjustmentRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
                                                guitarId:(::djinni::I32::fromCpp(cpp.guitar_id))
                                                    name:(::djinni::String::fromCpp(cpp.name))
+                                               position:(::djinni::I32::fromCpp(cpp.position))
+                                                  order:(::djinni::I32::fromCpp(cpp.order))
                                 guitarStringAdjustments:(::djinni::Array<::djinni_generated::GuitarStringAdjustmentRecord>::fromCpp(cpp.guitar_string_adjustments))];
 }
 

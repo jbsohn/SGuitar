@@ -13,15 +13,21 @@ struct GuitarAdjustmentRecord final {
     int32_t id;
     int32_t guitar_id;
     std::string name;
+    int32_t position;
+    int32_t order;
     std::vector<GuitarStringAdjustmentRecord> guitar_string_adjustments;
 
     GuitarAdjustmentRecord(int32_t id_,
                            int32_t guitar_id_,
                            std::string name_,
+                           int32_t position_,
+                           int32_t order_,
                            std::vector<GuitarStringAdjustmentRecord> guitar_string_adjustments_)
     : id(std::move(id_))
     , guitar_id(std::move(guitar_id_))
     , name(std::move(name_))
+    , position(std::move(position_))
+    , order(std::move(order_))
     , guitar_string_adjustments(std::move(guitar_string_adjustments_))
     {}
 };

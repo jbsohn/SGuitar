@@ -12,16 +12,24 @@ public final class GuitarAdjustmentRecord {
 
     /*package*/ final String name;
 
+    /*package*/ final int position;
+
+    /*package*/ final int order;
+
     /*package*/ final GuitarStringAdjustmentRecord[] guitarStringAdjustments;
 
     public GuitarAdjustmentRecord(
             int id,
             int guitarId,
             String name,
+            int position,
+            int order,
             GuitarStringAdjustmentRecord[] guitarStringAdjustments) {
         this.id = id;
         this.guitarId = guitarId;
         this.name = name;
+        this.position = position;
+        this.order = order;
         this.guitarStringAdjustments = guitarStringAdjustments;
     }
 
@@ -37,6 +45,14 @@ public final class GuitarAdjustmentRecord {
         return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
     public GuitarStringAdjustmentRecord[] getGuitarStringAdjustments() {
         return guitarStringAdjustments;
     }
@@ -47,6 +63,8 @@ public final class GuitarAdjustmentRecord {
                 "id=" + id +
                 "," + "guitarId=" + guitarId +
                 "," + "name=" + name +
+                "," + "position=" + position +
+                "," + "order=" + order +
                 "," + "guitarStringAdjustments=" + guitarStringAdjustments +
         "}";
     }
