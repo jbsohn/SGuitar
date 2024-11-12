@@ -11,7 +11,9 @@ class GuitarDAOImpl final : public GuitarDAO {
     const SQLite::Database& db;
 
 public:
-    explicit GuitarDAOImpl(const SQLite::Database& database) : db(database) {}
+    explicit GuitarDAOImpl(const SQLite::Database& database) : db(database) {
+    }
+
     std::vector<GuitarRecord> get_guitars() override;
     void add_guitar(const GuitarRecord& guitar) override;
     int32_t update_guitar(const GuitarRecord& guitar) override;
@@ -19,12 +21,22 @@ public:
 
 protected:
     std::vector<GuitarStringRecord> get_guitar_strings(int guitar_id) const;
-    int32_t add_guitar_string(const GuitarStringRecord& guitar_string_record) const;
+    int32_t add_guitar_string(
+        const GuitarStringRecord& guitar_string_record
+    ) const;
 
-    std::vector<GuitarAdjustmentRecord> get_guitar_adjustments(int guitar_id) const;
-    int32_t add_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record) const;
+    std::vector<GuitarAdjustmentRecord> get_guitar_adjustments(
+        int guitar_id
+    ) const;
+    int32_t add_guitar_adjustment(
+        const GuitarAdjustmentRecord& guitar_adjustment_record
+    ) const;
 
-    std::vector<GuitarStringAdjustmentRecord> get_guitar_string_adjustments(int guitar_adjustment_id) const;
-    int32_t add_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record) const;
+    std::vector<GuitarStringAdjustmentRecord> get_guitar_string_adjustments(
+        int guitar_adjustment_id
+    ) const;
+    int32_t add_guitar_string_adjustment(
+        const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
+    ) const;
 };
 #endif  // GUITAR_DAO_IMPL_H
