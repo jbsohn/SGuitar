@@ -29,7 +29,7 @@ public:
 
     std::vector<int32_t> get_fret_markers() override { return fret_markers; }
 
-    std::vector</*not-null*/ std::shared_ptr<GuitarString>>
+    std::vector<std::shared_ptr<GuitarString>>
     get_strings() override;
     void reset_strings() override;
 

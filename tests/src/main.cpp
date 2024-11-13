@@ -4,14 +4,12 @@
 
 #define DOCTEST_CONFIG_IMPLEMENT
 #include <cstdlib>
-#include <filesystem>
+#include <iostream>
+#include <string>
 #include <doctest/doctest.h>
 #include "Tests.hpp"
 
 std::string Paths::dbPath;
-
-#include <iostream>
-#include <string>
 
 int main(const int argc, char** argv) {
     doctest::Context context;

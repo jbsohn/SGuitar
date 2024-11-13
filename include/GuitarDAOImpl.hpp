@@ -20,23 +20,33 @@ public:
     void delete_guitar(int32_t id) override;
 
 protected:
-    std::vector<GuitarStringRecord> get_guitar_strings(int guitar_id) const;
-    int32_t add_guitar_string(
+    [[nodiscard]] int32_t add_guitar_string(
         const GuitarStringRecord& guitar_string_record
     ) const;
-
-    std::vector<GuitarAdjustmentRecord> get_guitar_adjustments(
+    [[nodiscard]] bool update_guitar_string(
+        const GuitarStringRecord& guitar_string_record
+    ) const;
+    [[nodiscard]] std::vector<GuitarStringRecord> get_guitar_strings(
         int guitar_id
     ) const;
-    int32_t add_guitar_adjustment(
+
+    [[nodiscard]] int32_t add_guitar_adjustment(
         const GuitarAdjustmentRecord& guitar_adjustment_record
     ) const;
-
-    std::vector<GuitarStringAdjustmentRecord> get_guitar_string_adjustments(
-        int guitar_adjustment_id
+    [[nodiscard]] bool update_guitar_adjustment(
+        const GuitarAdjustmentRecord& guitar_adjustment_record
     ) const;
-    int32_t add_guitar_string_adjustment(
+    [[nodiscard]] std::vector<GuitarAdjustmentRecord> get_guitar_adjustments(
+        int guitar_id
+    ) const;
+
+    [[nodiscard]] int32_t add_guitar_string_adjustment(
         const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
     ) const;
+    [[nodiscard]] bool update_guitar_string_adjustment(
+        const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
+    ) const;
+    [[nodiscard]] std::vector<GuitarStringAdjustmentRecord>
+    get_guitar_string_adjustments(int guitar_adjustment_id) const;
 };
 #endif  // GUITAR_DAO_IMPL_H
