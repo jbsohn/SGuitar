@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 
 #ifndef HARMONIZED_SCALE_IMPL_HPP
@@ -9,7 +9,8 @@
 #include "harmonized_scale.hpp"
 
 class HarmonizedScaleImpl final : public HarmonizedScale {
-    std::vector<std::shared_ptr<Chord>> chords = std::vector<std::shared_ptr<Chord>>();
+    std::vector<std::shared_ptr<Chord>> chords = std::vector<std::shared_ptr<
+        Chord>>();
 
 public:
     HarmonizedScaleImpl(NoteValue root_note, const std::vector<int>& semitones);

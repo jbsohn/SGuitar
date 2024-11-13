@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 
 #ifndef CHORD_DAO_IMPL_H
@@ -12,7 +12,9 @@ class ChordDAOImpl final : public ChordDAO {
     const SQLite::Database& db;
 
 public:
-    explicit ChordDAOImpl(const SQLite::Database& database) : db(database) {}
+    explicit ChordDAOImpl(const SQLite::Database& database) : db(database) {
+    }
+
     std::vector<ChordRecord> get_chords() override;
     int32_t add_chord(const ChordRecord& chord) override;
     void update_chord(const ChordRecord& chord) override;

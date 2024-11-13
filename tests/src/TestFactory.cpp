@@ -1,5 +1,5 @@
 //
-// Created by John on 10/14/24.
+// Created by John Sohn on 10/14/24.
 //
 #include <doctest/doctest.h>
 #include <chord.hpp>

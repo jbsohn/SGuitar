@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 
 #ifndef SCALE_DAO_IMPL_H
@@ -12,7 +12,9 @@ class ScaleDAOImpl final : public ScaleDAO {
     const SQLite::Database& db;
 
 public:
-    explicit ScaleDAOImpl(const SQLite::Database& database) : db(database) {}
+    explicit ScaleDAOImpl(const SQLite::Database& database) : db(database) {
+    }
+
     std::vector<ScaleRecord> get_scales() override;
     int32_t add_scale(const ScaleRecord& scale) override;
     void update_scale(const ScaleRecord& scale) override;

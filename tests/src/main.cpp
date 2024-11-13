@@ -1,5 +1,5 @@
 //
-// Created by John on 11/3/24.
+// Created by John Sohn on 11/3/24.
 //
 
 #define DOCTEST_CONFIG_IMPLEMENT
@@ -16,8 +16,8 @@ std::string Paths::dbPath;
 int main(const int argc, char** argv) {
     doctest::Context context;
 
-    // read argument of DB from argument
     if (argc > 1) {
+        // path to DB
         Paths::dbPath = argv[1];
     } else {
         std::cerr << "Usage: <path-to-db>" << std::endl;

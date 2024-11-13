@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 #ifndef GUITAR_DAO_IMPL_H
 #define GUITAR_DAO_IMPL_H

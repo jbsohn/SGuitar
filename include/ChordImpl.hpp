@@ -1,5 +1,5 @@
 //
-// Created by John on 10/13/24.
+// Created by John Sohn on 10/13/24.
 //
 
 #ifndef CHORD_IMPL_H
@@ -13,7 +13,11 @@ class ChordImpl final : public Chord {
 
 public:
     ChordImpl(NoteValue root_note, const std::vector<int>& intervals);
-    explicit ChordImpl(const std::vector<NoteValue>& notes) { this->notes = notes; }
+
+    explicit ChordImpl(const std::vector<NoteValue>& notes) {
+        this->notes = notes;
+    }
+
     std::vector<NoteValue> get_notes() override { return notes; }
     std::string test_description() override;
 
