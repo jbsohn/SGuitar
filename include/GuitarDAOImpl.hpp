@@ -15,9 +15,9 @@ public:
     }
 
     std::vector<GuitarRecord> get_guitars() override;
-    void add_guitar(const GuitarRecord& guitar) override;
+    int32_t add_guitar(const GuitarRecord& guitar) override;
     int32_t update_guitar(const GuitarRecord& guitar) override;
-    void delete_guitar(int32_t id) override;
+    bool delete_guitar(int32_t id) override;
 
 protected:
     [[nodiscard]] int32_t add_guitar_string(
@@ -48,5 +48,12 @@ protected:
     ) const;
     [[nodiscard]] std::vector<GuitarStringAdjustmentRecord>
     get_guitar_string_adjustments(int guitar_adjustment_id) const;
+
+    static std::string fretMarkersAsJson(
+        const std::vector<int32_t>& fret_markers
+    );
+    static std::vector<int32_t> getFretMarkersFromJson(
+        const std::string& fretMarkerString
+    );
 };
 #endif  // GUITAR_DAO_IMPL_H

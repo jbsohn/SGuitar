@@ -2,8 +2,8 @@
 // Created by john on 10/5/24.
 //
 
-#include <doctest/doctest.h>
 #include <iostream>
+#include <doctest/doctest.h>
 #include "note_value.hpp"
 #include "scale.hpp"
 

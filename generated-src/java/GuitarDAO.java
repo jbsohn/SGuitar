@@ -9,11 +9,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class GuitarDAO {
     public abstract GuitarRecord[] getGuitars();
 
-    public abstract void addGuitar(GuitarRecord guitar);
+    public abstract int addGuitar(GuitarRecord guitar);
 
     public abstract int updateGuitar(GuitarRecord guitar);
 
-    public abstract void deleteGuitar(int id);
+    public abstract boolean deleteGuitar(int id);
 
     public static native GuitarDAO createGuitarDao(SGuitarDatabase database);
 
@@ -39,12 +39,12 @@ public abstract class GuitarDAO {
         private native GuitarRecord[] native_getGuitars(long _nativeRef);
 
         @Override
-        public void addGuitar(GuitarRecord guitar)
+        public int addGuitar(GuitarRecord guitar)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_addGuitar(this.nativeRef, guitar);
+            return native_addGuitar(this.nativeRef, guitar);
         }
-        private native void native_addGuitar(long _nativeRef, GuitarRecord guitar);
+        private native int native_addGuitar(long _nativeRef, GuitarRecord guitar);
 
         @Override
         public int updateGuitar(GuitarRecord guitar)
@@ -55,11 +55,11 @@ public abstract class GuitarDAO {
         private native int native_updateGuitar(long _nativeRef, GuitarRecord guitar);
 
         @Override
-        public void deleteGuitar(int id)
+        public boolean deleteGuitar(int id)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_deleteGuitar(this.nativeRef, id);
+            return native_deleteGuitar(this.nativeRef, id);
         }
-        private native void native_deleteGuitar(long _nativeRef, int id);
+        private native boolean native_deleteGuitar(long _nativeRef, int id);
     }
 }

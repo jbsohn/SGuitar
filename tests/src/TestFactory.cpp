@@ -1,21 +1,21 @@
 //
 // Created by John Sohn on 10/14/24.
 //
-#include <doctest/doctest.h>
-#include <chord.hpp>
-#include <guitar.hpp>
 #include <iostream>
-#include <scale.hpp>
 #include <vector>
-#include "SGuitar_database.hpp"
-#include "SGuitar_factory.hpp"
+#include <doctest/doctest.h>
+#include "chord.hpp"
 #include "chord_DAO.hpp"
 #include "chord_record.hpp"
+#include "guitar.hpp"
 #include "guitar_DAO.hpp"
 #include "guitar_record.hpp"
 #include "note_value.hpp"
+#include "scale.hpp"
 #include "scale_DAO.hpp"
 #include "scale_record.hpp"
+#include "SGuitar_database.hpp"
+#include "SGuitar_factory.hpp"
 #include "Tests.hpp"
 
 TEST_CASE("Testing GuitarFactory") {

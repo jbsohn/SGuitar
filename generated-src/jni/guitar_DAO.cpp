@@ -37,12 +37,13 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProx
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1addGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1addGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarDAO>(nativeRef);
-        ref->add_guitar(::djinni_generated::GuitarRecord::toCpp(jniEnv, j_guitar));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ref->add_guitar(::djinni_generated::GuitarRecord::toCpp(jniEnv, j_guitar));
+        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1updateGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
@@ -54,12 +55,13 @@ CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_n
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1deleteGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_id)
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1deleteGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_id)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarDAO>(nativeRef);
-        ref->delete_guitar(::djinni::I32::toCpp(jniEnv, j_id));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ref->delete_guitar(::djinni::I32::toCpp(jniEnv, j_id));
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 } // namespace djinni_generated

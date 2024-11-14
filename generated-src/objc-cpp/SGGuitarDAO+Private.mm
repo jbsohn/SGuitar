@@ -46,9 +46,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)addGuitar:(nonnull SGGuitarRecord *)guitar {
+- (int32_t)addGuitar:(nonnull SGGuitarRecord *)guitar {
     try {
-        _cppRefHandle.get()->add_guitar(::djinni_generated::GuitarRecord::toCpp(guitar));
+        auto objcpp_result_ = _cppRefHandle.get()->add_guitar(::djinni_generated::GuitarRecord::toCpp(guitar));
+        return ::djinni::I32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
@@ -59,9 +60,10 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)deleteGuitar:(int32_t)id {
+- (BOOL)deleteGuitar:(int32_t)id {
     try {
-        _cppRefHandle.get()->delete_guitar(::djinni::I32::toCpp(id));
+        auto objcpp_result_ = _cppRefHandle.get()->delete_guitar(::djinni::I32::toCpp(id));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
