@@ -10,15 +10,18 @@
 #include "main.hpp"
 
 std::string Paths::dbPath;
+std::string Paths::lapSteelPath;
+std::string Paths::pedalSteelPath;
 
 int main(const int argc, char** argv) {
     doctest::Context context;
 
-    if (argc > 1) {
-        // path to DB
+    if (argc > 2) {
         Paths::dbPath = argv[1];
+        Paths::lapSteelPath = argv[2];
+        Paths::pedalSteelPath = argv[3];
     } else {
-        std::cerr << "Usage: <path-to-db>" << std::endl;
+        std::cerr << "Usage: <path-to-db> <path-to-lap-steel> <path-to-pedal-steel>" << std::endl;
         std::exit(0);
     }
 

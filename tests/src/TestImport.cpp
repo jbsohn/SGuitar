@@ -13,8 +13,8 @@
 TEST_CASE("Testing full guitar import") {
     const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
     const auto guitarDAO = GuitarDAO::create_guitar_dao(database);
-    SGuitarImport::importJsonGuitarFromPath("../import/Lap Steel", guitarDAO);
-    SGuitarImport::importJsonGuitarFromPath("../import/Pedal Steel", guitarDAO);
+    SGuitarImport::importJsonGuitarFromPath(Paths::lapSteelPath, guitarDAO);
+    SGuitarImport::importJsonGuitarFromPath(Paths::pedalSteelPath, guitarDAO);
     CHECK(guitarDAO->get_guitars()[1].number_of_frets == 26);
     CHECK(guitarDAO->get_guitars()[1].type == 2);
 }
