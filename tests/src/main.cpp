@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include <doctest/doctest.h>
-#include "Tests.hpp"
+#include "main.hpp"
 
 std::string Paths::dbPath;
 
