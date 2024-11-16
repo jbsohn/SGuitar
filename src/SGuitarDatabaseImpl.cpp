@@ -3,7 +3,7 @@
 //
 
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "SGuitarDatabaseImpl.hpp"
+#include "SGDatabaseConnectionImpl.hpp"
 
 std::shared_ptr<SGDatabaseConnection> SGDatabaseConnection::create_sgdatabase_connection(const std::string& path) {
     return std::make_shared<SGDatabaseConnectionImpl>(path);

@@ -2,8 +2,8 @@
 // Created by john on 10/12/24.
 //
 
-#ifndef SGUITAR_DATABASE_IMPL_H
-#define SGUITAR_DATABASE_IMPL_H
+#ifndef SG_DATABASE_CONNECTION_IMPL_H
+#define SG_DATABASE_CONNECTION_IMPL_H
 
 #include "SGDatabase_connection.hpp"
 
@@ -20,4 +20,4 @@ public:
     SQLite::Database& getDatabase() { return database; }
 };
 
-#endif  // SGUITAR_DATABASE_IMPL_H
+#endif  // SG_DATABASE_CONNECTION_IMPL_H

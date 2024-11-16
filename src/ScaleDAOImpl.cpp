@@ -4,7 +4,7 @@
 
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <nlohmann/json.hpp>
-#include "SGuitarDatabaseImpl.hpp"
+#include "SGDatabaseConnectionImpl.hpp"
 #include "ScaleDAOImpl.hpp"
 
 std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {

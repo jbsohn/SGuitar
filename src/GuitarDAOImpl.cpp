@@ -5,7 +5,7 @@
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <nlohmann/json.hpp>
 #include <iostream>
-#include "SGuitarDatabaseImpl.hpp"
+#include "SGDatabaseConnectionImpl.hpp"
 #include "GuitarDAOImpl.hpp"
 
 std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {

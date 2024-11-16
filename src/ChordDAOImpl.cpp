@@ -4,7 +4,7 @@
 
 #include <nlohmann/json.hpp>
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "SGuitarDatabaseImpl.hpp"
+#include "SGDatabaseConnectionImpl.hpp"
 #include "ChordDAOImpl.hpp"
 
 std::vector<ChordRecord> ChordDAOImpl::get_chords() {
