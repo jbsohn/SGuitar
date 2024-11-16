@@ -27,7 +27,7 @@ TEST_CASE("Testing ScaleDAO add/update/delete") {
     const auto scale = ScaleDAO::create_scale_dao(database);
     std::vector semitones = {0, 1, 2};
 
-    auto scaleRecord = ScaleRecord(0, "test", semitones);
+    auto scaleRecord = ScaleRecord(std::nullopt, "test", semitones);
     auto id = scale->add_scale(scaleRecord);
     CHECK(id.value() > 0);
 
@@ -52,7 +52,7 @@ TEST_CASE("Testing ChordDAO add/update/delete") {
     const auto chord = ChordDAO::create_chord_dao(database);
     std::vector intervals = {0, 1, 2};
 
-    auto chordRecord = ChordRecord(0, "test", intervals);
+    auto chordRecord = ChordRecord(std::nullopt, "test", intervals);
     auto id = chord->add_chord(chordRecord);
     CHECK(id.value() > 0);
 
@@ -72,19 +72,19 @@ TEST_CASE("Testing GuitarDAO get") {
     CHECK(guitars.size() > 0);
 }
 
-// TEST_CASE("Testing ChordDAO add/update/delete") {
-//     const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
-//     const auto guitar = GuitarDAO::create_guitar_dao(database);
-//
-//     auto guitarRecord = GuitarRecord();
-//     auto id = guitar->add_guitar(guitarRecord);
-//     CHECK(id.value() > 0);
-//
-//     guitarRecord.id = id.value();
-//     guitarRecord.name = "test2";
-//     CHECK(guitar->update_guitar(guitarRecord));
-//
-//     if (id.value() > 0) {
-//         CHECK(guitar->delete_guitar(id.value()));
-//     }
-// }
+TEST_CASE("Testing ChordDAO add/update/delete") {
+    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto guitar = GuitarDAO::create_guitar_dao(database);
+
+    auto guitarRecord = GuitarRecord(std::nullopt, "test", 23, {}, 1, {}, {});
+    auto id = guitar->add_guitar(guitarRecord);
+    CHECK(id.value() > 0);
+
+    guitarRecord.id = id.value();
+    guitarRecord.name = "test2";
+    CHECK(guitar->update_guitar(guitarRecord));
+
+    if (id.value() > 0) {
+        CHECK(guitar->delete_guitar(id.value()));
+    }
+}

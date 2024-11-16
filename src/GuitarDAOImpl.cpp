@@ -62,7 +62,7 @@ std::optional<int32_t> GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
             }
         }
     }
-    return guitar.id;
+    return query.getColumn(0).getInt();
 }
 
 bool GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
@@ -75,10 +75,10 @@ bool GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
     query.bind(4, guitar.type);
     query.bind(5, guitar.id.value());
 
-    if (query.executeStep()) {
-        return true;
+    if (query.exec() != 1) {
+        return false;
     }
-    return false;
+    return true;
 }
 
 bool GuitarDAOImpl::delete_guitar(int32_t id) {
