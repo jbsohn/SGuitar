@@ -4,16 +4,17 @@
 #pragma once
 
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
 
 struct ScaleRecord final {
-    int32_t id;
+    std::optional<int32_t> id;
     std::string name;
     std::vector<int32_t> semitones;
 
-    ScaleRecord(int32_t id_,
+    ScaleRecord(std::optional<int32_t> id_,
                 std::string name_,
                 std::vector<int32_t> semitones_)
     : id(std::move(id_))

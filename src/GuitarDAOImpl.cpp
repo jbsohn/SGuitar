@@ -28,7 +28,7 @@ std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
     return guitars;
 }
 
-int32_t GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
+std::optional<int32_t> GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
     const std::string fret_markers = fretMarkersAsJson(guitar.fret_markers);
     const std::string sql =
         "INSERT INTO guitar(name, number_of_frets, fret_markers, type) VALUES (?,?,?,?) RETURNING id";
@@ -43,9 +43,8 @@ int32_t GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
         for (const auto& guitar_string : guitar.guitar_strings) {
             auto guitar_string_update = guitar_string;
             guitar_string_update.guitar_id = guitar_id;
-            if (auto guitar_string_id = add_guitar_string(guitar_string_update);
-                guitar_string_id == SGuitarDatabase::SGUITAR_DB_UNSET) {
-                return SGuitarDatabase::SGUITAR_DB_UNSET;
+            if (auto guitar_string_id = add_guitar_string(guitar_string_update); guitar_string_id == std::nullopt) {
+                return std::nullopt;
             }
         }
 
@@ -55,10 +54,10 @@ int32_t GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
             auto guitar_adjustment_id = add_guitar_adjustment(guitar_adjustment_update);
             for (const auto& guitar_string_adjustment : guitar_adjustment.guitar_string_adjustments) {
                 auto guitar_string_adjustment_update = guitar_string_adjustment;
-                guitar_string_adjustment_update.guitar_adjustment_id = guitar_adjustment_id;
-                if (add_guitar_string_adjustment(guitar_string_adjustment_update) ==
-                    SGuitarDatabase::SGUITAR_DB_UNSET) {
+                guitar_string_adjustment_update.guitar_adjustment_id = guitar_adjustment_id.value();
+                if (add_guitar_string_adjustment(guitar_string_adjustment_update) == std::nullopt) {
                     std::cerr << "Error while adding guitar_string_adjustment" << std::endl;
+                    return std::nullopt;
                 }
             }
         }
@@ -66,7 +65,7 @@ int32_t GuitarDAOImpl::add_guitar(const GuitarRecord& guitar) {
     return guitar.id;
 }
 
-int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
+bool GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
     const std::string fret_markers = fretMarkersAsJson(guitar.fret_markers);
     const std::string sql = "UPDATE guitar SET name = ?, number_of_frets = ?, fret_markers = ?, type = ? WHERE id = ?";
     SQLite::Statement query(db, sql);
@@ -74,12 +73,12 @@ int32_t GuitarDAOImpl::update_guitar(const GuitarRecord& guitar) {
     query.bind(2, guitar.number_of_frets);
     query.bind(3, fret_markers);
     query.bind(4, guitar.type);
-    query.bind(5, guitar.id);
+    query.bind(5, guitar.id.value());
 
     if (query.executeStep()) {
-        return guitar.id;
+        return true;
     }
-    return SGuitarDatabase::SGUITAR_DB_UNSET;
+    return false;
 }
 
 bool GuitarDAOImpl::delete_guitar(int32_t id) {
@@ -106,7 +105,7 @@ bool GuitarDAOImpl::delete_guitar(int32_t id) {
     return true;
 }
 
-int32_t GuitarDAOImpl::add_guitar_string(const GuitarStringRecord& guitar_string_record) const {
+std::optional<int32_t> GuitarDAOImpl::add_guitar_string(const GuitarStringRecord& guitar_string_record) const {
     const std::string sql =
         "INSERT INTO guitar_string(guitar_id, string_number, start_note, octave) VALUES (?,?,?,?) RETURNING id";
     SQLite::Statement query(db, sql);
@@ -117,7 +116,7 @@ int32_t GuitarDAOImpl::add_guitar_string(const GuitarStringRecord& guitar_string
     if (query.executeStep()) {
         return query.getColumn(0).getInt();
     }
-    return SGuitarDatabase::SGUITAR_DB_UNSET;
+    return std::nullopt;
 }
 
 bool GuitarDAOImpl::update_guitar_string(const GuitarStringRecord& guitar_string_record) const {
@@ -127,7 +126,7 @@ bool GuitarDAOImpl::update_guitar_string(const GuitarStringRecord& guitar_string
     query.bind(2, guitar_string_record.string_number);
     query.bind(3, guitar_string_record.start_note);
     query.bind(4, guitar_string_record.octave);
-    query.bind(5, guitar_string_record.id);
+    query.bind(5, guitar_string_record.id.value());
 
     if (query.executeStep()) {
         return true;
@@ -152,7 +151,8 @@ std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id)
     return strings;
 }
 
-int32_t GuitarDAOImpl::add_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record) const {
+std::optional<int32_t> GuitarDAOImpl::add_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record
+    ) const {
     const std::string sql =
         "INSERT INTO guitar_adjustment(guitar_id, name, position, 'order') VALUES (?,?,?,?) RETURNING id";
     SQLite::Statement query(db, sql);
@@ -164,7 +164,7 @@ int32_t GuitarDAOImpl::add_guitar_adjustment(const GuitarAdjustmentRecord& guita
     if (query.executeStep()) {
         return query.getColumn(0).getInt();
     }
-    return SGuitarDatabase::SGUITAR_DB_UNSET;
+    return std::nullopt;
 }
 
 bool GuitarDAOImpl::update_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record) const {
@@ -174,7 +174,7 @@ bool GuitarDAOImpl::update_guitar_adjustment(const GuitarAdjustmentRecord& guita
     query.bind(2, guitar_adjustment_record.name);
     query.bind(3, guitar_adjustment_record.position);
     query.bind(4, guitar_adjustment_record.order);
-    query.bind(5, guitar_adjustment_record.id);
+    query.bind(5, guitar_adjustment_record.id.value());
 
     if (query.executeStep()) {
         return true;
@@ -200,7 +200,8 @@ std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int gu
     return adjustments;
 }
 
-int32_t GuitarDAOImpl::add_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
+std::optional<int32_t> GuitarDAOImpl::add_guitar_string_adjustment(
+    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
     ) const {
     const std::string sql =
         "INSERT INTO guitar_string_adjustment(guitar_adjustment_id, string_number, step) VALUES (?,?,?) RETURNING id";
@@ -212,7 +213,7 @@ int32_t GuitarDAOImpl::add_guitar_string_adjustment(const GuitarStringAdjustment
     if (query.executeStep()) {
         return query.getColumn(0).getInt();
     }
-    return SGuitarDatabase::SGUITAR_DB_UNSET;
+    return std::nullopt;
 }
 
 bool GuitarDAOImpl::update_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
@@ -223,7 +224,7 @@ bool GuitarDAOImpl::update_guitar_string_adjustment(const GuitarStringAdjustment
     query.bind(1, guitar_string_adjustment_record.guitar_adjustment_id);
     query.bind(2, guitar_string_adjustment_record.string_number);
     query.bind(3, guitar_string_adjustment_record.step);
-    query.bind(4, guitar_string_adjustment_record.id);
+    query.bind(4, guitar_string_adjustment_record.id.value());
 
     if (query.executeStep()) {
         return true;

@@ -46,22 +46,24 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)addScale:(nonnull SGScaleRecord *)scale {
+- (nullable NSNumber *)addScale:(nonnull SGScaleRecord *)scale {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->add_scale(::djinni_generated::ScaleRecord::toCpp(scale));
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        return ::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)updateScale:(nonnull SGScaleRecord *)scale {
+- (BOOL)updateScale:(nonnull SGScaleRecord *)scale {
     try {
-        _cppRefHandle.get()->update_scale(::djinni_generated::ScaleRecord::toCpp(scale));
+        auto objcpp_result_ = _cppRefHandle.get()->update_scale(::djinni_generated::ScaleRecord::toCpp(scale));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)deleteScale:(int32_t)id {
+- (BOOL)deleteScale:(int32_t)id {
     try {
-        _cppRefHandle.get()->delete_scale(::djinni::I32::toCpp(id));
+        auto objcpp_result_ = _cppRefHandle.get()->delete_scale(::djinni::I32::toCpp(id));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

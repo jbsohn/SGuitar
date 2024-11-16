@@ -46,22 +46,24 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)addChord:(nonnull SGChordRecord *)chord {
+- (nullable NSNumber *)addChord:(nonnull SGChordRecord *)chord {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->add_chord(::djinni_generated::ChordRecord::toCpp(chord));
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        return ::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)updateChord:(nonnull SGChordRecord *)chord {
+- (BOOL)updateChord:(nonnull SGChordRecord *)chord {
     try {
-        _cppRefHandle.get()->update_chord(::djinni_generated::ChordRecord::toCpp(chord));
+        auto objcpp_result_ = _cppRefHandle.get()->update_chord(::djinni_generated::ChordRecord::toCpp(chord));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (void)deleteChord:(int32_t)id {
+- (BOOL)deleteChord:(int32_t)id {
     try {
-        _cppRefHandle.get()->delete_chord(::djinni::I32::toCpp(id));
+        auto objcpp_result_ = _cppRefHandle.get()->delete_chord(::djinni::I32::toCpp(id));
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

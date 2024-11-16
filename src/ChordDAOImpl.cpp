@@ -22,33 +22,35 @@ std::vector<ChordRecord> ChordDAOImpl::get_chords() {
     return chords;
 }
 
-int32_t ChordDAOImpl::add_chord(const ChordRecord& chord) {
+std::optional<int32_t> ChordDAOImpl::add_chord(const ChordRecord& chord) {
     const nlohmann::json json_intervals = std::vector(chord.intervals);
-    int32_t id = SGuitarDatabase::SGUITAR_DB_UNSET;
 
     SQLite::Statement query(db, "INSERT INTO chord (name, intervals) VALUES (?, ?) RETURNING id");
     query.bind(1, chord.name);
     query.bind(2, json_intervals.dump());
     if (query.executeStep()) {
-        id = query.getColumn(0).getInt();
+        return query.getColumn(0).getInt();
     }
-    return id;
+    return std::nullopt;
 }
 
-void ChordDAOImpl::update_chord(const ChordRecord& chord) {
+bool ChordDAOImpl::update_chord(const ChordRecord& chord) {
     const nlohmann::json json_intervals = std::vector(chord.intervals);
 
     SQLite::Statement query(db, "UPDATE chord SET name = ?, intervals = ? WHERE id=?");
     query.bind(1, chord.name);
     query.bind(2, json_intervals.dump());
-    query.bind(3, chord.id);
-    query.exec();
+    query.bind(3, chord.id.value());
+    if (query.exec() != 1) {
+        return false;
+    }
+    return true;
 }
 
-void ChordDAOImpl::delete_chord(const int32_t id) {
+bool ChordDAOImpl::delete_chord(const int32_t id) {
     SQLite::Statement query(db, "DELETE FROM chord WHERE id=?");
     query.bind(1, id);
-    query.exec();
+    return true;
 }
 
 std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGuitarDatabase>& database) {

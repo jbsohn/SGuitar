@@ -12,7 +12,7 @@ namespace djinni_generated {
 auto GuitarRecord::toCpp(ObjcType obj) -> CppType
 {
     assert(obj);
-    return {::djinni::I32::toCpp(obj.id),
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(obj.id),
             ::djinni::String::toCpp(obj.name),
             ::djinni::I32::toCpp(obj.numberOfFrets),
             ::djinni::Array<::djinni::I32>::toCpp(obj.fretMarkers),
@@ -23,7 +23,7 @@ auto GuitarRecord::toCpp(ObjcType obj) -> CppType
 
 auto GuitarRecord::fromCpp(const CppType& cpp) -> ObjcType
 {
-    return [[SGGuitarRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
+    return [[SGGuitarRecord alloc] initWithId:(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(cpp.id))
                                          name:(::djinni::String::fromCpp(cpp.name))
                                 numberOfFrets:(::djinni::I32::fromCpp(cpp.number_of_frets))
                                   fretMarkers:(::djinni::Array<::djinni::I32>::fromCpp(cpp.fret_markers))

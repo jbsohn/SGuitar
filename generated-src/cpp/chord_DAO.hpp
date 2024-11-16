@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <vector>
 
 class SGuitarDatabase;
@@ -18,9 +19,9 @@ public:
 
     virtual std::vector<ChordRecord> get_chords() = 0;
 
-    virtual int32_t add_chord(const ChordRecord & chord) = 0;
+    virtual std::optional<int32_t> add_chord(const ChordRecord & chord) = 0;
 
-    virtual void update_chord(const ChordRecord & chord) = 0;
+    virtual bool update_chord(const ChordRecord & chord) = 0;
 
-    virtual void delete_chord(int32_t id) = 0;
+    virtual bool delete_chord(int32_t id) = 0;
 };

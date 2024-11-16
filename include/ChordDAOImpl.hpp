@@ -16,9 +16,9 @@ public:
     }
 
     std::vector<ChordRecord> get_chords() override;
-    int32_t add_chord(const ChordRecord& chord) override;
-    void update_chord(const ChordRecord& chord) override;
-    void delete_chord(int32_t id) override;
+    std::optional<int32_t> add_chord(const ChordRecord& chord) override;
+    bool update_chord(const ChordRecord& chord) override;
+    bool delete_chord(int32_t id) override;
 };
 
 #endif  // CHORD_DAO_IMPL_H

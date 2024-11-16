@@ -6,14 +6,14 @@
 @interface SGScaleRecord : NSObject
 - (nonnull instancetype)init NS_UNAVAILABLE;
 + (nonnull instancetype)new NS_UNAVAILABLE;
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                               name:(nonnull NSString *)name
                          semitones:(nonnull NSArray<NSNumber *> *)semitones NS_DESIGNATED_INITIALIZER;
-+ (nonnull instancetype)scaleRecordWithId:(int32_t)id
++ (nonnull instancetype)scaleRecordWithId:(nullable NSNumber *)id
                                      name:(nonnull NSString *)name
                                 semitones:(nonnull NSArray<NSNumber *> *)semitones;
 
-@property (nonatomic, readonly) int32_t id;
+@property (nonatomic, readonly, nullable) NSNumber * id;
 
 @property (nonatomic, readonly, nonnull) NSString * name;
 

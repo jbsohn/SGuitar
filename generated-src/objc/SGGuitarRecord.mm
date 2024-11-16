@@ -6,7 +6,7 @@
 
 @implementation SGGuitarRecord
 
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                               name:(nonnull NSString *)name
                      numberOfFrets:(int32_t)numberOfFrets
                        fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
@@ -26,7 +26,7 @@
     return self;
 }
 
-+ (nonnull instancetype)guitarRecordWithId:(int32_t)id
++ (nonnull instancetype)guitarRecordWithId:(nullable NSNumber *)id
                                       name:(nonnull NSString *)name
                              numberOfFrets:(int32_t)numberOfFrets
                                fretMarkers:(nonnull NSArray<NSNumber *> *)fretMarkers
@@ -46,7 +46,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ numberOfFrets:%@ fretMarkers:%@ type:%@ guitarStrings:%@ guitarAdjustments:%@>", self.class, (void *)self, @(self.id), self.name, @(self.numberOfFrets), self.fretMarkers, @(self.type), self.guitarStrings, self.guitarAdjustments];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ numberOfFrets:%@ fretMarkers:%@ type:%@ guitarStrings:%@ guitarAdjustments:%@>", self.class, (void *)self, self.id, self.name, @(self.numberOfFrets), self.fretMarkers, @(self.type), self.guitarStrings, self.guitarAdjustments];
 }
 
 #endif

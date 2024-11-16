@@ -6,12 +6,13 @@
 #include "guitar_adjustment_record.hpp"
 #include "guitar_string_record.hpp"
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
 
 struct GuitarRecord final {
-    int32_t id;
+    std::optional<int32_t> id;
     std::string name;
     int32_t number_of_frets;
     std::vector<int32_t> fret_markers;
@@ -19,7 +20,7 @@ struct GuitarRecord final {
     std::vector<GuitarStringRecord> guitar_strings;
     std::vector<GuitarAdjustmentRecord> guitar_adjustments;
 
-    GuitarRecord(int32_t id_,
+    GuitarRecord(std::optional<int32_t> id_,
                  std::string name_,
                  int32_t number_of_frets_,
                  std::vector<int32_t> fret_markers_,

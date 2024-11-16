@@ -6,7 +6,7 @@
 
 @implementation SGChordRecord
 
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                               name:(nonnull NSString *)name
                          intervals:(nonnull NSArray<NSNumber *> *)intervals
 {
@@ -18,7 +18,7 @@
     return self;
 }
 
-+ (nonnull instancetype)chordRecordWithId:(int32_t)id
++ (nonnull instancetype)chordRecordWithId:(nullable NSNumber *)id
                                      name:(nonnull NSString *)name
                                 intervals:(nonnull NSArray<NSNumber *> *)intervals
 {
@@ -30,7 +30,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ intervals:%@>", self.class, (void *)self, @(self.id), self.name, self.intervals];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ intervals:%@>", self.class, (void *)self, self.id, self.name, self.intervals];
 }
 
 #endif

@@ -25,8 +25,8 @@ private:
     friend ::djinni::JniClass<ChordRecord>;
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("com/steelsidekick/sguitar/ChordRecord") };
-    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(ILjava/lang/String;[I)V") };
-    const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "I") };
+    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/Integer;Ljava/lang/String;[I)V") };
+    const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "Ljava/lang/Integer;") };
     const jfieldID field_name { ::djinni::jniGetFieldID(clazz.get(), "name", "Ljava/lang/String;") };
     const jfieldID field_intervals { ::djinni::jniGetFieldID(clazz.get(), "intervals", "[I") };
 };

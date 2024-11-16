@@ -7,8 +7,6 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class SGuitarDatabase {
-    public static final int SGUITAR_DB_UNSET = -1;
-
     public static native SGuitarDatabase createSguitarDatabase(String path);
 
     public static final class CppProxy extends SGuitarDatabase

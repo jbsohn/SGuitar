@@ -6,16 +6,16 @@
 @interface SGGuitarStringAdjustmentRecord : NSObject
 - (nonnull instancetype)init NS_UNAVAILABLE;
 + (nonnull instancetype)new NS_UNAVAILABLE;
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                 guitarAdjustmentId:(int32_t)guitarAdjustmentId
                       stringNumber:(int32_t)stringNumber
                               step:(int32_t)step NS_DESIGNATED_INITIALIZER;
-+ (nonnull instancetype)guitarStringAdjustmentRecordWithId:(int32_t)id
++ (nonnull instancetype)guitarStringAdjustmentRecordWithId:(nullable NSNumber *)id
                                         guitarAdjustmentId:(int32_t)guitarAdjustmentId
                                               stringNumber:(int32_t)stringNumber
                                                       step:(int32_t)step;
 
-@property (nonatomic, readonly) int32_t id;
+@property (nonatomic, readonly, nullable) NSNumber * id;
 
 @property (nonatomic, readonly) int32_t guitarAdjustmentId;
 

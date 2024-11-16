@@ -10,7 +10,7 @@ namespace djinni_generated {
 auto GuitarStringRecord::toCpp(ObjcType obj) -> CppType
 {
     assert(obj);
-    return {::djinni::I32::toCpp(obj.id),
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(obj.id),
             ::djinni::I32::toCpp(obj.guitarId),
             ::djinni::I32::toCpp(obj.stringNumber),
             ::djinni::String::toCpp(obj.startNote),
@@ -19,7 +19,7 @@ auto GuitarStringRecord::toCpp(ObjcType obj) -> CppType
 
 auto GuitarStringRecord::fromCpp(const CppType& cpp) -> ObjcType
 {
-    return [[SGGuitarStringRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
+    return [[SGGuitarStringRecord alloc] initWithId:(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(cpp.id))
                                            guitarId:(::djinni::I32::fromCpp(cpp.guitar_id))
                                        stringNumber:(::djinni::I32::fromCpp(cpp.string_number))
                                           startNote:(::djinni::String::fromCpp(cpp.start_note))

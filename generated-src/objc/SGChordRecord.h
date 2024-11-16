@@ -6,14 +6,14 @@
 @interface SGChordRecord : NSObject
 - (nonnull instancetype)init NS_UNAVAILABLE;
 + (nonnull instancetype)new NS_UNAVAILABLE;
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                               name:(nonnull NSString *)name
                          intervals:(nonnull NSArray<NSNumber *> *)intervals NS_DESIGNATED_INITIALIZER;
-+ (nonnull instancetype)chordRecordWithId:(int32_t)id
++ (nonnull instancetype)chordRecordWithId:(nullable NSNumber *)id
                                      name:(nonnull NSString *)name
                                 intervals:(nonnull NSArray<NSNumber *> *)intervals;
 
-@property (nonatomic, readonly) int32_t id;
+@property (nonatomic, readonly, nullable) NSNumber * id;
 
 @property (nonatomic, readonly, nonnull) NSString * name;
 

@@ -11,7 +11,7 @@ namespace djinni_generated {
 auto GuitarAdjustmentRecord::toCpp(ObjcType obj) -> CppType
 {
     assert(obj);
-    return {::djinni::I32::toCpp(obj.id),
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(obj.id),
             ::djinni::I32::toCpp(obj.guitarId),
             ::djinni::String::toCpp(obj.name),
             ::djinni::I32::toCpp(obj.position),
@@ -21,7 +21,7 @@ auto GuitarAdjustmentRecord::toCpp(ObjcType obj) -> CppType
 
 auto GuitarAdjustmentRecord::fromCpp(const CppType& cpp) -> ObjcType
 {
-    return [[SGGuitarAdjustmentRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
+    return [[SGGuitarAdjustmentRecord alloc] initWithId:(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(cpp.id))
                                                guitarId:(::djinni::I32::fromCpp(cpp.guitar_id))
                                                    name:(::djinni::String::fromCpp(cpp.name))
                                                position:(::djinni::I32::fromCpp(cpp.position))

@@ -1,18 +1,18 @@
 
 scale_record = record {
-    id: i32;
+    id: optional<i32>;
     name: string;
     semitones: array<i32>;
 }
 
 chord_record = record {
-    id: i32;
+    id: optional<i32>;
     name: string;
     intervals: array<i32>;
 }
 
 guitar_string_record = record {
-    id: i32;
+    id: optional<i32>;
     guitar_id: i32;
     string_number: i32;
     start_note: string;
@@ -20,14 +20,14 @@ guitar_string_record = record {
 }
 
 guitar_string_adjustment_record = record {
-    id: i32;
+    id: optional<i32>;
     guitar_adjustment_id: i32;
     string_number: i32;
     step: i32;
 }
 
 guitar_adjustment_record = record {
-    id: i32;
+    id: optional<i32>;
     guitar_id: i32;
     name: string;
     position: i32;
@@ -36,7 +36,7 @@ guitar_adjustment_record = record {
 }
 
 guitar_record = record {
-    id: i32;
+    id: optional<i32>;
     name: string;
     number_of_frets: i32;
     fret_markers: array<i32>;
@@ -46,31 +46,29 @@ guitar_record = record {
 }
 
 SGuitar_database = interface + c {
-    const SGUITAR_DB_UNSET: i32 = -1;
-
     static create_sguitar_database(path: string): SGuitar_database;
 }
 
 scale_DAO = interface +c {
     static create_scale_dao(database: SGuitar_database): scale_DAO;
     get_scales(): array<scale_record>;
-    add_scale(scale: scale_record): i32;
-    update_scale(scale: scale_record);
-    delete_scale(id: i32);
+    add_scale(scale: scale_record): optional<i32>;
+    update_scale(scale: scale_record): bool;
+    delete_scale(id: i32): bool;
 }
 
 chord_DAO = interface +c {
     static create_chord_dao(database: SGuitar_database): chord_DAO;
     get_chords(): array<chord_record>;
-    add_chord(chord: chord_record): i32;
-    update_chord(chord: chord_record);
-    delete_chord(id: i32);
+    add_chord(chord: chord_record): optional<i32>;
+    update_chord(chord: chord_record): bool;
+    delete_chord(id: i32): bool;
 }
 
 guitar_DAO = interface +c {
     static create_guitar_dao(database: SGuitar_database): guitar_DAO;
     get_guitars(): array<guitar_record>;
-    add_guitar(guitar: guitar_record): i32;
-    update_guitar(guitar: guitar_record): i32;
+    add_guitar(guitar: guitar_record): optional<i32>;
+    update_guitar(guitar: guitar_record): bool;
     delete_guitar(id: i32): bool;
 }

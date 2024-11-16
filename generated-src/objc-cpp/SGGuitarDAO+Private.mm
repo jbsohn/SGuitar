@@ -46,17 +46,17 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)addGuitar:(nonnull SGGuitarRecord *)guitar {
+- (nullable NSNumber *)addGuitar:(nonnull SGGuitarRecord *)guitar {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->add_guitar(::djinni_generated::GuitarRecord::toCpp(guitar));
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        return ::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
-- (int32_t)updateGuitar:(nonnull SGGuitarRecord *)guitar {
+- (BOOL)updateGuitar:(nonnull SGGuitarRecord *)guitar {
     try {
         auto objcpp_result_ = _cppRefHandle.get()->update_guitar(::djinni_generated::GuitarRecord::toCpp(guitar));
-        return ::djinni::I32::fromCpp(objcpp_result_);
+        return ::djinni::Bool::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

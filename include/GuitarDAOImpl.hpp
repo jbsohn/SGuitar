@@ -15,12 +15,12 @@ public:
     }
 
     std::vector<GuitarRecord> get_guitars() override;
-    int32_t add_guitar(const GuitarRecord& guitar) override;
-    int32_t update_guitar(const GuitarRecord& guitar) override;
+    std::optional<int32_t> add_guitar(const GuitarRecord& guitar) override;
+    bool update_guitar(const GuitarRecord& guitar) override;
     bool delete_guitar(int32_t id) override;
 
 protected:
-    [[nodiscard]] int32_t add_guitar_string(
+    [[nodiscard]] std::optional<int32_t> add_guitar_string(
         const GuitarStringRecord& guitar_string_record
     ) const;
     [[nodiscard]] bool update_guitar_string(
@@ -30,7 +30,7 @@ protected:
         int guitar_id
     ) const;
 
-    [[nodiscard]] int32_t add_guitar_adjustment(
+    [[nodiscard]] std::optional<int32_t> add_guitar_adjustment(
         const GuitarAdjustmentRecord& guitar_adjustment_record
     ) const;
     [[nodiscard]] bool update_guitar_adjustment(
@@ -40,7 +40,7 @@ protected:
         int guitar_id
     ) const;
 
-    [[nodiscard]] int32_t add_guitar_string_adjustment(
+    [[nodiscard]] std::optional<int32_t> add_guitar_string_adjustment(
         const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
     ) const;
     [[nodiscard]] bool update_guitar_string_adjustment(

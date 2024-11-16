@@ -41,7 +41,7 @@ std::tuple<std::string, int> getNoteAndOctave(const std::string& noteOctave) {
     } catch (const std::out_of_range& e) {
         std::cerr << e.what() << std::endl;
     }
-    return std::make_tuple("", SGuitarDatabase::SGUITAR_DB_UNSET);
+    return std::make_tuple("", -1);
 }
 
 int guitarTypeFromPath(const std::string& path) {
@@ -69,7 +69,8 @@ std::string guitarNameFromPath(const std::string& path) {
 }
 
 bool SGuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
-                                             const std::shared_ptr<GuitarDAO>& toGuitarDAO) {
+                                             const std::shared_ptr<GuitarDAO>& toGuitarDAO
+    ) {
     for (const auto& entry : std::filesystem::directory_iterator(fromPath)) {
         std::string json = read_file(entry.path());
         auto guitarRecord = convertJsonToGuitarRecord(entry.path(), json);
@@ -107,12 +108,9 @@ GuitarRecord SGuitarImport::convertJsonToGuitarRecord(const std::string& filenam
         for (const auto& stringAdjustment : stringAdjustments) {
             const auto stringNumber = stringAdjustment["StringNumber"].get<int>();
             const auto step = stringAdjustment["Step"].get<int>();
-            guitar_string_adjustment_records.emplace_back(SGuitarDatabase::SGUITAR_DB_UNSET,
-                                                          SGuitarDatabase::SGUITAR_DB_UNSET, stringNumber, step);
+            guitar_string_adjustment_records.emplace_back(std::nullopt, -1, stringNumber, step);
         }
-        guitarAdjustmentRecords.emplace_back(SGuitarDatabase::SGUITAR_DB_UNSET, SGuitarDatabase::SGUITAR_DB_UNSET, id,
-                                             0, 0, guitar_string_adjustment_records);
+        guitarAdjustmentRecords.emplace_back(std::nullopt, -1, id, 0, 0, guitar_string_adjustment_records);
     }
-    return {
-        SGuitarDatabase::SGUITAR_DB_UNSET, name, numberOfFrets, {}, type, guitarStringRecords, guitarAdjustmentRecords};
+    return {std::nullopt, name, numberOfFrets, {}, type, guitarStringRecords, guitarAdjustmentRecords};
 }

@@ -6,7 +6,7 @@ package com.steelsidekick.sguitar;
 public final class GuitarStringRecord {
 
 
-    /*package*/ final int id;
+    /*package*/ final Integer id;
 
     /*package*/ final int guitarId;
 
@@ -17,7 +17,7 @@ public final class GuitarStringRecord {
     /*package*/ final int octave;
 
     public GuitarStringRecord(
-            int id,
+            Integer id,
             int guitarId,
             int stringNumber,
             String startNote,
@@ -29,7 +29,7 @@ public final class GuitarStringRecord {
         this.octave = octave;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

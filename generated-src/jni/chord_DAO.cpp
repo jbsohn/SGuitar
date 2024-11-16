@@ -37,29 +37,31 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_native_1addChord(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_chord)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_native_1addChord(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_chord)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::ChordDAO>(nativeRef);
         auto r = ref->add_chord(::djinni_generated::ChordRecord::toCpp(jniEnv, j_chord));
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_native_1updateChord(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_chord)
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_native_1updateChord(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_chord)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::ChordDAO>(nativeRef);
-        ref->update_chord(::djinni_generated::ChordRecord::toCpp(jniEnv, j_chord));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ref->update_chord(::djinni_generated::ChordRecord::toCpp(jniEnv, j_chord));
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_native_1deleteChord(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_id)
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_native_1deleteChord(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_id)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::ChordDAO>(nativeRef);
-        ref->delete_chord(::djinni::I32::toCpp(jniEnv, j_id));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ref->delete_chord(::djinni::I32::toCpp(jniEnv, j_id));
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 } // namespace djinni_generated

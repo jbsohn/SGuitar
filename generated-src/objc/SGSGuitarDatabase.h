@@ -4,7 +4,6 @@
 #import <Foundation/Foundation.h>
 @class SGSGuitarDatabase;
 
-extern int32_t const SGSGuitarDatabaseSGUITARDBUNSET;
 
 @interface SGSGuitarDatabase : NSObject
 

@@ -6,14 +6,14 @@ package com.steelsidekick.sguitar;
 public final class ChordRecord {
 
 
-    /*package*/ final int id;
+    /*package*/ final Integer id;
 
     /*package*/ final String name;
 
     /*package*/ final int[] intervals;
 
     public ChordRecord(
-            int id,
+            Integer id,
             String name,
             int[] intervals) {
         this.id = id;
@@ -21,7 +21,7 @@ public final class ChordRecord {
         this.intervals = intervals;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

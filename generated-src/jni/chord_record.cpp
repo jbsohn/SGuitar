@@ -13,7 +13,7 @@ ChordRecord::~ChordRecord() = default;
 auto ChordRecord::fromCpp(JNIEnv* jniEnv, const CppType& c) -> ::djinni::LocalRef<JniType> {
     const auto& data = ::djinni::JniClass<ChordRecord>::get();
     auto r = ::djinni::LocalRef<JniType>{jniEnv->NewObject(data.clazz.get(), data.jconstructor,
-                                                           ::djinni::get(::djinni::I32::fromCpp(jniEnv, c.id)),
+                                                           ::djinni::get(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(jniEnv, c.id)),
                                                            ::djinni::get(::djinni::String::fromCpp(jniEnv, c.name)),
                                                            ::djinni::get(::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::fromCpp(jniEnv, c.intervals)))};
     ::djinni::jniExceptionCheck(jniEnv);
@@ -24,7 +24,7 @@ auto ChordRecord::toCpp(JNIEnv* jniEnv, JniType j) -> CppType {
     ::djinni::JniLocalScope jscope(jniEnv, 4);
     assert(j != nullptr);
     const auto& data = ::djinni::JniClass<ChordRecord>::get();
-    return {::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_id)),
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_id)),
             ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_name)),
             ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_intervals))};
 }

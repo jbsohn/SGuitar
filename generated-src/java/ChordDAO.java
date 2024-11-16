@@ -9,11 +9,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class ChordDAO {
     public abstract ChordRecord[] getChords();
 
-    public abstract int addChord(ChordRecord chord);
+    public abstract Integer addChord(ChordRecord chord);
 
-    public abstract void updateChord(ChordRecord chord);
+    public abstract boolean updateChord(ChordRecord chord);
 
-    public abstract void deleteChord(int id);
+    public abstract boolean deleteChord(int id);
 
     public static native ChordDAO createChordDao(SGuitarDatabase database);
 
@@ -39,27 +39,27 @@ public abstract class ChordDAO {
         private native ChordRecord[] native_getChords(long _nativeRef);
 
         @Override
-        public int addChord(ChordRecord chord)
+        public Integer addChord(ChordRecord chord)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_addChord(this.nativeRef, chord);
         }
-        private native int native_addChord(long _nativeRef, ChordRecord chord);
+        private native Integer native_addChord(long _nativeRef, ChordRecord chord);
 
         @Override
-        public void updateChord(ChordRecord chord)
+        public boolean updateChord(ChordRecord chord)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_updateChord(this.nativeRef, chord);
+            return native_updateChord(this.nativeRef, chord);
         }
-        private native void native_updateChord(long _nativeRef, ChordRecord chord);
+        private native boolean native_updateChord(long _nativeRef, ChordRecord chord);
 
         @Override
-        public void deleteChord(int id)
+        public boolean deleteChord(int id)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_deleteChord(this.nativeRef, id);
+            return native_deleteChord(this.nativeRef, id);
         }
-        private native void native_deleteChord(long _nativeRef, int id);
+        private native boolean native_deleteChord(long _nativeRef, int id);
     }
 }

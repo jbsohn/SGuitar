@@ -37,21 +37,21 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProx
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1addGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1addGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarDAO>(nativeRef);
         auto r = ref->add_guitar(::djinni_generated::GuitarRecord::toCpp(jniEnv, j_guitar));
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1updateGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_native_1updateGuitar(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_guitar)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarDAO>(nativeRef);
         auto r = ref->update_guitar(::djinni_generated::GuitarRecord::toCpp(jniEnv, j_guitar));
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

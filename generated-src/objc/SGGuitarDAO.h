@@ -13,9 +13,9 @@
 
 - (nonnull NSArray<SGGuitarRecord *> *)getGuitars;
 
-- (int32_t)addGuitar:(nonnull SGGuitarRecord *)guitar;
+- (nullable NSNumber *)addGuitar:(nonnull SGGuitarRecord *)guitar;
 
-- (int32_t)updateGuitar:(nonnull SGGuitarRecord *)guitar;
+- (BOOL)updateGuitar:(nonnull SGGuitarRecord *)guitar;
 
 - (BOOL)deleteGuitar:(int32_t)id;
 

@@ -9,11 +9,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class ScaleDAO {
     public abstract ScaleRecord[] getScales();
 
-    public abstract int addScale(ScaleRecord scale);
+    public abstract Integer addScale(ScaleRecord scale);
 
-    public abstract void updateScale(ScaleRecord scale);
+    public abstract boolean updateScale(ScaleRecord scale);
 
-    public abstract void deleteScale(int id);
+    public abstract boolean deleteScale(int id);
 
     public static native ScaleDAO createScaleDao(SGuitarDatabase database);
 
@@ -39,27 +39,27 @@ public abstract class ScaleDAO {
         private native ScaleRecord[] native_getScales(long _nativeRef);
 
         @Override
-        public int addScale(ScaleRecord scale)
+        public Integer addScale(ScaleRecord scale)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_addScale(this.nativeRef, scale);
         }
-        private native int native_addScale(long _nativeRef, ScaleRecord scale);
+        private native Integer native_addScale(long _nativeRef, ScaleRecord scale);
 
         @Override
-        public void updateScale(ScaleRecord scale)
+        public boolean updateScale(ScaleRecord scale)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_updateScale(this.nativeRef, scale);
+            return native_updateScale(this.nativeRef, scale);
         }
-        private native void native_updateScale(long _nativeRef, ScaleRecord scale);
+        private native boolean native_updateScale(long _nativeRef, ScaleRecord scale);
 
         @Override
-        public void deleteScale(int id)
+        public boolean deleteScale(int id)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
-            native_deleteScale(this.nativeRef, id);
+            return native_deleteScale(this.nativeRef, id);
         }
-        private native void native_deleteScale(long _nativeRef, int id);
+        private native boolean native_deleteScale(long _nativeRef, int id);
     }
 }

@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <vector>
 
 class SGuitarDatabase;
@@ -18,9 +19,9 @@ public:
 
     virtual std::vector<ScaleRecord> get_scales() = 0;
 
-    virtual int32_t add_scale(const ScaleRecord & scale) = 0;
+    virtual std::optional<int32_t> add_scale(const ScaleRecord & scale) = 0;
 
-    virtual void update_scale(const ScaleRecord & scale) = 0;
+    virtual bool update_scale(const ScaleRecord & scale) = 0;
 
-    virtual void delete_scale(int32_t id) = 0;
+    virtual bool delete_scale(int32_t id) = 0;
 };

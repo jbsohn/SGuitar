@@ -13,7 +13,7 @@ GuitarStringAdjustmentRecord::~GuitarStringAdjustmentRecord() = default;
 auto GuitarStringAdjustmentRecord::fromCpp(JNIEnv* jniEnv, const CppType& c) -> ::djinni::LocalRef<JniType> {
     const auto& data = ::djinni::JniClass<GuitarStringAdjustmentRecord>::get();
     auto r = ::djinni::LocalRef<JniType>{jniEnv->NewObject(data.clazz.get(), data.jconstructor,
-                                                           ::djinni::get(::djinni::I32::fromCpp(jniEnv, c.id)),
+                                                           ::djinni::get(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(jniEnv, c.id)),
                                                            ::djinni::get(::djinni::I32::fromCpp(jniEnv, c.guitar_adjustment_id)),
                                                            ::djinni::get(::djinni::I32::fromCpp(jniEnv, c.string_number)),
                                                            ::djinni::get(::djinni::I32::fromCpp(jniEnv, c.step)))};
@@ -25,7 +25,7 @@ auto GuitarStringAdjustmentRecord::toCpp(JNIEnv* jniEnv, JniType j) -> CppType {
     ::djinni::JniLocalScope jscope(jniEnv, 5);
     assert(j != nullptr);
     const auto& data = ::djinni::JniClass<GuitarStringAdjustmentRecord>::get();
-    return {::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_id)),
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_id)),
             ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_guitarAdjustmentId)),
             ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_stringNumber)),
             ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_step))};

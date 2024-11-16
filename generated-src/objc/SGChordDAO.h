@@ -13,10 +13,10 @@
 
 - (nonnull NSArray<SGChordRecord *> *)getChords;
 
-- (int32_t)addChord:(nonnull SGChordRecord *)chord;
+- (nullable NSNumber *)addChord:(nonnull SGChordRecord *)chord;
 
-- (void)updateChord:(nonnull SGChordRecord *)chord;
+- (BOOL)updateChord:(nonnull SGChordRecord *)chord;
 
-- (void)deleteChord:(int32_t)id;
+- (BOOL)deleteChord:(int32_t)id;
 
 @end

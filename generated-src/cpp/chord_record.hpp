@@ -4,16 +4,17 @@
 #pragma once
 
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <utility>
 #include <vector>
 
 struct ChordRecord final {
-    int32_t id;
+    std::optional<int32_t> id;
     std::string name;
     std::vector<int32_t> intervals;
 
-    ChordRecord(int32_t id_,
+    ChordRecord(std::optional<int32_t> id_,
                 std::string name_,
                 std::vector<int32_t> intervals_)
     : id(std::move(id_))

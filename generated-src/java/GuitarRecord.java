@@ -6,7 +6,7 @@ package com.steelsidekick.sguitar;
 public final class GuitarRecord {
 
 
-    /*package*/ final int id;
+    /*package*/ final Integer id;
 
     /*package*/ final String name;
 
@@ -21,7 +21,7 @@ public final class GuitarRecord {
     /*package*/ final GuitarAdjustmentRecord[] guitarAdjustments;
 
     public GuitarRecord(
-            int id,
+            Integer id,
             String name,
             int numberOfFrets,
             int[] fretMarkers,
@@ -37,7 +37,7 @@ public final class GuitarRecord {
         this.guitarAdjustments = guitarAdjustments;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -6,14 +6,14 @@ package com.steelsidekick.sguitar;
 public final class ScaleRecord {
 
 
-    /*package*/ final int id;
+    /*package*/ final Integer id;
 
     /*package*/ final String name;
 
     /*package*/ final int[] semitones;
 
     public ScaleRecord(
-            int id,
+            Integer id,
             String name,
             int[] semitones) {
         this.id = id;
@@ -21,7 +21,7 @@ public final class ScaleRecord {
         this.semitones = semitones;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

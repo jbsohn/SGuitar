@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <vector>
 
 class SGuitarDatabase;
@@ -18,9 +19,9 @@ public:
 
     virtual std::vector<GuitarRecord> get_guitars() = 0;
 
-    virtual int32_t add_guitar(const GuitarRecord & guitar) = 0;
+    virtual std::optional<int32_t> add_guitar(const GuitarRecord & guitar) = 0;
 
-    virtual int32_t update_guitar(const GuitarRecord & guitar) = 0;
+    virtual bool update_guitar(const GuitarRecord & guitar) = 0;
 
     virtual bool delete_guitar(int32_t id) = 0;
 };

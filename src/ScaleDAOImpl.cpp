@@ -22,34 +22,37 @@ std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
     return scales;
 }
 
-int32_t ScaleDAOImpl::add_scale(const ScaleRecord& scale) {
+std::optional<int32_t> ScaleDAOImpl::add_scale(const ScaleRecord& scale) {
     const nlohmann::json json_semitones = std::vector(scale.semitones);
-    int32_t id = SGuitarDatabase::SGUITAR_DB_UNSET;
 
     SQLite::Statement query(db, "INSERT INTO scale (name, semitones) VALUES (?, ?) RETURNING id");
     query.bind(1, scale.name);
     query.bind(2, json_semitones.dump());
     if (query.executeStep()) {
-        id = query.getColumn(0).getInt();
+        return query.getColumn(0).getInt();
     }
 
-    return id;
+    return std::nullopt;
 }
 
-void ScaleDAOImpl::update_scale(const ScaleRecord& scale) {
+bool ScaleDAOImpl::update_scale(const ScaleRecord& scale) {
     const nlohmann::json json_semitones = std::vector(scale.semitones);
 
     SQLite::Statement query(db, "UPDATE scale SET name = ?, semitones = ? WHERE id=?");
     query.bind(1, scale.name);
     query.bind(2, json_semitones.dump());
-    query.bind(3, scale.id);
-    query.exec();
+    query.bind(3, scale.id.value());
+    if (query.exec() != 1) {
+        return false;
+    }
+    return true;
 }
 
-void ScaleDAOImpl::delete_scale(const int32_t id) {
+bool ScaleDAOImpl::delete_scale(const int32_t id) {
     SQLite::Statement query(db, "DELETE FROM scale WHERE id=?");
     query.bind(1, id);
     query.exec();
+    return true;
 }
 
 std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<SGuitarDatabase>& database) {

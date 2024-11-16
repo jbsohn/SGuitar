@@ -13,10 +13,10 @@
 
 - (nonnull NSArray<SGScaleRecord *> *)getScales;
 
-- (int32_t)addScale:(nonnull SGScaleRecord *)scale;
+- (nullable NSNumber *)addScale:(nonnull SGScaleRecord *)scale;
 
-- (void)updateScale:(nonnull SGScaleRecord *)scale;
+- (BOOL)updateScale:(nonnull SGScaleRecord *)scale;
 
-- (void)deleteScale:(int32_t)id;
+- (BOOL)deleteScale:(int32_t)id;
 
 @end

@@ -37,29 +37,31 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_native_1addScale(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_scale)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_native_1addScale(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_scale)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::ScaleDAO>(nativeRef);
         auto r = ref->add_scale(::djinni_generated::ScaleRecord::toCpp(jniEnv, j_scale));
-        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+        return ::djinni::release(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_native_1updateScale(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_scale)
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_native_1updateScale(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jobject j_scale)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::ScaleDAO>(nativeRef);
-        ref->update_scale(::djinni_generated::ScaleRecord::toCpp(jniEnv, j_scale));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ref->update_scale(::djinni_generated::ScaleRecord::toCpp(jniEnv, j_scale));
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
-CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_native_1deleteScale(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_id)
+CJNIEXPORT jboolean JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_native_1deleteScale(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef, jint j_id)
 {
     try {
         const auto& ref = ::djinni::objectFromHandleAddress<::ScaleDAO>(nativeRef);
-        ref->delete_scale(::djinni::I32::toCpp(jniEnv, j_id));
-    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
+        auto r = ref->delete_scale(::djinni::I32::toCpp(jniEnv, j_id));
+        return ::djinni::release(::djinni::Bool::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 
 } // namespace djinni_generated

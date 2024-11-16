@@ -6,7 +6,7 @@
 
 @implementation SGGuitarStringRecord
 
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                           guitarId:(int32_t)guitarId
                       stringNumber:(int32_t)stringNumber
                          startNote:(nonnull NSString *)startNote
@@ -22,7 +22,7 @@
     return self;
 }
 
-+ (nonnull instancetype)guitarStringRecordWithId:(int32_t)id
++ (nonnull instancetype)guitarStringRecordWithId:(nullable NSNumber *)id
                                         guitarId:(int32_t)guitarId
                                     stringNumber:(int32_t)stringNumber
                                        startNote:(nonnull NSString *)startNote
@@ -38,7 +38,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarId:%@ stringNumber:%@ startNote:%@ octave:%@>", self.class, (void *)self, @(self.id), @(self.guitarId), @(self.stringNumber), self.startNote, @(self.octave)];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarId:%@ stringNumber:%@ startNote:%@ octave:%@>", self.class, (void *)self, self.id, @(self.guitarId), @(self.stringNumber), self.startNote, @(self.octave)];
 }
 
 #endif

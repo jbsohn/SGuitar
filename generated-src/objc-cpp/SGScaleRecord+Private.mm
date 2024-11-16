@@ -10,14 +10,14 @@ namespace djinni_generated {
 auto ScaleRecord::toCpp(ObjcType obj) -> CppType
 {
     assert(obj);
-    return {::djinni::I32::toCpp(obj.id),
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(obj.id),
             ::djinni::String::toCpp(obj.name),
             ::djinni::Array<::djinni::I32>::toCpp(obj.semitones)};
 }
 
 auto ScaleRecord::fromCpp(const CppType& cpp) -> ObjcType
 {
-    return [[SGScaleRecord alloc] initWithId:(::djinni::I32::fromCpp(cpp.id))
+    return [[SGScaleRecord alloc] initWithId:(::djinni::Optional<std::optional, ::djinni::I32>::fromCpp(cpp.id))
                                         name:(::djinni::String::fromCpp(cpp.name))
                                    semitones:(::djinni::Array<::djinni::I32>::fromCpp(cpp.semitones))];
 }

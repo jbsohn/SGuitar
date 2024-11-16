@@ -6,7 +6,7 @@
 
 @implementation SGScaleRecord
 
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                               name:(nonnull NSString *)name
                          semitones:(nonnull NSArray<NSNumber *> *)semitones
 {
@@ -18,7 +18,7 @@
     return self;
 }
 
-+ (nonnull instancetype)scaleRecordWithId:(int32_t)id
++ (nonnull instancetype)scaleRecordWithId:(nullable NSNumber *)id
                                      name:(nonnull NSString *)name
                                 semitones:(nonnull NSArray<NSNumber *> *)semitones
 {
@@ -30,7 +30,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ semitones:%@>", self.class, (void *)self, @(self.id), self.name, self.semitones];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ name:%@ semitones:%@>", self.class, (void *)self, self.id, self.name, self.semitones];
 }
 
 #endif

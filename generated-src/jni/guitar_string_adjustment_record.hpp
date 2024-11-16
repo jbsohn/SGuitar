@@ -25,8 +25,8 @@ private:
     friend ::djinni::JniClass<GuitarStringAdjustmentRecord>;
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("com/steelsidekick/sguitar/GuitarStringAdjustmentRecord") };
-    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(IIII)V") };
-    const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "I") };
+    const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/Integer;III)V") };
+    const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "Ljava/lang/Integer;") };
     const jfieldID field_guitarAdjustmentId { ::djinni::jniGetFieldID(clazz.get(), "guitarAdjustmentId", "I") };
     const jfieldID field_stringNumber { ::djinni::jniGetFieldID(clazz.get(), "stringNumber", "I") };
     const jfieldID field_step { ::djinni::jniGetFieldID(clazz.get(), "step", "I") };

@@ -3,15 +3,12 @@
 
 #pragma once
 
-#include <cstdint>
 #include <memory>
 #include <string>
 
 class SGuitarDatabase {
 public:
     virtual ~SGuitarDatabase() = default;
-
-    static constexpr int32_t SGUITAR_DB_UNSET = -1;
 
     static /*not-null*/ std::shared_ptr<SGuitarDatabase> create_sguitar_database(const std::string & path);
 };

@@ -4,15 +4,16 @@
 #pragma once
 
 #include <cstdint>
+#include <optional>
 #include <utility>
 
 struct GuitarStringAdjustmentRecord final {
-    int32_t id;
+    std::optional<int32_t> id;
     int32_t guitar_adjustment_id;
     int32_t string_number;
     int32_t step;
 
-    GuitarStringAdjustmentRecord(int32_t id_,
+    GuitarStringAdjustmentRecord(std::optional<int32_t> id_,
                                  int32_t guitar_adjustment_id_,
                                  int32_t string_number_,
                                  int32_t step_)

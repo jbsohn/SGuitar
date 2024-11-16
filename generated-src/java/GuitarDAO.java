@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class GuitarDAO {
     public abstract GuitarRecord[] getGuitars();
 
-    public abstract int addGuitar(GuitarRecord guitar);
+    public abstract Integer addGuitar(GuitarRecord guitar);
 
-    public abstract int updateGuitar(GuitarRecord guitar);
+    public abstract boolean updateGuitar(GuitarRecord guitar);
 
     public abstract boolean deleteGuitar(int id);
 
@@ -39,20 +39,20 @@ public abstract class GuitarDAO {
         private native GuitarRecord[] native_getGuitars(long _nativeRef);
 
         @Override
-        public int addGuitar(GuitarRecord guitar)
+        public Integer addGuitar(GuitarRecord guitar)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_addGuitar(this.nativeRef, guitar);
         }
-        private native int native_addGuitar(long _nativeRef, GuitarRecord guitar);
+        private native Integer native_addGuitar(long _nativeRef, GuitarRecord guitar);
 
         @Override
-        public int updateGuitar(GuitarRecord guitar)
+        public boolean updateGuitar(GuitarRecord guitar)
         {
             assert !this.destroyed.get() : "trying to use a destroyed object";
             return native_updateGuitar(this.nativeRef, guitar);
         }
-        private native int native_updateGuitar(long _nativeRef, GuitarRecord guitar);
+        private native boolean native_updateGuitar(long _nativeRef, GuitarRecord guitar);
 
         @Override
         public boolean deleteGuitar(int id)

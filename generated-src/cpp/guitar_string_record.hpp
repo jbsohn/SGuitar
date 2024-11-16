@@ -4,17 +4,18 @@
 #pragma once
 
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <utility>
 
 struct GuitarStringRecord final {
-    int32_t id;
+    std::optional<int32_t> id;
     int32_t guitar_id;
     int32_t string_number;
     std::string start_note;
     int32_t octave;
 
-    GuitarStringRecord(int32_t id_,
+    GuitarStringRecord(std::optional<int32_t> id_,
                        int32_t guitar_id_,
                        int32_t string_number_,
                        std::string start_note_,

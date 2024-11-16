@@ -6,7 +6,7 @@
 
 @implementation SGGuitarStringAdjustmentRecord
 
-- (nonnull instancetype)initWithId:(int32_t)id
+- (nonnull instancetype)initWithId:(nullable NSNumber *)id
                 guitarAdjustmentId:(int32_t)guitarAdjustmentId
                       stringNumber:(int32_t)stringNumber
                               step:(int32_t)step
@@ -20,7 +20,7 @@
     return self;
 }
 
-+ (nonnull instancetype)guitarStringAdjustmentRecordWithId:(int32_t)id
++ (nonnull instancetype)guitarStringAdjustmentRecordWithId:(nullable NSNumber *)id
                                         guitarAdjustmentId:(int32_t)guitarAdjustmentId
                                               stringNumber:(int32_t)stringNumber
                                                       step:(int32_t)step
@@ -34,7 +34,7 @@
 #ifndef DJINNI_DISABLE_DESCRIPTION_METHODS
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarAdjustmentId:%@ stringNumber:%@ step:%@>", self.class, (void *)self, @(self.id), @(self.guitarAdjustmentId), @(self.stringNumber), @(self.step)];
+    return [NSString stringWithFormat:@"<%@ %p id:%@ guitarAdjustmentId:%@ stringNumber:%@ step:%@>", self.class, (void *)self, self.id, @(self.guitarAdjustmentId), @(self.stringNumber), @(self.step)];
 }
 
 #endif
