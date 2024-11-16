@@ -30,9 +30,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGSGDatabaseConnection *)createSGDatabaseConnection:(nonnull NSString *)path {
++ (nullable SGSGDatabaseConnection *)createSgdatabaseConnection:(nonnull NSString *)path {
     try {
-        auto objcpp_result_ = ::SGDatabaseConnection::create_SGDatabase_connection(::djinni::String::toCpp(path));
+        auto objcpp_result_ = ::SGDatabaseConnection::create_sgdatabase_connection(::djinni::String::toCpp(path));
         return ::djinni_generated::SGDatabaseConnection::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

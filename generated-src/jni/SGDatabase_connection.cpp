@@ -18,10 +18,10 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_SGDatabaseConnection_0002
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_SGDatabaseConnection_createSGDatabaseConnection(JNIEnv* jniEnv, jobject /*this*/, jstring j_path)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_SGDatabaseConnection_createSgdatabaseConnection(JNIEnv* jniEnv, jobject /*this*/, jstring j_path)
 {
     try {
-        auto r = ::SGDatabaseConnection::create_SGDatabase_connection(::djinni::String::toCpp(jniEnv, j_path));
+        auto r = ::SGDatabaseConnection::create_sgdatabase_connection(::djinni::String::toCpp(jniEnv, j_path));
         return ::djinni::release(::djinni_generated::SGDatabaseConnection::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

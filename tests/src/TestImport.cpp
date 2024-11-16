@@ -12,7 +12,7 @@
 #include "SGDatabase_connection.hpp"
 
 TEST_CASE("Testing full guitar import") {
-    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_sgdatabase_connection(Paths::dbPath);
     const auto guitarDAO = GuitarDAO::create_guitar_dao(database);
     SGuitarImport::importJsonGuitarFromPath(Paths::lapSteelPath, guitarDAO);
     SGuitarImport::importJsonGuitarFromPath(Paths::pedalSteelPath, guitarDAO);

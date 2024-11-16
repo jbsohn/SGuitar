@@ -7,6 +7,6 @@
 
 @interface SGSGDatabaseConnection : NSObject
 
-+ (nullable SGSGDatabaseConnection *)createSGDatabaseConnection:(nonnull NSString *)path;
++ (nullable SGSGDatabaseConnection *)createSgdatabaseConnection:(nonnull NSString *)path;
 
 @end

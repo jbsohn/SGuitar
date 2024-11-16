@@ -10,5 +10,5 @@ class SGDatabaseConnection {
 public:
     virtual ~SGDatabaseConnection() = default;
 
-    static /*not-null*/ std::shared_ptr<SGDatabaseConnection> create_SGDatabase_connection(const std::string & path);
+    static /*not-null*/ std::shared_ptr<SGDatabaseConnection> create_sgdatabase_connection(const std::string & path);
 };

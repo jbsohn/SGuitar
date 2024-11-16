@@ -46,7 +46,7 @@ guitar_record = record {
 }
 
 SGDatabase_connection = interface + c {
-    static create_SGDatabase_connection(path: string): SGDatabase_connection;
+    static create_sgdatabase_connection(path: string): SGDatabase_connection;
 }
 
 scale_DAO = interface +c {

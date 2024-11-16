@@ -7,7 +7,7 @@ import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class SGDatabaseConnection {
-    public static native SGDatabaseConnection createSGDatabaseConnection(String path);
+    public static native SGDatabaseConnection createSgdatabaseConnection(String path);
 
     public static final class CppProxy extends SGDatabaseConnection
     {
