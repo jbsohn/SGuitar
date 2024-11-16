@@ -53,7 +53,7 @@ bool ChordDAOImpl::delete_chord(const int32_t id) {
     return true;
 }
 
-std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGuitarDatabase>& database) {
-    auto* impl = dynamic_cast<SGuitarDatabaseImpl*>(database.get());
+std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGDatabaseConnection>& database) {
+    auto* impl = dynamic_cast<SGDatabaseConnectionImpl*>(database.get());
     return std::make_shared<ChordDAOImpl>(impl->getDatabase());
 }

@@ -15,7 +15,7 @@ public abstract class GuitarDAO {
 
     public abstract boolean deleteGuitar(int id);
 
-    public static native GuitarDAO createGuitarDao(SGuitarDatabase database);
+    public static native GuitarDAO createGuitarDao(SGDatabaseConnection database);
 
     public static final class CppProxy extends GuitarDAO
     {

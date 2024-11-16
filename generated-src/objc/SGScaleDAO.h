@@ -3,13 +3,13 @@
 
 #import "SGScaleRecord.h"
 #import <Foundation/Foundation.h>
-@class SGSGuitarDatabase;
+@class SGSGDatabaseConnection;
 @class SGScaleDAO;
 
 
 @interface SGScaleDAO : NSObject
 
-+ (nullable SGScaleDAO *)createScaleDao:(nullable SGSGuitarDatabase *)database;
++ (nullable SGScaleDAO *)createScaleDao:(nullable SGSGDatabaseConnection *)database;
 
 - (nonnull NSArray<SGScaleRecord *> *)getScales;
 

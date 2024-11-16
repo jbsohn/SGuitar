@@ -45,12 +45,12 @@ guitar_record = record {
     guitar_adjustments: array<guitar_adjustment_record>;
 }
 
-SGuitar_database = interface + c {
-    static create_sguitar_database(path: string): SGuitar_database;
+SGDatabase_connection = interface + c {
+    static create_SGDatabase_connection(path: string): SGDatabase_connection;
 }
 
 scale_DAO = interface +c {
-    static create_scale_dao(database: SGuitar_database): scale_DAO;
+    static create_scale_dao(database: SGDatabase_connection): scale_DAO;
     get_scales(): array<scale_record>;
     add_scale(scale: scale_record): optional<i32>;
     update_scale(scale: scale_record): bool;
@@ -58,7 +58,7 @@ scale_DAO = interface +c {
 }
 
 chord_DAO = interface +c {
-    static create_chord_dao(database: SGuitar_database): chord_DAO;
+    static create_chord_dao(database: SGDatabase_connection): chord_DAO;
     get_chords(): array<chord_record>;
     add_chord(chord: chord_record): optional<i32>;
     update_chord(chord: chord_record): bool;
@@ -66,7 +66,7 @@ chord_DAO = interface +c {
 }
 
 guitar_DAO = interface +c {
-    static create_guitar_dao(database: SGuitar_database): guitar_DAO;
+    static create_guitar_dao(database: SGDatabase_connection): guitar_DAO;
     get_guitars(): array<guitar_record>;
     add_guitar(guitar: guitar_record): optional<i32>;
     update_guitar(guitar: guitar_record): bool;

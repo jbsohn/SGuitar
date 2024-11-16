@@ -5,13 +5,13 @@
 #ifndef SGUITAR_DATABASE_IMPL_H
 #define SGUITAR_DATABASE_IMPL_H
 
-#include "SGuitar_database.hpp"
+#include "SGDatabase_connection.hpp"
 
-class SGuitarDatabaseImpl final : public SGuitarDatabase {
+class SGDatabaseConnectionImpl final : public SGDatabaseConnection {
     SQLite::Database database;
 
 public:
-    explicit SGuitarDatabaseImpl(const std::string& path) : database(
+    explicit SGDatabaseConnectionImpl(const std::string& path) : database(
         path,
         SQLite::OPEN_READWRITE
     ) {

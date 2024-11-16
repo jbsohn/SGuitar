@@ -6,7 +6,7 @@
 #include <doctest/doctest.h>
 #include <fmt/format.h>
 #include <iostream>
-#include "SGuitar_database.hpp"
+#include "SGDatabase_connection.hpp"
 #include "chord_DAO.hpp"
 #include "chord_record.hpp"
 #include "guitar_DAO.hpp"
@@ -16,14 +16,14 @@
 #include "main.hpp"
 
 TEST_CASE("Testing ScaleDAO get") {
-    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
     const auto scale = ScaleDAO::create_scale_dao(database);
     auto scales = scale->get_scales();
     CHECK(scales.size() > 0);
 }
 
 TEST_CASE("Testing ScaleDAO add/update/delete") {
-    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
     const auto scale = ScaleDAO::create_scale_dao(database);
     std::vector semitones = {0, 1, 2};
 
@@ -41,14 +41,14 @@ TEST_CASE("Testing ScaleDAO add/update/delete") {
 }
 
 TEST_CASE("Testing ChordDAO get") {
-    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
     const auto chord = ChordDAO::create_chord_dao(database);
     auto chords = chord->get_chords();
     CHECK(chords.size() > 0);
 }
 
 TEST_CASE("Testing ChordDAO add/update/delete") {
-    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
     const auto chord = ChordDAO::create_chord_dao(database);
     std::vector intervals = {0, 1, 2};
 
@@ -66,14 +66,14 @@ TEST_CASE("Testing ChordDAO add/update/delete") {
 }
 
 TEST_CASE("Testing GuitarDAO get") {
-    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
     const auto guitarDAO = GuitarDAO::create_guitar_dao(database);
     auto guitars = guitarDAO->get_guitars();
     CHECK(guitars.size() > 0);
 }
 
 TEST_CASE("Testing ChordDAO add/update/delete") {
-    const auto database = SGuitarDatabase::create_sguitar_database(Paths::dbPath);
+    const auto database = SGDatabaseConnection::create_SGDatabase_connection(Paths::dbPath);
     const auto guitar = GuitarDAO::create_guitar_dao(database);
 
     auto guitarRecord = GuitarRecord(std::nullopt, "test", 23, {}, 1, {}, {});

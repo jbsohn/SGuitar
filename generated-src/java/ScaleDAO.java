@@ -15,7 +15,7 @@ public abstract class ScaleDAO {
 
     public abstract boolean deleteScale(int id);
 
-    public static native ScaleDAO createScaleDao(SGuitarDatabase database);
+    public static native ScaleDAO createScaleDao(SGDatabaseConnection database);
 
     public static final class CppProxy extends ScaleDAO
     {

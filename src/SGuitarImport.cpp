@@ -11,7 +11,7 @@
 #include "guitar_DAO.hpp"
 #include "guitar_record.hpp"
 #include "SGuitar_import.hpp"
-#include "SGuitar_database.hpp"
+#include "SGDatabase_connection.hpp"
 
 std::string read_file(const std::string& file_name) {
     if (std::filesystem::exists(file_name)) {

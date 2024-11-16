@@ -269,7 +269,7 @@ std::vector<int32_t> GuitarDAOImpl::getFretMarkersFromJson(const std::string& fr
     return fret_markers;
 }
 
-std::shared_ptr<GuitarDAO> GuitarDAO::create_guitar_dao(const std::shared_ptr<SGuitarDatabase>& database) {
-    auto* impl = dynamic_cast<SGuitarDatabaseImpl*>(database.get());
+std::shared_ptr<GuitarDAO> GuitarDAO::create_guitar_dao(const std::shared_ptr<SGDatabaseConnection>& database) {
+    auto* impl = dynamic_cast<SGDatabaseConnectionImpl*>(database.get());
     return std::make_shared<GuitarDAOImpl>(impl->getDatabase());
 }

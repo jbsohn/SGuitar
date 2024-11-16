@@ -6,7 +6,7 @@
 #import "DJICppWrapperCache+Private.h"
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
-#import "SGSGuitarDatabase+Private.h"
+#import "SGSGDatabaseConnection+Private.h"
 #import "SGScaleRecord+Private.h"
 #include <exception>
 #include <stdexcept>
@@ -32,9 +32,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGScaleDAO *)createScaleDao:(nullable SGSGuitarDatabase *)database {
++ (nullable SGScaleDAO *)createScaleDao:(nullable SGSGDatabaseConnection *)database {
     try {
-        auto objcpp_result_ = ::ScaleDAO::create_scale_dao(::djinni_generated::SGuitarDatabase::toCpp(database));
+        auto objcpp_result_ = ::ScaleDAO::create_scale_dao(::djinni_generated::SGDatabaseConnection::toCpp(database));
         return ::djinni_generated::ScaleDAO::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

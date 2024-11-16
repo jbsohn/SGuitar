@@ -3,7 +3,7 @@
 
 #include "scale_DAO.hpp"  // my header
 #include "Marshal.hpp"
-#include "SGuitar_database.hpp"
+#include "SGDatabase_connection.hpp"
 #include "scale_record.hpp"
 
 namespace djinni_generated {
@@ -23,7 +23,7 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_00024CppProxy_na
 CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ScaleDAO_createScaleDao(JNIEnv* jniEnv, jobject /*this*/, jobject j_database)
 {
     try {
-        auto r = ::ScaleDAO::create_scale_dao(::djinni_generated::SGuitarDatabase::toCpp(jniEnv, j_database));
+        auto r = ::ScaleDAO::create_scale_dao(::djinni_generated::SGDatabaseConnection::toCpp(jniEnv, j_database));
         return ::djinni::release(::djinni_generated::ScaleDAO::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

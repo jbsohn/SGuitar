@@ -6,10 +6,10 @@ package com.steelsidekick.sguitar;
 import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public abstract class SGuitarDatabase {
-    public static native SGuitarDatabase createSguitarDatabase(String path);
+public abstract class SGDatabaseConnection {
+    public static native SGDatabaseConnection createSGDatabaseConnection(String path);
 
-    public static final class CppProxy extends SGuitarDatabase
+    public static final class CppProxy extends SGDatabaseConnection
     {
         private final long nativeRef;
         private final AtomicBoolean destroyed = new AtomicBoolean(false);
