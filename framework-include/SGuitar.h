@@ -13,6 +13,7 @@ FOUNDATION_EXPORT const unsigned char SGuitarVersionString[];
 #include <SGuitar/SGChordDAO.h>
 #include <SGuitar/SGChordRecord.h>
 #include <SGuitar/SGGuitar.h>
+#include <SGuitar/SGGuitarImport.h>
 #include <SGuitar/SGGuitarAdjustment.h>
 #include <SGuitar/SGGuitarAdjustmentRecord.h>
 #include <SGuitar/SGGuitarDAO.h>
