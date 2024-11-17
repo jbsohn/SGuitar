@@ -6,7 +6,7 @@
 @class SGGuitarDAO;
 
 
-@interface SGSGuitarImport : NSObject
+@interface SGGuitarImport : NSObject
 
 + (BOOL)importJsonGuitarFromPath:(nonnull NSString *)fromPath
                      toGuitarDAO:(nullable SGGuitarDAO *)toGuitarDAO;

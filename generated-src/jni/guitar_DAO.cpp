@@ -3,7 +3,7 @@
 
 #include "guitar_DAO.hpp"  // my header
 #include "Marshal.hpp"
-#include "SGDatabase_connection.hpp"
+#include "database_connection.hpp"
 #include "guitar_record.hpp"
 
 namespace djinni_generated {
@@ -20,10 +20,10 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_00024CppProxy_n
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_createGuitarDao(JNIEnv* jniEnv, jobject /*this*/, jobject j_database)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarDAO_createGuitarDao(JNIEnv* jniEnv, jobject /*this*/, jobject j_databaseConnection)
 {
     try {
-        auto r = ::GuitarDAO::create_guitar_dao(::djinni_generated::SGDatabaseConnection::toCpp(jniEnv, j_database));
+        auto r = ::GuitarDAO::create_guitar_dao(::djinni_generated::DatabaseConnection::toCpp(jniEnv, j_databaseConnection));
         return ::djinni::release(::djinni_generated::GuitarDAO::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

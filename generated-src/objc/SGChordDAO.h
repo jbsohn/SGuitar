@@ -4,12 +4,12 @@
 #import "SGChordRecord.h"
 #import <Foundation/Foundation.h>
 @class SGChordDAO;
-@class SGSGDatabaseConnection;
+@class SGDatabaseConnection;
 
 
 @interface SGChordDAO : NSObject
 
-+ (nullable SGChordDAO *)createChordDao:(nullable SGSGDatabaseConnection *)database;
++ (nullable SGChordDAO *)createChordDao:(nullable SGDatabaseConnection *)databaseConnection;
 
 - (nonnull NSArray<SGChordRecord *> *)getChords;
 

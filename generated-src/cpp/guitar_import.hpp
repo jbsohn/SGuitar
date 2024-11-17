@@ -9,9 +9,9 @@
 class GuitarDAO;
 struct GuitarRecord;
 
-class SGuitarImport {
+class GuitarImport {
 public:
-    virtual ~SGuitarImport() = default;
+    virtual ~GuitarImport() = default;
 
     static bool importJsonGuitarFromPath(const std::string & fromPath, const /*not-null*/ std::shared_ptr<GuitarDAO> & toGuitarDAO);
 

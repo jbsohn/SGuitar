@@ -1,10 +1,10 @@
 //
-// Created by john on 10/12/24.
+// Created by John Sohn on 10/12/24.
 //
 
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <nlohmann/json.hpp>
-#include "SGDatabaseConnectionImpl.hpp"
+#include "DatabaseConnectionImpl.hpp"
 #include "ScaleDAOImpl.hpp"
 
 std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
@@ -55,7 +55,7 @@ bool ScaleDAOImpl::delete_scale(const int32_t id) {
     return true;
 }
 
-std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<SGDatabaseConnection>& database) {
-    auto* impl = dynamic_cast<SGDatabaseConnectionImpl*>(database.get());
+std::shared_ptr<ScaleDAO> ScaleDAO::create_scale_dao(const std::shared_ptr<DatabaseConnection>& database) {
+    auto* impl = dynamic_cast<DatabaseConnectionImpl*>(database.get());
     return std::make_shared<ScaleDAOImpl>(impl->getDatabase());
 }

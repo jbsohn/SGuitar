@@ -10,8 +10,7 @@
 #include <nlohmann/json.hpp>
 #include "guitar_DAO.hpp"
 #include "guitar_record.hpp"
-#include "SGuitar_import.hpp"
-#include "SGDatabase_connection.hpp"
+#include "guitar_import.hpp"
 
 std::string read_file(const std::string& file_name) {
     if (std::filesystem::exists(file_name)) {
@@ -68,9 +67,8 @@ std::string guitarNameFromPath(const std::string& path) {
     return editPath;
 }
 
-bool SGuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
-                                             const std::shared_ptr<GuitarDAO>& toGuitarDAO
-    ) {
+bool GuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
+                                            const std::shared_ptr<GuitarDAO>& toGuitarDAO) {
     for (const auto& entry : std::filesystem::directory_iterator(fromPath)) {
         std::string json = read_file(entry.path());
         auto guitarRecord = convertJsonToGuitarRecord(entry.path(), json);
@@ -79,7 +77,7 @@ bool SGuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
     return true;
 }
 
-GuitarRecord SGuitarImport::convertJsonToGuitarRecord(const std::string& filename, const std::string& json) {
+GuitarRecord GuitarImport::convertJsonToGuitarRecord(const std::string& filename, const std::string& json) {
     nlohmann::json j = nlohmann::json::parse(json);
     const auto numberOfFrets = j["NumberOfFrets"].get<int>();
     const auto guitarType = j["GuitarType"].get<std::string>();

@@ -8,14 +8,14 @@
 #include <optional>
 #include <vector>
 
-class SGDatabaseConnection;
+class DatabaseConnection;
 struct GuitarRecord;
 
 class GuitarDAO {
 public:
     virtual ~GuitarDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<GuitarDAO> create_guitar_dao(const /*not-null*/ std::shared_ptr<SGDatabaseConnection> & database);
+    static /*not-null*/ std::shared_ptr<GuitarDAO> create_guitar_dao(const /*not-null*/ std::shared_ptr<DatabaseConnection> & database_connection);
 
     virtual std::vector<GuitarRecord> get_guitars() = 0;
 

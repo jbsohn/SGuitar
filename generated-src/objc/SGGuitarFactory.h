@@ -11,7 +11,7 @@
 @class SGScale;
 
 
-@interface SGSGuitarFactory : NSObject
+@interface SGGuitarFactory : NSObject
 
 + (nullable SGGuitar *)createGuitar:(nonnull SGGuitarRecord *)guitarRecord;
 

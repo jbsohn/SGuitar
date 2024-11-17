@@ -1,5 +1,5 @@
 //
-// Created by john on 10/5/24.
+// Created by John Sohn on 10/5/24.
 //
 
 #include <doctest/doctest.h>

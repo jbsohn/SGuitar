@@ -3,13 +3,13 @@
 
 #import "SGGuitarRecord.h"
 #import <Foundation/Foundation.h>
+@class SGDatabaseConnection;
 @class SGGuitarDAO;
-@class SGSGDatabaseConnection;
 
 
 @interface SGGuitarDAO : NSObject
 
-+ (nullable SGGuitarDAO *)createGuitarDao:(nullable SGSGDatabaseConnection *)database;
++ (nullable SGGuitarDAO *)createGuitarDao:(nullable SGDatabaseConnection *)databaseConnection;
 
 - (nonnull NSArray<SGGuitarRecord *> *)getGuitars;
 

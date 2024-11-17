@@ -8,14 +8,14 @@
 #include <optional>
 #include <vector>
 
-class SGDatabaseConnection;
+class DatabaseConnection;
 struct ChordRecord;
 
 class ChordDAO {
 public:
     virtual ~ChordDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<ChordDAO> create_chord_dao(const /*not-null*/ std::shared_ptr<SGDatabaseConnection> & database);
+    static /*not-null*/ std::shared_ptr<ChordDAO> create_chord_dao(const /*not-null*/ std::shared_ptr<DatabaseConnection> & database_connection);
 
     virtual std::vector<ChordRecord> get_chords() = 0;
 

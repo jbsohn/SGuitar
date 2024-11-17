@@ -5,7 +5,7 @@
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <nlohmann/json.hpp>
 #include <iostream>
-#include "SGDatabaseConnectionImpl.hpp"
+#include "DatabaseConnectionImpl.hpp"
 #include "GuitarDAOImpl.hpp"
 
 std::vector<GuitarRecord> GuitarDAOImpl::get_guitars() {
@@ -88,7 +88,8 @@ bool GuitarDAOImpl::delete_guitar(int32_t id) {
     guitarQuery.exec();
 
     std::string guitarStringAdjustmentSql =
-        "DELETE FROM guitar_string_adjustment WHERE guitar_adjustment_id IN (SELECT id FROM guitar_adjustment WHERE guitar_id=?)";
+        "DELETE FROM guitar_string_adjustment WHERE guitar_adjustment_id IN (SELECT id FROM guitar_adjustment WHERE "
+        "guitar_id=?)";
     SQLite::Statement guitarStringAdjustmentQuery(db, guitarStringAdjustmentSql);
     guitarStringAdjustmentQuery.bind(1, id);
     guitarStringAdjustmentQuery.exec();
@@ -151,8 +152,8 @@ std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id)
     return strings;
 }
 
-std::optional<int32_t> GuitarDAOImpl::add_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record
-    ) const {
+std::optional<int32_t> GuitarDAOImpl::add_guitar_adjustment(
+    const GuitarAdjustmentRecord& guitar_adjustment_record) const {
     const std::string sql =
         "INSERT INTO guitar_adjustment(guitar_id, name, position, 'order') VALUES (?,?,?,?) RETURNING id";
     SQLite::Statement query(db, sql);
@@ -201,8 +202,7 @@ std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int gu
 }
 
 std::optional<int32_t> GuitarDAOImpl::add_guitar_string_adjustment(
-    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
-    ) const {
+    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record) const {
     const std::string sql =
         "INSERT INTO guitar_string_adjustment(guitar_adjustment_id, string_number, step) VALUES (?,?,?) RETURNING id";
     SQLite::Statement query(db, sql);
@@ -216,8 +216,8 @@ std::optional<int32_t> GuitarDAOImpl::add_guitar_string_adjustment(
     return std::nullopt;
 }
 
-bool GuitarDAOImpl::update_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
-    ) const {
+bool GuitarDAOImpl::update_guitar_string_adjustment(
+    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record) const {
     const std::string sql =
         "UPDATE guitar_string_adjustment SET guitar_adjustment_id=?, string_number=?, step=? WHERE id=?;";
     SQLite::Statement query(db, sql);
@@ -232,8 +232,8 @@ bool GuitarDAOImpl::update_guitar_string_adjustment(const GuitarStringAdjustment
     return false;
 }
 
-std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjustments(const int guitar_adjustment_id
-    ) const {
+std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjustments(
+    const int guitar_adjustment_id) const {
     std::vector<GuitarStringAdjustmentRecord> string_adjustments;
 
     const std::string sql = "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?";
@@ -269,7 +269,7 @@ std::vector<int32_t> GuitarDAOImpl::getFretMarkersFromJson(const std::string& fr
     return fret_markers;
 }
 
-std::shared_ptr<GuitarDAO> GuitarDAO::create_guitar_dao(const std::shared_ptr<SGDatabaseConnection>& database) {
-    auto* impl = dynamic_cast<SGDatabaseConnectionImpl*>(database.get());
+std::shared_ptr<GuitarDAO> GuitarDAO::create_guitar_dao(const std::shared_ptr<DatabaseConnection>& database) {
+    auto* impl = dynamic_cast<DatabaseConnectionImpl*>(database.get());
     return std::make_shared<GuitarDAOImpl>(impl->getDatabase());
 }

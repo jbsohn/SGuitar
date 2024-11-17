@@ -7,7 +7,7 @@
 #import "DJIError.h"
 #import "DJIMarshal+Private.h"
 #import "SGChordRecord+Private.h"
-#import "SGSGDatabaseConnection+Private.h"
+#import "SGDatabaseConnection+Private.h"
 #include <exception>
 #include <stdexcept>
 #include <utility>
@@ -32,9 +32,9 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGChordDAO *)createChordDao:(nullable SGSGDatabaseConnection *)database {
++ (nullable SGChordDAO *)createChordDao:(nullable SGDatabaseConnection *)databaseConnection {
     try {
-        auto objcpp_result_ = ::ChordDAO::create_chord_dao(::djinni_generated::SGDatabaseConnection::toCpp(database));
+        auto objcpp_result_ = ::ChordDAO::create_chord_dao(::djinni_generated::DatabaseConnection::toCpp(databaseConnection));
         return ::djinni_generated::ChordDAO::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }

@@ -4,7 +4,7 @@
 
 #include <nlohmann/json.hpp>
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "SGDatabaseConnectionImpl.hpp"
+#include "DatabaseConnectionImpl.hpp"
 #include "ChordDAOImpl.hpp"
 
 std::vector<ChordRecord> ChordDAOImpl::get_chords() {
@@ -53,7 +53,7 @@ bool ChordDAOImpl::delete_chord(const int32_t id) {
     return true;
 }
 
-std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<SGDatabaseConnection>& database) {
-    auto* impl = dynamic_cast<SGDatabaseConnectionImpl*>(database.get());
+std::shared_ptr<ChordDAO> ChordDAO::create_chord_dao(const std::shared_ptr<DatabaseConnection>& database) {
+    auto* impl = dynamic_cast<DatabaseConnectionImpl*>(database.get());
     return std::make_shared<ChordDAOImpl>(impl->getDatabase());
 }

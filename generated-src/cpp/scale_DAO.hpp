@@ -8,14 +8,14 @@
 #include <optional>
 #include <vector>
 
-class SGDatabaseConnection;
+class DatabaseConnection;
 struct ScaleRecord;
 
 class ScaleDAO {
 public:
     virtual ~ScaleDAO() = default;
 
-    static /*not-null*/ std::shared_ptr<ScaleDAO> create_scale_dao(const /*not-null*/ std::shared_ptr<SGDatabaseConnection> & database);
+    static /*not-null*/ std::shared_ptr<ScaleDAO> create_scale_dao(const /*not-null*/ std::shared_ptr<DatabaseConnection> & database_connection);
 
     virtual std::vector<ScaleRecord> get_scales() = 0;
 

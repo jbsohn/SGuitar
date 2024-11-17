@@ -3,8 +3,8 @@
 
 #include "chord_DAO.hpp"  // my header
 #include "Marshal.hpp"
-#include "SGDatabase_connection.hpp"
 #include "chord_record.hpp"
+#include "database_connection.hpp"
 
 namespace djinni_generated {
 
@@ -20,10 +20,10 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_ChordDAO_00024CppProxy_na
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ChordDAO_createChordDao(JNIEnv* jniEnv, jobject /*this*/, jobject j_database)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_ChordDAO_createChordDao(JNIEnv* jniEnv, jobject /*this*/, jobject j_databaseConnection)
 {
     try {
-        auto r = ::ChordDAO::create_chord_dao(::djinni_generated::SGDatabaseConnection::toCpp(jniEnv, j_database));
+        auto r = ::ChordDAO::create_chord_dao(::djinni_generated::DatabaseConnection::toCpp(jniEnv, j_databaseConnection));
         return ::djinni::release(::djinni_generated::ChordDAO::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }

@@ -13,9 +13,9 @@ struct ChordRecord;
 struct GuitarRecord;
 struct ScaleRecord;
 
-class SGuitarFactory {
+class GuitarFactory {
 public:
-    virtual ~SGuitarFactory() = default;
+    virtual ~GuitarFactory() = default;
 
     static /*not-null*/ std::shared_ptr<Guitar> create_guitar(const GuitarRecord & guitar_record);
 

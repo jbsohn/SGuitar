@@ -3,13 +3,13 @@
 
 #import "SGScaleRecord.h"
 #import <Foundation/Foundation.h>
-@class SGSGDatabaseConnection;
+@class SGDatabaseConnection;
 @class SGScaleDAO;
 
 
 @interface SGScaleDAO : NSObject
 
-+ (nullable SGScaleDAO *)createScaleDao:(nullable SGSGDatabaseConnection *)database;
++ (nullable SGScaleDAO *)createScaleDao:(nullable SGDatabaseConnection *)databaseConnection;
 
 - (nonnull NSArray<SGScaleRecord *> *)getScales;
 

@@ -6,14 +6,14 @@ package com.steelsidekick.sguitar;
 import com.snapchat.djinni.NativeObjectManager;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public abstract class SGuitarFactory {
+public abstract class GuitarFactory {
     public static native Guitar createGuitar(GuitarRecord guitarRecord);
 
     public static native Scale createScale(NoteValue rootNote, ScaleRecord scaleRecord);
 
     public static native Chord createChord(NoteValue rootNote, ChordRecord chordRecord);
 
-    public static final class CppProxy extends SGuitarFactory
+    public static final class CppProxy extends GuitarFactory
     {
         private final long nativeRef;
         private final AtomicBoolean destroyed = new AtomicBoolean(false);
