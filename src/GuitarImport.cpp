@@ -11,16 +11,7 @@
 #include "guitar_DAO.hpp"
 #include "guitar_record.hpp"
 #include "guitar_import.hpp"
-
-std::string read_file(const std::string& file_name) {
-    if (std::filesystem::exists(file_name)) {
-        std::ifstream file(file_name);
-        std::string content((std::istreambuf_iterator(file)), std::istreambuf_iterator<char>());
-        return content;
-    }
-    std::cerr << "File not found: " << file_name << std::endl;
-    return "";
-}
+#include "Utility.hpp"
 
 std::tuple<std::string, int> getNoteAndOctave(const std::string& noteOctave) {
     std::vector<std::string> tokens;
@@ -68,7 +59,8 @@ std::string guitarNameFromPath(const std::string& path) {
 }
 
 bool GuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
-                                            const std::shared_ptr<GuitarDAO>& toGuitarDAO) {
+                                            const std::shared_ptr<GuitarDAO>& toGuitarDAO
+    ) {
     for (const auto& entry : std::filesystem::directory_iterator(fromPath)) {
         std::string json = read_file(entry.path());
         auto guitarRecord = convertJsonToGuitarRecord(entry.path(), json);

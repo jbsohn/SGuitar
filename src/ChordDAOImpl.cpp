@@ -50,6 +50,7 @@ bool ChordDAOImpl::update_chord(const ChordRecord& chord) {
 bool ChordDAOImpl::delete_chord(const int32_t id) {
     SQLite::Statement query(db, "DELETE FROM chord WHERE id=?");
     query.bind(1, id);
+    query.exec();
     return true;
 }
 
