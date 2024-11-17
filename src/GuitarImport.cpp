@@ -55,14 +55,14 @@ int guitarTypeFromPath(const std::string& path) {
 
 std::string guitarNameFromPath(const std::string& path) {
     std::string editPath = path;
-    const std::string pedalSteel = "../import/Pedal Steel/";
+    const std::string pedalSteel = "/Pedal Steel/";
     if (const auto i = editPath.find(pedalSteel); i != std::string::npos) {
-        editPath.erase(i, pedalSteel.length());
+        editPath.erase(0, i + pedalSteel.length());
     }
 
-    const std::string lapSteel = "../import/Lap Steel/";
+    const std::string lapSteel = "/Lap Steel/";
     if (const auto i = editPath.find(lapSteel); i != std::string::npos) {
-        editPath.erase(i, lapSteel.length());
+        editPath.erase(0, i + lapSteel.length());
     }
     return editPath;
 }
