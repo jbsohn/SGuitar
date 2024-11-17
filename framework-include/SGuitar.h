@@ -23,8 +23,8 @@ FOUNDATION_EXPORT const unsigned char SGuitarVersionString[];
 #include <SGuitar/SGHarmonizedScale.h>
 #include <SGuitar/SGNote.h>
 #include <SGuitar/SGNoteValue.h>
-#include <SGuitar/SGSGuitarDatabase.h>
-#include <SGuitar/SGSGuitarFactory.h>
+#include <SGuitar/SGDatabaseConnection.h>
+#include <SGuitar/SGGuitarFactory.h>
 #include <SGuitar/SGScale.h>
 #include <SGuitar/SGScaleDAO.h>
 #include <SGuitar/SGScaleRecord.h>
