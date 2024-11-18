@@ -84,6 +84,7 @@ guitar = interface +c {
     get_fret_markers(): array<i32>;
     get_strings(): array<guitar_string>;
     reset_strings();
+    get_guitar_adjustments(): map<string, guitar_adjustment>;
     set_adjustment_activated(adjustment_id: string, activated: bool);
     is_adjustment_activated(adjustment_id: string): bool;
     test_description(): string;

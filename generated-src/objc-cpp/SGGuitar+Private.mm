@@ -72,6 +72,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 
+- (nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)getGuitarAdjustments {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->get_guitar_adjustments();
+        return ::djinni::Map<::djinni::String, ::djinni_generated::GuitarAdjustment>::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 - (void)setAdjustmentActivated:(nonnull NSString *)adjustmentId
                      activated:(BOOL)activated {
     try {

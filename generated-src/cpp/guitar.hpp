@@ -26,6 +26,8 @@ public:
 
     virtual void reset_strings() = 0;
 
+    virtual std::unordered_map<std::string, /*not-null*/ std::shared_ptr<GuitarAdjustment>> get_guitar_adjustments() = 0;
+
     virtual void set_adjustment_activated(const std::string & adjustment_id, bool activated) = 0;
 
     virtual bool is_adjustment_activated(const std::string & adjustment_id) = 0;

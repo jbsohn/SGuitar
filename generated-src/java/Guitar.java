@@ -16,6 +16,8 @@ public abstract class Guitar {
 
     public abstract void resetStrings();
 
+    public abstract HashMap<String, GuitarAdjustment> getGuitarAdjustments();
+
     public abstract void setAdjustmentActivated(String adjustmentId, boolean activated);
 
     public abstract boolean isAdjustmentActivated(String adjustmentId);
@@ -68,6 +70,14 @@ public abstract class Guitar {
             native_resetStrings(this.nativeRef);
         }
         private native void native_resetStrings(long _nativeRef);
+
+        @Override
+        public HashMap<String, GuitarAdjustment> getGuitarAdjustments()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getGuitarAdjustments(this.nativeRef);
+        }
+        private native HashMap<String, GuitarAdjustment> native_getGuitarAdjustments(long _nativeRef);
 
         @Override
         public void setAdjustmentActivated(String adjustmentId, boolean activated)

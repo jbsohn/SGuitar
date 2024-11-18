@@ -22,6 +22,8 @@
 
 - (void)resetStrings;
 
+- (nonnull NSDictionary<NSString *, SGGuitarAdjustment *> *)getGuitarAdjustments;
+
 - (void)setAdjustmentActivated:(nonnull NSString *)adjustmentId
                      activated:(BOOL)activated;
 

@@ -33,6 +33,11 @@ public:
     get_strings() override;
     void reset_strings() override;
 
+    std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>>
+    get_guitar_adjustments() override {
+        return guitar_adjustments;
+    }
+
     bool is_adjustment_activated(const std::string& adjustment_id) override;
     void set_adjustment_activated(
         const std::string& adjustment_id,
