@@ -34,14 +34,19 @@ void teardown() {
 }
 
 std::string testDBPath() {
-    std::string path = std::filesystem::temp_directory_path();
+    std::string path = std::filesystem::temp_directory_path().string();
     std::string templateName = fmt::format("{}/SGXXXXXX", path);
+#ifdef _WIN32
+    return _mktemp(templateName.data());
+#else
+
     const int id = mkstemp(templateName.data());
     if (id < 0) {
         throw std::runtime_error("Failed to create temporary directory");
     }
     close(id);
     return templateName;
+#endif
 }
 
 void readArguments(const int argc, char** argv) {

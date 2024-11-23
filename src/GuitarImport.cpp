@@ -35,10 +35,15 @@ std::tuple<std::string, int> getNoteAndOctave(const std::string& noteOctave) {
 }
 
 int guitarTypeFromPath(const std::string& path) {
-    if (path.find("/Pedal Steel/") != std::string::npos) {
+    std::string searchPath = path;
+#ifdef _WIN32
+    std::ranges::replace(searchPath, '\\', '/');
+#endif
+
+    if (searchPath.find("/Pedal Steel/") != std::string::npos) {
         return 1;
     }
-    if (path.find("/Lap Steel/") != std::string::npos) {
+    if (searchPath.find("/Lap Steel/") != std::string::npos) {
         return 2;
     }
     return -1;
@@ -62,8 +67,8 @@ bool GuitarImport::importJsonGuitarFromPath(const std::string& fromPath,
                                             const std::shared_ptr<GuitarDAO>& toGuitarDAO
     ) {
     for (const auto& entry : std::filesystem::directory_iterator(fromPath)) {
-        std::string json = read_file(entry.path());
-        auto guitarRecord = convertJsonToGuitarRecord(entry.path(), json);
+        std::string json = read_file(entry.path().string());
+        auto guitarRecord = convertJsonToGuitarRecord(entry.path().string(), json);
         toGuitarDAO->add_guitar(guitarRecord);
     }
     return true;
