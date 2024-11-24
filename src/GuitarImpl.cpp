@@ -45,12 +45,15 @@ bool GuitarImpl::is_adjustment_activated(const std::string& adjustment_id) {
 
 void GuitarImpl::set_adjustment_activated(const std::string& adjustment_id, const bool activated) {
     if (const auto adjustment = guitar_adjustments[adjustment_id]; adjustment != nullptr) {
+        adjustment->set_activated(activated);
+
         for (const auto string_adjustments = adjustment->get_string_adjustments(); const auto& stringAdjustment :
              string_adjustments) {
             const auto stringNumber = stringAdjustment->get_string_number();
-            const auto step = activated ? stringAdjustment->get_step() : -stringAdjustment->get_step();
-            const auto string = guitar_strings.at(stringNumber);
-            string->adjust_string_by_steps(step);
+            const auto step = activated ? stringAdjustment->get_step() : 0;
+            if (stringNumber < guitar_strings.size()) {
+                guitar_strings[stringNumber]->adjust_string_by_steps(step);
+            }
         }
     }
 }
