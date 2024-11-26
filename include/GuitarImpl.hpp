@@ -45,6 +45,9 @@ public:
     ) override;
 
     std::string test_description() override;
+
+protected:
+    static int adjusted_step_for_activation(bool activated, int step);
 };
 
 #endif  // GUITAR_IMPL_H

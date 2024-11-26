@@ -57,12 +57,19 @@ TEST_CASE("") {
     guitar_adjustments["LKL"] = GuitarAdjustment::create_with_string_adjustments(string_adjustments);
 
     auto guitar = Guitar::create(number_of_frets, {}, guitar_strings, guitar_adjustments);
-
+    auto strings = guitar->get_strings();
     CHECK(guitar->is_adjustment_activated("LKL") == false);
+    CHECK(strings[4]->get_notes()[0]->get_note() == NoteValue::E);
+    CHECK(strings[8]->get_notes()[0]->get_note() == NoteValue::E);
+
     guitar->set_adjustment_activated("LKL", true);
     CHECK(guitar->is_adjustment_activated("LKL") == true);
-
-    auto strings = guitar->get_strings();
+    strings = guitar->get_strings();
     CHECK(strings[4]->get_notes()[0]->get_note() == NoteValue::F);
     CHECK(strings[8]->get_notes()[0]->get_note() == NoteValue::F);
+
+    guitar->set_adjustment_activated("LKL", false);
+    strings = guitar->get_strings();
+    CHECK(strings[4]->get_notes()[0]->get_note() == NoteValue::E);
+    CHECK(strings[8]->get_notes()[0]->get_note() == NoteValue::E);
 }

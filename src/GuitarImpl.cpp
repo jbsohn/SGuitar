@@ -7,8 +7,8 @@
 //
 
 #include <iostream>
-#include <fmt/format.h>
 #include <vector>
+#include <fmt/format.h>
 #include "guitar_adjustment.hpp"
 #include "string_adjustment.hpp"
 #include "GuitarImpl.hpp"
@@ -50,7 +50,7 @@ void GuitarImpl::set_adjustment_activated(const std::string& adjustment_id, cons
         for (const auto string_adjustments = adjustment->get_string_adjustments(); const auto& stringAdjustment :
              string_adjustments) {
             const auto stringNumber = stringAdjustment->get_string_number();
-            const auto step = activated ? stringAdjustment->get_step() : 0;
+            const auto step = adjusted_step_for_activation(activated, stringAdjustment->get_step());
             if (stringNumber < guitar_strings.size()) {
                 guitar_strings[stringNumber]->adjust_string_by_steps(step);
             }
@@ -68,6 +68,16 @@ std::string GuitarImpl::test_description() {
         description += fmt::format("{}:\n{}\n", fst, snd->test_description());
     }
     return description;
+}
+
+int GuitarImpl::adjusted_step_for_activation(const bool activated, const int step) {
+    if (activated) {
+        return step;
+    }
+    if (step >= 0) {
+        return -abs(step);
+    }
+    return abs(step);
 }
 
 std::shared_ptr<Guitar> Guitar::create(int32_t number_of_frets,
