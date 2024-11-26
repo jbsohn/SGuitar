@@ -35,6 +35,11 @@ guitar_adjustment_record = record {
     guitar_string_adjustments: array<guitar_string_adjustment_record>;
 }
 
+adjustment_position = enum {
+    top;
+    bottom;
+}
+
 guitar_record = record {
     id: optional<i32>;
     name: string;
