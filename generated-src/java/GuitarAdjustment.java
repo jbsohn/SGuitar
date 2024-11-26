@@ -9,13 +9,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class GuitarAdjustment {
     public abstract StringAdjustment[] getStringAdjustments();
 
+    public abstract int getPosition();
+
+    public abstract int getOrder();
+
     public abstract void setActivated(boolean activated);
 
     public abstract boolean isActivated();
 
     public abstract String testDescription();
 
-    public static native GuitarAdjustment createWithStringAdjustments(StringAdjustment[] stringAdjustments);
+    public static native GuitarAdjustment createWithStringAdjustments(StringAdjustment[] stringAdjustments, int position, int order);
 
     public static final class CppProxy extends GuitarAdjustment
     {
@@ -37,6 +41,22 @@ public abstract class GuitarAdjustment {
             return native_getStringAdjustments(this.nativeRef);
         }
         private native StringAdjustment[] native_getStringAdjustments(long _nativeRef);
+
+        @Override
+        public int getPosition()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getPosition(this.nativeRef);
+        }
+        private native int native_getPosition(long _nativeRef);
+
+        @Override
+        public int getOrder()
+        {
+            assert !this.destroyed.get() : "trying to use a destroyed object";
+            return native_getOrder(this.nativeRef);
+        }
+        private native int native_getOrder(long _nativeRef);
 
         @Override
         public void setActivated(boolean activated)

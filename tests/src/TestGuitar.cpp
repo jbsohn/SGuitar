@@ -54,7 +54,7 @@ TEST_CASE("") {
     const auto string_adjustments = {StringAdjustment::create_with_string_number(4, +1),
                                      StringAdjustment::create_with_string_number(8, +1)};
     std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> guitar_adjustments = {};
-    guitar_adjustments["LKL"] = GuitarAdjustment::create_with_string_adjustments(string_adjustments);
+    guitar_adjustments["LKL"] = GuitarAdjustment::create_with_string_adjustments(string_adjustments, 0, 0);
 
     auto guitar = Guitar::create(number_of_frets, {}, guitar_strings, guitar_adjustments);
     auto strings = guitar->get_strings();

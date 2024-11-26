@@ -28,9 +28,10 @@ int max_string_number(const std::vector<GuitarStringRecord>& guitar_strings_reco
     return max_string_number;
 }
 
-std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(
-    const int number_of_frets,
-    const std::vector<GuitarStringRecord>& guitar_strings_records) {
+std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(const int number_of_frets,
+                                                                 const std::vector<GuitarStringRecord>&
+                                                                 guitar_strings_records
+    ) {
     std::vector<std::shared_ptr<GuitarString>> guitar_strings;
     guitar_strings.resize(max_string_number(guitar_strings_records) + 1);
 
@@ -52,7 +53,8 @@ std::vector<std::shared_ptr<GuitarString>> create_guitar_strings(
 }
 
 std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> create_guitar_adjustments(
-    const std::vector<GuitarAdjustmentRecord>& guitar_adjustment_records) {
+    const std::vector<GuitarAdjustmentRecord>& guitar_adjustment_records
+    ) {
     std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> guitar_adjustments;
 
     for (const auto& guitar_adjustment_record : guitar_adjustment_records) {
@@ -60,12 +62,14 @@ std::unordered_map<std::string, std::shared_ptr<GuitarAdjustment>> create_guitar
 
         for (const auto& guitar_string_adjustment : guitar_adjustment_record.guitar_string_adjustments) {
             const auto adjustment = StringAdjustment::create_with_string_number(guitar_string_adjustment.string_number,
-                                                                                guitar_string_adjustment.step);
+                    guitar_string_adjustment.step
+                );
             string_adjustments.push_back(adjustment);
         }
 
-        guitar_adjustments[guitar_adjustment_record.name] =
-            GuitarAdjustment::create_with_string_adjustments(string_adjustments);
+        guitar_adjustments[guitar_adjustment_record.name] = GuitarAdjustment::create_with_string_adjustments(
+            string_adjustments, guitar_adjustment_record.position, guitar_adjustment_record.order
+            );
     }
     return guitar_adjustments;
 }

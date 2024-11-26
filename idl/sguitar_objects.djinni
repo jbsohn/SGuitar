@@ -71,8 +71,10 @@ string_adjustment = interface +c {
 }
 
 guitar_adjustment = interface +c {
-    static create_with_string_adjustments(string_adjustments: array<string_adjustment>): guitar_adjustment;
+    static create_with_string_adjustments(string_adjustments: array<string_adjustment>, position: i32, order: i32): guitar_adjustment;
     get_string_adjustments(): array<string_adjustment>;
+    get_position(): i32;
+    get_order(): i32;
     set_activated(activated: bool);
     is_activated(): bool;
     test_description(): string;

@@ -19,10 +19,12 @@ CJNIEXPORT void JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024Cpp
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
-CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_createWithStringAdjustments(JNIEnv* jniEnv, jobject /*this*/, jobject j_stringAdjustments)
+CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_createWithStringAdjustments(JNIEnv* jniEnv, jobject /*this*/, jobject j_stringAdjustments, jint j_position, jint j_order)
 {
     try {
-        auto r = ::GuitarAdjustment::create_with_string_adjustments(::djinni::Array<::djinni_generated::StringAdjustment, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t'>>::toCpp(jniEnv, j_stringAdjustments));
+        auto r = ::GuitarAdjustment::create_with_string_adjustments(::djinni::Array<::djinni_generated::StringAdjustment, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t'>>::toCpp(jniEnv, j_stringAdjustments),
+                                                                    ::djinni::I32::toCpp(jniEnv, j_position),
+                                                                    ::djinni::I32::toCpp(jniEnv, j_order));
         return ::djinni::release(::djinni_generated::GuitarAdjustment::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
@@ -33,6 +35,24 @@ CJNIEXPORT jobject JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024
         const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
         auto r = ref->get_string_adjustments();
         return ::djinni::release(::djinni::Array<::djinni_generated::StringAdjustment, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t'>>::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1getPosition(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
+        auto r = ref->get_position();
+        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jint JNICALL Java_com_steelsidekick_sguitar_GuitarAdjustment_00024CppProxy_native_1getOrder(JNIEnv* jniEnv, jobject /*this*/, jlong nativeRef)
+{
+    try {
+        const auto& ref = ::djinni::objectFromHandleAddress<::GuitarAdjustment>(nativeRef);
+        auto r = ref->get_order();
+        return ::djinni::release(::djinni::I32::fromCpp(jniEnv, r));
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
 }
 

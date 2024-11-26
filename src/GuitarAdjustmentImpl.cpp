@@ -19,6 +19,9 @@ std::string GuitarAdjustmentImpl::test_description() {
 }
 
 std::shared_ptr<GuitarAdjustment> GuitarAdjustment::create_with_string_adjustments(
-    const std::vector<std::shared_ptr<StringAdjustment>>& string_adjustments) {
-    return std::make_shared<GuitarAdjustmentImpl>(string_adjustments);
+    const std::vector<std::shared_ptr<StringAdjustment>>& string_adjustments,
+    int position,
+    int order
+    ) {
+    return std::make_shared<GuitarAdjustmentImpl>(string_adjustments, position, order);
 }

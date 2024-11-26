@@ -31,9 +31,13 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
-+ (nullable SGGuitarAdjustment *)createWithStringAdjustments:(nonnull NSArray<SGStringAdjustment *> *)stringAdjustments {
++ (nullable SGGuitarAdjustment *)createWithStringAdjustments:(nonnull NSArray<SGStringAdjustment *> *)stringAdjustments
+                                                    position:(int32_t)position
+                                                       order:(int32_t)order {
     try {
-        auto objcpp_result_ = ::GuitarAdjustment::create_with_string_adjustments(::djinni::Array<::djinni_generated::StringAdjustment>::toCpp(stringAdjustments));
+        auto objcpp_result_ = ::GuitarAdjustment::create_with_string_adjustments(::djinni::Array<::djinni_generated::StringAdjustment>::toCpp(stringAdjustments),
+                                                                                 ::djinni::I32::toCpp(position),
+                                                                                 ::djinni::I32::toCpp(order));
         return ::djinni_generated::GuitarAdjustment::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
@@ -42,6 +46,20 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     try {
         auto objcpp_result_ = _cppRefHandle.get()->get_string_adjustments();
         return ::djinni::Array<::djinni_generated::StringAdjustment>::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (int32_t)getPosition {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->get_position();
+        return ::djinni::I32::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
+- (int32_t)getOrder {
+    try {
+        auto objcpp_result_ = _cppRefHandle.get()->get_order();
+        return ::djinni::I32::fromCpp(objcpp_result_);
     } DJINNI_TRANSLATE_EXCEPTIONS()
 }
 

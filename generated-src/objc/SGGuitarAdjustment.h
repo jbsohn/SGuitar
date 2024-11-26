@@ -8,9 +8,15 @@
 
 @interface SGGuitarAdjustment : NSObject
 
-+ (nullable SGGuitarAdjustment *)createWithStringAdjustments:(nonnull NSArray<SGStringAdjustment *> *)stringAdjustments;
++ (nullable SGGuitarAdjustment *)createWithStringAdjustments:(nonnull NSArray<SGStringAdjustment *> *)stringAdjustments
+                                                    position:(int32_t)position
+                                                       order:(int32_t)order;
 
 - (nonnull NSArray<SGStringAdjustment *> *)getStringAdjustments;
+
+- (int32_t)getPosition;
+
+- (int32_t)getOrder;
 
 - (void)setActivated:(BOOL)activated;
 

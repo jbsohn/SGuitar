@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -13,9 +14,13 @@ class GuitarAdjustment {
 public:
     virtual ~GuitarAdjustment() = default;
 
-    static /*not-null*/ std::shared_ptr<GuitarAdjustment> create_with_string_adjustments(const std::vector</*not-null*/ std::shared_ptr<StringAdjustment>> & string_adjustments);
+    static /*not-null*/ std::shared_ptr<GuitarAdjustment> create_with_string_adjustments(const std::vector</*not-null*/ std::shared_ptr<StringAdjustment>> & string_adjustments, int32_t position, int32_t order);
 
     virtual std::vector</*not-null*/ std::shared_ptr<StringAdjustment>> get_string_adjustments() = 0;
+
+    virtual int32_t get_position() = 0;
+
+    virtual int32_t get_order() = 0;
 
     virtual void set_activated(bool activated) = 0;
 
