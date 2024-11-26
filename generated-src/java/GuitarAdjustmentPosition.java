@@ -3,7 +3,7 @@
 
 package com.steelsidekick.sguitar;
 
-public enum AdjustmentPosition {
+public enum GuitarAdjustmentPosition {
     TOP,
     BOTTOM,
     ;

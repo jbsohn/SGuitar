@@ -3,8 +3,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, SGAdjustmentPosition)
+typedef NS_ENUM(NSInteger, SGGuitarAdjustmentPosition)
 {
-    SGAdjustmentPositionTop = 0,
-    SGAdjustmentPositionBottom = 1,
+    SGGuitarAdjustmentPositionTop = 0,
+    SGGuitarAdjustmentPositionBottom = 1,
 };

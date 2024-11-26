@@ -5,12 +5,12 @@
 
 #include <functional>
 
-enum class AdjustmentPosition : int {
+enum class GuitarAdjustmentPosition : int {
     TOP = 0,
     BOTTOM = 1,
 };
 
-constexpr const char* to_string(AdjustmentPosition e) noexcept {
+constexpr const char* to_string(GuitarAdjustmentPosition e) noexcept {
     constexpr const char* names[] = {
         "top",
         "bottom",
@@ -21,8 +21,8 @@ constexpr const char* to_string(AdjustmentPosition e) noexcept {
 namespace std {
 
 template <>
-struct hash<::AdjustmentPosition> {
-    size_t operator()(::AdjustmentPosition type) const {
+struct hash<::GuitarAdjustmentPosition> {
+    size_t operator()(::GuitarAdjustmentPosition type) const {
         return std::hash<int>()(static_cast<int>(type));
     }
 };
