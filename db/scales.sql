@@ -1,7 +1,0 @@
-INSERT INTO scale ("name", "semitones") VALUES ("Major","[2, 2, 1, 2, 2, 2]")
-INSERT INTO scale ("name", "semitones") VALUES ("Natural Minor","[2, 1, 2, 2, 1, 2]")
-INSERT INTO scale ("name", "semitones") VALUES ("Harmonic Minor","[2, 1, 2, 2, 1, 3]")
-INSERT INTO scale ("name", "semitones") VALUES ("Pentatonic Major","[2, 2, 3, 2]")
-INSERT INTO scale ("name", "semitones") VALUES ("Pentatonic Minor","[3, 2, 2, 3]")
-INSERT INTO scale ("name", "semitones") VALUES ("Minor Blues","[3, 2, 1, 1, 3]")
-INSERT INTO scale ("name", "semitones") VALUES ("Major Blues","[2, 1, 1, 3, 2]")
