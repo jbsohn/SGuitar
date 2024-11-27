@@ -152,10 +152,10 @@ std::vector<GuitarStringRecord> GuitarDAOImpl::get_guitar_strings(int guitar_id)
     return strings;
 }
 
-std::optional<int32_t> GuitarDAOImpl::add_guitar_adjustment(
-    const GuitarAdjustmentRecord& guitar_adjustment_record) const {
+std::optional<int32_t> GuitarDAOImpl::add_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record
+    ) const {
     const std::string sql =
-        "INSERT INTO guitar_adjustment(guitar_id, name, position, 'order') VALUES (?,?,?,?) RETURNING id";
+        "INSERT INTO guitar_adjustment(guitar_id, name, position, \"order\") VALUES (?,?,?,?) RETURNING id";
     SQLite::Statement query(db, sql);
     query.bind(1, guitar_adjustment_record.guitar_id);
     query.bind(2, guitar_adjustment_record.name);
@@ -169,7 +169,7 @@ std::optional<int32_t> GuitarDAOImpl::add_guitar_adjustment(
 }
 
 bool GuitarDAOImpl::update_guitar_adjustment(const GuitarAdjustmentRecord& guitar_adjustment_record) const {
-    const std::string sql = "UPDATE guitar_adjustment SET guitar_id=?, name=?, position=?, 'order'=? WHERE id=?";
+    const std::string sql = "UPDATE guitar_adjustment SET guitar_id=?, name=?, position=?, \"order\"=? WHERE id=?";
     SQLite::Statement query(db, sql);
     query.bind(1, guitar_adjustment_record.guitar_id);
     query.bind(2, guitar_adjustment_record.name);
@@ -186,7 +186,7 @@ bool GuitarDAOImpl::update_guitar_adjustment(const GuitarAdjustmentRecord& guita
 std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int guitar_id) const {
     std::vector<GuitarAdjustmentRecord> adjustments;
 
-    const std::string sql = "SELECT id, name, position, 'order' FROM guitar_adjustment WHERE guitar_id=?";
+    const std::string sql = "SELECT id, name, position, \"order\" FROM guitar_adjustment WHERE guitar_id=?";
     SQLite::Statement query(db, sql);
     query.bind(1, guitar_id);
     while (query.executeStep()) {
@@ -202,7 +202,8 @@ std::vector<GuitarAdjustmentRecord> GuitarDAOImpl::get_guitar_adjustments(int gu
 }
 
 std::optional<int32_t> GuitarDAOImpl::add_guitar_string_adjustment(
-    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record) const {
+    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
+    ) const {
     const std::string sql =
         "INSERT INTO guitar_string_adjustment(guitar_adjustment_id, string_number, step) VALUES (?,?,?) RETURNING id";
     SQLite::Statement query(db, sql);
@@ -216,8 +217,8 @@ std::optional<int32_t> GuitarDAOImpl::add_guitar_string_adjustment(
     return std::nullopt;
 }
 
-bool GuitarDAOImpl::update_guitar_string_adjustment(
-    const GuitarStringAdjustmentRecord& guitar_string_adjustment_record) const {
+bool GuitarDAOImpl::update_guitar_string_adjustment(const GuitarStringAdjustmentRecord& guitar_string_adjustment_record
+    ) const {
     const std::string sql =
         "UPDATE guitar_string_adjustment SET guitar_adjustment_id=?, string_number=?, step=? WHERE id=?;";
     SQLite::Statement query(db, sql);
@@ -232,8 +233,8 @@ bool GuitarDAOImpl::update_guitar_string_adjustment(
     return false;
 }
 
-std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjustments(
-    const int guitar_adjustment_id) const {
+std::vector<GuitarStringAdjustmentRecord> GuitarDAOImpl::get_guitar_string_adjustments(const int guitar_adjustment_id
+    ) const {
     std::vector<GuitarStringAdjustmentRecord> string_adjustments;
 
     const std::string sql = "SELECT id, string_number, step FROM guitar_string_adjustment WHERE guitar_adjustment_id=?";
