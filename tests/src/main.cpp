@@ -11,14 +11,12 @@
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <fmt/format.h>
 #include "main.hpp"
+#include "Utility.hpp"
 
 std::string Paths::ddlPath;
 std::string Paths::dbPath;
 std::string Paths::lapSteelPath;
 std::string Paths::pedalSteelPath;
-
-// imported from SGuitar
-std::string read_file(const std::string& file_name);
 
 void setup() {
     const std::string dbPath = Paths::dbPath;
