@@ -18,7 +18,7 @@ message(STATUS "DJINNI_IDL: ${DJINNI_IDL}")
 
 file(REMOVE_RECURSE ${DJINNI_GENERATED_SRC})
 execute_process(
-        COMMAND ${DJINNI_RUN} --java-out "${DJINNI_GENERATED_SRC}/java"
+        COMMAND ${DJINNI_RUN} --java-out "${DJINNI_GENERATED_SRC}/java/com/steelsidekick/sguitar"
         --cpp-out "${DJINNI_GENERATED_SRC}/cpp"
         --jni-out "${DJINNI_GENERATED_SRC}/jni"
         --objc-out "${DJINNI_GENERATED_SRC}/objc"
