@@ -13,79 +13,8 @@ if (${TARGET} MATCHES "iOS")
     set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.steelsidekick.SGuitar")
 endif ()
 
-include(FetchContent)
-
-# doctest
-FetchContent_Declare(
-        doctest
-        GIT_REPOSITORY https://github.com/doctest/doctest.git
-        GIT_TAG v2.4.11
-)
-FetchContent_MakeAvailable(doctest)
-
-# nlohmann_json
-FetchContent_Declare(
-        nlohmann_json
-        GIT_REPOSITORY https://github.com/nlohmann/json.git
-        GIT_TAG v3.11.3
-)
-FetchContent_MakeAvailable(nlohmann_json)
-
-# SQLiteCpp
-FetchContent_Declare(
-        SQLiteCpp
-        GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp.git
-        GIT_TAG 3.3.2
-)
-FetchContent_MakeAvailable(SQLiteCpp)
-
-# fmt
-FetchContent_Declare(fmt
-        GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-        GIT_TAG 11.0.2
-)
-FetchContent_MakeAvailable(fmt)
-
-set(CMAKE_CXX_STANDARD 20)
-file(GLOB SOURCE_FILES "src/*")
-file(GLOB GENERATED_CPP "generated-src/cpp/*")
-file(GLOB GENERATED_OBJC "generated-src/objc/*")
-file(GLOB GENERATED_OBJC_CPP "generated-src/objc-cpp/*")
-file(GLOB TEST_SOURCE_FILES "tests/src/*")
-file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*")
-file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*")
-file(GLOB FRAMEWORK_INCLUDE "framework-include/*")
-file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
-file(GLOB DJINNI_IDL "idl/*")
-set(FRAMEWORK_PUBLIC_HEADER
-        ${FRAMEWORK_INCLUDE}
-        ${DJINNI_OBJC_HEADER}
-)
-include_directories(PUBLIC
-        "generated-src/cpp"
-        "generated-src/objc"
-        "generated-src/objc-cpp"
-        "djinni/support-lib"
-        "djinni/support-lib/cpp"
-        "djinni/support-lib/objc"
-        "include"
-        "framework-include"
-)
-
-# auto generate DJINNI generated-src by examining note.hpp
-#add_custom_command(
-#        OUTPUT "${PROJECT_SOURCE_DIR}/generated-src/cpp/note.hpp"
-#        COMMAND "${CMAKE_COMMAND}" -DDJINNI_RUN=${PROJECT_SOURCE_DIR}/djinni/src/run -DDJINNI_GENERATED_SRC=${PROJECT_SOURCE_DIR}/generated-src -DDJINNI_IDL=${PROJECT_SOURCE_DIR}/idl/sguitar.djinni -P ${PROJECT_SOURCE_DIR}/scripts/run-djinni.cmake
-#        COMMENT "regenerating DJINNI sources..."
-#        DEPENDS "${DJINNI_IDL}"
-#        VERBATIM
-#)
-#add_custom_target(
-#        djinni ALL
-#        DEPENDS "${PROJECT_SOURCE_DIR}/generated-src/cpp/note.hpp"
-#        VERBATIM
-#)
-#set_source_files_properties("${PROJECT_SOURCE_DIR}/generated-src/cpp/note.hpp" PROPERTIES GENERATED TRUE)
+include(${CMAKE_CURRENT_SOURCE_DIR}/dependencies.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/defines.cmake)
 
 if (${TARGET} MATCHES "iOS")
     message(STATUS "Building framework for iOS...")
