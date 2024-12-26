@@ -6,15 +6,15 @@ package com.steelsidekick.sguitar;
 public final class GuitarStringRecord {
 
 
-    /*package*/ final Integer id;
+    /*package*/ final Integer mId;
 
-    /*package*/ final int guitarId;
+    /*package*/ final int mGuitarId;
 
-    /*package*/ final int stringNumber;
+    /*package*/ final int mStringNumber;
 
-    /*package*/ final String startNote;
+    /*package*/ final String mStartNote;
 
-    /*package*/ final int octave;
+    /*package*/ final int mOctave;
 
     public GuitarStringRecord(
             Integer id,
@@ -22,41 +22,41 @@ public final class GuitarStringRecord {
             int stringNumber,
             String startNote,
             int octave) {
-        this.id = id;
-        this.guitarId = guitarId;
-        this.stringNumber = stringNumber;
-        this.startNote = startNote;
-        this.octave = octave;
+        this.mId = id;
+        this.mGuitarId = guitarId;
+        this.mStringNumber = stringNumber;
+        this.mStartNote = startNote;
+        this.mOctave = octave;
     }
 
     public Integer getId() {
-        return id;
+        return mId;
     }
 
     public int getGuitarId() {
-        return guitarId;
+        return mGuitarId;
     }
 
     public int getStringNumber() {
-        return stringNumber;
+        return mStringNumber;
     }
 
     public String getStartNote() {
-        return startNote;
+        return mStartNote;
     }
 
     public int getOctave() {
-        return octave;
+        return mOctave;
     }
 
     @Override
     public String toString() {
         return "GuitarStringRecord{" +
-                "id=" + id +
-                "," + "guitarId=" + guitarId +
-                "," + "stringNumber=" + stringNumber +
-                "," + "startNote=" + startNote +
-                "," + "octave=" + octave +
+                "mId=" + mId +
+                "," + "mGuitarId=" + mGuitarId +
+                "," + "mStringNumber=" + mStringNumber +
+                "," + "mStartNote=" + mStartNote +
+                "," + "mOctave=" + mOctave +
         "}";
     }
 

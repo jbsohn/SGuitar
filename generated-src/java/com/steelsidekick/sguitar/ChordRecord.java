@@ -6,39 +6,39 @@ package com.steelsidekick.sguitar;
 public final class ChordRecord {
 
 
-    /*package*/ final Integer id;
+    /*package*/ final Integer mId;
 
-    /*package*/ final String name;
+    /*package*/ final String mName;
 
-    /*package*/ final int[] intervals;
+    /*package*/ final int[] mIntervals;
 
     public ChordRecord(
             Integer id,
             String name,
             int[] intervals) {
-        this.id = id;
-        this.name = name;
-        this.intervals = intervals;
+        this.mId = id;
+        this.mName = name;
+        this.mIntervals = intervals;
     }
 
     public Integer getId() {
-        return id;
+        return mId;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public int[] getIntervals() {
-        return intervals;
+        return mIntervals;
     }
 
     @Override
     public String toString() {
         return "ChordRecord{" +
-                "id=" + id +
-                "," + "name=" + name +
-                "," + "intervals=" + intervals +
+                "mId=" + mId +
+                "," + "mName=" + mName +
+                "," + "mIntervals=" + mIntervals +
         "}";
     }
 

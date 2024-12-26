@@ -6,48 +6,48 @@ package com.steelsidekick.sguitar;
 public final class GuitarStringAdjustmentRecord {
 
 
-    /*package*/ final Integer id;
+    /*package*/ final Integer mId;
 
-    /*package*/ final int guitarAdjustmentId;
+    /*package*/ final int mGuitarAdjustmentId;
 
-    /*package*/ final int stringNumber;
+    /*package*/ final int mStringNumber;
 
-    /*package*/ final int step;
+    /*package*/ final int mStep;
 
     public GuitarStringAdjustmentRecord(
             Integer id,
             int guitarAdjustmentId,
             int stringNumber,
             int step) {
-        this.id = id;
-        this.guitarAdjustmentId = guitarAdjustmentId;
-        this.stringNumber = stringNumber;
-        this.step = step;
+        this.mId = id;
+        this.mGuitarAdjustmentId = guitarAdjustmentId;
+        this.mStringNumber = stringNumber;
+        this.mStep = step;
     }
 
     public Integer getId() {
-        return id;
+        return mId;
     }
 
     public int getGuitarAdjustmentId() {
-        return guitarAdjustmentId;
+        return mGuitarAdjustmentId;
     }
 
     public int getStringNumber() {
-        return stringNumber;
+        return mStringNumber;
     }
 
     public int getStep() {
-        return step;
+        return mStep;
     }
 
     @Override
     public String toString() {
         return "GuitarStringAdjustmentRecord{" +
-                "id=" + id +
-                "," + "guitarAdjustmentId=" + guitarAdjustmentId +
-                "," + "stringNumber=" + stringNumber +
-                "," + "step=" + step +
+                "mId=" + mId +
+                "," + "mGuitarAdjustmentId=" + mGuitarAdjustmentId +
+                "," + "mStringNumber=" + mStringNumber +
+                "," + "mStep=" + mStep +
         "}";
     }
 
