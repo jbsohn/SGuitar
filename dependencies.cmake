@@ -1,13 +1,5 @@
 include(FetchContent)
 
-# doctest
-FetchContent_Declare(
-        doctest
-        GIT_REPOSITORY https://github.com/doctest/doctest.git
-        GIT_TAG v2.4.11
-)
-FetchContent_MakeAvailable(doctest)
-
 # nlohmann_json
 FetchContent_Declare(
         nlohmann_json

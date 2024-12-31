@@ -4,6 +4,14 @@ set(CMAKE_CXX_STANDARD 20)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/dependencies.cmake)
 
+# doctest
+FetchContent_Declare(
+        doctest
+        GIT_REPOSITORY https://github.com/doctest/doctest.git
+        GIT_TAG v2.4.11
+)
+FetchContent_MakeAvailable(doctest)
+
 file(GLOB SOURCE_FILES "src/*")
 file(GLOB GENERATED_CPP "generated-src/cpp/*")
 file(GLOB GENERATED_OBJC "generated-src/objc/*")
