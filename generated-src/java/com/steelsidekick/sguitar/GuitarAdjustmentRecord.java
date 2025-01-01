@@ -6,17 +6,17 @@ package com.steelsidekick.sguitar;
 public final class GuitarAdjustmentRecord {
 
 
-    /*package*/ final Integer mId;
+    /*package*/ final Integer id;
 
-    /*package*/ final int mGuitarId;
+    /*package*/ final int guitarId;
 
-    /*package*/ final String mName;
+    /*package*/ final String name;
 
-    /*package*/ final int mPosition;
+    /*package*/ final int position;
 
-    /*package*/ final int mOrder;
+    /*package*/ final int order;
 
-    /*package*/ final GuitarStringAdjustmentRecord[] mGuitarStringAdjustments;
+    /*package*/ final GuitarStringAdjustmentRecord[] guitarStringAdjustments;
 
     public GuitarAdjustmentRecord(
             Integer id,
@@ -25,47 +25,47 @@ public final class GuitarAdjustmentRecord {
             int position,
             int order,
             GuitarStringAdjustmentRecord[] guitarStringAdjustments) {
-        this.mId = id;
-        this.mGuitarId = guitarId;
-        this.mName = name;
-        this.mPosition = position;
-        this.mOrder = order;
-        this.mGuitarStringAdjustments = guitarStringAdjustments;
+        this.id = id;
+        this.guitarId = guitarId;
+        this.name = name;
+        this.position = position;
+        this.order = order;
+        this.guitarStringAdjustments = guitarStringAdjustments;
     }
 
     public Integer getId() {
-        return mId;
+        return id;
     }
 
     public int getGuitarId() {
-        return mGuitarId;
+        return guitarId;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public int getPosition() {
-        return mPosition;
+        return position;
     }
 
     public int getOrder() {
-        return mOrder;
+        return order;
     }
 
     public GuitarStringAdjustmentRecord[] getGuitarStringAdjustments() {
-        return mGuitarStringAdjustments;
+        return guitarStringAdjustments;
     }
 
     @Override
     public String toString() {
         return "GuitarAdjustmentRecord{" +
-                "mId=" + mId +
-                "," + "mGuitarId=" + mGuitarId +
-                "," + "mName=" + mName +
-                "," + "mPosition=" + mPosition +
-                "," + "mOrder=" + mOrder +
-                "," + "mGuitarStringAdjustments=" + mGuitarStringAdjustments +
+                "id=" + id +
+                "," + "guitarId=" + guitarId +
+                "," + "name=" + name +
+                "," + "position=" + position +
+                "," + "order=" + order +
+                "," + "guitarStringAdjustments=" + guitarStringAdjustments +
         "}";
     }
 

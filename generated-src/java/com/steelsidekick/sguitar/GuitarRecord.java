@@ -6,19 +6,19 @@ package com.steelsidekick.sguitar;
 public final class GuitarRecord {
 
 
-    /*package*/ final Integer mId;
+    /*package*/ final Integer id;
 
-    /*package*/ final String mName;
+    /*package*/ final String name;
 
-    /*package*/ final int mNumberOfFrets;
+    /*package*/ final int numberOfFrets;
 
-    /*package*/ final int[] mFretMarkers;
+    /*package*/ final int[] fretMarkers;
 
-    /*package*/ final int mType;
+    /*package*/ final int type;
 
-    /*package*/ final GuitarStringRecord[] mGuitarStrings;
+    /*package*/ final GuitarStringRecord[] guitarStrings;
 
-    /*package*/ final GuitarAdjustmentRecord[] mGuitarAdjustments;
+    /*package*/ final GuitarAdjustmentRecord[] guitarAdjustments;
 
     public GuitarRecord(
             Integer id,
@@ -28,53 +28,53 @@ public final class GuitarRecord {
             int type,
             GuitarStringRecord[] guitarStrings,
             GuitarAdjustmentRecord[] guitarAdjustments) {
-        this.mId = id;
-        this.mName = name;
-        this.mNumberOfFrets = numberOfFrets;
-        this.mFretMarkers = fretMarkers;
-        this.mType = type;
-        this.mGuitarStrings = guitarStrings;
-        this.mGuitarAdjustments = guitarAdjustments;
+        this.id = id;
+        this.name = name;
+        this.numberOfFrets = numberOfFrets;
+        this.fretMarkers = fretMarkers;
+        this.type = type;
+        this.guitarStrings = guitarStrings;
+        this.guitarAdjustments = guitarAdjustments;
     }
 
     public Integer getId() {
-        return mId;
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public int getNumberOfFrets() {
-        return mNumberOfFrets;
+        return numberOfFrets;
     }
 
     public int[] getFretMarkers() {
-        return mFretMarkers;
+        return fretMarkers;
     }
 
     public int getType() {
-        return mType;
+        return type;
     }
 
     public GuitarStringRecord[] getGuitarStrings() {
-        return mGuitarStrings;
+        return guitarStrings;
     }
 
     public GuitarAdjustmentRecord[] getGuitarAdjustments() {
-        return mGuitarAdjustments;
+        return guitarAdjustments;
     }
 
     @Override
     public String toString() {
         return "GuitarRecord{" +
-                "mId=" + mId +
-                "," + "mName=" + mName +
-                "," + "mNumberOfFrets=" + mNumberOfFrets +
-                "," + "mFretMarkers=" + mFretMarkers +
-                "," + "mType=" + mType +
-                "," + "mGuitarStrings=" + mGuitarStrings +
-                "," + "mGuitarAdjustments=" + mGuitarAdjustments +
+                "id=" + id +
+                "," + "name=" + name +
+                "," + "numberOfFrets=" + numberOfFrets +
+                "," + "fretMarkers=" + fretMarkers +
+                "," + "type=" + type +
+                "," + "guitarStrings=" + guitarStrings +
+                "," + "guitarAdjustments=" + guitarAdjustments +
         "}";
     }
 

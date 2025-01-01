@@ -6,39 +6,39 @@ package com.steelsidekick.sguitar;
 public final class ScaleRecord {
 
 
-    /*package*/ final Integer mId;
+    /*package*/ final Integer id;
 
-    /*package*/ final String mName;
+    /*package*/ final String name;
 
-    /*package*/ final int[] mSemitones;
+    /*package*/ final int[] semitones;
 
     public ScaleRecord(
             Integer id,
             String name,
             int[] semitones) {
-        this.mId = id;
-        this.mName = name;
-        this.mSemitones = semitones;
+        this.id = id;
+        this.name = name;
+        this.semitones = semitones;
     }
 
     public Integer getId() {
-        return mId;
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public int[] getSemitones() {
-        return mSemitones;
+        return semitones;
     }
 
     @Override
     public String toString() {
         return "ScaleRecord{" +
-                "mId=" + mId +
-                "," + "mName=" + mName +
-                "," + "mSemitones=" + mSemitones +
+                "id=" + id +
+                "," + "name=" + name +
+                "," + "semitones=" + semitones +
         "}";
     }
 

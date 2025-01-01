@@ -30,13 +30,13 @@ auto JNIGuitarRecord::toCpp(JNIEnv* jniEnv, JniType j) -> CppType {
     ::djinni::JniLocalScope jscope(jniEnv, 8);
     assert(j != nullptr);
     const auto& data = ::djinni::JniClass<JNIGuitarRecord>::get();
-    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mId)),
-            ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_mName)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mNumberOfFrets)),
-            ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mFretMarkers)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mType)),
-            ::djinni::Array<::djinni_generated::JNIGuitarStringRecord, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','S','t','r','i','n','g','R','e','c','o','r','d'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mGuitarStrings)),
-            ::djinni::Array<::djinni_generated::JNIGuitarAdjustmentRecord, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','A','d','j','u','s','t','m','e','n','t','R','e','c','o','r','d'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mGuitarAdjustments))};
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_id)),
+            ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_name)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_numberOfFrets)),
+            ::djinni::Array<::djinni::I32, ::djinni::JavaClassName<'I'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_fretMarkers)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_type)),
+            ::djinni::Array<::djinni_generated::JNIGuitarStringRecord, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','S','t','r','i','n','g','R','e','c','o','r','d'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_guitarStrings)),
+            ::djinni::Array<::djinni_generated::JNIGuitarAdjustmentRecord, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','A','d','j','u','s','t','m','e','n','t','R','e','c','o','r','d'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_guitarAdjustments))};
 }
 
 } // namespace djinni_generated

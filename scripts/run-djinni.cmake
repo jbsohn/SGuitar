@@ -20,7 +20,6 @@ file(REMOVE_RECURSE ${DJINNI_GENERATED_SRC})
 execute_process(
         COMMAND ${DJINNI_RUN} --java-out "${DJINNI_GENERATED_SRC}/java/com/steelsidekick/sguitar"
         --java-package com.steelsidekick.sguitar
-        --ident-java-field mFooBar
         --cpp-out "${DJINNI_GENERATED_SRC}/cpp"
         --jni-out "${DJINNI_GENERATED_SRC}/jni"
         --ident-jni-class JNIFooBar

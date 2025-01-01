@@ -25,10 +25,10 @@ auto JNIGuitarStringAdjustmentRecord::toCpp(JNIEnv* jniEnv, JniType j) -> CppTyp
     ::djinni::JniLocalScope jscope(jniEnv, 5);
     assert(j != nullptr);
     const auto& data = ::djinni::JniClass<JNIGuitarStringAdjustmentRecord>::get();
-    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mId)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mGuitarAdjustmentId)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mStringNumber)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mStep))};
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_id)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_guitarAdjustmentId)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_stringNumber)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_step))};
 }
 
 } // namespace djinni_generated

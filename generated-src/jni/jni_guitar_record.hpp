@@ -26,13 +26,13 @@ private:
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("com/steelsidekick/sguitar/GuitarRecord") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/Integer;Ljava/lang/String;I[II[Lcom/steelsidekick/sguitar/GuitarStringRecord;[Lcom/steelsidekick/sguitar/GuitarAdjustmentRecord;)V") };
-    const jfieldID field_mId { ::djinni::jniGetFieldID(clazz.get(), "mId", "Ljava/lang/Integer;") };
-    const jfieldID field_mName { ::djinni::jniGetFieldID(clazz.get(), "mName", "Ljava/lang/String;") };
-    const jfieldID field_mNumberOfFrets { ::djinni::jniGetFieldID(clazz.get(), "mNumberOfFrets", "I") };
-    const jfieldID field_mFretMarkers { ::djinni::jniGetFieldID(clazz.get(), "mFretMarkers", "[I") };
-    const jfieldID field_mType { ::djinni::jniGetFieldID(clazz.get(), "mType", "I") };
-    const jfieldID field_mGuitarStrings { ::djinni::jniGetFieldID(clazz.get(), "mGuitarStrings", "[Lcom/steelsidekick/sguitar/GuitarStringRecord;") };
-    const jfieldID field_mGuitarAdjustments { ::djinni::jniGetFieldID(clazz.get(), "mGuitarAdjustments", "[Lcom/steelsidekick/sguitar/GuitarAdjustmentRecord;") };
+    const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "Ljava/lang/Integer;") };
+    const jfieldID field_name { ::djinni::jniGetFieldID(clazz.get(), "name", "Ljava/lang/String;") };
+    const jfieldID field_numberOfFrets { ::djinni::jniGetFieldID(clazz.get(), "numberOfFrets", "I") };
+    const jfieldID field_fretMarkers { ::djinni::jniGetFieldID(clazz.get(), "fretMarkers", "[I") };
+    const jfieldID field_type { ::djinni::jniGetFieldID(clazz.get(), "type", "I") };
+    const jfieldID field_guitarStrings { ::djinni::jniGetFieldID(clazz.get(), "guitarStrings", "[Lcom/steelsidekick/sguitar/GuitarStringRecord;") };
+    const jfieldID field_guitarAdjustments { ::djinni::jniGetFieldID(clazz.get(), "guitarAdjustments", "[Lcom/steelsidekick/sguitar/GuitarAdjustmentRecord;") };
 };
 
 } // namespace djinni_generated

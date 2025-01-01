@@ -28,12 +28,12 @@ auto JNIGuitarAdjustmentRecord::toCpp(JNIEnv* jniEnv, JniType j) -> CppType {
     ::djinni::JniLocalScope jscope(jniEnv, 7);
     assert(j != nullptr);
     const auto& data = ::djinni::JniClass<JNIGuitarAdjustmentRecord>::get();
-    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mId)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mGuitarId)),
-            ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_mName)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mPosition)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mOrder)),
-            ::djinni::Array<::djinni_generated::JNIGuitarStringAdjustmentRecord, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t','R','e','c','o','r','d'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mGuitarStringAdjustments))};
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_id)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_guitarId)),
+            ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_name)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_position)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_order)),
+            ::djinni::Array<::djinni_generated::JNIGuitarStringAdjustmentRecord, ::djinni::JavaClassName<'c','o','m','/','s','t','e','e','l','s','i','d','e','k','i','c','k','/','s','g','u','i','t','a','r','/','G','u','i','t','a','r','S','t','r','i','n','g','A','d','j','u','s','t','m','e','n','t','R','e','c','o','r','d'>>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_guitarStringAdjustments))};
 }
 
 } // namespace djinni_generated

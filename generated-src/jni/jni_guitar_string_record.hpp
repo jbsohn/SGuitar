@@ -26,11 +26,11 @@ private:
 
     const ::djinni::GlobalRef<jclass> clazz { ::djinni::jniFindClass("com/steelsidekick/sguitar/GuitarStringRecord") };
     const jmethodID jconstructor { ::djinni::jniGetMethodID(clazz.get(), "<init>", "(Ljava/lang/Integer;IILjava/lang/String;I)V") };
-    const jfieldID field_mId { ::djinni::jniGetFieldID(clazz.get(), "mId", "Ljava/lang/Integer;") };
-    const jfieldID field_mGuitarId { ::djinni::jniGetFieldID(clazz.get(), "mGuitarId", "I") };
-    const jfieldID field_mStringNumber { ::djinni::jniGetFieldID(clazz.get(), "mStringNumber", "I") };
-    const jfieldID field_mStartNote { ::djinni::jniGetFieldID(clazz.get(), "mStartNote", "Ljava/lang/String;") };
-    const jfieldID field_mOctave { ::djinni::jniGetFieldID(clazz.get(), "mOctave", "I") };
+    const jfieldID field_id { ::djinni::jniGetFieldID(clazz.get(), "id", "Ljava/lang/Integer;") };
+    const jfieldID field_guitarId { ::djinni::jniGetFieldID(clazz.get(), "guitarId", "I") };
+    const jfieldID field_stringNumber { ::djinni::jniGetFieldID(clazz.get(), "stringNumber", "I") };
+    const jfieldID field_startNote { ::djinni::jniGetFieldID(clazz.get(), "startNote", "Ljava/lang/String;") };
+    const jfieldID field_octave { ::djinni::jniGetFieldID(clazz.get(), "octave", "I") };
 };
 
 } // namespace djinni_generated

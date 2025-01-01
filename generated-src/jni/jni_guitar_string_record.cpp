@@ -26,11 +26,11 @@ auto JNIGuitarStringRecord::toCpp(JNIEnv* jniEnv, JniType j) -> CppType {
     ::djinni::JniLocalScope jscope(jniEnv, 6);
     assert(j != nullptr);
     const auto& data = ::djinni::JniClass<JNIGuitarStringRecord>::get();
-    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_mId)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mGuitarId)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mStringNumber)),
-            ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_mStartNote)),
-            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_mOctave))};
+    return {::djinni::Optional<std::optional, ::djinni::I32>::toCpp(jniEnv, jniEnv->GetObjectField(j, data.field_id)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_guitarId)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_stringNumber)),
+            ::djinni::String::toCpp(jniEnv, (jstring)jniEnv->GetObjectField(j, data.field_startNote)),
+            ::djinni::I32::toCpp(jniEnv, jniEnv->GetIntField(j, data.field_octave))};
 }
 
 } // namespace djinni_generated
