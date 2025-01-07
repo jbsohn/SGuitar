@@ -31,6 +31,7 @@ include_directories(PUBLIC
         "djinni/support-lib/objc"
         "include"
 )
+include_directories(PRIVATE "src")
 
 message(STATUS "Building unit tests...")
 add_library(SGuitar STATIC
