@@ -21,6 +21,4 @@ VALUES (10, 'Major Seventh', '[0, 4, 7,11]');
 INSERT INTO chord (id, name, intervals)
 VALUES (11, 'Minor Seventh', '[0, 3, 7, 10]');
 INSERT INTO chord (id, name, intervals)
-VALUES (12, 'Ninth', '[0, 4, 7, 10, 2]');
-INSERT INTO chord (id, name, intervals)
-VALUES (27, 'test2', '[0,1,2]');
+VALUES (12, 'Ninth', '[0, 4, 7, 10, 2]')
