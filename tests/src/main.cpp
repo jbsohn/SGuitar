@@ -66,9 +66,5 @@ int main(const int argc, char** argv) {
 
     doctest::Context context;
     context.applyCommandLine(argc, argv);
-    const auto res = context.run();
-    if (context.shouldExit()) {
-        return res;
-    }
-    return res;
+    return context.run();
 }
