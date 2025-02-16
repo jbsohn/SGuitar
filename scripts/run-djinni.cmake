@@ -27,5 +27,8 @@ execute_process(
         --objc-out "${DJINNI_GENERATED_SRC}/objc"
         --objc-type-prefix SG
         --objcpp-out "${DJINNI_GENERATED_SRC}/objc-cpp"
+        --ts-out "${DJINNI_GENERATED_SRC}/ts"
+        --wasm-out "${DJINNI_GENERATED_SRC}/wasm"
         --idl "${DJINNI_IDL}"
+        --ts-module SGuitar
 )
