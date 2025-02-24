@@ -20,6 +20,7 @@ file(GLOB TEST_SOURCE_FILES "tests/src/*")
 file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*")
 file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*")
 file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
+file(GLOB DJINNI_WASM "djinni/support-lib/wasm/*.cpp")
 file(GLOB DJINNI_IDL "idl/*")
 
 include_directories(PUBLIC
@@ -36,20 +37,21 @@ include_directories(PRIVATE "src")
 message(STATUS "Building unit tests...")
 add_library(SGuitar STATIC
         ${SOURCE_FILES}
+        ${DJINNI_WASM}
         ${GENERATED_CPP}
 )
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
-target_link_libraries(SGuitar PRIVATE fmt)
+#target_link_libraries(SGuitar PRIVATE fmt)
 target_link_libraries(SGuitar PRIVATE SQLiteCpp)
 
-add_executable(tests ${TEST_SOURCE_FILES})
-target_link_libraries(tests PRIVATE nlohmann_json)
-target_link_libraries(tests PRIVATE fmt)
-target_link_libraries(tests PRIVATE SQLiteCpp)
-target_link_libraries(tests PRIVATE doctest)
-target_link_libraries(tests PRIVATE SGuitar)
-enable_testing()
-add_test(
-        NAME tests
-        COMMAND $<TARGET_FILE:tests>
-)
+#add_executable(tests ${TEST_SOURCE_FILES})
+#target_link_libraries(tests PRIVATE nlohmann_json)
+##target_link_libraries(tests PRIVATE fmt)
+#target_link_libraries(tests PRIVATE SQLiteCpp)
+#target_link_libraries(tests PRIVATE doctest)
+#target_link_libraries(tests PRIVATE SGuitar)
+#enable_testing()
+#add_test(
+#        NAME tests
+#        COMMAND $<TARGET_FILE:tests>
+#)

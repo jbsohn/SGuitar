@@ -2,7 +2,7 @@
 // Created by John Sohn on 9/29/24.
 //
 
-#include <fmt/format.h>
+#include <format>
 #include <algorithm>
 #include "scale.hpp"
 #include "HarmonizedScaleImpl.hpp"
@@ -26,7 +26,7 @@ std::string HarmonizedScaleImpl::test_description() {
     std::string s;
 
     for (const auto& chord : chords) {
-        s += fmt::format("{}\n", chord->test_description());
+        s += format("{}\n", chord->test_description());
     }
 
     return s;

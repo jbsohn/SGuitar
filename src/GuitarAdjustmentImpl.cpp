@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <fmt/format.h>
+#include <format>
 #include <string>
 #include "GuitarAdjustmentImpl.hpp"
 
 std::string GuitarAdjustmentImpl::test_description() {
     std::string description;
     for (const auto& adjustment : string_adjustments) {
-        description += fmt::format("{}\n", adjustment->test_description());
+        description += format("{}\n", adjustment->test_description());
     }
     return description;
 }

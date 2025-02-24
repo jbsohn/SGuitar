@@ -5,7 +5,7 @@
 #ifndef NOTE_IMPL_H
 #define NOTE_IMPL_H
 
-#include <fmt/format.h>
+#include <format>
 #include "note.hpp"
 
 class NoteImpl final : public Note {
@@ -29,7 +29,7 @@ public:
     int32_t get_octave() override { return midi_note / 12 - 1; }
 
     std::string test_description() override {
-        return fmt::format("{}", note_name_sharp());
+        return format("{}", note_name_sharp());
     }
 
     std::string note_name_sharp() override {

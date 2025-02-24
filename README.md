@@ -15,3 +15,8 @@ These arguments get passed into DocTest app when running the integration tests:
 ```
 $ProjectFileDir$/db/ddl.sql "$ProjectFileDir$/import/Lap Steel" "$ProjectFileDir$/import/Pedal Steel"
 ```
+
+# EMSCRIPTEN
+```
+emcc libSGuitar.a --bind -o SGuitarLib.js
+```
