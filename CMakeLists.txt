@@ -16,6 +16,7 @@ file(GLOB SOURCE_FILES "src/*")
 file(GLOB GENERATED_CPP "generated-src/cpp/*")
 file(GLOB GENERATED_OBJC "generated-src/objc/*")
 file(GLOB GENERATED_OBJC_CPP "generated-src/objc-cpp/*")
+file(GLOB GENERATED_WASM "generated-src/wasm/*")
 file(GLOB TEST_SOURCE_FILES "tests/src/*")
 file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*")
 file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*")
@@ -30,6 +31,7 @@ include_directories(PUBLIC
         "djinni/support-lib"
         "djinni/support-lib/cpp"
         "djinni/support-lib/objc"
+        "djinni/support-lib/wasm"
         "include"
 )
 include_directories(PRIVATE "src")
@@ -39,6 +41,7 @@ add_library(SGuitar STATIC
         ${SOURCE_FILES}
         ${DJINNI_WASM}
         ${GENERATED_CPP}
+        ${GENERATED_WASM}
 )
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
 #target_link_libraries(SGuitar PRIVATE fmt)

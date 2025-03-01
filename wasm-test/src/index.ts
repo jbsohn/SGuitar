@@ -2,11 +2,16 @@
 //  npx tsc
 //  node dist/index.js
 
-import fs from 'node:fs';
 
-const wasmBuffer = fs.readFileSync('./dist/SGuitarLib.wasm');
-WebAssembly.instantiate(wasmBuffer).then(wasmModule => {
-    // Exported function lives under instance.exports object
-    const { test } = wasmModule.instance.exports;
-    console.log(test);
-});
+import fs from 'node:fs';
+import Module from './SGuitarModule.js';
+
+// (async () => {
+//     const module = await Module();
+
+//     var note = new module.Note.createWithMidiNote(60);
+//     console.log(note.getMidiNoteNumber());
+// })();
+
+
+var note = new Module.Note.createWithMidiNote(60);

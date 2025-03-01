@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /home/john/Projects/SGuitar
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -185,19 +175,6 @@ SGuitar/fast:
 .PHONY : SGuitar/fast
 
 #=============================================================================
-# Target rules for targets named tests
-
-# Build rule for target.
-tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
-.PHONY : tests
-
-# fast build rule for target.
-tests/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-.PHONY : tests/fast
-
-#=============================================================================
 # Target rules for targets named SQLiteCpp
 
 # Build rule for target.
@@ -235,19 +212,6 @@ sqlite3: cmake_check_build_system
 sqlite3/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/sqlitecpp-build/sqlite3/CMakeFiles/sqlite3.dir/build.make _deps/sqlitecpp-build/sqlite3/CMakeFiles/sqlite3.dir/build
 .PHONY : sqlite3/fast
-
-#=============================================================================
-# Target rules for targets named fmt
-
-# Build rule for target.
-fmt: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 fmt
-.PHONY : fmt
-
-# fast build rule for target.
-fmt/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/fmt-build/CMakeFiles/fmt.dir/build.make _deps/fmt-build/CMakeFiles/fmt.dir/build
-.PHONY : fmt/fast
 
 #=============================================================================
 # Target rules for targets named doctest_with_main
@@ -309,6 +273,558 @@ djinni/support-lib/wasm/djinni_wasm.s: djinni/support-lib/wasm/djinni_wasm.cpp.s
 djinni/support-lib/wasm/djinni_wasm.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/djinni/support-lib/wasm/djinni_wasm.cpp.s
 .PHONY : djinni/support-lib/wasm/djinni_wasm.cpp.s
+
+generated-src/wasm/jni_accidental_type.o: generated-src/wasm/jni_accidental_type.cpp.o
+.PHONY : generated-src/wasm/jni_accidental_type.o
+
+# target to build an object file
+generated-src/wasm/jni_accidental_type.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_accidental_type.cpp.o
+.PHONY : generated-src/wasm/jni_accidental_type.cpp.o
+
+generated-src/wasm/jni_accidental_type.i: generated-src/wasm/jni_accidental_type.cpp.i
+.PHONY : generated-src/wasm/jni_accidental_type.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_accidental_type.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_accidental_type.cpp.i
+.PHONY : generated-src/wasm/jni_accidental_type.cpp.i
+
+generated-src/wasm/jni_accidental_type.s: generated-src/wasm/jni_accidental_type.cpp.s
+.PHONY : generated-src/wasm/jni_accidental_type.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_accidental_type.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_accidental_type.cpp.s
+.PHONY : generated-src/wasm/jni_accidental_type.cpp.s
+
+generated-src/wasm/jni_chord.o: generated-src/wasm/jni_chord.cpp.o
+.PHONY : generated-src/wasm/jni_chord.o
+
+# target to build an object file
+generated-src/wasm/jni_chord.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord.cpp.o
+.PHONY : generated-src/wasm/jni_chord.cpp.o
+
+generated-src/wasm/jni_chord.i: generated-src/wasm/jni_chord.cpp.i
+.PHONY : generated-src/wasm/jni_chord.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_chord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord.cpp.i
+.PHONY : generated-src/wasm/jni_chord.cpp.i
+
+generated-src/wasm/jni_chord.s: generated-src/wasm/jni_chord.cpp.s
+.PHONY : generated-src/wasm/jni_chord.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_chord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord.cpp.s
+.PHONY : generated-src/wasm/jni_chord.cpp.s
+
+generated-src/wasm/jni_chord_DAO.o: generated-src/wasm/jni_chord_DAO.cpp.o
+.PHONY : generated-src/wasm/jni_chord_DAO.o
+
+# target to build an object file
+generated-src/wasm/jni_chord_DAO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord_DAO.cpp.o
+.PHONY : generated-src/wasm/jni_chord_DAO.cpp.o
+
+generated-src/wasm/jni_chord_DAO.i: generated-src/wasm/jni_chord_DAO.cpp.i
+.PHONY : generated-src/wasm/jni_chord_DAO.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_chord_DAO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord_DAO.cpp.i
+.PHONY : generated-src/wasm/jni_chord_DAO.cpp.i
+
+generated-src/wasm/jni_chord_DAO.s: generated-src/wasm/jni_chord_DAO.cpp.s
+.PHONY : generated-src/wasm/jni_chord_DAO.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_chord_DAO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord_DAO.cpp.s
+.PHONY : generated-src/wasm/jni_chord_DAO.cpp.s
+
+generated-src/wasm/jni_chord_record.o: generated-src/wasm/jni_chord_record.cpp.o
+.PHONY : generated-src/wasm/jni_chord_record.o
+
+# target to build an object file
+generated-src/wasm/jni_chord_record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord_record.cpp.o
+.PHONY : generated-src/wasm/jni_chord_record.cpp.o
+
+generated-src/wasm/jni_chord_record.i: generated-src/wasm/jni_chord_record.cpp.i
+.PHONY : generated-src/wasm/jni_chord_record.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_chord_record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord_record.cpp.i
+.PHONY : generated-src/wasm/jni_chord_record.cpp.i
+
+generated-src/wasm/jni_chord_record.s: generated-src/wasm/jni_chord_record.cpp.s
+.PHONY : generated-src/wasm/jni_chord_record.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_chord_record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_chord_record.cpp.s
+.PHONY : generated-src/wasm/jni_chord_record.cpp.s
+
+generated-src/wasm/jni_database_connection.o: generated-src/wasm/jni_database_connection.cpp.o
+.PHONY : generated-src/wasm/jni_database_connection.o
+
+# target to build an object file
+generated-src/wasm/jni_database_connection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_database_connection.cpp.o
+.PHONY : generated-src/wasm/jni_database_connection.cpp.o
+
+generated-src/wasm/jni_database_connection.i: generated-src/wasm/jni_database_connection.cpp.i
+.PHONY : generated-src/wasm/jni_database_connection.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_database_connection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_database_connection.cpp.i
+.PHONY : generated-src/wasm/jni_database_connection.cpp.i
+
+generated-src/wasm/jni_database_connection.s: generated-src/wasm/jni_database_connection.cpp.s
+.PHONY : generated-src/wasm/jni_database_connection.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_database_connection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_database_connection.cpp.s
+.PHONY : generated-src/wasm/jni_database_connection.cpp.s
+
+generated-src/wasm/jni_guitar.o: generated-src/wasm/jni_guitar.cpp.o
+.PHONY : generated-src/wasm/jni_guitar.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar.cpp.o
+.PHONY : generated-src/wasm/jni_guitar.cpp.o
+
+generated-src/wasm/jni_guitar.i: generated-src/wasm/jni_guitar.cpp.i
+.PHONY : generated-src/wasm/jni_guitar.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar.cpp.i
+.PHONY : generated-src/wasm/jni_guitar.cpp.i
+
+generated-src/wasm/jni_guitar.s: generated-src/wasm/jni_guitar.cpp.s
+.PHONY : generated-src/wasm/jni_guitar.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar.cpp.s
+.PHONY : generated-src/wasm/jni_guitar.cpp.s
+
+generated-src/wasm/jni_guitar_DAO.o: generated-src/wasm/jni_guitar_DAO.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_DAO.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_DAO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_DAO.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_DAO.cpp.o
+
+generated-src/wasm/jni_guitar_DAO.i: generated-src/wasm/jni_guitar_DAO.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_DAO.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_DAO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_DAO.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_DAO.cpp.i
+
+generated-src/wasm/jni_guitar_DAO.s: generated-src/wasm/jni_guitar_DAO.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_DAO.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_DAO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_DAO.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_DAO.cpp.s
+
+generated-src/wasm/jni_guitar_adjustment.o: generated-src/wasm/jni_guitar_adjustment.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_adjustment.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_adjustment.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_adjustment.cpp.o
+
+generated-src/wasm/jni_guitar_adjustment.i: generated-src/wasm/jni_guitar_adjustment.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_adjustment.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_adjustment.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_adjustment.cpp.i
+
+generated-src/wasm/jni_guitar_adjustment.s: generated-src/wasm/jni_guitar_adjustment.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_adjustment.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_adjustment.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_adjustment.cpp.s
+
+generated-src/wasm/jni_guitar_adjustment_position.o: generated-src/wasm/jni_guitar_adjustment_position.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_adjustment_position.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_adjustment_position.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment_position.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_adjustment_position.cpp.o
+
+generated-src/wasm/jni_guitar_adjustment_position.i: generated-src/wasm/jni_guitar_adjustment_position.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_adjustment_position.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_adjustment_position.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment_position.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_adjustment_position.cpp.i
+
+generated-src/wasm/jni_guitar_adjustment_position.s: generated-src/wasm/jni_guitar_adjustment_position.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_adjustment_position.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_adjustment_position.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment_position.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_adjustment_position.cpp.s
+
+generated-src/wasm/jni_guitar_adjustment_record.o: generated-src/wasm/jni_guitar_adjustment_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_adjustment_record.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_adjustment_record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_adjustment_record.cpp.o
+
+generated-src/wasm/jni_guitar_adjustment_record.i: generated-src/wasm/jni_guitar_adjustment_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_adjustment_record.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_adjustment_record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_adjustment_record.cpp.i
+
+generated-src/wasm/jni_guitar_adjustment_record.s: generated-src/wasm/jni_guitar_adjustment_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_adjustment_record.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_adjustment_record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_adjustment_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_adjustment_record.cpp.s
+
+generated-src/wasm/jni_guitar_factory.o: generated-src/wasm/jni_guitar_factory.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_factory.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_factory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_factory.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_factory.cpp.o
+
+generated-src/wasm/jni_guitar_factory.i: generated-src/wasm/jni_guitar_factory.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_factory.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_factory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_factory.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_factory.cpp.i
+
+generated-src/wasm/jni_guitar_factory.s: generated-src/wasm/jni_guitar_factory.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_factory.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_factory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_factory.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_factory.cpp.s
+
+generated-src/wasm/jni_guitar_import.o: generated-src/wasm/jni_guitar_import.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_import.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_import.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_import.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_import.cpp.o
+
+generated-src/wasm/jni_guitar_import.i: generated-src/wasm/jni_guitar_import.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_import.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_import.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_import.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_import.cpp.i
+
+generated-src/wasm/jni_guitar_import.s: generated-src/wasm/jni_guitar_import.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_import.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_import.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_import.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_import.cpp.s
+
+generated-src/wasm/jni_guitar_record.o: generated-src/wasm/jni_guitar_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_record.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_record.cpp.o
+
+generated-src/wasm/jni_guitar_record.i: generated-src/wasm/jni_guitar_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_record.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_record.cpp.i
+
+generated-src/wasm/jni_guitar_record.s: generated-src/wasm/jni_guitar_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_record.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_record.cpp.s
+
+generated-src/wasm/jni_guitar_string.o: generated-src/wasm/jni_guitar_string.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_string.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_string.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_string.cpp.o
+
+generated-src/wasm/jni_guitar_string.i: generated-src/wasm/jni_guitar_string.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_string.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_string.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_string.cpp.i
+
+generated-src/wasm/jni_guitar_string.s: generated-src/wasm/jni_guitar_string.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_string.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_string.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_string.cpp.s
+
+generated-src/wasm/jni_guitar_string_adjustment_record.o: generated-src/wasm/jni_guitar_string_adjustment_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_string_adjustment_record.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_string_adjustment_record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string_adjustment_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_string_adjustment_record.cpp.o
+
+generated-src/wasm/jni_guitar_string_adjustment_record.i: generated-src/wasm/jni_guitar_string_adjustment_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_string_adjustment_record.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_string_adjustment_record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string_adjustment_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_string_adjustment_record.cpp.i
+
+generated-src/wasm/jni_guitar_string_adjustment_record.s: generated-src/wasm/jni_guitar_string_adjustment_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_string_adjustment_record.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_string_adjustment_record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string_adjustment_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_string_adjustment_record.cpp.s
+
+generated-src/wasm/jni_guitar_string_record.o: generated-src/wasm/jni_guitar_string_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_string_record.o
+
+# target to build an object file
+generated-src/wasm/jni_guitar_string_record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string_record.cpp.o
+.PHONY : generated-src/wasm/jni_guitar_string_record.cpp.o
+
+generated-src/wasm/jni_guitar_string_record.i: generated-src/wasm/jni_guitar_string_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_string_record.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_guitar_string_record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string_record.cpp.i
+.PHONY : generated-src/wasm/jni_guitar_string_record.cpp.i
+
+generated-src/wasm/jni_guitar_string_record.s: generated-src/wasm/jni_guitar_string_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_string_record.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_guitar_string_record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_guitar_string_record.cpp.s
+.PHONY : generated-src/wasm/jni_guitar_string_record.cpp.s
+
+generated-src/wasm/jni_harmonized_scale.o: generated-src/wasm/jni_harmonized_scale.cpp.o
+.PHONY : generated-src/wasm/jni_harmonized_scale.o
+
+# target to build an object file
+generated-src/wasm/jni_harmonized_scale.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_harmonized_scale.cpp.o
+.PHONY : generated-src/wasm/jni_harmonized_scale.cpp.o
+
+generated-src/wasm/jni_harmonized_scale.i: generated-src/wasm/jni_harmonized_scale.cpp.i
+.PHONY : generated-src/wasm/jni_harmonized_scale.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_harmonized_scale.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_harmonized_scale.cpp.i
+.PHONY : generated-src/wasm/jni_harmonized_scale.cpp.i
+
+generated-src/wasm/jni_harmonized_scale.s: generated-src/wasm/jni_harmonized_scale.cpp.s
+.PHONY : generated-src/wasm/jni_harmonized_scale.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_harmonized_scale.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_harmonized_scale.cpp.s
+.PHONY : generated-src/wasm/jni_harmonized_scale.cpp.s
+
+generated-src/wasm/jni_note.o: generated-src/wasm/jni_note.cpp.o
+.PHONY : generated-src/wasm/jni_note.o
+
+# target to build an object file
+generated-src/wasm/jni_note.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_note.cpp.o
+.PHONY : generated-src/wasm/jni_note.cpp.o
+
+generated-src/wasm/jni_note.i: generated-src/wasm/jni_note.cpp.i
+.PHONY : generated-src/wasm/jni_note.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_note.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_note.cpp.i
+.PHONY : generated-src/wasm/jni_note.cpp.i
+
+generated-src/wasm/jni_note.s: generated-src/wasm/jni_note.cpp.s
+.PHONY : generated-src/wasm/jni_note.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_note.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_note.cpp.s
+.PHONY : generated-src/wasm/jni_note.cpp.s
+
+generated-src/wasm/jni_note_value.o: generated-src/wasm/jni_note_value.cpp.o
+.PHONY : generated-src/wasm/jni_note_value.o
+
+# target to build an object file
+generated-src/wasm/jni_note_value.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_note_value.cpp.o
+.PHONY : generated-src/wasm/jni_note_value.cpp.o
+
+generated-src/wasm/jni_note_value.i: generated-src/wasm/jni_note_value.cpp.i
+.PHONY : generated-src/wasm/jni_note_value.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_note_value.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_note_value.cpp.i
+.PHONY : generated-src/wasm/jni_note_value.cpp.i
+
+generated-src/wasm/jni_note_value.s: generated-src/wasm/jni_note_value.cpp.s
+.PHONY : generated-src/wasm/jni_note_value.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_note_value.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_note_value.cpp.s
+.PHONY : generated-src/wasm/jni_note_value.cpp.s
+
+generated-src/wasm/jni_scale.o: generated-src/wasm/jni_scale.cpp.o
+.PHONY : generated-src/wasm/jni_scale.o
+
+# target to build an object file
+generated-src/wasm/jni_scale.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale.cpp.o
+.PHONY : generated-src/wasm/jni_scale.cpp.o
+
+generated-src/wasm/jni_scale.i: generated-src/wasm/jni_scale.cpp.i
+.PHONY : generated-src/wasm/jni_scale.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_scale.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale.cpp.i
+.PHONY : generated-src/wasm/jni_scale.cpp.i
+
+generated-src/wasm/jni_scale.s: generated-src/wasm/jni_scale.cpp.s
+.PHONY : generated-src/wasm/jni_scale.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_scale.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale.cpp.s
+.PHONY : generated-src/wasm/jni_scale.cpp.s
+
+generated-src/wasm/jni_scale_DAO.o: generated-src/wasm/jni_scale_DAO.cpp.o
+.PHONY : generated-src/wasm/jni_scale_DAO.o
+
+# target to build an object file
+generated-src/wasm/jni_scale_DAO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale_DAO.cpp.o
+.PHONY : generated-src/wasm/jni_scale_DAO.cpp.o
+
+generated-src/wasm/jni_scale_DAO.i: generated-src/wasm/jni_scale_DAO.cpp.i
+.PHONY : generated-src/wasm/jni_scale_DAO.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_scale_DAO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale_DAO.cpp.i
+.PHONY : generated-src/wasm/jni_scale_DAO.cpp.i
+
+generated-src/wasm/jni_scale_DAO.s: generated-src/wasm/jni_scale_DAO.cpp.s
+.PHONY : generated-src/wasm/jni_scale_DAO.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_scale_DAO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale_DAO.cpp.s
+.PHONY : generated-src/wasm/jni_scale_DAO.cpp.s
+
+generated-src/wasm/jni_scale_record.o: generated-src/wasm/jni_scale_record.cpp.o
+.PHONY : generated-src/wasm/jni_scale_record.o
+
+# target to build an object file
+generated-src/wasm/jni_scale_record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale_record.cpp.o
+.PHONY : generated-src/wasm/jni_scale_record.cpp.o
+
+generated-src/wasm/jni_scale_record.i: generated-src/wasm/jni_scale_record.cpp.i
+.PHONY : generated-src/wasm/jni_scale_record.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_scale_record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale_record.cpp.i
+.PHONY : generated-src/wasm/jni_scale_record.cpp.i
+
+generated-src/wasm/jni_scale_record.s: generated-src/wasm/jni_scale_record.cpp.s
+.PHONY : generated-src/wasm/jni_scale_record.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_scale_record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_scale_record.cpp.s
+.PHONY : generated-src/wasm/jni_scale_record.cpp.s
+
+generated-src/wasm/jni_string_adjustment.o: generated-src/wasm/jni_string_adjustment.cpp.o
+.PHONY : generated-src/wasm/jni_string_adjustment.o
+
+# target to build an object file
+generated-src/wasm/jni_string_adjustment.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_string_adjustment.cpp.o
+.PHONY : generated-src/wasm/jni_string_adjustment.cpp.o
+
+generated-src/wasm/jni_string_adjustment.i: generated-src/wasm/jni_string_adjustment.cpp.i
+.PHONY : generated-src/wasm/jni_string_adjustment.i
+
+# target to preprocess a source file
+generated-src/wasm/jni_string_adjustment.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_string_adjustment.cpp.i
+.PHONY : generated-src/wasm/jni_string_adjustment.cpp.i
+
+generated-src/wasm/jni_string_adjustment.s: generated-src/wasm/jni_string_adjustment.cpp.s
+.PHONY : generated-src/wasm/jni_string_adjustment.s
+
+# target to generate assembly for a file
+generated-src/wasm/jni_string_adjustment.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/generated-src/wasm/jni_string_adjustment.cpp.s
+.PHONY : generated-src/wasm/jni_string_adjustment.cpp.s
 
 src/ChordDAOImpl.o: src/ChordDAOImpl.cpp.o
 .PHONY : src/ChordDAOImpl.o
@@ -670,222 +1186,6 @@ src/Utility.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SGuitar.dir/build.make CMakeFiles/SGuitar.dir/src/Utility.cpp.s
 .PHONY : src/Utility.cpp.s
 
-tests/src/TestChord.o: tests/src/TestChord.cpp.o
-.PHONY : tests/src/TestChord.o
-
-# target to build an object file
-tests/src/TestChord.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestChord.cpp.o
-.PHONY : tests/src/TestChord.cpp.o
-
-tests/src/TestChord.i: tests/src/TestChord.cpp.i
-.PHONY : tests/src/TestChord.i
-
-# target to preprocess a source file
-tests/src/TestChord.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestChord.cpp.i
-.PHONY : tests/src/TestChord.cpp.i
-
-tests/src/TestChord.s: tests/src/TestChord.cpp.s
-.PHONY : tests/src/TestChord.s
-
-# target to generate assembly for a file
-tests/src/TestChord.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestChord.cpp.s
-.PHONY : tests/src/TestChord.cpp.s
-
-tests/src/TestDAO.o: tests/src/TestDAO.cpp.o
-.PHONY : tests/src/TestDAO.o
-
-# target to build an object file
-tests/src/TestDAO.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestDAO.cpp.o
-.PHONY : tests/src/TestDAO.cpp.o
-
-tests/src/TestDAO.i: tests/src/TestDAO.cpp.i
-.PHONY : tests/src/TestDAO.i
-
-# target to preprocess a source file
-tests/src/TestDAO.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestDAO.cpp.i
-.PHONY : tests/src/TestDAO.cpp.i
-
-tests/src/TestDAO.s: tests/src/TestDAO.cpp.s
-.PHONY : tests/src/TestDAO.s
-
-# target to generate assembly for a file
-tests/src/TestDAO.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestDAO.cpp.s
-.PHONY : tests/src/TestDAO.cpp.s
-
-tests/src/TestFactory.o: tests/src/TestFactory.cpp.o
-.PHONY : tests/src/TestFactory.o
-
-# target to build an object file
-tests/src/TestFactory.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestFactory.cpp.o
-.PHONY : tests/src/TestFactory.cpp.o
-
-tests/src/TestFactory.i: tests/src/TestFactory.cpp.i
-.PHONY : tests/src/TestFactory.i
-
-# target to preprocess a source file
-tests/src/TestFactory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestFactory.cpp.i
-.PHONY : tests/src/TestFactory.cpp.i
-
-tests/src/TestFactory.s: tests/src/TestFactory.cpp.s
-.PHONY : tests/src/TestFactory.s
-
-# target to generate assembly for a file
-tests/src/TestFactory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestFactory.cpp.s
-.PHONY : tests/src/TestFactory.cpp.s
-
-tests/src/TestGuitar.o: tests/src/TestGuitar.cpp.o
-.PHONY : tests/src/TestGuitar.o
-
-# target to build an object file
-tests/src/TestGuitar.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestGuitar.cpp.o
-.PHONY : tests/src/TestGuitar.cpp.o
-
-tests/src/TestGuitar.i: tests/src/TestGuitar.cpp.i
-.PHONY : tests/src/TestGuitar.i
-
-# target to preprocess a source file
-tests/src/TestGuitar.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestGuitar.cpp.i
-.PHONY : tests/src/TestGuitar.cpp.i
-
-tests/src/TestGuitar.s: tests/src/TestGuitar.cpp.s
-.PHONY : tests/src/TestGuitar.s
-
-# target to generate assembly for a file
-tests/src/TestGuitar.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestGuitar.cpp.s
-.PHONY : tests/src/TestGuitar.cpp.s
-
-tests/src/TestGuitarObjects.o: tests/src/TestGuitarObjects.cpp.o
-.PHONY : tests/src/TestGuitarObjects.o
-
-# target to build an object file
-tests/src/TestGuitarObjects.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestGuitarObjects.cpp.o
-.PHONY : tests/src/TestGuitarObjects.cpp.o
-
-tests/src/TestGuitarObjects.i: tests/src/TestGuitarObjects.cpp.i
-.PHONY : tests/src/TestGuitarObjects.i
-
-# target to preprocess a source file
-tests/src/TestGuitarObjects.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestGuitarObjects.cpp.i
-.PHONY : tests/src/TestGuitarObjects.cpp.i
-
-tests/src/TestGuitarObjects.s: tests/src/TestGuitarObjects.cpp.s
-.PHONY : tests/src/TestGuitarObjects.s
-
-# target to generate assembly for a file
-tests/src/TestGuitarObjects.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestGuitarObjects.cpp.s
-.PHONY : tests/src/TestGuitarObjects.cpp.s
-
-tests/src/TestImport.o: tests/src/TestImport.cpp.o
-.PHONY : tests/src/TestImport.o
-
-# target to build an object file
-tests/src/TestImport.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestImport.cpp.o
-.PHONY : tests/src/TestImport.cpp.o
-
-tests/src/TestImport.i: tests/src/TestImport.cpp.i
-.PHONY : tests/src/TestImport.i
-
-# target to preprocess a source file
-tests/src/TestImport.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestImport.cpp.i
-.PHONY : tests/src/TestImport.cpp.i
-
-tests/src/TestImport.s: tests/src/TestImport.cpp.s
-.PHONY : tests/src/TestImport.s
-
-# target to generate assembly for a file
-tests/src/TestImport.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestImport.cpp.s
-.PHONY : tests/src/TestImport.cpp.s
-
-tests/src/TestNote.o: tests/src/TestNote.cpp.o
-.PHONY : tests/src/TestNote.o
-
-# target to build an object file
-tests/src/TestNote.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestNote.cpp.o
-.PHONY : tests/src/TestNote.cpp.o
-
-tests/src/TestNote.i: tests/src/TestNote.cpp.i
-.PHONY : tests/src/TestNote.i
-
-# target to preprocess a source file
-tests/src/TestNote.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestNote.cpp.i
-.PHONY : tests/src/TestNote.cpp.i
-
-tests/src/TestNote.s: tests/src/TestNote.cpp.s
-.PHONY : tests/src/TestNote.s
-
-# target to generate assembly for a file
-tests/src/TestNote.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestNote.cpp.s
-.PHONY : tests/src/TestNote.cpp.s
-
-tests/src/TestScale.o: tests/src/TestScale.cpp.o
-.PHONY : tests/src/TestScale.o
-
-# target to build an object file
-tests/src/TestScale.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestScale.cpp.o
-.PHONY : tests/src/TestScale.cpp.o
-
-tests/src/TestScale.i: tests/src/TestScale.cpp.i
-.PHONY : tests/src/TestScale.i
-
-# target to preprocess a source file
-tests/src/TestScale.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestScale.cpp.i
-.PHONY : tests/src/TestScale.cpp.i
-
-tests/src/TestScale.s: tests/src/TestScale.cpp.s
-.PHONY : tests/src/TestScale.s
-
-# target to generate assembly for a file
-tests/src/TestScale.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/TestScale.cpp.s
-.PHONY : tests/src/TestScale.cpp.s
-
-tests/src/main.o: tests/src/main.cpp.o
-.PHONY : tests/src/main.o
-
-# target to build an object file
-tests/src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/main.cpp.o
-.PHONY : tests/src/main.cpp.o
-
-tests/src/main.i: tests/src/main.cpp.i
-.PHONY : tests/src/main.i
-
-# target to preprocess a source file
-tests/src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/main.cpp.i
-.PHONY : tests/src/main.cpp.i
-
-tests/src/main.s: tests/src/main.cpp.s
-.PHONY : tests/src/main.s
-
-# target to generate assembly for a file
-tests/src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/src/main.cpp.s
-.PHONY : tests/src/main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -898,20 +1198,86 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... SQLiteCpp_cpplint"
 	@echo "... SGuitar"
 	@echo "... SQLiteCpp"
 	@echo "... doctest_with_main"
-	@echo "... fmt"
 	@echo "... sqlite3"
-	@echo "... tests"
 	@echo "... djinni/support-lib/wasm/DataRef_wasm.o"
 	@echo "... djinni/support-lib/wasm/DataRef_wasm.i"
 	@echo "... djinni/support-lib/wasm/DataRef_wasm.s"
 	@echo "... djinni/support-lib/wasm/djinni_wasm.o"
 	@echo "... djinni/support-lib/wasm/djinni_wasm.i"
 	@echo "... djinni/support-lib/wasm/djinni_wasm.s"
+	@echo "... generated-src/wasm/jni_accidental_type.o"
+	@echo "... generated-src/wasm/jni_accidental_type.i"
+	@echo "... generated-src/wasm/jni_accidental_type.s"
+	@echo "... generated-src/wasm/jni_chord.o"
+	@echo "... generated-src/wasm/jni_chord.i"
+	@echo "... generated-src/wasm/jni_chord.s"
+	@echo "... generated-src/wasm/jni_chord_DAO.o"
+	@echo "... generated-src/wasm/jni_chord_DAO.i"
+	@echo "... generated-src/wasm/jni_chord_DAO.s"
+	@echo "... generated-src/wasm/jni_chord_record.o"
+	@echo "... generated-src/wasm/jni_chord_record.i"
+	@echo "... generated-src/wasm/jni_chord_record.s"
+	@echo "... generated-src/wasm/jni_database_connection.o"
+	@echo "... generated-src/wasm/jni_database_connection.i"
+	@echo "... generated-src/wasm/jni_database_connection.s"
+	@echo "... generated-src/wasm/jni_guitar.o"
+	@echo "... generated-src/wasm/jni_guitar.i"
+	@echo "... generated-src/wasm/jni_guitar.s"
+	@echo "... generated-src/wasm/jni_guitar_DAO.o"
+	@echo "... generated-src/wasm/jni_guitar_DAO.i"
+	@echo "... generated-src/wasm/jni_guitar_DAO.s"
+	@echo "... generated-src/wasm/jni_guitar_adjustment.o"
+	@echo "... generated-src/wasm/jni_guitar_adjustment.i"
+	@echo "... generated-src/wasm/jni_guitar_adjustment.s"
+	@echo "... generated-src/wasm/jni_guitar_adjustment_position.o"
+	@echo "... generated-src/wasm/jni_guitar_adjustment_position.i"
+	@echo "... generated-src/wasm/jni_guitar_adjustment_position.s"
+	@echo "... generated-src/wasm/jni_guitar_adjustment_record.o"
+	@echo "... generated-src/wasm/jni_guitar_adjustment_record.i"
+	@echo "... generated-src/wasm/jni_guitar_adjustment_record.s"
+	@echo "... generated-src/wasm/jni_guitar_factory.o"
+	@echo "... generated-src/wasm/jni_guitar_factory.i"
+	@echo "... generated-src/wasm/jni_guitar_factory.s"
+	@echo "... generated-src/wasm/jni_guitar_import.o"
+	@echo "... generated-src/wasm/jni_guitar_import.i"
+	@echo "... generated-src/wasm/jni_guitar_import.s"
+	@echo "... generated-src/wasm/jni_guitar_record.o"
+	@echo "... generated-src/wasm/jni_guitar_record.i"
+	@echo "... generated-src/wasm/jni_guitar_record.s"
+	@echo "... generated-src/wasm/jni_guitar_string.o"
+	@echo "... generated-src/wasm/jni_guitar_string.i"
+	@echo "... generated-src/wasm/jni_guitar_string.s"
+	@echo "... generated-src/wasm/jni_guitar_string_adjustment_record.o"
+	@echo "... generated-src/wasm/jni_guitar_string_adjustment_record.i"
+	@echo "... generated-src/wasm/jni_guitar_string_adjustment_record.s"
+	@echo "... generated-src/wasm/jni_guitar_string_record.o"
+	@echo "... generated-src/wasm/jni_guitar_string_record.i"
+	@echo "... generated-src/wasm/jni_guitar_string_record.s"
+	@echo "... generated-src/wasm/jni_harmonized_scale.o"
+	@echo "... generated-src/wasm/jni_harmonized_scale.i"
+	@echo "... generated-src/wasm/jni_harmonized_scale.s"
+	@echo "... generated-src/wasm/jni_note.o"
+	@echo "... generated-src/wasm/jni_note.i"
+	@echo "... generated-src/wasm/jni_note.s"
+	@echo "... generated-src/wasm/jni_note_value.o"
+	@echo "... generated-src/wasm/jni_note_value.i"
+	@echo "... generated-src/wasm/jni_note_value.s"
+	@echo "... generated-src/wasm/jni_scale.o"
+	@echo "... generated-src/wasm/jni_scale.i"
+	@echo "... generated-src/wasm/jni_scale.s"
+	@echo "... generated-src/wasm/jni_scale_DAO.o"
+	@echo "... generated-src/wasm/jni_scale_DAO.i"
+	@echo "... generated-src/wasm/jni_scale_DAO.s"
+	@echo "... generated-src/wasm/jni_scale_record.o"
+	@echo "... generated-src/wasm/jni_scale_record.i"
+	@echo "... generated-src/wasm/jni_scale_record.s"
+	@echo "... generated-src/wasm/jni_string_adjustment.o"
+	@echo "... generated-src/wasm/jni_string_adjustment.i"
+	@echo "... generated-src/wasm/jni_string_adjustment.s"
 	@echo "... src/ChordDAOImpl.o"
 	@echo "... src/ChordDAOImpl.i"
 	@echo "... src/ChordDAOImpl.s"
@@ -957,33 +1323,6 @@ help:
 	@echo "... src/Utility.o"
 	@echo "... src/Utility.i"
 	@echo "... src/Utility.s"
-	@echo "... tests/src/TestChord.o"
-	@echo "... tests/src/TestChord.i"
-	@echo "... tests/src/TestChord.s"
-	@echo "... tests/src/TestDAO.o"
-	@echo "... tests/src/TestDAO.i"
-	@echo "... tests/src/TestDAO.s"
-	@echo "... tests/src/TestFactory.o"
-	@echo "... tests/src/TestFactory.i"
-	@echo "... tests/src/TestFactory.s"
-	@echo "... tests/src/TestGuitar.o"
-	@echo "... tests/src/TestGuitar.i"
-	@echo "... tests/src/TestGuitar.s"
-	@echo "... tests/src/TestGuitarObjects.o"
-	@echo "... tests/src/TestGuitarObjects.i"
-	@echo "... tests/src/TestGuitarObjects.s"
-	@echo "... tests/src/TestImport.o"
-	@echo "... tests/src/TestImport.i"
-	@echo "... tests/src/TestImport.s"
-	@echo "... tests/src/TestNote.o"
-	@echo "... tests/src/TestNote.i"
-	@echo "... tests/src/TestNote.s"
-	@echo "... tests/src/TestScale.o"
-	@echo "... tests/src/TestScale.i"
-	@echo "... tests/src/TestScale.s"
-	@echo "... tests/src/main.o"
-	@echo "... tests/src/main.i"
-	@echo "... tests/src/main.s"
 .PHONY : help
 
 
