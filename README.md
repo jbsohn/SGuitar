@@ -15,3 +15,26 @@ These arguments get passed into DocTest app when running the integration tests:
 ```
 $ProjectFileDir$/db/ddl.sql "$ProjectFileDir$/import/Lap Steel" "$ProjectFileDir$/import/Pedal Steel"
 ```
+
+# EMSCRIPTEN WebAssembly Target
+// Compiles the source code using the Embind bindings to connect C/C++ and JavaScript
+
+--bind
+
+// Switch to using the much smaller implementation
+
+-s MALLOC=emmalloc 
+
+// Allows us to manually invoke the initialization of wasm
+
+-s MODULARIZE=1
+
+// We need to pass int64_t
+
+-s WASM_BIGINT=1
+
+```
+emcmake cmake -S . -B .build
+cd .build
+emmake make
+```

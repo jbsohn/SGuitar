@@ -1,6 +1,6 @@
 #!/bin/sh
-if (NOT DEFINED DJINNI_RUN)
-    message(FATAL_ERROR "DJINNI_RUN is not set")
+if (NOT DEFINED DJINNI)
+    message(FATAL_ERROR "DJINNI is not set")
 endif ()
 
 if (NOT DEFINED DJINNI_GENERATED_SRC)
@@ -12,13 +12,13 @@ if (NOT DEFINED DJINNI_IDL)
 endif ()
 
 message(STATUS "generating DJINNI source with these options:")
-message(STATUS "DJINNI_RUN: ${DJINNI_RUN}")
+message(STATUS "DJINNI: ${DJINNI}")
 message(STATUS "DJINNI_GENERATED_SRC: ${DJINNI_GENERATED_SRC}")
 message(STATUS "DJINNI_IDL: ${DJINNI_IDL}")
 
 file(REMOVE_RECURSE ${DJINNI_GENERATED_SRC})
 execute_process(
-        COMMAND ${DJINNI_RUN} --java-out "${DJINNI_GENERATED_SRC}/java/com/steelsidekick/sguitar"
+        COMMAND ${DJINNI}/src/run --java-out "${DJINNI_GENERATED_SRC}/java/com/steelsidekick/sguitar"
         --java-package com.steelsidekick.sguitar
         --cpp-out "${DJINNI_GENERATED_SRC}/cpp"
         --jni-out "${DJINNI_GENERATED_SRC}/jni"
@@ -30,5 +30,5 @@ execute_process(
         --ts-out "${DJINNI_GENERATED_SRC}/ts"
         --wasm-out "${DJINNI_GENERATED_SRC}/wasm"
         --idl "${DJINNI_IDL}"
-        --ts-module SGuitar
+        --ts-module SGuitarLib
 )
