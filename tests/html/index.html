@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SGuitar Test</title>
+</head>
+<body>
+<script src="SGuitar.js"></script>
+<script>
+    let SGuitarModule;
+    Module().then(module => {
+        SGuitarModule = module;
+        console.log("SGuitarModule loaded");
+    }).catch(error => {
+        console.error('Error initializing WebAssembly module:', error);
+    });
+
+    function getNoteNameTestClick() {
+        if (SGuitarModule) {
+            const noteMidi = new SGuitarModule.Note.createWithMidiNote(61);
+            document.getElementById('noteName').innerHTML = noteMidi.noteNameSharp() + "<br>";
+
+            const note = SGuitarModule.Note.createWithNote(SGuitarModule.NoteValue.C, 3);
+            document.getElementById('noteName').innerHTML += note.noteNameSharp();
+        } else {
+            console.error('SGuitarModule is not loaded yet.');
+        }
+    }
+</script>
+<button onclick="getNoteNameTestClick()">Note Name for C#</button>
+<div id="noteName"></div>
+</body>
+</html>
