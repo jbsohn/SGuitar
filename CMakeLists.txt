@@ -47,7 +47,7 @@ add_executable(SGuitar
 set_target_properties(SGuitar PROPERTIES COMPILE_FLAGS "--no-entry -o SGuitar.js")
 set_target_properties(SGuitar PROPERTIES LINK_FLAGS    "--bind --no-entry -o SGuitar.js -s MODULARIZE=1 ")
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
-#target_link_libraries(SGuitar PRIVATE fmt)
+target_link_libraries(SGuitar PRIVATE fmt)
 target_link_libraries(SGuitar PRIVATE SQLiteCpp)
 
 #add_executable(tests ${TEST_SOURCE_FILES})

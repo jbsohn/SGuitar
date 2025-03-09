@@ -6926,8 +6926,8 @@ var ___wasm_call_ctors = createExportWrapper('__wasm_call_ctors', 0);
 var ___getTypeName = createExportWrapper('__getTypeName', 1);
 var _releaseWasmBuffer = Module['_releaseWasmBuffer'] = createExportWrapper('releaseWasmBuffer', 1);
 var _malloc = createExportWrapper('malloc', 1);
-var _free = createExportWrapper('free', 1);
 var _fflush = createExportWrapper('fflush', 1);
+var _free = createExportWrapper('free', 1);
 var _emscripten_builtin_memalign = createExportWrapper('emscripten_builtin_memalign', 2);
 var _strerror = createExportWrapper('strerror', 1);
 var _emscripten_stack_init = wasmExports['emscripten_stack_init']

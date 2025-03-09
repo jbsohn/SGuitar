@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 John Sohn. All rights reserved.
 //
 
-#include <format>
+#include <fmt/format.h>
 #include "StringAdjustmentImpl.hpp"
 
 StringAdjustmentImpl::StringAdjustmentImpl(const int string_number, const int step) {
@@ -19,5 +19,5 @@ std::shared_ptr<StringAdjustment> StringAdjustment::create_with_string_number(in
 }
 
 std::string StringAdjustmentImpl::test_description() {
-    return std::format("string_number: {}, step={}", string_number, step);
+    return fmt::format("string_number: {}, step={}", string_number, step);
 }
