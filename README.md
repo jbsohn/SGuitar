@@ -16,7 +16,7 @@ These arguments get passed into DocTest app when running the integration tests:
 $ProjectFileDir$/db/ddl.sql "$ProjectFileDir$/import/Lap Steel" "$ProjectFileDir$/import/Pedal Steel"
 ```
 
-# EMSCRIPTEN
+# EMSCRIPTEN WebAssembly Target
 // Compiles the source code using the Embind bindings to connect C/C++ and JavaScript
 
 --bind
@@ -35,8 +35,6 @@ $ProjectFileDir$/db/ddl.sql "$ProjectFileDir$/import/Lap Steel" "$ProjectFileDir
 
 ```
 emcmake cmake -S . -B .build
-emcmake cmake
 cd .build
 emmake make
-emcc libSGuitar.a --bind -s MALLOC=emmalloc -s MODULARIZE=1 -s WASM_BIGINT=1 -o SGuitarModule.js
 ```

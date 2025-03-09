@@ -12,13 +12,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(doctest)
 
-file(GLOB SOURCE_FILES "src/*")
-file(GLOB GENERATED_CPP "generated-src/cpp/*")
-file(GLOB GENERATED_OBJC "generated-src/objc/*")
-file(GLOB GENERATED_OBJC_CPP "generated-src/objc-cpp/*")
-file(GLOB GENERATED_WASM "generated-src/wasm/*")
-file(GLOB TEST_SOURCE_FILES "tests/src/*")
-file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*")
+file(GLOB SOURCE_FILES "src/*.cpp")
+file(GLOB GENERATED_CPP "generated-src/cpp/*.cpp")
+file(GLOB GENERATED_OBJC "generated-src/objc/*.mm")
+file(GLOB GENERATED_OBJC_CPP "generated-src/objc-cpp/*.cpp")
+file(GLOB GENERATED_WASM "generated-src/wasm/*.cpp")
+file(GLOB TEST_SOURCE_FILES "tests/src/*.cpp")
+file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*.cpp")
 file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*")
 file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
 file(GLOB DJINNI_WASM "djinni/support-lib/wasm/*.cpp")
@@ -36,28 +36,38 @@ include_directories(PUBLIC
 )
 include_directories(PRIVATE "src")
 
-message(STATUS "Building unit tests...")
-add_executable(SGuitar
-        ${SOURCE_FILES}
-        ${DJINNI_WASM}
-        ${GENERATED_CPP}
-        ${GENERATED_WASM}
-)
-#set(CMAKE_EXECUTABLE_SUFFIX ".wasm")
-set_target_properties(SGuitar PROPERTIES COMPILE_FLAGS "--no-entry -o SGuitar.js")
-set_target_properties(SGuitar PROPERTIES LINK_FLAGS    "--bind --no-entry -o SGuitar.js -s MODULARIZE=1 ")
+if(EMSCRIPTEN)
+    message(STATUS "Building WebAssembly...")
+    add_executable(SGuitar
+            ${SOURCE_FILES}
+            ${DJINNI_WASM}
+            ${GENERATED_CPP}
+            ${GENERATED_WASM}
+    )
+    set_target_properties(SGuitar PROPERTIES COMPILE_FLAGS "--no-entry -o SGuitar.js")
+    set_target_properties(SGuitar PROPERTIES LINK_FLAGS    "--bind --no-entry -o SGuitar.js -s MODULARIZE=1")
+else()
+    message(STATUS "Building static library...")
+    add_library(SGuitar STATIC
+            ${SOURCE_FILES}
+            ${GENERATED_CPP}
+    )
+endif()
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
 target_link_libraries(SGuitar PRIVATE fmt)
 target_link_libraries(SGuitar PRIVATE SQLiteCpp)
 
-#add_executable(tests ${TEST_SOURCE_FILES})
-#target_link_libraries(tests PRIVATE nlohmann_json)
-##target_link_libraries(tests PRIVATE fmt)
-#target_link_libraries(tests PRIVATE SQLiteCpp)
-#target_link_libraries(tests PRIVATE doctest)
-#target_link_libraries(tests PRIVATE SGuitar)
-#enable_testing()
-#add_test(
-#        NAME tests
-#        COMMAND $<TARGET_FILE:tests>
-#)
+if(NOT EMSCRIPTEN)
+    message(STATUS "Building unit tests...")
+    add_executable(tests ${TEST_SOURCE_FILES})
+    target_link_libraries(tests PRIVATE nlohmann_json)
+    target_link_libraries(tests PRIVATE fmt)
+    target_link_libraries(tests PRIVATE SQLiteCpp)
+    target_link_libraries(tests PRIVATE doctest)
+    target_link_libraries(tests PRIVATE SGuitar)
+    enable_testing()
+    add_test(
+            NAME tests
+            COMMAND $<TARGET_FILE:tests>
+    )
+endif()
