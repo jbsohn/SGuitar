@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SGuitar Test</title>
+</head>
+<body>
+<script src="SGuitar.js"></script>
+<script>
+    Module().then(module => {
+        const note = new module.Note.createWithMidiNote(61);
+        console.log("noteInstance: " + note.noteNameSharp());
+    })
+</script>
+</body>
+</html>

@@ -37,12 +37,15 @@ include_directories(PUBLIC
 include_directories(PRIVATE "src")
 
 message(STATUS "Building unit tests...")
-add_library(SGuitar STATIC
+add_executable(SGuitar
         ${SOURCE_FILES}
         ${DJINNI_WASM}
         ${GENERATED_CPP}
         ${GENERATED_WASM}
 )
+#set(CMAKE_EXECUTABLE_SUFFIX ".wasm")
+set_target_properties(SGuitar PROPERTIES COMPILE_FLAGS "--no-entry -o SGuitar.js")
+set_target_properties(SGuitar PROPERTIES LINK_FLAGS    "--bind --no-entry -o SGuitar.js -s MODULARIZE=1 ")
 target_link_libraries(SGuitar PRIVATE nlohmann_json)
 #target_link_libraries(SGuitar PRIVATE fmt)
 target_link_libraries(SGuitar PRIVATE SQLiteCpp)
