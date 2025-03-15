@@ -5,7 +5,7 @@
 To regenerate the djinni files, run the following command:
 
 ```
-cmake -DDJINNI_RUN=./djinni/src/run -DDJINNI_GENERATED_SRC=./generated-src -DDJINNI_IDL=./idl/sguitar.djinni -P ./scripts/run-djinni.cmake
+cmake -DDJINNI=./djinni -DDJINNI_GENERATED_SRC=./generated-src -DDJINNI_IDL=./idl/sguitar.djinni -P ./cmake/run-djinni.cmake
 ```
 
 # Integration Testing
@@ -17,13 +17,14 @@ $ProjectFileDir$/db/ddl.sql "$ProjectFileDir$/import/Lap Steel" "$ProjectFileDir
 ```
 
 # EMSCRIPTEN WebAssembly Target
+
 // Compiles the source code using the Embind bindings to connect C/C++ and JavaScript
 
 --bind
 
 // Switch to using the much smaller implementation
 
--s MALLOC=emmalloc 
+-s MALLOC=emmalloc
 
 // Allows us to manually invoke the initialization of wasm
 
