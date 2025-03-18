@@ -18,12 +18,11 @@ file(GLOB GENERATED_WASM "generated-src/wasm/*.cpp")
 file(GLOB TEST_SOURCE_FILES "tests/src/*.cpp")
 file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*.cpp")
 file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*.mm")
-file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
 file(GLOB DJINNI_JNI "djinni/support-lib/jni/*.cpp")
 file(GLOB DJINNI_WASM "djinni/support-lib/wasm/*.cpp")
-file(GLOB DJINNI_IDL "idl/*")
+file(GLOB DJINNI_IDL "idl/*.djinni")
 
-include_directories(PUBLIC
+include_directories(PRIVATE
         "generated-src/cpp"
         "generated-src/objc"
         "generated-src/objc-cpp"
@@ -32,16 +31,16 @@ include_directories(PUBLIC
         "djinni/support-lib/objc"
         "djinni/support-lib/jni"
         "djinni/support-lib/wasm"
+        "src"
 )
-include_directories(PRIVATE "src")
 
 if (EMSCRIPTEN)
     message(STATUS "Building WebAssembly...")
     add_executable(SGuitar
             ${SOURCE_FILES}
-            ${DJINNI_WASM}
             ${GENERATED_CPP}
             ${GENERATED_WASM}
+            ${DJINNI_WASM}
     )
     set_target_properties(SGuitar PROPERTIES COMPILE_FLAGS "--no-entry -o SGuitar.js")
     set_target_properties(SGuitar PROPERTIES LINK_FLAGS "--bind --no-entry -o SGuitar.js -s MODULARIZE=1")

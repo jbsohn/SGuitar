@@ -10,6 +10,8 @@ cmake -DDJINNI=./djinni -DDJINNI_GENERATED_SRC=./generated-src -DDJINNI_IDL=./id
 
 # Integration Testing
 
+Usage: <path-to-ddl> <path-to-lap-steel> <path-to-pedal-steel>
+
 These arguments get passed into DocTest app when running the integration tests:
 
 ```
