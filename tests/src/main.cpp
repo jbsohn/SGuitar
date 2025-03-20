@@ -55,7 +55,7 @@ void readArguments(const int argc, char** argv) {
         Paths::dbPath = testDBPath();
     } else {
         std::cerr << "Usage: <path-to-ddl> <path-to-lap-steel> <path-to-pedal-steel>" << std::endl;
-        std::exit(0);
+        std::exit(EXIT_FAILURE);
     }
 }
 

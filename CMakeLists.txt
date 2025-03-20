@@ -70,6 +70,6 @@ if (NOT EMSCRIPTEN AND NOT ANDROID)
     enable_testing()
     add_test(
             NAME tests
-            COMMAND $<TARGET_FILE:tests>
+            COMMAND $<TARGET_FILE:tests> ${PROJECT_SOURCE_DIR}/db/ddl.sql "${PROJECT_SOURCE_DIR}/import/Lap Steel" "${PROJECT_SOURCE_DIR}/import/Pedal Steel"
     )
 endif ()
