@@ -18,6 +18,11 @@ These arguments get passed into DocTest app when running the integration tests:
 $ProjectFileDir$/db/ddl.sql "$ProjectFileDir$/import/Lap Steel" "$ProjectFileDir$/import/Pedal Steel"
 ```
 
+# iOS Framework Target
+```
+cmake -S . -B build -G Xcode -DIOS=1
+```
+
 # EMSCRIPTEN WebAssembly Target
 
 // Compiles the source code using the Embind bindings to connect C/C++ and JavaScript
