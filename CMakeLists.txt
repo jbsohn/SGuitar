@@ -80,14 +80,17 @@ elseif (IOS)
     )
     set_target_properties(SGuitar PROPERTIES
             FRAMEWORK TRUE
-            FRAMEWORK_VERSION C
+            FRAMEWORK_VERSION A
             MACOSX_FRAMEWORK_IDENTIFIER com.steelsidekick.SGuitar
-            MACOSX_FRAMEWORK_INFO_PLIST resources/Info.plist
-            VERSION 16.4.0
+            MACOSX_FRAMEWORK_INFO_PLIST ${PROJECT_SOURCE_DIR}/resources/Info.plist
+            VERSION 1.0.0
             SOVERSION 1.0.0
             PUBLIC_HEADER "${FRAMEWORK_PUBLIC_HEADER}"
-            XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer"
+            XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "Apple Development"
+            XCODE_ATTRIBUTE_DEFINES_MODULE "YES"
             XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.steelsidekick.SGuitar"
+            MACOSX_RPATH TRUE
+            XCODE_ATTRIBUTE_SKIP_INSTALL "YES"
     )
 else ()
     message(STATUS "Building static library...")
