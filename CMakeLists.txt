@@ -1,14 +1,17 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.25)
 project(SGuitar)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Dependencies
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:nlohmann/json@3.11.3")
 CPMAddPackage("gh:SRombauts/SQLiteCpp#3.3.2")
 CPMAddPackage("gh:fmtlib/fmt#11.1.4")
 CPMAddPackage("gh:doctest/doctest@2.4.11")
 
+# Source files
 file(GLOB SOURCE_FILES "src/*.cpp")
 file(GLOB GENERATED_CPP "generated-src/cpp/*.cpp")
 file(GLOB GENERATED_OBJC "generated-src/objc/*.mm")
@@ -22,25 +25,14 @@ file(GLOB DJINNI_JNI "djinni/support-lib/jni/*.cpp")
 file(GLOB DJINNI_WASM "djinni/support-lib/wasm/*.cpp")
 file(GLOB FRAMEWORK_INCLUDE "framework-include/*.h")
 file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
+file(GLOB DJINNI_IDL "idl/*.djinni")
+
 set(FRAMEWORK_PUBLIC_HEADER
         ${DJINNI_OBJC_HEADER}
         ${FRAMEWORK_INCLUDE}
 )
-file(GLOB DJINNI_IDL "idl/*.djinni")
 
-include_directories(PUBLIC
-        "generated-src/cpp"
-        "generated-src/objc"
-        "generated-src/objc-cpp"
-        "djinni/support-lib"
-        "djinni/support-lib/cpp"
-        "djinni/support-lib/objc"
-        "djinni/support-lib/jni"
-        "djinni/support-lib/wasm"
-        "framework-include"
-        "src"
-)
-
+# Platform-specific build
 if (EMSCRIPTEN)
     message(STATUS "Creating WebAssembly...")
     add_executable(SGuitar
@@ -49,8 +41,10 @@ if (EMSCRIPTEN)
             ${GENERATED_WASM}
             ${DJINNI_WASM}
     )
-    set_target_properties(SGuitar PROPERTIES COMPILE_FLAGS "--no-entry -o SGuitar.js")
-    set_target_properties(SGuitar PROPERTIES LINK_FLAGS "--bind --no-entry -o SGuitar.js -s MODULARIZE=1")
+    set_target_properties(SGuitar PROPERTIES
+            COMPILE_FLAGS "--no-entry -o SGuitar.js"
+            LINK_FLAGS "--bind --no-entry -o SGuitar.js -s MODULARIZE=1"
+    )
 elseif (ANDROID)
     message(STATUS "Creating Android shared library...")
     add_library(SGuitar SHARED
@@ -92,15 +86,29 @@ elseif (IOS)
             MACOSX_RPATH TRUE
             XCODE_ATTRIBUTE_SKIP_INSTALL "YES"
     )
-else ()
+else()
     message(STATUS "Building static library...")
     add_library(SGuitar STATIC
             ${SOURCE_FILES}
             ${GENERATED_CPP}
     )
-endif ()
+endif()
+
+target_include_directories(SGuitar PUBLIC
+        ${PROJECT_SOURCE_DIR}/generated-src/cpp
+        ${PROJECT_SOURCE_DIR}/generated-src/objc
+        ${PROJECT_SOURCE_DIR}/generated-src/objc-cpp
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/cpp
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/objc
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/jni
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/wasm
+        ${PROJECT_SOURCE_DIR}/framework-include
+        ${PROJECT_SOURCE_DIR}/src
+)
 target_link_libraries(SGuitar nlohmann_json SQLiteCpp fmt)
 
+# Tests
 if (NOT EMSCRIPTEN AND NOT ANDROID)
     message(STATUS "Building unit tests...")
     add_executable(tests ${TEST_SOURCE_FILES})
@@ -108,6 +116,9 @@ if (NOT EMSCRIPTEN AND NOT ANDROID)
     enable_testing()
     add_test(
             NAME tests
-            COMMAND $<TARGET_FILE:tests> ${PROJECT_SOURCE_DIR}/db/ddl.sql "${PROJECT_SOURCE_DIR}/import/Lap Steel" "${PROJECT_SOURCE_DIR}/import/Pedal Steel"
+            COMMAND $<TARGET_FILE:tests>
+            ${PROJECT_SOURCE_DIR}/db/ddl.sql
+            "${PROJECT_SOURCE_DIR}/import/Lap Steel"
+            "${PROJECT_SOURCE_DIR}/import/Pedal Steel"
     )
-endif ()
+endif()
