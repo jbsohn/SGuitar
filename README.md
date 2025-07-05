@@ -109,6 +109,12 @@ This produces `SGuitar.js` and `SGuitar.wasm` in the `.build/` directory.
 
 ## 📃 License
 
-> _(Still to be decided. Currently private. Older versions used GPLv2.)_
+This project is licensed under the GNU General Public License v2.0 (GPLv2).
 
----
+You are free to use, study, modify, and share this code under the terms of the GPL. This means that any distributed modifications or derivatives must also be open source and GPL-compatible.
+
+The author retains all rights to license the code under alternative terms for private or commercial use. If you're interested in using this code in a closed-source or proprietary application — such as a commercial iOS or Android app — please contact me.
+
+🎓 Academic users are welcome! If you use SGuitar in a class project, thesis, or paper, I’d love to hear about it — feel free to reach out.
+
+© 2025 John Sohn
