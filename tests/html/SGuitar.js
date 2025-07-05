@@ -150,7 +150,7 @@ if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
   if (scriptDirectory.startsWith('blob:')) {
     scriptDirectory = '';
   } else {
-    scriptDirectory = scriptDirectory.slice(0, scriptDirectory.replace(/[?#].*/, '').lastIndexOf('/')+1);
+    scriptDirectory = scriptDirectory.substr(0, scriptDirectory.replace(/[?#].*/, '').lastIndexOf('/')+1);
   }
 
   if (!(typeof window == 'object' || typeof WorkerGlobalScope != 'undefined')) throw new Error('not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)');
@@ -325,12 +325,22 @@ var HEAP,
 
 var runtimeInitialized = false;
 
+// include: URIUtils.js
+// Prefix of data URIs emitted by SINGLE_FILE and related options.
+var dataURIPrefix = 'data:application/octet-stream;base64,';
+
+/**
+ * Indicates whether filename is a base64 data URI.
+ * @noinline
+ */
+var isDataURI = (filename) => filename.startsWith(dataURIPrefix);
+
 /**
  * Indicates whether filename is delivered via file protocol (as opposed to http/https)
  * @noinline
  */
 var isFileURI = (filename) => filename.startsWith('file://');
-
+// end include: URIUtils.js
 // include: runtime_shared.js
 // include: runtime_stack_check.js
 // Initializes the stack cookie. Called at the startup of main and at the startup of each thread in pthreads mode.
@@ -392,18 +402,6 @@ function legacyModuleProp(prop, newName, incoming=true) {
       get() {
         let extra = incoming ? ' (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)' : '';
         abort(`\`Module.${prop}\` has been replaced by \`${newName}\`` + extra);
-
-      }
-    });
-  }
-}
-
-function consumedModuleProp(prop) {
-  if (!Object.getOwnPropertyDescriptor(Module, prop)) {
-    Object.defineProperty(Module, prop, {
-      configurable: true,
-      set() {
-        abort(`Attempt to set \`Module.${prop}\` after it has already been processed.  This can happen, for example, when code is injected via '--post-js' rather than '--pre-js'`);
 
       }
     });
@@ -527,6 +525,11 @@ assert(typeof Int32Array != 'undefined' && typeof Float64Array !== 'undefined' &
 assert(!Module['wasmMemory'], 'Use of `wasmMemory` detected.  Use -sIMPORTED_MEMORY to define wasmMemory externally');
 assert(!Module['INITIAL_MEMORY'], 'Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically');
 
+var __ATPRERUN__  = []; // functions called before the runtime is initialized
+var __ATINIT__    = []; // functions called during startup
+var __ATEXIT__    = []; // functions called during shutdown
+var __ATPOSTRUN__ = []; // functions called after the main() is called
+
 function preRun() {
   if (Module['preRun']) {
     if (typeof Module['preRun'] == 'function') Module['preRun'] = [Module['preRun']];
@@ -534,8 +537,7 @@ function preRun() {
       addOnPreRun(Module['preRun'].shift());
     }
   }
-  consumedModuleProp('preRun');
-  callRuntimeCallbacks(onPreRuns);
+  callRuntimeCallbacks(__ATPRERUN__);
 }
 
 function initRuntime() {
@@ -544,12 +546,13 @@ function initRuntime() {
 
   checkStackCookie();
 
-  if (!Module['noFSInit'] && !FS.initialized) FS.init();
+  
+if (!Module['noFSInit'] && !FS.initialized)
+  FS.init();
+FS.ignorePermissions = false;
+
 TTY.init();
-
-  wasmExports['__wasm_call_ctors']();
-
-  FS.ignorePermissions = false;
+  callRuntimeCallbacks(__ATINIT__);
 }
 
 function postRun() {
@@ -561,9 +564,23 @@ function postRun() {
       addOnPostRun(Module['postRun'].shift());
     }
   }
-  consumedModuleProp('postRun');
 
-  callRuntimeCallbacks(onPostRuns);
+  callRuntimeCallbacks(__ATPOSTRUN__);
+}
+
+function addOnPreRun(cb) {
+  __ATPRERUN__.unshift(cb);
+}
+
+function addOnInit(cb) {
+  __ATINIT__.unshift(cb);
+}
+
+function addOnExit(cb) {
+}
+
+function addOnPostRun(cb) {
+  __ATPOSTRUN__.unshift(cb);
 }
 
 // A counter of dependencies for calling run(). If we need to
@@ -691,7 +708,11 @@ function createExportWrapper(name, nargs) {
 
 var wasmBinaryFile;
 function findWasmBinary() {
-    return locateFile('SGuitar.wasm');
+    var f = 'SGuitar.wasm';
+    if (!isDataURI(f)) {
+      return locateFile(f);
+    }
+    return f;
 }
 
 function getBinarySync(file) {
@@ -706,7 +727,8 @@ function getBinarySync(file) {
 
 async function getWasmBinary(binaryFile) {
   // If we don't have the binary yet, load it asynchronously using readAsync.
-  if (!wasmBinary) {
+  if (!wasmBinary
+      ) {
     // Fetch the binary using readAsync
     try {
       var response = await readAsync(binaryFile);
@@ -737,7 +759,9 @@ async function instantiateArrayBuffer(binaryFile, imports) {
 }
 
 async function instantiateAsync(binary, binaryFile, imports) {
-  if (!binary && typeof WebAssembly.instantiateStreaming == 'function'
+  if (!binary &&
+      typeof WebAssembly.instantiateStreaming == 'function' &&
+      !isDataURI(binaryFile)
       // Don't use streaming for file:// delivered objects in a webview, fetch them synchronously.
       && !isFileURI(binaryFile)
       // Avoid instantiateStreaming() on Node.js environment for now, as while
@@ -792,6 +816,8 @@ async function createWasm() {
     
     assert(wasmTable, 'table not found in wasm exports');
 
+    addOnInit(wasmExports['__wasm_call_ctors']);
+
     removeRunDependency('wasm-instantiate');
     return wasmExports;
   }
@@ -822,17 +848,13 @@ async function createWasm() {
   // Also pthreads and wasm workers initialize the wasm instance through this
   // path.
   if (Module['instantiateWasm']) {
-    return new Promise((resolve, reject) => {
-      try {
-        Module['instantiateWasm'](info, (mod, inst) => {
-          receiveInstance(mod, inst);
-          resolve(mod.exports);
-        });
-      } catch(e) {
-        err(`Module.instantiateWasm callback failed with error: ${e}`);
-        reject(e);
-      }
-    });
+    try {
+      return Module['instantiateWasm'](info, receiveInstance);
+    } catch(e) {
+      err(`Module.instantiateWasm callback failed with error: ${e}`);
+        // If instantiation fails, reject the module ready promise.
+        readyPromiseReject(e);
+    }
   }
 
   wasmBinaryFile ??= findWasmBinary();
@@ -873,12 +895,6 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         callbacks.shift()(Module);
       }
     };
-  var onPostRuns = [];
-  var addOnPostRun = (cb) => onPostRuns.unshift(cb);
-
-  var onPreRuns = [];
-  var addOnPreRun = (cb) => onPreRuns.unshift(cb);
-
 
   
     /**
@@ -1119,7 +1135,7 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
       },
   normalize:(path) => {
         var isAbsolute = PATH.isAbs(path),
-            trailingSlash = path.slice(-1) === '/';
+            trailingSlash = path.substr(-1) === '/';
         // Normalize the path
         path = PATH.normalizeArray(path.split('/').filter((p) => !!p), !isAbsolute).join('/');
         if (!path && !isAbsolute) {
@@ -1140,7 +1156,7 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         }
         if (dir) {
           // It has a dirname, strip trailing slash
-          dir = dir.slice(0, -1);
+          dir = dir.substr(0, dir.length - 1);
         }
         return root + dir;
       },
@@ -1186,8 +1202,8 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
       },
   relative:(from, to) => {
-        from = PATH_FS.resolve(from).slice(1);
-        to = PATH_FS.resolve(to).slice(1);
+        from = PATH_FS.resolve(from).substr(1);
+        to = PATH_FS.resolve(to).substr(1);
         function trim(arr) {
           var start = 0;
           for (; start < arr.length; start++) {
@@ -1292,13 +1308,13 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
       return outIdx - startIdx;
     };
   /** @type {function(string, boolean=, number=)} */
-  var intArrayFromString = (stringy, dontAddNull, length) => {
-      var len = length > 0 ? length : lengthBytesUTF8(stringy)+1;
-      var u8array = new Array(len);
-      var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
-      if (dontAddNull) u8array.length = numBytesWritten;
-      return u8array;
-    };
+  function intArrayFromString(stringy, dontAddNull, length) {
+    var len = length > 0 ? length : lengthBytesUTF8(stringy)+1;
+    var u8array = new Array(len);
+    var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
+    if (dontAddNull) u8array.length = numBytesWritten;
+    return u8array;
+  }
   var FS_stdin_getChar = () => {
       if (!FS_stdin_getChar_buffer.length) {
         var result = null;
@@ -1444,7 +1460,7 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
           }
         },
   fsync(tty) {
-          if (tty.output?.length > 0) {
+          if (tty.output && tty.output.length > 0) {
             out(UTF8ArrayToString(tty.output));
             tty.output = [];
           }
@@ -1481,7 +1497,7 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
           }
         },
   fsync(tty) {
-          if (tty.output?.length > 0) {
+          if (tty.output && tty.output.length > 0) {
             err(UTF8ArrayToString(tty.output));
             tty.output = [];
           }
@@ -2042,10 +2058,6 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
   currentPath:"/",
   initialized:false,
   ignorePermissions:true,
-  filesystems:null,
-  syncFSRequests:0,
-  readFiles:{
-  },
   ErrnoError:class extends Error {
         name = 'ErrnoError';
         // We set the `name` property to be able to identify `FS.ErrnoError`
@@ -2065,6 +2077,10 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
           }
         }
       },
+  filesystems:null,
+  syncFSRequests:0,
+  readFiles:{
+  },
   FSStream:class {
         shared = {};
         get object() {
@@ -2417,13 +2433,6 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         var stream = FS.createStream(origStream, fd);
         stream.stream_ops?.dup?.(stream);
         return stream;
-      },
-  doSetAttr(stream, node, attr) {
-        var setattr = stream?.stream_ops.setattr;
-        var arg = setattr ? stream : node;
-        setattr ??= node.node_ops.setattr;
-        FS.checkOpExists(setattr, 63)
-        setattr(arg, attr);
       },
   chrdev_stream_ops:{
   open(stream) {
@@ -2840,24 +2849,8 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         var getattr = FS.checkOpExists(node.node_ops.getattr, 63);
         return getattr(node);
       },
-  fstat(fd) {
-        var stream = FS.getStreamChecked(fd);
-        var node = stream.node;
-        var getattr = stream.stream_ops.getattr;
-        var arg = getattr ? stream : node;
-        getattr ??= node.node_ops.getattr;
-        FS.checkOpExists(getattr, 63)
-        return getattr(arg);
-      },
   lstat(path) {
         return FS.stat(path, true);
-      },
-  doChmod(stream, node, mode, dontFollow) {
-        FS.doSetAttr(stream, node, {
-          mode: (mode & 4095) | (node.mode & ~4095),
-          ctime: Date.now(),
-          dontFollow
-        });
       },
   chmod(path, mode, dontFollow) {
         var node;
@@ -2867,21 +2860,19 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         } else {
           node = path;
         }
-        FS.doChmod(null, node, mode, dontFollow);
+        var setattr = FS.checkOpExists(node.node_ops.setattr, 63);
+        setattr(node, {
+          mode: (mode & 4095) | (node.mode & ~4095),
+          ctime: Date.now(),
+          dontFollow
+        });
       },
   lchmod(path, mode) {
         FS.chmod(path, mode, true);
       },
   fchmod(fd, mode) {
         var stream = FS.getStreamChecked(fd);
-        FS.doChmod(stream, stream.node, mode, false);
-      },
-  doChown(stream, node, dontFollow) {
-        FS.doSetAttr(stream, node, {
-          timestamp: Date.now(),
-          dontFollow
-          // we ignore the uid / gid for now
-        });
+        FS.chmod(stream.node, mode);
       },
   chown(path, uid, gid, dontFollow) {
         var node;
@@ -2891,30 +2882,19 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         } else {
           node = path;
         }
-        FS.doChown(null, node, dontFollow);
+        var setattr = FS.checkOpExists(node.node_ops.setattr, 63);
+        setattr(node, {
+          timestamp: Date.now(),
+          dontFollow
+          // we ignore the uid / gid for now
+        });
       },
   lchown(path, uid, gid) {
         FS.chown(path, uid, gid, true);
       },
   fchown(fd, uid, gid) {
         var stream = FS.getStreamChecked(fd);
-        FS.doChown(stream, stream.node, false);
-      },
-  doTruncate(stream, node, len) {
-        if (FS.isDir(node.mode)) {
-          throw new FS.ErrnoError(31);
-        }
-        if (!FS.isFile(node.mode)) {
-          throw new FS.ErrnoError(28);
-        }
-        var errCode = FS.nodePermissions(node, 'w');
-        if (errCode) {
-          throw new FS.ErrnoError(errCode);
-        }
-        FS.doSetAttr(stream, node, {
-          size: len,
-          timestamp: Date.now()
-        });
+        FS.chown(stream.node, uid, gid);
       },
   truncate(path, len) {
         if (len < 0) {
@@ -2927,14 +2907,28 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         } else {
           node = path;
         }
-        FS.doTruncate(null, node, len);
+        if (FS.isDir(node.mode)) {
+          throw new FS.ErrnoError(31);
+        }
+        if (!FS.isFile(node.mode)) {
+          throw new FS.ErrnoError(28);
+        }
+        var errCode = FS.nodePermissions(node, 'w');
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        var setattr = FS.checkOpExists(node.node_ops.setattr, 63);
+        setattr(node, {
+          size: len,
+          timestamp: Date.now()
+        });
       },
   ftruncate(fd, len) {
         var stream = FS.getStreamChecked(fd);
-        if (len < 0 || (stream.flags & 2097155) === 0) {
+        if ((stream.flags & 2097155) === 0) {
           throw new FS.ErrnoError(28);
         }
-        FS.doTruncate(stream, stream.node, len);
+        FS.truncate(stream.node, len);
       },
   utime(path, atime, mtime) {
         var lookup = FS.lookupPath(path, { follow: true });
@@ -3426,7 +3420,7 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
           try {
             FS.mkdir(current);
           } catch (e) {
-            if (e.errno != 20) throw e;
+            // ignore EEXIST
           }
           parent = current;
         }
@@ -3896,11 +3890,7 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
         }
         case 13:
         case 14:
-          // Pretend that the locking is successful. These are process-level locks,
-          // and Emscripten programs are a single process. If we supported linking a
-          // filesystem between programs, we'd need to do more here.
-          // See https://github.com/emscripten-core/emscripten/issues/23697
-          return 0;
+          return 0; // Pretend that the locking is successful.
       }
       return -28;
     } catch (e) {
@@ -3912,7 +3902,8 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
   function ___syscall_fstat64(fd, buf) {
   try {
   
-      return SYSCALLS.writeStat(buf, FS.fstat(fd));
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      return SYSCALLS.writeStat(buf, FS.stat(stream.path));
     } catch (e) {
     if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
     return -e.errno;
@@ -4789,7 +4780,9 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
   function ClassHandle() {
     }
   
-  var createNamedFunction = (name, func) => Object.defineProperty(func, 'name', { value: name });
+  var createNamedFunction = (name, body) => Object.defineProperty(body, 'name', {
+      value: name
+    });
   
   
   var ensureOverloadTable = (proto, methodName, humanName) => {
@@ -5478,9 +5471,12 @@ function djinni_init__note_value_consts() { Module.NoteValue = { C : 0, C_SHARP 
   var getFunctionName = (signature) => {
       signature = signature.trim();
       const argsIndex = signature.indexOf("(");
-      if (argsIndex === -1) return signature;
-      assert(signature.endsWith(")"), "Parentheses for argument names should match.");
-      return signature.slice(0, argsIndex);
+      if (argsIndex !== -1) {
+        assert(signature[signature.length - 1] == ")", "Parentheses for argument names should match.");
+        return signature.substr(0, argsIndex);
+      } else {
+        return signature;
+      }
     };
   var __embind_register_class_class_function = (rawClassType,
                                             methodName,
@@ -6979,10 +6975,6 @@ var missingLibrarySymbols = [
   'asmjsMangle',
   'HandleAllocator',
   'getNativeTypeSize',
-  'addOnInit',
-  'addOnPostCtor',
-  'addOnPreMain',
-  'addOnExit',
   'STACK_SIZE',
   'STACK_ALIGN',
   'POINTER_SIZE',
@@ -7118,6 +7110,11 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
 
 var unexportedSymbols = [
   'run',
+  'addOnPreRun',
+  'addOnInit',
+  'addOnPreMain',
+  'addOnExit',
+  'addOnPostRun',
   'addRunDependency',
   'removeRunDependency',
   'out',
@@ -7154,8 +7151,6 @@ var unexportedSymbols = [
   'mmapAlloc',
   'wasmTable',
   'noExitRuntime',
-  'addOnPreRun',
-  'addOnPostRun',
   'freeTableIndexes',
   'functionsInTableMap',
   'setValue',
@@ -7370,7 +7365,6 @@ function run() {
 
     readyPromiseResolve(Module);
     Module['onRuntimeInitialized']?.();
-    consumedModuleProp('onRuntimeInitialized');
 
     assert(!Module['_main'], 'compiled without a main, but one is present. if you added it from JS, use Module["onRuntimeInitialized"]');
 
@@ -7435,7 +7429,6 @@ if (Module['preInit']) {
     Module['preInit'].pop()();
   }
 }
-consumedModuleProp('preInit');
 
 run();
 

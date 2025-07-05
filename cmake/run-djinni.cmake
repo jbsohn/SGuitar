@@ -30,5 +30,5 @@ execute_process(
         --ts-out "${DJINNI_GENERATED_SRC}/ts"
         --wasm-out "${DJINNI_GENERATED_SRC}/wasm"
         --idl "${DJINNI_IDL}"
-        --ts-module SGuitarLib
+        --ts-module SGuitar
 )
