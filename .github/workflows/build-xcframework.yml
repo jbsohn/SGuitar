@@ -1,0 +1,38 @@
+name: Build SGuitar.xcframework
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger only when you push a version tag like v1.0.0
+
+jobs:
+  build-xcframework:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install CMake
+        run: brew install cmake
+
+      - name: Configure SGuitar for iOS
+        run: |
+          cmake -S . -B build -G Xcode -DIOS=1
+
+      - name: Build SGuitar Framework
+        run: |
+          cmake --build build --config Release
+
+      - name: Create XCFramework
+        run: |
+          mkdir -p output
+          xcodebuild -create-xcframework \
+            -framework build/Release-iphoneos/SGuitar.framework \
+            -output output/SGuitar.xcframework
+
+      - name: Upload XCFramework Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SGuitar.xcframework
+          path: output/SGuitar.xcframework
