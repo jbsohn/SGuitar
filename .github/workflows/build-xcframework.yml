@@ -56,12 +56,11 @@ jobs:
 
       - name: Zip XCFramework for release
         run: |
-          cd build
-          zip -r SGuitar.xcframework.zip SGuitar.xcframework
+          zip -r SGuitar.xcframework.zip build/SGuitar.xcframework
 
           - name: Upload to GitHub Release
           uses: softprops/action-gh-release@v2
           with:
-            files: build/SGuitar.xcframework.zip
+            files: SGuitar.xcframework.zip
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
