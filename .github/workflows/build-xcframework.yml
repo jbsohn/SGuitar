@@ -29,13 +29,18 @@ jobs:
 
       - name: Create XCFramework
         run: |
-          mkdir -p output
           xcodebuild -create-xcframework \
             -framework build/Release-iphoneos/SGuitar.framework \
-            -output output/SGuitar.xcframework
+            -output build/SGuitar.xcframework
 
-      - name: Upload XCFramework Artifact
-        uses: actions/upload-artifact@v4
+      - name: Zip XCFramework for release
+        run: |
+          cd build
+          zip -r SGuitar.xcframework.zip SGuitar.xcframework
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: SGuitar.xcframework
-          path: output/SGuitar.xcframework
+          files: build/SGuitar.xcframework.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
