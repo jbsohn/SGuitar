@@ -12,20 +12,67 @@ CPMAddPackage("gh:fmtlib/fmt#11.1.4")
 CPMAddPackage("gh:doctest/doctest@2.4.12")
 
 # Source files
-file(GLOB SOURCE_FILES "src/*.cpp")
+set(SOURCE_FILES
+        ${PROJECT_SOURCE_DIR}/src/ChordDAOImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/ChordImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/DatabaseConnectionImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/GuitarAdjustmentImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/GuitarDAOImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/GuitarFactory.cpp
+        ${PROJECT_SOURCE_DIR}/src/GuitarImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/GuitarImport.cpp
+        ${PROJECT_SOURCE_DIR}/src/GuitarStringImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/HarmonizedScaleImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/NoteImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/ScaleDAOImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/ScaleImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/StringAdjustmentImpl.cpp
+        ${PROJECT_SOURCE_DIR}/src/Utility.cpp
+)
+
+set(TEST_SOURCE_FILES
+        ${PROJECT_SOURCE_DIR}/tests/src/main.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestChord.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestDAO.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestFactory.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestGuitar.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestGuitarObjects.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestImport.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestNote.cpp
+        ${PROJECT_SOURCE_DIR}/tests/src/TestScale.cpp
+)
+set(DJINNI_CPP
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/cpp/DataRef.cpp
+)
+set(DJINNI_OBJC
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/objc/DJFuture.mm
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/objc/DJIError.mm
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/objc/DJIProxyCaches.mm
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/objc/DJOutcome.mm
+
+)
+set(DJINNI_JNI
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/jni/DataRef_jni.cpp
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/jni/Future_jni.cpp
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/jni/djinni_main.cpp
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/jni/djinni_support.cpp
+)
+set(DJINNI_WASM
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/wasm/DataRef_wasm.cpp
+        ${PROJECT_SOURCE_DIR}/djinni/support-lib/wasm/djinni_wasm.cpp
+)
+set(FRAMEWORK_INCLUDE
+        ${PROJECT_SOURCE_DIR}/framework-include/SGuitar.h
+)
+set(DJINNI_IDL ${PROJECT_SOURCE_DIR}/idl/sguitar.djinni)
+
+# generated source by DJINNI
 file(GLOB GENERATED_CPP "generated-src/cpp/*.cpp")
 file(GLOB GENERATED_OBJC "generated-src/objc/*.mm")
 file(GLOB GENERATED_OBJC_CPP "generated-src/objc-cpp/*.mm")
 file(GLOB GENERATED_JNI "generated-src/jni/*.cpp")
 file(GLOB GENERATED_WASM "generated-src/wasm/*.cpp")
-file(GLOB TEST_SOURCE_FILES "tests/src/*.cpp")
-file(GLOB DJINNI_CPP "djinni/support-lib/cpp/*.cpp")
-file(GLOB DJINNI_OBJC "djinni/support-lib/objc/*.mm")
-file(GLOB DJINNI_JNI "djinni/support-lib/jni/*.cpp")
-file(GLOB DJINNI_WASM "djinni/support-lib/wasm/*.cpp")
-file(GLOB FRAMEWORK_INCLUDE "framework-include/*.h")
 file(GLOB DJINNI_OBJC_HEADER "generated-src/objc/*.h")
-file(GLOB DJINNI_IDL "idl/*.djinni")
 
 set(FRAMEWORK_PUBLIC_HEADER
         ${DJINNI_OBJC_HEADER}
@@ -61,6 +108,7 @@ elseif (IOS)
     set(CMAKE_SYSTEM_NAME iOS)
     set(CMAKE_OSX_SYSROOT "iphoneos")
     set(CMAKE_XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC YES)
+    set(CMAKE_XCODE_ATTRIBUTE_BUILD_LIBRARY_FOR_DISTRIBUTION "YES")
 
     add_library(SGuitar SHARED
             ${SOURCE_FILES}
@@ -86,13 +134,13 @@ elseif (IOS)
             MACOSX_RPATH TRUE
             XCODE_ATTRIBUTE_SKIP_INSTALL "YES"
     )
-else()
+else ()
     message(STATUS "Building static library...")
     add_library(SGuitar STATIC
             ${SOURCE_FILES}
             ${GENERATED_CPP}
     )
-endif()
+endif ()
 
 target_include_directories(SGuitar PUBLIC
         ${PROJECT_SOURCE_DIR}/generated-src/cpp
@@ -132,4 +180,4 @@ if (NOT EMSCRIPTEN AND NOT ANDROID AND NOT IOS)
             "${PROJECT_SOURCE_DIR}/import/Lap Steel"
             "${PROJECT_SOURCE_DIR}/import/Pedal Steel"
     )
-endif()
+endif ()
