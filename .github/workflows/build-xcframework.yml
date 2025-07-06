@@ -52,11 +52,12 @@ jobs:
         run: |
           xcodebuild -create-xcframework \
             -framework build/Release-iphoneos/SGuitar.framework \
+            -framework build/Release-iphonesimulator/SGuitar.framework \
             -output build/SGuitar.xcframework
 
       - name: Zip XCFramework for release
         run: |
-          zip -r SGuitar.xcframework.zip build/SGuitar.xcframework
+          zip -r build/SGuitar.xcframework.zip build/SGuitar.xcframework
 
           - name: Upload to GitHub Release
           uses: softprops/action-gh-release@v2
