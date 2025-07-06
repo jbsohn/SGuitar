@@ -4,6 +4,10 @@ project(SGuitar)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if (NOT ANDROID AND NOT IOS AND NOT EMSCRIPTEN)
+    set(NATIVE TRUE)
+endif ()
+
 include(cmake/Dependencies.cmake)
 include(cmake/Sources.cmake)
 
@@ -14,9 +18,11 @@ elseif (ANDROID)
     include(cmake/Platform_Android.cmake)
 elseif (IOS)
     include(cmake/Platform_iOS.cmake)
-else ()
+elseif (NATIVE)
     include(cmake/Platform_Native.cmake)
 endif ()
 
 # Tests
-include(cmake/Tests.cmake)
+if (NATIVE)
+    include(cmake/Tests.cmake)
+endif ()
