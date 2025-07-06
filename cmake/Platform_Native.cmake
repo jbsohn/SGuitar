@@ -1,3 +1,6 @@
+#
+# this target is for the native platform we are currently building on
+#
 message(STATUS "Building static library...")
 add_library(SGuitar STATIC
         ${SOURCE_FILES}

@@ -1,3 +1,6 @@
+#
+# WebAssemblu
+#
 message(STATUS "Creating WebAssembly...")
 add_executable(SGuitar
         ${SOURCE_FILES}

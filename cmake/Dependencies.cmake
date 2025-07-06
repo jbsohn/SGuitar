@@ -1,4 +1,6 @@
+#
 # Dependencies
+#
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:nlohmann/json@3.11.3")
 CPMAddPackage("gh:SRombauts/SQLiteCpp#3.3.2")

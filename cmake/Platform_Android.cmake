@@ -1,3 +1,6 @@
+#
+# Android
+#
 message(STATUS "Creating Android shared library...")
 add_library(SGuitar SHARED
         ${SOURCE_FILES}
