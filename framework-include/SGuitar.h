@@ -1,4 +1,5 @@
 #ifndef SGUITAR_H
+#define SGUITAR_H
 
 #import <Foundation/Foundation.h>
 
