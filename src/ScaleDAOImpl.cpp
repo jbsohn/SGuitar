@@ -25,14 +25,14 @@ std::vector<ScaleRecord> ScaleDAOImpl::get_scales() {
 std::optional<int32_t> ScaleDAOImpl::add_scale(const ScaleRecord& scale) {
     const nlohmann::json json_semitones = std::vector(scale.semitones);
 
-    SQLite::Statement query(db, "INSERT INTO scale (name, semitones) VALUES (?, ?) RETURNING id");
+    SQLite::Statement query(db, "INSERT INTO scale (name, semitones) VALUES (?, ?)");
     query.bind(1, scale.name);
     query.bind(2, json_semitones.dump());
-    if (query.executeStep()) {
-        return query.getColumn(0).getInt();
+    if (query.exec() != 1) {
+        return std::nullopt;
     }
 
-    return std::nullopt;
+    return static_cast<int32_t>(db.getLastInsertRowid());
 }
 
 bool ScaleDAOImpl::update_scale(const ScaleRecord& scale) {

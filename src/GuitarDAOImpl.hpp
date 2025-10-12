@@ -8,10 +8,10 @@
 #include "guitar_record.hpp"
 
 class GuitarDAOImpl final : public GuitarDAO {
-    const SQLite::Database& db;
+    SQLite::Database& db;
 
 public:
-    explicit GuitarDAOImpl(const SQLite::Database& database) : db(database) {
+    explicit GuitarDAOImpl(SQLite::Database& database) : db(database) {
     }
 
     std::vector<GuitarRecord> get_guitars() override;

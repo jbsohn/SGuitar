@@ -9,10 +9,10 @@
 #include "scale_record.hpp"
 
 class ScaleDAOImpl final : public ScaleDAO {
-    const SQLite::Database& db;
+    SQLite::Database& db;
 
 public:
-    explicit ScaleDAOImpl(const SQLite::Database& database) : db(database) {
+    explicit ScaleDAOImpl(SQLite::Database& database) : db(database) {
     }
 
     std::vector<ScaleRecord> get_scales() override;

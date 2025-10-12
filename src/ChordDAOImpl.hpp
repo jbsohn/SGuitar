@@ -9,10 +9,10 @@
 #include "chord_record.hpp"
 
 class ChordDAOImpl final : public ChordDAO {
-    const SQLite::Database& db;
+    SQLite::Database& db;
 
 public:
-    explicit ChordDAOImpl(const SQLite::Database& database) : db(database) {
+    explicit ChordDAOImpl(SQLite::Database& database) : db(database) {
     }
 
     std::vector<ChordRecord> get_chords() override;

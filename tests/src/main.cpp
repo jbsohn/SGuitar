@@ -48,7 +48,7 @@ std::string testDBPath() {
 }
 
 void readArguments(const int argc, char** argv) {
-    if (argc > 2) {
+    if (argc >= 4) {
         Paths::ddlPath = argv[1];
         Paths::lapSteelPath = argv[2];
         Paths::pedalSteelPath = argv[3];

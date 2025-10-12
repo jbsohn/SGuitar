@@ -25,13 +25,13 @@ std::vector<ChordRecord> ChordDAOImpl::get_chords() {
 std::optional<int32_t> ChordDAOImpl::add_chord(const ChordRecord& chord) {
     const nlohmann::json json_intervals = std::vector(chord.intervals);
 
-    SQLite::Statement query(db, "INSERT INTO chord (name, intervals) VALUES (?, ?) RETURNING id");
+    SQLite::Statement query(db, "INSERT INTO chord (name, intervals) VALUES (?, ?)");
     query.bind(1, chord.name);
     query.bind(2, json_intervals.dump());
-    if (query.executeStep()) {
-        return query.getColumn(0).getInt();
+    if (query.exec() != 1) {
+        return std::nullopt;
     }
-    return std::nullopt;
+    return static_cast<int32_t>(db.getLastInsertRowid());
 }
 
 bool ChordDAOImpl::update_chord(const ChordRecord& chord) {
