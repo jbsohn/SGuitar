@@ -3,6 +3,9 @@
 **SGuitar** is a cross-platform C++ library for modeling and manipulating steel guitar tunings, scales, chords, and
 pedal/lever changes. It powers the core logic of the Steel Sidekick app on iOS, Android, and WebAssembly.
 
+Most directories (`generated-src/`, `djinni/`, platform bindings) are Djinni-generated scaffolding. The hand-written
+business logic lives in `src/`—that’s where the theory, data access, and factory layers come together.
+
 ---
 
 ## 🛠 Dependencies
