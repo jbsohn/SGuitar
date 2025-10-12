@@ -141,6 +141,15 @@ This produces `SGuitar.js` and `SGuitar.wasm` in the `.build/` directory.
 
 ---
 
+## 🧱 Design Patterns in Play
+
+- **DAO / Repository:** `ChordDAO`, `ScaleDAO`, and `GuitarDAO` isolate SQLite access so the domain never issues SQL directly.
+- **Factory:** `GuitarFactory` turns record structs into fully wired domain objects with strings, adjustments, and markers.
+- **Interface + Implementation:** Djinni-generated interfaces (e.g., `Guitar`) pair with concrete `*Impl` classes to keep behaviour encapsulated.
+- **DTO Records:** Generated `*Record` structs move data between persistence, import/export, and cross-platform layers without leaking database concerns.
+
+---
+
 ## 📃 License
 
 This project is licensed under the GNU General Public License v2.0 (GPLv2).
